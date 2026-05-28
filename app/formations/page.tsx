@@ -1,11 +1,7 @@
-import type { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-
-export const metadata: Metadata = {
-  title: "Nos Formations | Préparation Concours Territoriaux Guadeloupe | Evolutia",
-  description: "Découvrez les 8 formations Evolutia pour préparer les concours de la fonction publique territoriale en Guadeloupe. Catégorie A, B, C. Financement CPF.",
-};
 
 const FORMATIONS = [
   {
@@ -90,8 +86,6 @@ const FORMATIONS = [
   },
 ];
 
-const FILTRES = ["Toutes", "Catégorie A", "Catégorie B", "Catégorie C+", "Oraux"];
-
 export default function FormationsPage() {
   return (
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif", color: "#1a2740", background: "#F8FAFF" }}>
@@ -107,7 +101,7 @@ export default function FormationsPage() {
             </div>
           </Link>
           <nav style={{ display: "flex", gap: 4, alignItems: "center" }}>
-            {[["Accueil", "/"], ["Méthode", "/#methode"], ["Calendrier", "/#calendrier"], ["Témoignages", "/#temoignages"], ["Contact", "/#contact"]].map(([label, href]) => (
+            {([["Accueil", "/"], ["Méthode", "/#methode"], ["Calendrier", "/#calendrier"], ["Témoignages", "/#temoignages"], ["Contact", "/#contact"]] as [string, string][]).map(([label, href]) => (
               <Link key={href} href={href} style={{ color: "rgba(255,255,255,0.8)", textDecoration: "none", fontSize: 13, fontWeight: 500, padding: "8px 12px", borderRadius: 6 }}>{label}</Link>
             ))}
             <Link href="/#contact" style={{ marginLeft: 8, background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 13, padding: "10px 20px", borderRadius: 8, textDecoration: "none", whiteSpace: "nowrap" }}>
@@ -130,16 +124,15 @@ export default function FormationsPage() {
           <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 18, maxWidth: 600, margin: "0 auto 36px", lineHeight: 1.7 }}>
             De catégorie A à C, Evolutia couvre l&apos;ensemble des concours et examens de la fonction publique territoriale en Guadeloupe.
           </p>
-          {/* Stats */}
           <div style={{ display: "inline-flex", gap: 32, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(75,173,212,0.2)", borderRadius: 16, padding: "20px 40px" }}>
-            {[
-              { val: "85%", label: "Taux de réussite moyen" },
-              { val: "8", label: "Formations" },
-              { val: "+500", label: "Lauréats formés" },
-              { val: "CPF", label: "Financement possible" },
-            ].map((s, i) => (
+            {([
+              { val: "85%", label: "Taux de réussite moyen", c: "#F5A623" },
+              { val: "8", label: "Formations", c: "white" },
+              { val: "+500", label: "Lauréats formés", c: "white" },
+              { val: "CPF", label: "Financement possible", c: "#4BADD4" },
+            ] as {val:string;label:string;c:string}[]).map((s, i) => (
               <div key={i} style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 26, fontWeight: 800, color: i === 0 ? "#F5A623" : i === 3 ? "#4BADD4" : "white", fontFamily: "monospace" }}>{s.val}</div>
+                <div style={{ fontSize: 26, fontWeight: 800, color: s.c, fontFamily: "monospace" }}>{s.val}</div>
                 <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginTop: 3 }}>{s.label}</div>
               </div>
             ))}
@@ -156,29 +149,23 @@ export default function FormationsPage() {
         </div>
       </div>
 
-      {/* Grille formations */}
+      {/* Grille */}
       <section style={{ padding: "56px 24px 80px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-
-          {/* Intro */}
-          <div style={{ marginBottom: 40, display: "grid", gridTemplateColumns: "1fr auto", alignItems: "center", gap: 24 }}>
+          <div style={{ marginBottom: 40, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
             <div>
               <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 8px 0" }}>Choisissez votre formation</h2>
-              <p style={{ color: "#5a6f8f", fontSize: 15, margin: 0 }}>Cliquez sur une formation pour accéder au programme complet, aux conditions d&apos;accès et aux modalités de financement.</p>
+              <p style={{ color: "#5a6f8f", fontSize: 15, margin: 0 }}>Cliquez sur une formation pour accéder au programme complet et aux modalités de financement.</p>
             </div>
             <Link href="/#contact" style={{ background: "#1B3A6B", color: "white", fontWeight: 700, fontSize: 14, padding: "14px 24px", borderRadius: 10, textDecoration: "none", whiteSpace: "nowrap" }}>
               Je ne sais pas quoi choisir →
             </Link>
           </div>
 
-          {/* Cards */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 24 }}>
             {FORMATIONS.map((f) => (
               <Link key={f.slug} href={`/formations/${f.slug}`} style={{ textDecoration: "none", display: "block" }}>
-                <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 16, overflow: "hidden", height: "100%", transition: "all 0.2s", cursor: "pointer", display: "flex", flexDirection: "column" }}
-                  onMouseEnter={(e) => { const el = e.currentTarget; el.style.transform = "translateY(-4px)"; el.style.boxShadow = "0 12px 40px rgba(27,58,107,0.14)"; el.style.borderColor = f.color; }}
-                  onMouseLeave={(e) => { const el = e.currentTarget; el.style.transform = "translateY(0)"; el.style.boxShadow = "none"; el.style.borderColor = "#D6E4F0"; }}>
-                  {/* Top bar */}
+                <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 16, overflow: "hidden", height: "100%", display: "flex", flexDirection: "column", transition: "all 0.2s", cursor: "pointer" }}>
                   <div style={{ height: 4, background: `linear-gradient(90deg, ${f.color}, ${f.accent})` }} />
                   <div style={{ padding: "22px 22px 20px", flex: 1, display: "flex", flexDirection: "column" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14 }}>
@@ -210,23 +197,23 @@ export default function FormationsPage() {
 
       {/* Bandeau CPF */}
       <section style={{ background: "linear-gradient(135deg, #EEF5FF 0%, #F0F8FF 100%)", padding: "56px 24px", borderTop: "1px solid #D6E4F0" }}>
-        <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr auto", gap: 48, alignItems: "center" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 40, flexWrap: "wrap" }}>
           <div>
             <div style={{ color: "#4BADD4", fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 10 }}>Financement</div>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 12px 0" }}>Toutes nos formations sont éligibles CPF</h2>
-            <p style={{ color: "#5a6f8f", fontSize: 16, lineHeight: 1.7, margin: 0 }}>Financement possible à 100% via votre Compte Personnel de Formation. Aucune avance de frais requise. Prise en charge OPCO pour les salariés.</p>
+            <p style={{ color: "#5a6f8f", fontSize: 16, lineHeight: 1.7, margin: 0 }}>Financement possible à 100% via votre Compte Personnel de Formation. Aucune avance de frais.</p>
           </div>
-          <Link href="/#financement" style={{ background: "#1B3A6B", color: "white", fontWeight: 700, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none", whiteSpace: "nowrap", display: "block", textAlign: "center" }}>
+          <Link href="/#financement" style={{ background: "#1B3A6B", color: "white", fontWeight: 700, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none", whiteSpace: "nowrap" }}>
             En savoir plus
           </Link>
         </div>
       </section>
 
-      {/* CTA final */}
+      {/* CTA */}
       <section style={{ background: "linear-gradient(135deg, #1B3A6B 0%, #122852 100%)", padding: "64px 24px", textAlign: "center" }}>
         <div style={{ maxWidth: 560, margin: "0 auto" }}>
           <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 32, fontWeight: 800, color: "white", margin: "0 0 14px 0" }}>Vous ne savez pas quelle formation choisir ?</h2>
-          <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 16, lineHeight: 1.7, margin: "0 0 32px 0" }}>Notre équipe analyse votre profil et vous oriente vers le concours qui correspond à votre situation et vos objectifs.</p>
+          <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 16, lineHeight: 1.7, margin: "0 0 32px 0" }}>Notre équipe analyse votre profil et vous oriente vers le concours qui correspond à votre situation.</p>
           <Link href="/#contact" style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 800, fontSize: 16, padding: "18px 40px", borderRadius: 10, textDecoration: "none", display: "inline-block" }}>
             Réserver un entretien d&apos;orientation gratuit
           </Link>
@@ -246,7 +233,7 @@ export default function FormationsPage() {
           </div>
           <div style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>© 2025 Evolutia Formation. Tous droits réservés.</div>
           <div style={{ display: "flex", gap: 20 }}>
-            {[["Accueil", "/"], ["Formations", "/formations"], ["Contact", "/#contact"]].map(([label, href]) => (
+            {([["Accueil", "/"], ["Formations", "/formations"], ["Contact", "/#contact"]] as [string,string][]).map(([label, href]) => (
               <Link key={href} href={href} style={{ color: "rgba(255,255,255,0.4)", fontSize: 12, textDecoration: "none" }}>{label}</Link>
             ))}
           </div>
@@ -255,9 +242,7 @@ export default function FormationsPage() {
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
-        @media (max-width: 768px) {
-          nav { display: none !important; }
-        }
+        @media (max-width: 768px) { nav { display: none !important; } }
       `}</style>
     </div>
   );
