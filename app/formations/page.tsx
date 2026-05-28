@@ -1,0 +1,264 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Nos Formations | Préparation Concours Territoriaux Guadeloupe | Evolutia",
+  description: "Découvrez les 8 formations Evolutia pour préparer les concours de la fonction publique territoriale en Guadeloupe. Catégorie A, B, C. Financement CPF.",
+};
+
+const FORMATIONS = [
+  {
+    titre: "Ingénieur Territorial",
+    categorie: "Catégorie A",
+    slug: "ingenieur-territorial-guadeloupe",
+    desc: "Concours externe, interne et 3e voie. Épreuves techniques et oraux.",
+    duree: "120–180h",
+    taux: "82%",
+    color: "#1B3A6B",
+    accent: "#4BADD4",
+  },
+  {
+    titre: "Technicien Territorial",
+    categorie: "Catégorie B",
+    slug: "technicien-territorial-guadeloupe",
+    desc: "Maîtrise des épreuves écrites et préparation complète aux oraux.",
+    duree: "80–120h",
+    taux: "87%",
+    color: "#4BADD4",
+    accent: "#1B3A6B",
+  },
+  {
+    titre: "Rédacteur Territorial",
+    categorie: "Catégorie B",
+    slug: "redacteur-territorial-guadeloupe",
+    desc: "Culture générale, note de synthèse, entretien jury.",
+    duree: "80–120h",
+    taux: "85%",
+    color: "#1B3A6B",
+    accent: "#4BADD4",
+  },
+  {
+    titre: "Rédacteur Principal",
+    categorie: "Catégorie B+",
+    slug: "redacteur-principal-guadeloupe",
+    desc: "Examen professionnel interne — dossier RAEP et entretien jury.",
+    duree: "40–60h",
+    taux: "88%",
+    color: "#F5A623",
+    accent: "#1B3A6B",
+  },
+  {
+    titre: "Agent de Maîtrise",
+    categorie: "Catégorie C+",
+    slug: "agent-de-maitrise-guadeloupe",
+    desc: "Épreuves pratiques et mise en situation professionnelle.",
+    duree: "60–80h",
+    taux: "84%",
+    color: "#4BADD4",
+    accent: "#1B3A6B",
+  },
+  {
+    titre: "Ingénieur Chef",
+    categorie: "Catégorie A+",
+    slug: "ingenieur-chef-guadeloupe",
+    desc: "Concours de promotion interne — leadership et vision stratégique.",
+    duree: "60–80h",
+    taux: "79%",
+    color: "#1B3A6B",
+    accent: "#F5A623",
+  },
+  {
+    titre: "Ingénieur Territorial Externe",
+    categorie: "Catégorie A",
+    slug: "ingenieur-territorial-externe-guadeloupe",
+    desc: "Voie externe pour diplômés Bac+3 souhaitant intégrer la FPT.",
+    duree: "100–140h",
+    taux: "83%",
+    color: "#4BADD4",
+    accent: "#1B3A6B",
+  },
+  {
+    titre: "Préparation aux Oraux",
+    categorie: "Toutes catégories",
+    slug: "preparation-oraux-concours-guadeloupe",
+    desc: "Coaching intensif oraux — simulations jury filmées et débriefing.",
+    duree: "20–40h",
+    taux: "91%",
+    color: "#F5A623",
+    accent: "#1B3A6B",
+  },
+];
+
+const FILTRES = ["Toutes", "Catégorie A", "Catégorie B", "Catégorie C+", "Oraux"];
+
+export default function FormationsPage() {
+  return (
+    <div style={{ fontFamily: "'Inter', system-ui, sans-serif", color: "#1a2740", background: "#F8FAFF" }}>
+
+      {/* Navbar */}
+      <header style={{ position: "sticky", top: 0, zIndex: 50, background: "rgba(27,58,107,0.97)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(75,173,212,0.2)" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}>
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
+            <Image src="/logo-evolutia.png" alt="Évolutia Formation" width={48} height={48} style={{ borderRadius: 8, background: "white", padding: 2 }} priority />
+            <div>
+              <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: 18, color: "white", lineHeight: 1.1 }}>ÉVOLUTIA</div>
+              <div style={{ fontSize: 9, color: "#F5A623", letterSpacing: "0.15em", fontWeight: 600, textTransform: "uppercase" }}>Centre de Formation</div>
+            </div>
+          </Link>
+          <nav style={{ display: "flex", gap: 4, alignItems: "center" }}>
+            {[["Accueil", "/"], ["Méthode", "/#methode"], ["Calendrier", "/#calendrier"], ["Témoignages", "/#temoignages"], ["Contact", "/#contact"]].map(([label, href]) => (
+              <Link key={href} href={href} style={{ color: "rgba(255,255,255,0.8)", textDecoration: "none", fontSize: 13, fontWeight: 500, padding: "8px 12px", borderRadius: 6 }}>{label}</Link>
+            ))}
+            <Link href="/#contact" style={{ marginLeft: 8, background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 13, padding: "10px 20px", borderRadius: 8, textDecoration: "none", whiteSpace: "nowrap" }}>
+              Réserver un entretien
+            </Link>
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section style={{ background: "linear-gradient(135deg, #1B3A6B 0%, #0d1e3d 100%)", padding: "64px 24px 56px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(245,166,35,0.15)", border: "1px solid rgba(245,166,35,0.3)", borderRadius: 100, padding: "6px 16px", marginBottom: 20 }}>
+            <div style={{ width: 8, height: 8, background: "#F5A623", borderRadius: "50%" }} />
+            <span style={{ color: "#F5A623", fontSize: 12, fontWeight: 600, letterSpacing: "0.05em" }}>8 formations disponibles</span>
+          </div>
+          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: "white", margin: "0 0 16px 0", lineHeight: 1.15 }}>
+            Toutes nos formations
+          </h1>
+          <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 18, maxWidth: 600, margin: "0 auto 36px", lineHeight: 1.7 }}>
+            De catégorie A à C, Evolutia couvre l&apos;ensemble des concours et examens de la fonction publique territoriale en Guadeloupe.
+          </p>
+          {/* Stats */}
+          <div style={{ display: "inline-flex", gap: 32, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(75,173,212,0.2)", borderRadius: 16, padding: "20px 40px" }}>
+            {[
+              { val: "85%", label: "Taux de réussite moyen" },
+              { val: "8", label: "Formations" },
+              { val: "+500", label: "Lauréats formés" },
+              { val: "CPF", label: "Financement possible" },
+            ].map((s, i) => (
+              <div key={i} style={{ textAlign: "center" }}>
+                <div style={{ fontSize: 26, fontWeight: 800, color: i === 0 ? "#F5A623" : i === 3 ? "#4BADD4" : "white", fontFamily: "monospace" }}>{s.val}</div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginTop: 3 }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Breadcrumb */}
+      <div style={{ background: "white", borderBottom: "1px solid #D6E4F0", padding: "12px 24px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", gap: 8, fontSize: 13, color: "#5a6f8f" }}>
+          <Link href="/" style={{ color: "#5a6f8f", textDecoration: "none" }}>Accueil</Link>
+          <span>/</span>
+          <span style={{ color: "#1B3A6B", fontWeight: 600 }}>Formations</span>
+        </div>
+      </div>
+
+      {/* Grille formations */}
+      <section style={{ padding: "56px 24px 80px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+
+          {/* Intro */}
+          <div style={{ marginBottom: 40, display: "grid", gridTemplateColumns: "1fr auto", alignItems: "center", gap: 24 }}>
+            <div>
+              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 8px 0" }}>Choisissez votre formation</h2>
+              <p style={{ color: "#5a6f8f", fontSize: 15, margin: 0 }}>Cliquez sur une formation pour accéder au programme complet, aux conditions d&apos;accès et aux modalités de financement.</p>
+            </div>
+            <Link href="/#contact" style={{ background: "#1B3A6B", color: "white", fontWeight: 700, fontSize: 14, padding: "14px 24px", borderRadius: 10, textDecoration: "none", whiteSpace: "nowrap" }}>
+              Je ne sais pas quoi choisir →
+            </Link>
+          </div>
+
+          {/* Cards */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 24 }}>
+            {FORMATIONS.map((f) => (
+              <Link key={f.slug} href={`/formations/${f.slug}`} style={{ textDecoration: "none", display: "block" }}>
+                <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 16, overflow: "hidden", height: "100%", transition: "all 0.2s", cursor: "pointer", display: "flex", flexDirection: "column" }}
+                  onMouseEnter={(e) => { const el = e.currentTarget; el.style.transform = "translateY(-4px)"; el.style.boxShadow = "0 12px 40px rgba(27,58,107,0.14)"; el.style.borderColor = f.color; }}
+                  onMouseLeave={(e) => { const el = e.currentTarget; el.style.transform = "translateY(0)"; el.style.boxShadow = "none"; el.style.borderColor = "#D6E4F0"; }}>
+                  {/* Top bar */}
+                  <div style={{ height: 4, background: `linear-gradient(90deg, ${f.color}, ${f.accent})` }} />
+                  <div style={{ padding: "22px 22px 20px", flex: 1, display: "flex", flexDirection: "column" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14 }}>
+                      <div style={{ background: "#EEF5FF", color: "#1B3A6B", fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 6 }}>{f.categorie}</div>
+                      <div style={{ textAlign: "right" }}>
+                        <div style={{ fontSize: 18, fontWeight: 800, color: "#F5A623", fontFamily: "monospace" }}>{f.taux}</div>
+                        <div style={{ fontSize: 10, color: "#5a6f8f" }}>réussite</div>
+                      </div>
+                    </div>
+                    <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 18, fontWeight: 700, color: "#1B3A6B", margin: "0 0 10px 0", lineHeight: 1.3 }}>{f.titre}</h3>
+                    <p style={{ fontSize: 14, color: "#5a6f8f", lineHeight: 1.6, margin: "0 0 20px 0", flex: 1 }}>{f.desc}</p>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 16, borderTop: "1px solid #EEF5FF" }}>
+                      <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5a6f8f" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <span style={{ fontSize: 12, color: "#5a6f8f" }}>{f.duree}</span>
+                      </div>
+                      <span style={{ color: "#4BADD4", fontSize: 13, fontWeight: 600, display: "flex", alignItems: "center", gap: 5 }}>
+                        Voir le programme
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Bandeau CPF */}
+      <section style={{ background: "linear-gradient(135deg, #EEF5FF 0%, #F0F8FF 100%)", padding: "56px 24px", borderTop: "1px solid #D6E4F0" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr auto", gap: 48, alignItems: "center" }}>
+          <div>
+            <div style={{ color: "#4BADD4", fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 10 }}>Financement</div>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 12px 0" }}>Toutes nos formations sont éligibles CPF</h2>
+            <p style={{ color: "#5a6f8f", fontSize: 16, lineHeight: 1.7, margin: 0 }}>Financement possible à 100% via votre Compte Personnel de Formation. Aucune avance de frais requise. Prise en charge OPCO pour les salariés.</p>
+          </div>
+          <Link href="/#financement" style={{ background: "#1B3A6B", color: "white", fontWeight: 700, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none", whiteSpace: "nowrap", display: "block", textAlign: "center" }}>
+            En savoir plus
+          </Link>
+        </div>
+      </section>
+
+      {/* CTA final */}
+      <section style={{ background: "linear-gradient(135deg, #1B3A6B 0%, #122852 100%)", padding: "64px 24px", textAlign: "center" }}>
+        <div style={{ maxWidth: 560, margin: "0 auto" }}>
+          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 32, fontWeight: 800, color: "white", margin: "0 0 14px 0" }}>Vous ne savez pas quelle formation choisir ?</h2>
+          <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 16, lineHeight: 1.7, margin: "0 0 32px 0" }}>Notre équipe analyse votre profil et vous oriente vers le concours qui correspond à votre situation et vos objectifs.</p>
+          <Link href="/#contact" style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 800, fontSize: 16, padding: "18px 40px", borderRadius: 10, textDecoration: "none", display: "inline-block" }}>
+            Réserver un entretien d&apos;orientation gratuit
+          </Link>
+          <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 12, marginTop: 12 }}>Réponse sous 24h. Aucun engagement.</p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer style={{ background: "#08111E", padding: "40px 24px 24px", borderTop: "1px solid rgba(75,173,212,0.15)" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <Image src="/logo-evolutia.png" alt="Évolutia" width={36} height={36} style={{ borderRadius: 6, background: "white", padding: 2 }} />
+            <div>
+              <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: 15, color: "white" }}>ÉVOLUTIA</div>
+              <div style={{ fontSize: 8, color: "#F5A623", letterSpacing: "0.12em" }}>CENTRE DE FORMATION</div>
+            </div>
+          </div>
+          <div style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>© 2025 Evolutia Formation. Tous droits réservés.</div>
+          <div style={{ display: "flex", gap: 20 }}>
+            {[["Accueil", "/"], ["Formations", "/formations"], ["Contact", "/#contact"]].map(([label, href]) => (
+              <Link key={href} href={href} style={{ color: "rgba(255,255,255,0.4)", fontSize: 12, textDecoration: "none" }}>{label}</Link>
+            ))}
+          </div>
+        </div>
+      </footer>
+
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+        @media (max-width: 768px) {
+          nav { display: none !important; }
+        }
+      `}</style>
+    </div>
+  );
+}
