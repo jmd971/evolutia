@@ -40,7 +40,7 @@ const PILIERS = [
 
 const CHIFFRES = [
   { val: "85%", label: "Taux de réussite moyen 2023" },
-  { val: "+500", label: "Lauréats depuis 2014" },
+  
   { val: "10 ans", label: "D'expérience en Guadeloupe" },
   { val: "8", label: "Formations disponibles" },
 ];
