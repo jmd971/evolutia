@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import NavBar from "../components/NavBar"
+import Footer from "../components/Footer"
 
 export const metadata: Metadata = {
   title: "Politique de Confidentialité | Evolutia Formation Guadeloupe",
@@ -10,18 +12,7 @@ export const metadata: Metadata = {
 export default function PolitiqueConfidentialite() {
   return (
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif", color: "#1a2740", background: "#F8FAFF" }}>
-      <header style={{ position: "sticky", top: 0, zIndex: 50, background: "rgba(27,58,107,0.97)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(75,173,212,0.2)" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}>
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-            <Image src="/logo-evolutia.png" alt="Évolutia Formation" width={48} height={48} style={{ borderRadius: 8, background: "white", padding: 2 }} priority />
-            <div>
-              <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: 18, color: "white", lineHeight: 1.1 }}>ÉVOLUTIA</div>
-              <div style={{ fontSize: 9, color: "#F5A623", letterSpacing: "0.15em", fontWeight: 600, textTransform: "uppercase" }}>Centre de Formation</div>
-            </div>
-          </Link>
-          <Link href="/" style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, textDecoration: "none" }}>← Retour à l&apos;accueil</Link>
-        </div>
-      </header>
+      <NavBar activeHref="/politique-confidentialite" />
 
       <section style={{ maxWidth: 860, margin: "0 auto", padding: "64px 24px 80px" }}>
         <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px,4vw,42px)", fontWeight: 800, color: "#1B3A6B", margin: "0 0 8px 0" }}>Politique de confidentialité</h1>
@@ -104,16 +95,7 @@ Vous pouvez configurer votre navigateur pour refuser les cookies. Cela n'affecte
         </div>
       </section>
 
-      <footer style={{ background: "#08111E", padding: "32px 24px", borderTop: "1px solid rgba(75,173,212,0.15)" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
-          <div style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>© 2025 Evolutia Formation. Tous droits réservés.</div>
-          <div style={{ display: "flex", gap: 20 }}>
-            {([["Accueil", "/"], ["Formations", "/formations"], ["Contact", "/contact"], ["Mentions légales", "/mentions-legales"], ["Confidentialité", "/politique-confidentialite"], ["CGV", "/cgv"]] as [string,string][]).map(([label, href]) => (
-              <Link key={href} href={href} style={{ color: "rgba(255,255,255,0.4)", fontSize: 11, textDecoration: "none" }}>{label}</Link>
-            ))}
-          </div>
-        </div>
-      </footer>
+      <Footer />
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');`}</style>
     </div>
   );
