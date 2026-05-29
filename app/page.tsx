@@ -564,7 +564,7 @@ export default function Home() {
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 24, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
             <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 12, margin: 0 }}>© 2025 Evolutia Formation. Tous droits réservés.</p>
             <div style={{ display: "flex", gap: 20 }}>
-              {[["Mentions légales", "/mentions-legales"], ["Politique de confidentialité", "/confidentialite"], ["CGV", "/cgv"]].map(([label, href]) => (
+              {[["Mentions légales", "/mentions-legales"], ["Politique de confidentialité", "/politique-confidentialite"], ["CGV", "/cgv"]].map(([label, href]) => (
                 <a key={href} href={href} style={{ color: "rgba(255,255,255,0.3)", fontSize: 12, textDecoration: "none" }}>{label}</a>
               ))}
             </div>
