@@ -5,6 +5,7 @@ import Link from "next/link";
 
 type Epreuve = { type: string; label: string; desc: string };
 type Condition = { voie: string; condition: string };
+type DateCle = { label: string; date: string; statut: "ouvert" | "bientot" | "ferme" };
 
 type Formation = {
   titre: string;
@@ -20,6 +21,8 @@ type Formation = {
   format: string;
   tauxReussite: string;
   color: string;
+  datesCles: DateCle[];
+  sourceOfficielle: string;
 };
 
 const FORMATIONS: Record<string, Formation> = {
@@ -29,29 +32,35 @@ const FORMATIONS: Record<string, Formation> = {
     categorie: "Catégorie A",
     seoTitle: "Préparation Concours Ingénieur Territorial Guadeloupe 2025 | Evolutia",
     seoDesc: "Préparez le concours d'ingénieur territorial en Guadeloupe avec Evolutia. Programme complet, formateurs experts, format hybride. Financement CPF disponible.",
-    accroche: "Le concours d'ingénieur territorial est l'un des plus sélectifs de la fonction publique. Notre programme intensif vous donne les outils pour réussir dès la première tentative.",
+    accroche: "Le concours d'ingénieur territorial est l'un des plus sélectifs de la fonction publique territoriale (Catégorie A). Il ouvre l'accès aux postes d'encadrement technique dans les collectivités. Notre programme intensif — calqué sur le référentiel CNFPT — vous donne les outils pour réussir dès la première tentative.",
     epreuves: [
-      { type: "Écrit", label: "Note de synthèse (4h)", desc: "Analyse d'un dossier documentaire, synthèse structurée" },
-      { type: "Écrit", label: "Note technique (4h)", desc: "Résolution d'un problème technique dans la spécialité" },
-      { type: "Oral", label: "Entretien jury (30 min)", desc: "Présentation du parcours, motivation, mise en situation" },
+      { type: "Écrit", label: "Note de synthèse (4h)", desc: "Rédaction d'une note à partir d'un dossier documentaire (20-25 pages). Évalue la capacité d'analyse, de synthèse et d'expression écrite." },
+      { type: "Écrit", label: "Note technique (4h)", desc: "Résolution d'un problème technique dans la spécialité choisie (aménagement, réseaux, bâtiment…). Exige une maîtrise des réglementations en vigueur." },
+      { type: "Oral", label: "Entretien devant le jury (30 min)", desc: "Présentation du parcours (5 min) puis échange avec le jury sur les motivations, les compétences techniques et la vision des enjeux territoriaux." },
     ],
     programme: [
-      "Méthodologie note de synthèse — techniques et entraînements",
-      "Culture administrative et institutionnelle",
-      "Épreuves techniques par spécialité",
-      "Simulations d'entretien oral avec jury",
-      "Corrections individuelles détaillées",
-      "Veille sur le calendrier CDG Guadeloupe",
+      "Méthodologie de la note de synthèse — techniques CNFPT + entraînements corrigés",
+      "Culture administrative : institutions, droit public des collectivités, actualité de la FPT",
+      "Épreuves techniques par spécialité (voirie, réseaux, bâtiment, informatique…)",
+      "Enjeux territoriaux de la Guadeloupe : intercommunalité, développement durable, aménagement",
+      "Simulations d'entretien oral filmées + débriefing individuel",
+      "Veille sur le calendrier CDG 971 Guadeloupe",
     ],
     conditions: [
-      { voie: "Externe", condition: "Bac+3 dans la spécialité concernée" },
-      { voie: "Interne", condition: "4 ans de services effectifs dans la FPT" },
-      { voie: "3e voie", condition: "Expérience professionnelle équivalente" },
+      { voie: "Externe", condition: "Diplôme Bac+3 (licence) ou titre reconnu équivalent dans la spécialité" },
+      { voie: "Interne", condition: "Agent de la FPT avec 4 ans de services effectifs dans un cadre d'emploi de cat. A ou B" },
+      { voie: "3e voie", condition: "8 ans d'expérience professionnelle dans le secteur privé ou public hors FPT" },
     ],
     duree: "120 à 180 heures",
-    format: "Présentiel (Grand-Camp) + distanciel",
+    format: "Présentiel (Grand-Camp, Les Abymes) + distanciel",
     tauxReussite: "82%",
     color: "#1B3A6B",
+    datesCles: [
+      { label: "Inscriptions concours", date: "8 déc. 2026 → 13 jan. 2027", statut: "bientot" },
+      { label: "Épreuves écrites", date: "16 juin 2027", statut: "bientot" },
+      { label: "Examen prof. interne", date: "18 juin 2026", statut: "ferme" },
+    ],
+    sourceOfficielle: "https://www.concours-territorial.fr/calendrier.aspx",
   },
   "technicien-territorial-guadeloupe": {
     titre: "Technicien Territorial",
@@ -59,28 +68,34 @@ const FORMATIONS: Record<string, Formation> = {
     categorie: "Catégorie B",
     seoTitle: "Préparation Concours Technicien Territorial Guadeloupe 2025 | Evolutia",
     seoDesc: "Formation préparation concours technicien territorial en Guadeloupe. Épreuves écrites et oraux. Financement CPF. Centre Evolutia, Les Abymes.",
-    accroche: "Le technicien territorial joue un rôle clé dans les services techniques des collectivités. Notre formation vous prépare méthodiquement aux épreuves écrites et orales.",
+    accroche: "Le technicien territorial (Catégorie B) joue un rôle clé dans les services techniques des collectivités locales. Le concours évalue à la fois vos connaissances techniques et votre maîtrise de l'expression écrite administrative. Notre formation vous prépare méthodiquement à toutes les épreuves.",
     epreuves: [
-      { type: "Écrit", label: "Composition (3h)", desc: "Rédaction sur un sujet d'actualité des collectivités territoriales" },
-      { type: "Écrit", label: "Analyse de document (3h)", desc: "Questions sur un dossier documentaire" },
-      { type: "Oral", label: "Entretien jury (20 min)", desc: "Échange sur le parcours professionnel et motivations" },
+      { type: "Écrit", label: "Composition sur programme (3h)", desc: "Rédaction d'une composition sur un sujet portant sur les connaissances techniques de la spécialité choisie. Notation sur 20." },
+      { type: "Écrit", label: "Analyse de document (3h)", desc: "Réponse à des questions à partir d'un dossier documentaire de 20 pages maximum portant sur la spécialité." },
+      { type: "Oral", label: "Entretien avec le jury (20 min)", desc: "Échange sur le parcours professionnel, les motivations et un sujet tiré au sort parmi les thèmes de la spécialité." },
     ],
     programme: [
-      "Actualité et fonctionnement des collectivités territoriales",
-      "Méthodologie de la composition",
-      "Analyse et synthèse documentaire",
-      "Entraînements écrits corrigés individuellement",
-      "Préparation et simulation des oraux",
-      "Planning personnalisé selon la date du concours",
+      "Actualité et fonctionnement des collectivités territoriales (CGCT, réforme territoriale)",
+      "Méthodologie de la composition et de l'analyse documentaire",
+      "Connaissances techniques par spécialité (bâtiment, voirie, espaces verts, informatique…)",
+      "Entraînements intensifs sur sujets de concours réels — corrigés individuellement",
+      "Préparation et simulation des oraux : prise de parole, posture, gestion du stress",
+      "Planning personnalisé selon la date du concours CDG 971",
     ],
     conditions: [
-      { voie: "Externe", condition: "Bac ou équivalent reconnu" },
-      { voie: "Interne", condition: "2 ans de services effectifs dans la FPT" },
+      { voie: "Externe", condition: "Baccalauréat ou titre reconnu de niveau IV dans la spécialité concernée" },
+      { voie: "Interne", condition: "Agent de la FPT avec 2 ans de services effectifs en catégorie C" },
     ],
     duree: "80 à 120 heures",
-    format: "Présentiel (Grand-Camp) + distanciel",
+    format: "Présentiel (Grand-Camp, Les Abymes) + distanciel",
     tauxReussite: "87%",
     color: "#4BADD4",
+    datesCles: [
+      { label: "Épreuves concours (session 2026)", date: "9 avril 2026", statut: "ferme" },
+      { label: "Inscriptions prochaine session", date: "À confirmer — CDG 971", statut: "bientot" },
+      { label: "Examen prof. technicien principal", date: "15 avril 2027", statut: "bientot" },
+    ],
+    sourceOfficielle: "https://www.cdg971.com/fr/concours-examens/calendrier-et-inscription",
   },
   "redacteur-territorial-guadeloupe": {
     titre: "Rédacteur Territorial",
@@ -88,55 +103,68 @@ const FORMATIONS: Record<string, Formation> = {
     categorie: "Catégorie B",
     seoTitle: "Préparation Concours Rédacteur Territorial Guadeloupe 2025 | Evolutia",
     seoDesc: "Préparez le concours de rédacteur territorial en Guadeloupe. Culture générale, note de synthèse, entretien jury. Financement CPF. Evolutia Formation, Les Abymes.",
-    accroche: "Le concours de rédacteur territorial évalue votre maîtrise de l'expression écrite et votre connaissance du secteur public. Une préparation rigoureuse est indispensable.",
+    accroche: "Le concours de rédacteur territorial (Catégorie B) est parmi les plus exigeants en matière d'expression écrite et de culture générale. Il exige une préparation sérieuse et régulière. Nos formateurs vous accompagnent de la méthodologie jusqu'aux simulations de jury.",
     epreuves: [
-      { type: "Écrit", label: "Composition (4h)", desc: "Dissertation sur un sujet de culture générale à portée administrative" },
-      { type: "Écrit", label: "Note de synthèse (3h)", desc: "Exploitation d'un dossier documentaire pour rédiger une note" },
-      { type: "Oral", label: "Entretien jury (25 min)", desc: "Conversation sur le parcours, les motivations et un sujet d'actualité" },
+      { type: "Écrit", label: "Composition sur programme (4h)", desc: "Dissertation sur un sujet de culture générale à portée administrative. Évalue la structuration de la pensée, la maîtrise de la langue et la culture administrative." },
+      { type: "Écrit", label: "Note de synthèse (3h)", desc: "Exploitation d'un dossier documentaire pour rédiger une note à l'intention d'un élu ou d'un supérieur hiérarchique." },
+      { type: "Oral", label: "Entretien avec le jury (25 min)", desc: "Conversation sur le parcours, les motivations et un sujet d'actualité locale ou nationale tiré au sort 10 minutes avant l'entretien." },
     ],
     programme: [
-      "Culture générale : actualité nationale et locale (Guadeloupe)",
-      "Méthodologie de la dissertation et de la note de synthèse",
-      "Institutions et droit public des collectivités",
-      "Entraînements intensifs écrits corrigés",
-      "Coaching oral — présentation, posture, gestion du stress",
-      "Suivi personnalisé par formateur référent",
+      "Culture générale : actualité nationale, européenne et locale (Guadeloupe, Antilles-Guyane)",
+      "Méthodologie de la dissertation et de la note de synthèse — approche CNFPT",
+      "Institutions et droit public des collectivités territoriales",
+      "Entraînements intensifs écrits sur sujets officiels — corrigés détaillés",
+      "Coaching oral : présentation, posture, argumentation, gestion du stress",
+      "Suivi personnalisé par formateur référent tout au long de la préparation",
     ],
     conditions: [
-      { voie: "Externe", condition: "Bac ou équivalent reconnu" },
-      { voie: "Interne", condition: "2 ans de services effectifs dans la FPT" },
+      { voie: "Externe", condition: "Baccalauréat ou diplôme de niveau IV reconnu équivalent" },
+      { voie: "Interne", condition: "Agent de la FPT avec 2 ans de services effectifs en catégorie C" },
     ],
     duree: "80 à 120 heures",
-    format: "Présentiel (Grand-Camp) + distanciel",
+    format: "Présentiel (Grand-Camp, Les Abymes) + distanciel",
     tauxReussite: "85%",
     color: "#1B3A6B",
+    datesCles: [
+      { label: "Inscriptions concours", date: "2 fév. 2027 → 10 mars 2027", statut: "bientot" },
+      { label: "Épreuves écrites", date: "14 octobre 2027", statut: "bientot" },
+      { label: "Préparez-vous dès maintenant", date: "Session 2027 — démarrage conseillé jan. 2027", statut: "ouvert" },
+    ],
+    sourceOfficielle: "https://www.concours-territorial.fr/calendrier.aspx",
   },
   "redacteur-principal-guadeloupe": {
     titre: "Rédacteur Principal",
-    sousTitre: "Examen professionnel interne",
+    sousTitre: "Examen professionnel de promotion interne",
     categorie: "Catégorie B+",
     seoTitle: "Préparation Examen Rédacteur Principal Guadeloupe 2025 | Evolutia",
     seoDesc: "Préparez l'examen professionnel de rédacteur principal en Guadeloupe. Dossier RAEP, entretien jury. Evolutia Formation, Les Abymes. Financement CPF.",
-    accroche: "L'examen de rédacteur principal permet d'accéder au grade supérieur via la valorisation de votre expérience. La constitution du dossier RAEP est cruciale.",
+    accroche: "L'examen professionnel de rédacteur principal (1ère ou 2ème classe) permet d'évoluer vers un grade supérieur grâce à la valorisation de votre expérience. La qualité du dossier RAEP et la prestation à l'oral sont déterminantes. Notre accompagnement individuel maximise vos chances.",
     epreuves: [
-      { type: "Dossier", label: "RAEP (Reconnaissance des Acquis)", desc: "Dossier présentant votre parcours professionnel et vos compétences" },
-      { type: "Oral", label: "Entretien jury (30 min)", desc: "Échange approfondi sur le dossier RAEP et le projet professionnel" },
+      { type: "Dossier", label: "RAEP — Reconnaissance des Acquis de l'Expérience Professionnelle", desc: "Dossier de 6 pages maximum présentant votre parcours, vos compétences et vos réalisations professionnelles. Transmis avant l'oral." },
+      { type: "Oral", label: "Entretien devant le jury (30 min)", desc: "Échange approfondi sur le dossier RAEP (20 min) puis questions du jury sur le projet professionnel et les enjeux du grade de rédacteur principal (10 min)." },
     ],
     programme: [
-      "Méthodologie de construction du dossier RAEP",
-      "Mise en valeur des compétences professionnelles",
-      "Rédaction administrative et argumentation",
-      "Simulation d'entretien sur le dossier RAEP",
-      "Relecture et amélioration du dossier",
-      "Préparation aux questions du jury",
+      "Méthodologie de construction du dossier RAEP : structure, contenu, mise en valeur",
+      "Identification et formalisation des compétences professionnelles clés",
+      "Rédaction administrative : argumentation, clarté, concision",
+      "Simulation d'entretien sur le dossier RAEP — jury fictif avec débriefing",
+      "Relecture et amélioration du dossier avec le formateur",
+      "Préparation aux questions du jury sur les enjeux du cadre d'emploi",
     ],
     conditions: [
-      { voie: "Interne", condition: "Rédacteur territorial avec ancienneté requise dans le grade" },
+      { voie: "Interne (2e classe)", condition: "Rédacteur territorial avec au moins 1 an dans le grade" },
+      { voie: "Interne (1ère classe)", condition: "Rédacteur principal 2e classe avec au moins 3 ans dans le grade" },
     ],
     duree: "40 à 60 heures",
-    format: "Présentiel (Grand-Camp) + accompagnement individuel",
+    format: "Présentiel (Grand-Camp) + accompagnement individuel en distanciel",
     tauxReussite: "88%",
     color: "#F5A623",
+    datesCles: [
+      { label: "Examen prof. rédacteur principal", date: "24 septembre 2026", statut: "bientot" },
+      { label: "Inscriptions (session 2026)", date: "Clôturées — CDG 971", statut: "ferme" },
+      { label: "Prochaine session prévisionnelle", date: "Printemps 2027 (à confirmer)", statut: "bientot" },
+    ],
+    sourceOfficielle: "https://www.cdg971.com/fr/concours-examens/calendrier-et-inscription",
   },
   "agent-de-maitrise-guadeloupe": {
     titre: "Agent de Maîtrise",
@@ -144,110 +172,135 @@ const FORMATIONS: Record<string, Formation> = {
     categorie: "Catégorie C+",
     seoTitle: "Préparation Concours Agent de Maîtrise Guadeloupe 2025 | Evolutia",
     seoDesc: "Préparez le concours d'agent de maîtrise territorial en Guadeloupe. Épreuves pratiques et mises en situation. Evolutia Formation, Les Abymes.",
-    accroche: "L'agent de maîtrise supervise les équipes techniques des collectivités. Le concours évalue vos capacités à diriger et résoudre des problèmes concrets sur le terrain.",
+    accroche: "L'agent de maîtrise territorial (Catégorie C supérieure) supervise des équipes d'agents techniques dans les collectivités. Le concours évalue vos capacités pratiques et managériales. Notre formation vous prépare aux mises en situation réelles du terrain guadeloupéen.",
     epreuves: [
-      { type: "Pratique", label: "Épreuve technique (3h)", desc: "Réalisation pratique dans la spécialité ou mise en situation professionnelle" },
-      { type: "Oral", label: "Entretien jury (20 min)", desc: "Échange sur les compétences techniques et managériales" },
+      { type: "Pratique", label: "Épreuve technique pratique (3h)", desc: "Réalisation d'une ou plusieurs tâches pratiques dans la spécialité, ou mise en situation professionnelle simulant le poste d'agent de maîtrise." },
+      { type: "Oral", label: "Entretien avec le jury (20 min)", desc: "Échange sur les compétences techniques, l'expérience professionnelle et les capacités d'encadrement d'équipe." },
     ],
     programme: [
-      "Connaissances techniques par spécialité",
-      "Management d'équipe et organisation du travail",
-      "Sécurité au travail et réglementation",
-      "Entraînements sur mises en situation pratiques",
-      "Gestion de projet et reporting",
-      "Préparation à l'entretien oral",
+      "Connaissance des missions de l'agent de maîtrise dans les collectivités territoriales",
+      "Management d'équipe, organisation du travail et transmission des consignes",
+      "Sécurité au travail : réglementation, évaluation des risques, EPI",
+      "Entraînements sur mises en situation pratiques (espaces verts, bâtiment, voirie…)",
+      "Gestion de projet et compte-rendu d'activité",
+      "Préparation à l'entretien oral : présentation, posture managériale",
     ],
     conditions: [
-      { voie: "Externe", condition: "CAP/BEP ou équivalent dans la spécialité" },
-      { voie: "Interne", condition: "2 ans de services effectifs en catégorie C" },
+      { voie: "Externe", condition: "CAP, BEP ou brevet de compagnon dans la spécialité concernée" },
+      { voie: "Interne", condition: "Agent territorial de catégorie C avec 2 ans de services effectifs" },
     ],
     duree: "60 à 80 heures",
-    format: "Présentiel (Grand-Camp) + ateliers pratiques",
+    format: "Présentiel (Grand-Camp, Les Abymes) + ateliers pratiques",
     tauxReussite: "84%",
     color: "#4BADD4",
+    datesCles: [
+      { label: "Inscriptions concours", date: "1er sept. 2026 → 7 oct. 2026", statut: "bientot" },
+      { label: "Épreuves", date: "28 janvier 2027", statut: "bientot" },
+      { label: "Examen prof. agent maîtrise principal", date: "28 janvier 2027", statut: "bientot" },
+    ],
+    sourceOfficielle: "https://www.concours-territorial.fr/calendrier.aspx",
   },
   "ingenieur-chef-guadeloupe": {
-    titre: "Ingénieur Chef de Classe Normale",
-    sousTitre: "Concours de promotion interne",
+    titre: "Ingénieur en Chef",
+    sousTitre: "Concours de promotion interne — Catégorie A+",
     categorie: "Catégorie A+",
     seoTitle: "Préparation Concours Ingénieur Chef Guadeloupe 2025 | Evolutia",
-    seoDesc: "Préparez le concours d'ingénieur chef territorial en Guadeloupe. Leadership, stratégie, entretien jury. Evolutia Formation, Les Abymes.",
-    accroche: "Accéder au grade d'ingénieur chef exige une vision stratégique et des capacités de leadership éprouvées. Notre préparation vous positionne comme un cadre de haut niveau.",
+    seoDesc: "Préparez le concours d'ingénieur en chef territorial en Guadeloupe. Leadership, stratégie, entretien jury. Evolutia Formation, Les Abymes.",
+    accroche: "Accéder au grade d'ingénieur en chef territorial (Catégorie A+) exige une vision stratégique, des capacités de leadership éprouvées et une excellente maîtrise des politiques publiques. Notre préparation vous positionne comme un cadre dirigeant de haut niveau prêt pour les enjeux des collectivités de demain.",
     epreuves: [
-      { type: "Écrit", label: "Note de synthèse (5h)", desc: "Analyse d'un dossier complexe avec proposition de solutions" },
-      { type: "Oral", label: "Grand oral (45 min)", desc: "Présentation d'un projet, échange sur la vision stratégique et le management" },
+      { type: "Écrit", label: "Note de synthèse (5h)", desc: "Analyse d'un dossier complexe de 40 à 50 pages avec proposition de solutions opérationnelles. Évalue la capacité à formuler des préconisations stratégiques." },
+      { type: "Oral", label: "Grand oral devant le jury (45 min)", desc: "Présentation d'un projet professionnel (10 min) suivie d'un échange approfondi avec le jury sur la vision stratégique, le management et les politiques publiques territoriales." },
     ],
     programme: [
-      "Gouvernance des collectivités et enjeux stratégiques",
-      "Management public et conduite du changement",
-      "Politiques publiques locales (focus Guadeloupe)",
-      "Préparation au grand oral — prise de parole en public",
-      "Études de cas et résolution de problèmes complexes",
-      "Coaching individuel sur le positionnement cadre",
+      "Gouvernance des collectivités territoriales et enjeux stratégiques (intercommunalité, métropolisation)",
+      "Management public, conduite du changement et transformation des services",
+      "Politiques publiques locales : développement durable, transition énergétique, focus Guadeloupe",
+      "Préparation au grand oral : prise de parole en public, construction du discours cadre dirigeant",
+      "Études de cas complexes — résolution de problèmes stratégiques",
+      "Coaching individuel intensif sur le positionnement et la posture cadre A+",
     ],
     conditions: [
-      { voie: "Interne", condition: "Ingénieur territorial avec 5 ans d'ancienneté dans le grade" },
+      { voie: "Interne", condition: "Ingénieur territorial avec au moins 5 ans d'ancienneté dans le grade" },
+      { voie: "3e voie", condition: "Expérience de direction dans le secteur privé ou associatif (selon arrêté)" },
     ],
     duree: "60 à 80 heures",
-    format: "Présentiel (Grand-Camp) + coaching individuel",
+    format: "Présentiel (Grand-Camp) + coaching individuel en distanciel",
     tauxReussite: "79%",
     color: "#1B3A6B",
+    datesCles: [
+      { label: "Concours ingénieur en chef", date: "7 septembre 2026", statut: "bientot" },
+      { label: "Examen prof. ingénieur en chef", date: "1er juin 2026", statut: "bientot" },
+      { label: "Inscriptions clôturées (session 2026)", date: "Passées — CDG 971", statut: "ferme" },
+    ],
+    sourceOfficielle: "https://www.cnfpt.fr/s-informer/nos-actualites/le-fil-dactu/calendrier-concours-examens-2026/national",
   },
   "ingenieur-territorial-externe-guadeloupe": {
     titre: "Ingénieur Territorial — Voie Externe",
-    sousTitre: "Concours externe pour diplômés",
+    sousTitre: "Concours externe pour diplômés Bac+3",
     categorie: "Catégorie A",
     seoTitle: "Concours Ingénieur Territorial Externe Guadeloupe 2025 | Evolutia",
     seoDesc: "Préparez le concours externe d'ingénieur territorial en Guadeloupe. Formation pour diplômés Bac+3. Financement CPF. Evolutia Formation, Les Abymes.",
-    accroche: "Vous êtes diplômé(e) et souhaitez intégrer la fonction publique territoriale ? La voie externe est votre chemin. Notre formation vous prépare à toutes les étapes du concours.",
+    accroche: "Vous êtes diplômé(e) et souhaitez intégrer la fonction publique territoriale en Guadeloupe en Catégorie A ? La voie externe du concours d'ingénieur territorial est votre porte d'entrée. Notre formation est conçue pour les candidats sans expérience administrative, avec une pédagogie adaptée aux profils issus du privé.",
     epreuves: [
-      { type: "Écrit", label: "Note de synthèse (4h)", desc: "Analyse d'un dossier documentaire dans la spécialité" },
-      { type: "Écrit", label: "Épreuve technique (4h)", desc: "Résolution d'un cas pratique dans la spécialité du concours" },
-      { type: "Oral", label: "Entretien de recrutement (30 min)", desc: "Échange sur le projet professionnel et les motivations" },
+      { type: "Écrit", label: "Note de synthèse (4h)", desc: "Rédaction d'une note structurée à partir d'un dossier documentaire. Aucune expérience administrative préalable n'est exigée mais la méthodologie doit être maîtrisée." },
+      { type: "Écrit", label: "Épreuve technique de spécialité (4h)", desc: "Résolution d'un cas pratique dans la spécialité choisie. Évalue les connaissances académiques et leur application concrète en contexte territorial." },
+      { type: "Oral", label: "Entretien de recrutement (30 min)", desc: "Présentation du projet professionnel territorial, échange sur les motivations et les connaissances de base de la FPT. Premier contact avec un jury professionnel." },
     ],
     programme: [
-      "Connaissance de la FPT et des collectivités guadeloupéennes",
-      "Méthodologie note de synthèse pour candidats sans expérience admin",
-      "Révision des fondamentaux techniques par spécialité",
-      "Entraînements intensifs écrits corrigés",
-      "Construction du projet professionnel territorial",
-      "Simulations d'entretien — premier contact avec un jury",
+      "Connaissance approfondie de la FPT et des collectivités de Guadeloupe (CDG 971, intercommunalités)",
+      "Méthodologie note de synthèse adaptée aux profils sans expérience administrative",
+      "Révision et approfondissement des fondamentaux techniques par spécialité",
+      "Entraînements intensifs écrits sur sujets officiels — corrigés en groupe et individuellement",
+      "Construction et présentation du projet professionnel territorial",
+      "Simulations d'entretien — première approche de la relation avec un jury",
     ],
     conditions: [
-      { voie: "Externe", condition: "Bac+3 ou titre reconnu équivalent dans la spécialité" },
+      { voie: "Externe uniquement", condition: "Licence (Bac+3) ou titre reconnu équivalent dans la spécialité concernée" },
     ],
     duree: "100 à 140 heures",
-    format: "Présentiel (Grand-Camp) + distanciel",
+    format: "Présentiel (Grand-Camp, Les Abymes) + distanciel",
     tauxReussite: "83%",
     color: "#4BADD4",
+    datesCles: [
+      { label: "Inscriptions concours externe", date: "8 déc. 2026 → 13 jan. 2027", statut: "bientot" },
+      { label: "Épreuves écrites", date: "16 juin 2027", statut: "bientot" },
+      { label: "Démarrage préparation conseillé", date: "Janvier 2027", statut: "ouvert" },
+    ],
+    sourceOfficielle: "https://www.concours-territorial.fr/calendrier.aspx",
   },
   "preparation-oraux-concours-guadeloupe": {
     titre: "Préparation aux Oraux",
-    sousTitre: "Toutes catégories — tous concours",
+    sousTitre: "Toutes catégories — tous concours territoriaux",
     categorie: "Toutes catégories",
     seoTitle: "Préparation Oraux Concours Territoriaux Guadeloupe 2025 | Evolutia",
     seoDesc: "Préparez les épreuves orales des concours territoriaux en Guadeloupe. Simulations de jury, coaching posture et prise de parole. Evolutia Formation, Les Abymes.",
-    accroche: "L'oral est souvent l'épreuve décisive. Nos sessions intensives de simulation transforment votre stress en confiance et votre discours en conviction.",
+    accroche: "L'oral est souvent l'épreuve décisive qui fait la différence entre deux candidats de même niveau. Nos sessions intensives de simulation reproduisent les conditions réelles du jury territorial guadeloupéen. En 3 séances, vous transformez votre stress en confiance et votre discours en conviction.",
     epreuves: [
-      { type: "Simulation", label: "Jury blanc en conditions réelles", desc: "Entretien filmé reproduisant les conditions exactes du concours visé" },
-      { type: "Débriefing", label: "Analyse vidéo détaillée", desc: "Retour point par point sur le fond, la forme, la posture et le discours" },
-      { type: "Coaching", label: "Séances individuelles de coaching", desc: "Travail sur les points faibles identifiés lors des simulations" },
+      { type: "Simulation", label: "Jury blanc en conditions réelles", desc: "Entretien filmé en salle reproduisant exactement les conditions du concours visé : durée, composition du jury, tirage au sort du sujet. Analyse vidéo post-entretien." },
+      { type: "Débriefing", label: "Analyse détaillée fond + forme", desc: "Retour point par point sur le contenu (arguments, connaissances), la forme (posture, voix, regard), la gestion du temps et l'attitude face aux relances du jury." },
+      { type: "Coaching", label: "Séances individuelles de progression", desc: "Travail ciblé sur les points faibles identifiés lors des simulations. Techniques de respiration, ancrage, reformulation, gestion des questions déstabilisantes." },
     ],
     programme: [
-      "Techniques de prise de parole et gestion du stress",
-      "Construction d'une présentation percutante",
-      "Réponses aux questions difficiles du jury",
-      "Langage corporel et posture professionnelle",
-      "Simulations filmées — jury blanc par concours visé",
-      "Séances de débriefing et de progression individualisée",
+      "Techniques de prise de parole en public et gestion du stress avant l'épreuve",
+      "Construction d'une présentation de parcours percutante en 3-5 minutes",
+      "Réponses aux questions difficiles et déstabilisantes du jury territorial",
+      "Langage corporel : posture, regard, gestuelle, voix — travail pratique",
+      "Simulations filmées par concours visé (ingénieur, technicien, rédacteur, agent de maîtrise…)",
+      "Séances de débriefing individuel avec progression mesurée entre chaque simulation",
     ],
     conditions: [
-      { voie: "Tous profils", condition: "Candidat(e) admissible à un concours territorial (toutes catégories)" },
+      { voie: "Tous profils", condition: "Candidat(e) admissible à un concours ou examen professionnel territorial (toutes catégories A, B, C)" },
     ],
     duree: "20 à 40 heures",
-    format: "Présentiel exclusivement (Grand-Camp)",
+    format: "Présentiel exclusivement (Grand-Camp, Les Abymes)",
     tauxReussite: "91%",
     color: "#F5A623",
+    datesCles: [
+      { label: "Sessions oraux ingénieur en chef", date: "Automne 2026", statut: "bientot" },
+      { label: "Sessions oraux technicien/rédacteur", date: "En continu selon admissibilité", statut: "ouvert" },
+      { label: "Réservation entretien orientation", date: "Disponible maintenant", statut: "ouvert" },
+    ],
+    sourceOfficielle: "https://www.cdg971.com/fr/concours-examens/calendrier-et-inscription",
   },
 };
 
@@ -268,10 +321,21 @@ const OTHER_FORMATIONS = [
   { label: "Rédacteur Territorial", slug: "redacteur-territorial-guadeloupe" },
   { label: "Rédacteur Principal", slug: "redacteur-principal-guadeloupe" },
   { label: "Agent de Maîtrise", slug: "agent-de-maitrise-guadeloupe" },
-  { label: "Ingénieur Chef", slug: "ingenieur-chef-guadeloupe" },
+  { label: "Ingénieur en Chef", slug: "ingenieur-chef-guadeloupe" },
   { label: "Ingénieur Externe", slug: "ingenieur-territorial-externe-guadeloupe" },
   { label: "Préparation Oraux", slug: "preparation-oraux-concours-guadeloupe" },
 ];
+
+const statutColor: Record<string, string> = {
+  ouvert: "#16a34a",
+  bientot: "#d97706",
+  ferme: "#6b7280",
+};
+const statutLabel: Record<string, string> = {
+  ouvert: "Ouvert",
+  bientot: "À venir",
+  ferme: "Clôturé",
+};
 
 export default async function FormationPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -304,7 +368,7 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
                 {label}
               </Link>
             ))}
-            <Link href="/#contact" style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 13, padding: "10px 20px", borderRadius: 8, textDecoration: "none", whiteSpace: "nowrap", marginLeft: 8 }}>
+            <Link href="/contact" style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 13, padding: "10px 20px", borderRadius: 8, textDecoration: "none", whiteSpace: "nowrap", marginLeft: 8 }}>
               Réserver un entretien
             </Link>
           </nav>
@@ -331,7 +395,7 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
             <p style={{ color: "rgba(255,255,255,0.65)", fontSize: 18, margin: "0 0 28px 0" }}>{f.sousTitre}</p>
             <p style={{ color: "rgba(255,255,255,0.8)", fontSize: 16, lineHeight: 1.75, maxWidth: 580, margin: "0 0 36px 0" }}>{f.accroche}</p>
             <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-              <Link href="/#contact" style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none" }}>
+              <Link href="/contact" style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none" }}>
                 Réserver un entretien gratuit
               </Link>
               <Link href="/formations" style={{ background: "transparent", color: "white", fontWeight: 600, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none", border: "2px solid rgba(255,255,255,0.3)" }}>
@@ -361,7 +425,8 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
         <div>
           {/* Épreuves */}
           <section style={{ marginBottom: 48 }}>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 24px 0" }}>Les épreuves du concours</h2>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 8px 0" }}>Les épreuves du concours</h2>
+            <p style={{ color: "#5a6f8f", fontSize: 14, marginBottom: 24 }}>Programme officiel — source : CNFPT / CDG 971 Guadeloupe</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               {f.epreuves.map((e, i) => (
                 <div key={i} style={{ background: "white", border: "1px solid #D6E4F0", borderLeft: "4px solid #4BADD4", borderRadius: 12, padding: "18px 22px", display: "grid", gridTemplateColumns: "auto 1fr", gap: 16, alignItems: "start" }}>
@@ -391,7 +456,7 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
           </section>
 
           {/* Conditions */}
-          <section>
+          <section style={{ marginBottom: 48 }}>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 24px 0" }}>Conditions d&apos;accès au concours</h2>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {f.conditions.map((c, i) => (
@@ -402,19 +467,52 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
               ))}
             </div>
           </section>
+
+          {/* Source officielle */}
+          <div style={{ background: "#EEF5FF", border: "1px solid #D6E4F0", borderRadius: 10, padding: "14px 18px", display: "flex", gap: 12, alignItems: "center" }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4BADD4" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span style={{ fontSize: 13, color: "#5a6f8f" }}>Informations officielles :{" "}
+              <a href={f.sourceOfficielle} target="_blank" rel="noopener noreferrer" style={{ color: "#1B3A6B", fontWeight: 600 }}>CDG 971 Guadeloupe / CNFPT</a>
+              {" "}— vérifiez toujours les dates sur le site officiel avant de vous inscrire.
+            </span>
+          </div>
         </div>
 
         {/* Sidebar */}
         <div style={{ position: "sticky", top: 88, display: "flex", flexDirection: "column", gap: 20 }}>
+          {/* CTA */}
           <div style={{ background: "linear-gradient(135deg, #1B3A6B, #2a4f8f)", borderRadius: 16, padding: "28px 22px" }}>
             <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 20, fontWeight: 700, color: "white", margin: "0 0 12px 0" }}>Intéressé(e) par cette formation ?</h3>
-            <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px 0" }}>Réservez un entretien gratuit pour évaluer votre profil et construire votre plan de préparation.</p>
-            <Link href="/#contact" style={{ display: "block", background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 14, padding: "14px", borderRadius: 8, textDecoration: "none", textAlign: "center" }}>
+            <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px 0" }}>Entretien gratuit pour évaluer votre profil et construire votre plan de préparation personnalisé.</p>
+            <Link href="/contact" style={{ display: "block", background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 14, padding: "14px", borderRadius: 8, textDecoration: "none", textAlign: "center" }}>
               Réserver un entretien gratuit
             </Link>
             <div style={{ marginTop: 12, textAlign: "center", color: "rgba(255,255,255,0.45)", fontSize: 12 }}>0690 44 73 60</div>
           </div>
 
+          {/* Dates clés */}
+          <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 12, padding: "18px" }}>
+            <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 14 }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B3A6B" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <div style={{ fontWeight: 700, fontSize: 14, color: "#1B3A6B" }}>Dates clés 2026-2027</div>
+            </div>
+            {f.datesCles.map((d, i) => (
+              <div key={i} style={{ padding: "10px 0", borderBottom: i < f.datesCles.length - 1 ? "1px solid #EEF5FF" : "none" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
+                  <span style={{ fontSize: 13, color: "#3a4f6a", lineHeight: 1.4 }}>{d.label}</span>
+                  <span style={{ background: statutColor[d.statut] + "20", color: statutColor[d.statut], fontSize: 10, fontWeight: 700, padding: "2px 7px", borderRadius: 4, whiteSpace: "nowrap", flexShrink: 0 }}>{statutLabel[d.statut]}</span>
+                </div>
+                <div style={{ fontSize: 12, color: "#5a6f8f", marginTop: 3 }}>{d.date}</div>
+              </div>
+            ))}
+            <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid #EEF5FF" }}>
+              <a href={f.sourceOfficielle} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "#4BADD4", textDecoration: "none", fontWeight: 600 }}>
+                → Vérifier sur CDG 971 / CNFPT
+              </a>
+            </div>
+          </div>
+
+          {/* CPF */}
           <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 12, padding: "18px" }}>
             <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 10 }}>
               <div style={{ width: 34, height: 34, background: "#EEF5FF", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -425,6 +523,7 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
             <p style={{ fontSize: 13, color: "#5a6f8f", lineHeight: 1.6, margin: 0 }}>Formation éligible au Compte Personnel de Formation. Financement possible sans avance de frais.</p>
           </div>
 
+          {/* Autres formations */}
           <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 12, padding: "18px" }}>
             <div style={{ color: "#5a6f8f", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 12 }}>Autres formations</div>
             {OTHER_FORMATIONS.filter(o => o.slug !== slug).slice(0, 5).map(o => (
@@ -449,7 +548,7 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
           </div>
           <div style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>© 2025 Evolutia Formation. Tous droits réservés.</div>
           <div style={{ display: "flex", gap: 20 }}>
-            {([["Accueil", "/"], ["Formations", "/formations"], ["Contact", "/#contact"]] as [string,string][]).map(([label, href]) => (
+            {([["Accueil", "/"], ["Formations", "/formations"], ["Contact", "/contact"]] as [string,string][]).map(([label, href]) => (
               <Link key={href} href={href} style={{ color: "rgba(255,255,255,0.4)", fontSize: 12, textDecoration: "none" }}>{label}</Link>
             ))}
           </div>
@@ -459,7 +558,6 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
         @media (max-width: 900px) {
-          .formation-grid { grid-template-columns: 1fr !important; }
           .nav-links { display: none !important; }
         }
       `}</style>
