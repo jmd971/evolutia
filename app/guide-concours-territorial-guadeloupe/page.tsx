@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
+import NavBar from "../components/NavBar"
+import Footer from "../components/Footer"
 
 export const metadata: Metadata = {
   title: "Guide Complet des Concours Territoriaux en Guadeloupe 2026-2027 | Evolutia",
@@ -74,33 +76,7 @@ export default function GuideConcoursTerritorialGuadeloupe() {
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif", color: "#1a2740", background: "#F8FAFF" }}>
 
       {/* Navbar */}
-      <header style={{ position: "sticky", top: 0, zIndex: 50, background: "rgba(27,58,107,0.97)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(75,173,212,0.2)" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}>
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-            <Image src="/logo-evolutia.png" alt="Évolutia Formation" width={48} height={48} style={{ borderRadius: 8, background: "white", padding: 2 }} priority />
-            <div>
-              <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: 18, color: "white", lineHeight: 1.1 }}>ÉVOLUTIA</div>
-              <div style={{ fontSize: 9, color: "#F5A623", letterSpacing: "0.15em", fontWeight: 600, textTransform: "uppercase" }}>Centre de Formation</div>
-            </div>
-          </Link>
-          <nav style={{ display: "flex", gap: 4, alignItems: "center" }}>
-            {[
-              { label: "Formations", href: "/formations" },
-              { label: "Notre Méthode", href: "/notre-methode" },
-              { label: "Calendrier", href: "/calendrier-concours-guadeloupe" },
-              { label: "Ressources", href: "/ressources" },
-              { label: "Contact", href: "/contact" },
-            ].map(l => (
-              <Link key={l.href} href={l.href} style={{ color: "rgba(255,255,255,0.8)", textDecoration: "none", fontSize: 13, fontWeight: 500, padding: "8px 12px", borderRadius: 6 }}>
-                {l.label}
-              </Link>
-            ))}
-            <Link href="/contact" style={{ marginLeft: 8, background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 13, padding: "10px 20px", borderRadius: 8, textDecoration: "none" }}>
-              Réserver un entretien
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <NavBar activeHref="/guide-concours-territorial-guadeloupe" />
 
       {/* Hero */}
       <section style={{ background: "linear-gradient(135deg, #1B3A6B 0%, #0d1e3d 100%)", padding: "72px 24px 64px", position: "relative", overflow: "hidden" }}>
@@ -433,26 +409,7 @@ export default function GuideConcoursTerritorialGuadeloupe() {
       </main>
 
       {/* Footer */}
-      <footer style={{ background: "#1B3A6B", color: "rgba(255,255,255,0.7)", padding: "40px 24px", fontSize: 13 }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", flexWrap: "wrap", gap: 32, justifyContent: "space-between" }}>
-          <div>
-            <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: 16, color: "white", marginBottom: 8 }}>ÉVOLUTIA Formation</div>
-            <p style={{ margin: 0, lineHeight: 1.7 }}>Immeuble ASP, Grand-Camp<br />97139 Les Abymes, Guadeloupe</p>
-          </div>
-          <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "flex-start" }}>
-            {[
-              ["Formations", "/formations"],
-              ["Notre Méthode", "/notre-methode"],
-              ["Calendrier", "/calendrier-concours-guadeloupe"],
-              ["Ressources", "/ressources"],
-              ["Contact", "/contact"],
-              ["Mentions légales", "/mentions-legales"],
-            ].map(([l, h]) => (
-              <Link key={h} href={h} style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>{l}</Link>
-            ))}
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap');
