@@ -1,5 +1,3 @@
-"use client"
-
 import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
@@ -58,23 +56,21 @@ export default function RessourcesPage() {
             Ressources & Guides
           </h1>
           <p style={{ fontSize: 18, color: "#5a6f8f", lineHeight: 1.7, margin: 0, maxWidth: 600 }}>
-            Guides pratiques, méthodes de préparation et actualités des concours territoriaux en Guadeloupe — rédigés par l'équipe Evolutia Formation.
+            Guides pratiques, méthodes de préparation et actualités des concours territoriaux en Guadeloupe — rédigés par l&apos;équipe Evolutia Formation.
           </p>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           {ARTICLES.map(a => (
             <Link key={a.href} href={a.href} style={{ textDecoration: "none", display: "block" }}>
-              <article style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 12, padding: "28px 32px", transition: "box-shadow 0.2s" }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(27,58,107,0.1)"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}>
+              <article style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 12, padding: "28px 32px" }}>
                 <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
                   <span style={{ background: "rgba(27,58,107,0.08)", color: "#1B3A6B", fontSize: 11, fontWeight: 600, padding: "3px 10px", borderRadius: 100 }}>{a.cat}</span>
                   <span style={{ color: "#5a6f8f", fontSize: 12 }}>{a.temps} de lecture · {a.date}</span>
                 </div>
                 <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 20, fontWeight: 700, color: "#1B3A6B", margin: "0 0 10px", lineHeight: 1.35 }}>{a.titre}</h2>
                 <p style={{ margin: "0 0 16px", fontSize: 14, color: "#5a6f8f", lineHeight: 1.7 }}>{a.desc}</p>
-                <span style={{ fontSize: 13, color: "#4BADD4", fontWeight: 600 }}>Lire l'article →</span>
+                <span style={{ fontSize: 13, color: "#4BADD4", fontWeight: 600 }}>Lire l&apos;article →</span>
               </article>
             </Link>
           ))}
