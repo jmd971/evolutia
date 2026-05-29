@@ -3,6 +3,25 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+type Epreuve = { type: string; label: string; desc: string };
+type Condition = { voie: string; condition: string };
+
+type Formation = {
+  titre: string;
+  sousTitre: string;
+  categorie: string;
+  seoTitle: string;
+  seoDesc: string;
+  accroche: string;
+  epreuves: Epreuve[];
+  programme: string[];
+  conditions: Condition[];
+  duree: string;
+  format: string;
+  tauxReussite: string;
+  color: string;
+};
+
 const FORMATIONS: Record<string, Formation> = {
   "ingenieur-territorial-guadeloupe": {
     titre: "Ingénieur Territorial",
@@ -232,22 +251,6 @@ const FORMATIONS: Record<string, Formation> = {
   },
 };
 
-type Formation = {
-  titre: string;
-  sousTitre: string;
-  categorie: string;
-  seoTitle: string;
-  seoDesc: string;
-  accroche: string;
-  epreuves: { type: string; label: string; desc: string }[];
-  programme: string[];
-  conditions: { voie: string; condition: string }[];
-  duree: string;
-  format: string;
-  tauxReussite: string;
-  color: string;
-};
-
 export async function generateStaticParams() {
   return Object.keys(FORMATIONS).map((slug) => ({ slug }));
 }
@@ -305,33 +308,31 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
         </div>
       </div>
 
-      {/* Hero formation */}
-      <section style={{ background: `linear-gradient(135deg, #1B3A6B 0%, #0d1e3d 100%)`, padding: "64px 24px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr auto", gap: 48, alignItems: "center" }}>
+      {/* Hero */}
+      <section style={{ background: "linear-gradient(135deg, #1B3A6B 0%, #0d1e3d 100%)", padding: "64px 24px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 260px", gap: 48, alignItems: "center" }}>
           <div>
-            <div style={{ display: "inline-block", background: "rgba(245,166,35,0.15)", border: "1px solid rgba(245,166,35,0.3)", color: "#F5A623", fontSize: 12, fontWeight: 700, padding: "4px 14px", borderRadius: 100, marginBottom: 20, letterSpacing: "0.05em" }}>{f.categorie}</div>
+            <div style={{ display: "inline-block", background: "rgba(245,166,35,0.15)", border: "1px solid rgba(245,166,35,0.3)", color: "#F5A623", fontSize: 12, fontWeight: 700, padding: "4px 14px", borderRadius: 100, marginBottom: 20 }}>{f.categorie}</div>
             <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: "white", margin: "0 0 12px 0", lineHeight: 1.15 }}>{f.titre}</h1>
             <p style={{ color: "rgba(255,255,255,0.65)", fontSize: 18, margin: "0 0 28px 0" }}>{f.sousTitre}</p>
             <p style={{ color: "rgba(255,255,255,0.8)", fontSize: 16, lineHeight: 1.75, maxWidth: 580, margin: "0 0 36px 0" }}>{f.accroche}</p>
             <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-              <Link href="/#contact" style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none", display: "inline-block" }}>
+              <Link href="/#contact" style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none" }}>
                 Réserver un entretien gratuit
               </Link>
-              <Link href="/formations" style={{ background: "transparent", color: "white", fontWeight: 600, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none", border: "2px solid rgba(255,255,255,0.3)", display: "inline-block" }}>
+              <Link href="/formations" style={{ background: "transparent", color: "white", fontWeight: 600, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none", border: "2px solid rgba(255,255,255,0.3)" }}>
                 Toutes les formations
               </Link>
             </div>
           </div>
-
-          {/* Fiche rapide */}
-          <div style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(75,173,212,0.25)", borderRadius: 16, padding: "28px 24px", minWidth: 240, flexShrink: 0 }}>
+          <div style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(75,173,212,0.25)", borderRadius: 16, padding: "28px 24px" }}>
             <div style={{ color: "#4BADD4", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 18 }}>En un coup d&apos;œil</div>
-            {[
+            {([
               { label: "Taux de réussite", val: f.tauxReussite, highlight: true },
               { label: "Durée", val: f.duree, highlight: false },
               { label: "Format", val: f.format, highlight: false },
-              { label: "Financement", val: "CPF eligible", highlight: false },
-            ].map((row, i) => (
+              { label: "Financement", val: "CPF éligible", highlight: false },
+            ] as {label:string;val:string;highlight:boolean}[]).map((row, i) => (
               <div key={i} style={{ padding: "12px 0", borderBottom: i < 3 ? "1px solid rgba(255,255,255,0.07)" : "none" }}>
                 <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 11, marginBottom: 3 }}>{row.label}</div>
                 <div style={{ color: row.highlight ? "#F5A623" : "white", fontSize: row.highlight ? 22 : 14, fontWeight: row.highlight ? 800 : 500 }}>{row.val}</div>
@@ -341,17 +342,15 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
         </div>
       </section>
 
-      {/* Contenu principal */}
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 24px", display: "grid", gridTemplateColumns: "1fr 320px", gap: 40, alignItems: "start" }}>
-
-        {/* Colonne principale */}
+      {/* Contenu */}
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 24px", display: "grid", gridTemplateColumns: "1fr 300px", gap: 40, alignItems: "start" }}>
         <div>
           {/* Épreuves */}
           <section style={{ marginBottom: 48 }}>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 24px 0" }}>Les épreuves du concours</h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               {f.epreuves.map((e, i) => (
-                <div key={i} style={{ background: "white", border: "1px solid #D6E4F0", borderLeft: `4px solid #4BADD4`, borderRadius: 12, padding: "20px 24px", display: "grid", gridTemplateColumns: "auto 1fr", gap: 16, alignItems: "start" }}>
+                <div key={i} style={{ background: "white", border: "1px solid #D6E4F0", borderLeft: "4px solid #4BADD4", borderRadius: 12, padding: "18px 22px", display: "grid", gridTemplateColumns: "auto 1fr", gap: 16, alignItems: "start" }}>
                   <div style={{ background: "#EEF5FF", color: "#1B3A6B", fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 6, whiteSpace: "nowrap" }}>{e.type}</div>
                   <div>
                     <div style={{ fontWeight: 700, fontSize: 15, color: "#1B3A6B", marginBottom: 4 }}>{e.label}</div>
@@ -366,26 +365,24 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
           <section style={{ marginBottom: 48 }}>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 24px 0" }}>Notre programme de préparation</h2>
             <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 16, padding: "28px 32px" }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                {f.programme.map((item, i) => (
-                  <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-                    <div style={{ width: 28, height: 28, background: "linear-gradient(135deg, #1B3A6B, #4BADD4)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3"><path d="M20 6L9 17l-5-5"/></svg>
-                    </div>
-                    <span style={{ fontSize: 15, color: "#3a4f6a", lineHeight: 1.6 }}>{item}</span>
+              {f.programme.map((item, i) => (
+                <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start", marginBottom: i < f.programme.length - 1 ? 14 : 0 }}>
+                  <div style={{ width: 26, height: 26, background: "linear-gradient(135deg, #1B3A6B, #4BADD4)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3"><path d="M20 6L9 17l-5-5"/></svg>
                   </div>
-                ))}
-              </div>
+                  <span style={{ fontSize: 15, color: "#3a4f6a", lineHeight: 1.6 }}>{item}</span>
+                </div>
+              ))}
             </div>
           </section>
 
           {/* Conditions */}
-          <section style={{ marginBottom: 48 }}>
+          <section>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 24px 0" }}>Conditions d&apos;accès au concours</h2>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {f.conditions.map((c, i) => (
-                <div key={i} style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 10, padding: "18px 22px", display: "flex", gap: 16, alignItems: "center" }}>
-                  <div style={{ background: "#F5A623", color: "white", fontWeight: 800, fontSize: 12, padding: "5px 12px", borderRadius: 6, whiteSpace: "nowrap", flexShrink: 0 }}>{c.voie}</div>
+                <div key={i} style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 10, padding: "16px 20px", display: "flex", gap: 14, alignItems: "center" }}>
+                  <div style={{ background: "#F5A623", color: "white", fontWeight: 800, fontSize: 12, padding: "4px 12px", borderRadius: 6, whiteSpace: "nowrap", flexShrink: 0 }}>{c.voie}</div>
                   <span style={{ fontSize: 15, color: "#3a4f6a" }}>{c.condition}</span>
                 </div>
               ))}
@@ -395,33 +392,27 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
 
         {/* Sidebar */}
         <div style={{ position: "sticky", top: 88, display: "flex", flexDirection: "column", gap: 20 }}>
-          {/* CTA Card */}
-          <div style={{ background: "linear-gradient(135deg, #1B3A6B, #2a4f8f)", borderRadius: 16, padding: "28px 24px", color: "white" }}>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 20, fontWeight: 700, margin: "0 0 12px 0" }}>Intéressé(e) par cette formation ?</h3>
-            <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px 0" }}>Réservez un entretien gratuit avec notre équipe pour évaluer votre profil et construire votre plan de préparation.</p>
-            <Link href="/#contact" style={{ display: "block", background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 14, padding: "14px 20px", borderRadius: 8, textDecoration: "none", textAlign: "center" }}>
+          <div style={{ background: "linear-gradient(135deg, #1B3A6B, #2a4f8f)", borderRadius: 16, padding: "28px 22px" }}>
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 20, fontWeight: 700, color: "white", margin: "0 0 12px 0" }}>Intéressé(e) par cette formation ?</h3>
+            <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 14, lineHeight: 1.7, margin: "0 0 20px 0" }}>Réservez un entretien gratuit pour évaluer votre profil et construire votre plan de préparation.</p>
+            <Link href="/#contact" style={{ display: "block", background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 14, padding: "14px", borderRadius: 8, textDecoration: "none", textAlign: "center" }}>
               Réserver un entretien gratuit
             </Link>
-            <div style={{ marginTop: 12, display: "flex", gap: 8, justifyContent: "center", alignItems: "center" }}>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.18 7.63A16 16 0 0016.25 17.7l.96-1.07a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0124 18.92z"/></svg>
-              <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 12 }}>0690 44 73 60</span>
-            </div>
+            <div style={{ marginTop: 12, textAlign: "center", color: "rgba(255,255,255,0.45)", fontSize: 12 }}>0690 44 73 60</div>
           </div>
 
-          {/* CPF */}
-          <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 12, padding: "20px 20px" }}>
+          <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 12, padding: "18px" }}>
             <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 10 }}>
-              <div style={{ width: 36, height: 36, background: "#EEF5FF", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B3A6B" strokeWidth="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+              <div style={{ width: 34, height: 34, background: "#EEF5FF", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1B3A6B" strokeWidth="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
               </div>
               <div style={{ fontWeight: 700, fontSize: 14, color: "#1B3A6B" }}>Financement CPF</div>
             </div>
-            <p style={{ fontSize: 13, color: "#5a6f8f", lineHeight: 1.6, margin: 0 }}>Cette formation est éligible au Compte Personnel de Formation. Vous pouvez financer votre préparation sans avancer de frais.</p>
+            <p style={{ fontSize: 13, color: "#5a6f8f", lineHeight: 1.6, margin: 0 }}>Formation éligible au Compte Personnel de Formation. Financement possible sans avance de frais.</p>
           </div>
 
-          {/* Autres formations */}
-          <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 12, padding: "20px 20px" }}>
-            <div style={{ color: "#5a6f8f", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 14 }}>Autres formations</div>
+          <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 12, padding: "18px" }}>
+            <div style={{ color: "#5a6f8f", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 12 }}>Autres formations</div>
             {OTHER_FORMATIONS.filter(o => o.slug !== slug).slice(0, 5).map(o => (
               <Link key={o.slug} href={`/formations/${o.slug}`} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "9px 0", borderBottom: "1px solid #EEF5FF", textDecoration: "none", color: "#1B3A6B", fontSize: 13, fontWeight: 500 }}>
                 {o.label}
@@ -444,7 +435,7 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
           </div>
           <div style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>© 2025 Evolutia Formation. Tous droits réservés.</div>
           <div style={{ display: "flex", gap: 20 }}>
-            {[["Accueil", "/"], ["Formations", "/formations"], ["Contact", "/#contact"]].map(([label, href]) => (
+            {([["Accueil", "/"], ["Formations", "/formations"], ["Contact", "/#contact"]] as [string,string][]).map(([label, href]) => (
               <Link key={href} href={href} style={{ color: "rgba(255,255,255,0.4)", fontSize: 12, textDecoration: "none" }}>{label}</Link>
             ))}
           </div>
@@ -453,9 +444,8 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
           .formation-grid { grid-template-columns: 1fr !important; }
-          .fiche-rapide { display: none !important; }
         }
       `}</style>
     </div>
