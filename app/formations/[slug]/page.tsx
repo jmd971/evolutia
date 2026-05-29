@@ -6,6 +6,7 @@ import Link from "next/link";
 type Epreuve = { type: string; label: string; desc: string };
 type Condition = { voie: string; condition: string };
 type DateCle = { label: string; date: string; statut: "ouvert" | "bientot" | "ferme" };
+type Faq = { q: string; a: string };
 
 type Formation = {
   titre: string;
@@ -22,6 +23,7 @@ type Formation = {
   tauxReussite: string;
   color: string;
   datesCles: DateCle[];
+  faq: Faq[];
   sourceOfficielle: string;
 };
 
@@ -60,6 +62,13 @@ const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuves écrites", date: "16 juin 2027", statut: "bientot" },
       { label: "Examen prof. interne", date: "18 juin 2026", statut: "ferme" },
     ],
+    faq: [
+      { q: "Combien de temps faut-il pour préparer le concours d'ingénieur territorial ?", a: "Une préparation sérieuse nécessite entre 9 et 18 mois. Le concours comporte deux épreuves écrites exigeantes (note de synthèse et note technique de 4h chacune) ainsi qu'un oral à fort coefficient. Nous recommandons de commencer au moins 12 mois avant les épreuves écrites." },
+      { q: "Quelle spécialité choisir pour le concours d'ingénieur territorial en Guadeloupe ?", a: "En Guadeloupe, les spécialités les plus demandées dans les collectivités sont 'Infrastructure et réseaux', 'Bâtiment et construction' et 'Prévention des risques'. Choisissez la spécialité qui correspond à votre formation initiale — le jury évalue une maîtrise réelle, pas une spécialité de confort." },
+      { q: "Le concours d'ingénieur territorial est-il accessible sans expérience en collectivité ?", a: "Oui, par la voie externe. Il suffit d'un diplôme Bac+3 dans la spécialité. En revanche, il faut avoir une bonne connaissance des enjeux des collectivités territoriales, que vous apportez lors de la préparation. Evolutia forme chaque année des candidats issus du secteur privé vers la voie externe." },
+      { q: "Peut-on financer la préparation avec le CPF ?", a: "Oui. La préparation au concours d'ingénieur territorial est éligible au CPF. Vous pouvez mobiliser vos droits directement sur moncompteformation.gouv.fr. Si vous êtes déjà agent de la FPT, l'ANFH peut compléter ou prendre en charge intégralement le financement." },
+      { q: "Quelle est la différence entre le concours externe et la 3e voie ?", a: "Le concours externe est ouvert aux diplômés (Bac+3 minimum). La 3e voie est accessible après 8 ans d'expérience professionnelle dans le privé ou hors FPT — sans condition de diplôme. Les épreuves sont identiques, mais le jury valorise davantage l'expérience terrain pour la 3e voie." },
+    ],
     sourceOfficielle: "https://www.concours-territorial.fr/calendrier.aspx",
   },
   "technicien-territorial-guadeloupe": {
@@ -94,6 +103,13 @@ const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuves concours (session 2026)", date: "9 avril 2026", statut: "ferme" },
       { label: "Inscriptions prochaine session", date: "À confirmer — CDG 971", statut: "bientot" },
       { label: "Examen prof. technicien principal", date: "15 avril 2027", statut: "bientot" },
+    ],
+    faq: [
+      { q: "Quel diplôme faut-il pour passer le concours de technicien territorial ?", a: "Pour la voie externe, le baccalauréat (ou un titre de niveau IV équivalent) dans la spécialité est requis. Pour la voie interne, il faut être agent de la FPT avec 2 ans de services effectifs en catégorie C, sans condition de diplôme particulière." },
+      { q: "Combien de temps dure la préparation au concours de technicien territorial ?", a: "Comptez 4 à 6 mois de préparation intensive. Le concours de technicien territorial (catégorie B) est accessible mais exige une bonne maîtrise des épreuves écrites — composition et analyse documentaire — qui ne s'improvisent pas sans entraînement régulier." },
+      { q: "Quelles spécialités sont disponibles pour le concours de technicien territorial ?", a: "Il existe plusieurs spécialités : bâtiment et travaux publics, infrastructures et réseaux, espaces verts et naturels, ingénierie, informatique et systèmes, prévention des risques. En Guadeloupe, les spécialités 'bâtiment' et 'espaces verts' offrent le plus de débouchés dans les communes." },
+      { q: "Peut-on travailler et se préparer en même temps ?", a: "Oui, et la majorité de nos candidats sont en activité. Notre format hybride (présentiel Grand-Camp 15h30-18h30 + distanciel) est conçu pour les agents en poste. Un programme personnalisé est établi dès le premier entretien pour adapter la charge de travail à votre emploi du temps." },
+      { q: "Quels débouchés après le concours de technicien territorial en Guadeloupe ?", a: "Le technicien territorial travaille dans les services techniques des mairies, communautés de communes, Département et Région. En Guadeloupe, les postes sont nombreux dans les communes en pleine rénovation de leur patrimoine bâti et de leur voirie. Le grade ouvre également vers l'examen professionnel de technicien principal." },
     ],
     sourceOfficielle: "https://www.cdg971.com/fr/concours-examens/calendrier-et-inscription",
   },
@@ -130,6 +146,13 @@ const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuves écrites", date: "14 octobre 2027", statut: "bientot" },
       { label: "Préparez-vous dès maintenant", date: "Session 2027 — démarrage conseillé jan. 2027", statut: "ouvert" },
     ],
+    faq: [
+      { q: "Quelle est la différence entre le rédacteur territorial et le technicien territorial ?", a: "Le rédacteur territorial (catégorie B) exerce des missions administratives : instruction de dossiers, rédaction d'actes administratifs, accueil et gestion du public. Le technicien territorial exerce des missions techniques (bâtiment, voirie, réseaux). Le concours de rédacteur évalue la culture générale et l'expression écrite, pas les connaissances techniques." },
+      { q: "Combien de temps faut-il pour préparer le concours de rédacteur territorial ?", a: "Entre 6 et 9 mois de préparation régulière. La composition (4h) et la note de synthèse (3h) sont des épreuves qui demandent de l'entraînement prolongé. Nous recommandons de commencer la préparation au moins 6 mois avant la date des épreuves écrites." },
+      { q: "Comment se préparer à la composition sur programme du concours de rédacteur ?", a: "La composition évalue votre culture générale à portée administrative. Il faut lire régulièrement la presse nationale et locale (actualité des collectivités, réformes en cours), réviser les institutions territoriales et s'entraîner à la dissertation plan-en-deux-parties. Chez Evolutia, nous corrigeons individuellement chaque composition rédigée." },
+      { q: "Les sujets de l'oral du concours de rédacteur portent-ils sur la Guadeloupe ?", a: "Oui, fréquemment. Les jurys CDG 971 posent souvent des sujets en lien avec l'actualité locale : gouvernance de la Région Guadeloupe, politique des communes, enjeux de la transition écologique en Guadeloupe. Notre préparation couvre spécifiquement ces thèmes locaux." },
+      { q: "Peut-on passer le concours de rédacteur territorial sans diplôme ?", a: "Non pour la voie externe qui exige le baccalauréat. En revanche, la voie interne est ouverte aux agents de catégorie C avec 2 ans d'ancienneté — sans condition de diplôme. L'examen professionnel de rédacteur principal est lui aussi accessible en interne sur dossier RAEP." },
+    ],
     sourceOfficielle: "https://www.concours-territorial.fr/calendrier.aspx",
   },
   "redacteur-principal-guadeloupe": {
@@ -163,6 +186,13 @@ const FORMATIONS: Record<string, Formation> = {
       { label: "Examen prof. rédacteur principal", date: "24 septembre 2026", statut: "bientot" },
       { label: "Inscriptions (session 2026)", date: "Clôturées — CDG 971", statut: "ferme" },
       { label: "Prochaine session prévisionnelle", date: "Printemps 2027 (à confirmer)", statut: "bientot" },
+    ],
+    faq: [
+      { q: "Qu'est-ce que le dossier RAEP et pourquoi est-il décisif ?", a: "Le RAEP (Reconnaissance des Acquis de l'Expérience Professionnelle) est un dossier de 6 pages maximum qui présente votre parcours, vos compétences clés et vos réalisations professionnelles. Il est transmis au jury avant l'oral et sert de base à tout l'entretien. Un dossier mal construit pénalise la totalité de l'épreuve — c'est pourquoi notre accompagnement commence par là." },
+      { q: "Combien de temps faut-il pour préparer l'examen de rédacteur principal ?", a: "L'examen professionnel de rédacteur principal ne comporte pas d'épreuve écrite, uniquement un dossier RAEP et un oral. Comptez 4 à 8 semaines de préparation intensive : 2 à 3 semaines pour construire le dossier, puis 2 à 4 semaines de simulations d'entretien." },
+      { q: "Quelle est la différence entre rédacteur principal 1ère et 2ème classe ?", a: "Il existe deux grades : rédacteur principal 2ème classe (accessible après 1 an en tant que rédacteur) et rédacteur principal 1ère classe (accessible après 3 ans en tant que rédacteur principal 2ème classe). Les épreuves sont identiques (RAEP + oral), mais le jury évalue un niveau de responsabilité et d'expérience différent selon le grade visé." },
+      { q: "Comment Evolutia accompagne-t-il la construction du dossier RAEP ?", a: "Chaque candidat travaille avec un formateur référent qui l'aide à identifier les compétences pertinentes, à les formuler en langage administratif et à structurer le dossier pour le rendre convaincant. Nous réalisons plusieurs relectures et corrections avant la version finale. C'est notre point fort : 88% de nos candidats sont reçus." },
+      { q: "Peut-on préparer l'examen de rédacteur principal en travaillant à plein temps ?", a: "Oui, c'est même le cas de la quasi-totalité de nos candidats. L'examen professionnel ne comporte pas d'épreuve écrite longue, ce qui permet une préparation intense sur une courte période. Nous proposons des sessions de soirée et de week-end adaptées aux agents en activité." },
     ],
     sourceOfficielle: "https://www.cdg971.com/fr/concours-examens/calendrier-et-inscription",
   },
@@ -198,6 +228,13 @@ const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuves", date: "28 janvier 2027", statut: "bientot" },
       { label: "Examen prof. agent maîtrise principal", date: "28 janvier 2027", statut: "bientot" },
     ],
+    faq: [
+      { q: "Quel est le rôle d'un agent de maîtrise territorial en Guadeloupe ?", a: "L'agent de maîtrise territorial supervise des équipes d'agents techniques dans les collectivités (mairies, intercommunalités, Département). Il organise le travail, contrôle la qualité des réalisations et assure la transmission des consignes de sécurité. En Guadeloupe, les postes sont nombreux dans les services espaces verts, bâtiment et voirie des communes." },
+      { q: "Quelles spécialités sont disponibles pour le concours d'agent de maîtrise ?", a: "Les principales spécialités sont : bâtiment, espaces verts et naturels, voirie et réseaux, mécanique, électricité. En Guadeloupe, les spécialités 'espaces verts' et 'bâtiment' sont les plus demandées par les collectivités locales." },
+      { q: "Les inscriptions pour le concours d'agent de maîtrise 2027 sont-elles ouvertes ?", a: "Les inscriptions pour la session 2027 ouvrent le 1er septembre 2026 et se clôturent le 7 octobre 2026. Les épreuves sont prévues le 28 janvier 2027. Nous vous recommandons de commencer la préparation dès maintenant pour être prêt avant la clôture des inscriptions." },
+      { q: "Comment se déroule l'épreuve pratique du concours d'agent de maîtrise ?", a: "L'épreuve pratique (3h) consiste à réaliser une ou plusieurs tâches concrètes dans votre spécialité, ou à participer à une mise en situation professionnelle simulant le poste d'encadrement. Le jury évalue vos gestes techniques, votre organisation et votre capacité à coordonner un travail d'équipe." },
+      { q: "Faut-il un CAP ou BEP pour passer le concours d'agent de maîtrise ?", a: "Pour la voie externe, un CAP, BEP ou brevet de compagnon dans la spécialité est requis. Pour la voie interne, il suffit d'être agent territorial de catégorie C avec 2 ans de services effectifs — sans condition de diplôme spécifique." },
+    ],
     sourceOfficielle: "https://www.concours-territorial.fr/calendrier.aspx",
   },
   "ingenieur-chef-guadeloupe": {
@@ -231,6 +268,13 @@ const FORMATIONS: Record<string, Formation> = {
       { label: "Concours ingénieur en chef", date: "7 septembre 2026", statut: "bientot" },
       { label: "Examen prof. ingénieur en chef", date: "1er juin 2026", statut: "bientot" },
       { label: "Inscriptions clôturées (session 2026)", date: "Passées — CDG 971", statut: "ferme" },
+    ],
+    faq: [
+      { q: "Quelle est la différence entre ingénieur territorial et ingénieur en chef ?", a: "L'ingénieur territorial (catégorie A) est un cadre technique opérationnel. L'ingénieur en chef (catégorie A+) est un cadre dirigeant : il pilote des directions, coordonne plusieurs services et conseille les élus sur les orientations stratégiques. Le passage de l'un à l'autre nécessite un positionnement managérial fort, que notre formation développe spécifiquement." },
+      { q: "Combien de temps faut-il pour préparer le concours d'ingénieur en chef ?", a: "La préparation idéale est de 6 à 12 mois. L'épreuve écrite (note de synthèse de 5h) et le grand oral (45 min, coefficient élevé) exigent un travail approfondi sur la posture de cadre dirigeant, la vision stratégique et la connaissance des politiques publiques locales." },
+      { q: "Quelles sont les conditions pour passer en interne le concours d'ingénieur en chef ?", a: "Il faut être ingénieur territorial titulaire avec au moins 5 ans d'ancienneté dans le grade. La 3e voie est également accessible pour des profils avec une expérience de direction significative hors FPT. Contactez-nous pour une évaluation gratuite de votre éligibilité." },
+      { q: "Comment préparer le grand oral du concours d'ingénieur en chef ?", a: "Le grand oral (45 min) est l'épreuve clé. Il évalue votre vision stratégique des politiques publiques, votre capacité managériale et votre aptitude à convaincre des élus. Notre préparation inclut des simulations filmées, un coaching individuel sur la posture de cadre dirigeant et un travail spécifique sur les enjeux guadeloupéens." },
+      { q: "Quels postes sont accessibles après le concours d'ingénieur en chef en Guadeloupe ?", a: "L'ingénieur en chef peut accéder aux postes de directeur des services techniques, directeur général adjoint technique, directeur de projet stratégique dans les grandes collectivités de Guadeloupe (Région, Département, CARL, communes importantes). C'est le grade le plus élevé de la filière technique territoriale." },
     ],
     sourceOfficielle: "https://www.cnfpt.fr/s-informer/nos-actualites/le-fil-dactu/calendrier-concours-examens-2026/national",
   },
@@ -266,6 +310,13 @@ const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuves écrites", date: "16 juin 2027", statut: "bientot" },
       { label: "Démarrage préparation conseillé", date: "Janvier 2027", statut: "ouvert" },
     ],
+    faq: [
+      { q: "Quelle est la différence entre la voie externe et la 3e voie pour le concours d'ingénieur territorial ?", a: "La voie externe est ouverte aux diplômés (Bac+3 minimum) sans condition d'expérience. La 3e voie nécessite 8 ans d'expérience professionnelle, sans condition de diplôme. Les épreuves sont identiques, mais le jury attend un discours différent : technique pour l'externe, davantage axé sur l'expérience terrain pour la 3e voie." },
+      { q: "Mon diplôme d'ingénieur privé est-il reconnu pour le concours territorial ?", a: "Oui, dans la grande majorité des cas. Les diplômes d'écoles d'ingénieurs et les licences professionnelles sont généralement reconnus équivalents au niveau requis. En cas de doute, une demande de reconnaissance de diplôme peut être soumise au CDG 971 avant l'inscription." },
+      { q: "Peut-on passer directement du secteur privé à la fonction publique territoriale ?", a: "Oui, c'est précisément l'objet de la voie externe. De nombreux ingénieurs issus du BTP, de l'informatique ou de l'environnement intègrent la FPT guadeloupéenne chaque année via ce concours. Notre formation est spécialement adaptée à ces profils qui découvrent le fonctionnement des collectivités." },
+      { q: "Comment se passe la note de synthèse pour un candidat sans expérience administrative ?", a: "La note de synthèse est technique mais s'apprend. Elle ne nécessite aucune expérience préalable en collectivité — uniquement une méthode rigoureuse que vous acquerrez lors de la préparation. Nous consacrons 40% du programme à cette épreuve, avec des entraînements progressifs corrigés individuellement." },
+      { q: "Quels sont les débouchés d'un ingénieur territorial externe en Guadeloupe ?", a: "En intégrant la FPT guadeloupéenne, vous accédez à des postes stables et variés : chef de projet travaux, responsable d'études, chargé de mission technique dans les mairies, le Département ou la Région. La Guadeloupe investit massivement dans ses infrastructures (eau, énergie, routes), créant un besoin permanent en ingénieurs qualifiés." },
+    ],
     sourceOfficielle: "https://www.concours-territorial.fr/calendrier.aspx",
   },
   "preparation-oraux-concours-guadeloupe": {
@@ -299,6 +350,13 @@ const FORMATIONS: Record<string, Formation> = {
       { label: "Sessions oraux ingénieur en chef", date: "Automne 2026", statut: "bientot" },
       { label: "Sessions oraux technicien/rédacteur", date: "En continu selon admissibilité", statut: "ouvert" },
       { label: "Réservation entretien orientation", date: "Disponible maintenant", statut: "ouvert" },
+    ],
+    faq: [
+      { q: "À quel moment commencer la préparation aux oraux ?", a: "Idéalement, dès le début de votre préparation globale — et non après les résultats d'admissibilité. L'oral se prépare sur plusieurs mois : prise de parole, présentation du parcours, connaissance des enjeux du territoire. Les candidats qui commencent l'oral après l'écrit ont en moyenne 3 à 4 semaines devant eux — ce n'est pas suffisant." },
+      { q: "Combien de simulations sont nécessaires pour progresser significativement ?", a: "En général, 3 à 5 simulations suffisent pour transformer radicalement votre prestation, à condition qu'elles soient espacées et suivies d'un débriefing approfondi. La première simulation est souvent difficile — c'est normal et nécessaire. C'est là que nous identifions précisément ce qu'il faut travailler." },
+      { q: "Les simulations sont-elles adaptées à mon concours spécifique ?", a: "Oui. Chaque simulation est calibrée sur le concours que vous préparez : durée, composition du jury fictif, type de questions posées. Un jury d'ingénieur en chef ne pose pas les mêmes questions qu'un jury d'agent de maîtrise. Nous reproduisons les conditions du CDG 971 Guadeloupe aussi fidèlement que possible." },
+      { q: "Est-ce que la préparation aux oraux couvre aussi les examens professionnels (RAEP) ?", a: "Oui. La préparation inclut les entretiens sur dossier RAEP (rédacteur principal, technicien principal, etc.). La dynamique est différente d'un oral de concours classique : le jury a lu votre dossier et pose des questions précises sur votre parcours. Nous simulons cet entretien en ayant lu votre RAEP au préalable." },
+      { q: "Peut-on suivre uniquement la préparation aux oraux sans avoir suivi la préparation écrite chez Evolutia ?", a: "Oui, tout à fait. La préparation aux oraux est une formation indépendante, ouverte aux candidats admissibles quel que soit leur parcours de préparation précédent. Nous accueillons chaque année des candidats qui ont préparé leurs écrits ailleurs et viennent spécifiquement pour les simulations jury." },
     ],
     sourceOfficielle: "https://www.cdg971.com/fr/concours-examens/calendrier-et-inscription",
   },
@@ -464,6 +522,25 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
                   <div style={{ background: "#F5A623", color: "white", fontWeight: 800, fontSize: 12, padding: "4px 12px", borderRadius: 6, whiteSpace: "nowrap", flexShrink: 0 }}>{c.voie}</div>
                   <span style={{ fontSize: 15, color: "#3a4f6a" }}>{c.condition}</span>
                 </div>
+              ))}
+            </div>
+          </section>
+
+          {/* FAQ */}
+          <section style={{ marginBottom: 48 }}>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 8px 0" }}>Questions fréquentes</h2>
+            <p style={{ color: "#5a6f8f", fontSize: 14, marginBottom: 24 }}>Les réponses aux questions les plus posées sur cette formation</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              {f.faq.map((item, i) => (
+                <details key={i} style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 12, overflow: "hidden" }}>
+                  <summary style={{ padding: "18px 22px", fontWeight: 600, fontSize: 15, color: "#1B3A6B", cursor: "pointer", listStyle: "none", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+                    {item.q}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4BADD4" strokeWidth="2.5" style={{ flexShrink: 0 }}><path d="M6 9l6 6 6-6"/></svg>
+                  </summary>
+                  <div style={{ padding: "0 22px 18px", fontSize: 14, color: "#5a6f8f", lineHeight: 1.7, borderTop: "1px solid #EEF5FF" }}>
+                    {item.a}
+                  </div>
+                </details>
               ))}
             </div>
           </section>
