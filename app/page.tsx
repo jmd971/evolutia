@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import NavBar from "./components/NavBar"
+import Footer from "./components/Footer"
 
 const NAV_LINKS = [
   { label: "Formations", href: "/formations" },
@@ -113,53 +115,7 @@ export default function Home() {
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif", color: "#1a2740", background: "#F8FAFF" }}>
 
       {/* ─── NAVBAR ─── */}
-      <header style={{ position: "sticky", top: 0, zIndex: 50, background: "rgba(27,58,107,0.97)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(75,173,212,0.2)" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}>
-          {/* Logo */}
-          <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-            <Image src="/logo-evolutia.png" alt="Évolutia Formation" width={48} height={48} style={{ borderRadius: 8, background: "white", padding: 2 }} priority />
-            <div>
-              <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: 18, color: "white", lineHeight: 1.1 }}>ÉVOLUTIA</div>
-              <div style={{ fontSize: 9, color: "#F5A623", letterSpacing: "0.15em", fontWeight: 600, textTransform: "uppercase" }}>Centre de Formation</div>
-            </div>
-          </a>
-
-          {/* Desktop nav */}
-          <nav style={{ display: "flex", gap: 4, alignItems: "center" }} className="hidden-mobile">
-            {NAV_LINKS.map(l => (
-              <a key={l.href} href={l.href} style={{ color: "rgba(255,255,255,0.8)", textDecoration: "none", fontSize: 13, fontWeight: 500, padding: "8px 12px", borderRadius: 6, transition: "all 0.2s" }}
-                onMouseEnter={e => { (e.target as HTMLElement).style.color = "white"; (e.target as HTMLElement).style.background = "rgba(75,173,212,0.15)"; }}
-                onMouseLeave={e => { (e.target as HTMLElement).style.color = "rgba(255,255,255,0.8)"; (e.target as HTMLElement).style.background = "transparent"; }}>
-                {l.label}
-              </a>
-            ))}
-            <a href="#contact" style={{ marginLeft: 8, background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 13, padding: "10px 20px", borderRadius: 8, textDecoration: "none", transition: "all 0.2s", whiteSpace: "nowrap" }}
-              onMouseEnter={e => { (e.target as HTMLElement).style.background = "#D4901A"; }}
-              onMouseLeave={e => { (e.target as HTMLElement).style.background = "#F5A623"; }}>
-              Réserver un entretien
-            </a>
-          </nav>
-
-          {/* Mobile burger */}
-          <button onClick={() => setMenuOpen(!menuOpen)} style={{ display: "none", background: "none", border: "none", cursor: "pointer", padding: 8 }} className="show-mobile" aria-label="Menu">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-              {menuOpen ? <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></> : <><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></>}
-            </svg>
-          </button>
-        </div>
-
-        {/* Mobile menu */}
-        {menuOpen && (
-          <div style={{ background: "#122852", padding: "12px 24px 20px" }}>
-            {NAV_LINKS.map(l => (
-              <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)} style={{ display: "block", color: "rgba(255,255,255,0.85)", textDecoration: "none", fontSize: 15, fontWeight: 500, padding: "12px 0", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>{l.label}</a>
-            ))}
-            <a href="#contact" onClick={() => setMenuOpen(false)} style={{ display: "block", marginTop: 16, background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 15, padding: "14px 20px", borderRadius: 8, textDecoration: "none", textAlign: "center" }}>
-              Réserver un entretien
-            </a>
-          </div>
-        )}
-      </header>
+      <NavBar />
 
       {/* ─── HERO ─── */}
       <section style={{ background: "linear-gradient(135deg, #1B3A6B 0%, #122852 50%, #0d1e3d 100%)", padding: "96px 24px 80px", position: "relative", overflow: "hidden" }}>
@@ -504,74 +460,7 @@ export default function Home() {
       </section>
 
       {/* ─── FOOTER ─── */}
-      <footer style={{ background: "#08111E", padding: "48px 24px 24px", borderTop: "1px solid rgba(75,173,212,0.15)" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 40, marginBottom: 48 }}>
-            {/* Brand */}
-            <div>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-                <Image src="/logo-evolutia.png" alt="Évolutia" width={40} height={40} style={{ borderRadius: 8, background: "white", padding: 2 }} />
-                <div>
-                  <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: 16, color: "white" }}>ÉVOLUTIA</div>
-                  <div style={{ fontSize: 9, color: "#F5A623", letterSpacing: "0.12em" }}>CENTRE DE FORMATION</div>
-                </div>
-              </div>
-              <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 13, lineHeight: 1.7, maxWidth: 260, margin: "0 0 16px 0" }}>Centre de formation — préparation aux concours de la fonction publique territoriale, en Guadeloupe et dans l'Hexagone.</p>
-              <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 12, lineHeight: 1.8 }}>
-                <div>Immeuble ASP, Grand-Camp</div>
-                <div>Les Abymes 97139</div>
-                <div>0690 44 73 60</div>
-              </div>
-            </div>
-
-            {/* Formations */}
-            <div>
-              <div style={{ color: "#4BADD4", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 16 }}>Formations</div>
-              {FORMATIONS.slice(0, 5).map(f => (
-                <a key={f.slug} href={`/formations/${f.slug}`} style={{ display: "block", color: "rgba(255,255,255,0.5)", fontSize: 13, textDecoration: "none", marginBottom: 10, transition: "color 0.2s" }}
-                  onMouseEnter={e => { (e.target as HTMLElement).style.color = "white"; }}
-                  onMouseLeave={e => { (e.target as HTMLElement).style.color = "rgba(255,255,255,0.5)"; }}>
-                  {f.titre}
-                </a>
-              ))}
-            </div>
-
-            {/* Liens */}
-            <div>
-              <div style={{ color: "#4BADD4", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 16 }}>Liens utiles</div>
-              {[["Notre Méthode", "#methode"], ["Calendrier", "/calendrier-concours-guadeloupe"], ["Témoignages", "#temoignages"], ["Tarifs & CPF", "#financement"], ["Contact", "#contact"]].map(([label, href]) => (
-                <a key={href} href={href} style={{ display: "block", color: "rgba(255,255,255,0.5)", fontSize: 13, textDecoration: "none", marginBottom: 10, transition: "color 0.2s" }}
-                  onMouseEnter={e => { (e.target as HTMLElement).style.color = "white"; }}
-                  onMouseLeave={e => { (e.target as HTMLElement).style.color = "rgba(255,255,255,0.5)"; }}>
-                  {label}
-                </a>
-              ))}
-            </div>
-
-            {/* Horaires */}
-            <div>
-              <div style={{ color: "#4BADD4", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 16 }}>Horaires</div>
-              <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 13, lineHeight: 1.9 }}>
-                <div>Lundi – Vendredi</div>
-                <div style={{ color: "white", fontWeight: 600 }}>15h30 – 18h30</div>
-              </div>
-              <div style={{ marginTop: 24, background: "rgba(245,166,35,0.12)", border: "1px solid rgba(245,166,35,0.25)", borderRadius: 10, padding: "14px 16px" }}>
-                <div style={{ color: "#F5A623", fontSize: 22, fontWeight: 800, fontFamily: "monospace" }}>85%</div>
-                <div style={{ color: "rgba(255,255,255,0.6)", fontSize: 11, marginTop: 2 }}>de réussite en 2023</div>
-              </div>
-            </div>
-          </div>
-
-          <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 24, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-            <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 12, margin: 0 }}>© 2025 Evolutia Formation. Tous droits réservés.</p>
-            <div style={{ display: "flex", gap: 20 }}>
-              {[["Mentions légales", "/mentions-legales"], ["Politique de confidentialité", "/politique-confidentialite"], ["CGV", "/cgv"]].map(([label, href]) => (
-                <a key={href} href={href} style={{ color: "rgba(255,255,255,0.3)", fontSize: 12, textDecoration: "none" }}>{label}</a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Mobile responsive styles */}
       <style>{`
