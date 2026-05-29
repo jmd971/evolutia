@@ -101,8 +101,15 @@ export default function FormationsPage() {
             </div>
           </Link>
           <nav style={{ display: "flex", gap: 4, alignItems: "center" }}>
-            {([["Accueil", "/"], ["Méthode", "/#methode"], ["Calendrier", "/#calendrier"], ["Témoignages", "/#temoignages"], ["Contact", "/#contact"]] as [string, string][]).map(([label, href]) => (
-              <Link key={href} href={href} style={{ color: "rgba(255,255,255,0.8)", textDecoration: "none", fontSize: 13, fontWeight: 500, padding: "8px 12px", borderRadius: 6 }}>{label}</Link>
+            {([
+              ["Formations", "/formations"],
+              ["Notre Méthode", "/notre-methode"],
+              ["Calendrier", "/calendrier-concours-guadeloupe"],
+              ["Témoignages", "/temoignages-laureats"],
+              ["Tarifs & CPF", "/financement-tarifs"],
+              ["Contact", "/contact"],
+            ] as [string, string][]).map(([label, href]) => (
+              <Link key={href} href={href} style={{ color: href === "/formations" ? "white" : "rgba(255,255,255,0.8)", textDecoration: "none", fontSize: 13, fontWeight: href === "/formations" ? 700 : 500, padding: "8px 12px", borderRadius: 6, borderBottom: href === "/formations" ? "2px solid #F5A623" : "none" }}>{label}</Link>
             ))}
             <Link href="/#contact" style={{ marginLeft: 8, background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 13, padding: "10px 20px", borderRadius: 8, textDecoration: "none", whiteSpace: "nowrap" }}>
               Réserver un entretien
