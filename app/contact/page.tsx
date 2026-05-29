@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import NavBar from "../components/NavBar"
+import Footer from "../components/Footer"
 
 export const metadata: Metadata = {
   title: "Contact | Evolutia Formation Guadeloupe",
@@ -12,34 +14,7 @@ export default function Contact() {
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif", color: "#1a2740", background: "#F8FAFF" }}>
 
       {/* Navbar */}
-      <header style={{ position: "sticky", top: 0, zIndex: 50, background: "rgba(27,58,107,0.97)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(75,173,212,0.2)" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}>
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-            <Image src="/logo-evolutia.png" alt="Évolutia Formation" width={48} height={48} style={{ borderRadius: 8, background: "white", padding: 2 }} priority />
-            <div>
-              <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: 18, color: "white", lineHeight: 1.1 }}>ÉVOLUTIA</div>
-              <div style={{ fontSize: 9, color: "#F5A623", letterSpacing: "0.15em", fontWeight: 600, textTransform: "uppercase" }}>Centre de Formation</div>
-            </div>
-          </Link>
-          <nav style={{ display: "flex", gap: 4, alignItems: "center" }}>
-            {([
-              ["Formations", "/formations"],
-              ["Notre Méthode", "/notre-methode"],
-              ["Calendrier", "/calendrier-concours-guadeloupe"],
-              ["Témoignages", "/temoignages-laureats"],
-              ["Tarifs & CPF", "/financement-tarifs"],
-              ["Contact", "/contact"],
-            ] as [string, string][]).map(([label, href]) => (
-              <Link key={href} href={href} style={{ color: href === "/contact" ? "white" : "rgba(255,255,255,0.8)", fontSize: 13, fontWeight: href === "/contact" ? 700 : 500, padding: "6px 12px", borderRadius: 6, textDecoration: "none", whiteSpace: "nowrap", borderBottom: href === "/contact" ? "2px solid #F5A623" : "none" }}>
-                {label}
-              </Link>
-            ))}
-            <Link href="/contact" style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 13, padding: "10px 20px", borderRadius: 8, textDecoration: "none", whiteSpace: "nowrap", marginLeft: 8 }}>
-              Réserver un entretien
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <NavBar activeHref="/contact" />
 
       {/* Hero */}
       <section style={{ background: "linear-gradient(135deg, #1B3A6B 0%, #0d1e3d 100%)", padding: "64px 24px 48px" }}>
@@ -152,23 +127,7 @@ export default function Contact() {
       </section>
 
       {/* Footer */}
-      <footer style={{ background: "#08111E", padding: "40px 24px 24px", borderTop: "1px solid rgba(75,173,212,0.15)" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <Image src="/logo-evolutia.png" alt="Évolutia" width={36} height={36} style={{ borderRadius: 6, background: "white", padding: 2 }} />
-            <div>
-              <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: 15, color: "white" }}>ÉVOLUTIA</div>
-              <div style={{ fontSize: 8, color: "#F5A623", letterSpacing: "0.12em" }}>CENTRE DE FORMATION</div>
-            </div>
-          </div>
-          <div style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>© 2025 Evolutia Formation. Tous droits réservés.</div>
-          <div style={{ display: "flex", gap: 20 }}>
-            {([["Accueil", "/"], ["Formations", "/formations"], ["Contact", "/contact"]] as [string,string][]).map(([label, href]) => (
-              <Link key={href} href={href} style={{ color: "rgba(255,255,255,0.4)", fontSize: 12, textDecoration: "none" }}>{label}</Link>
-            ))}
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');`}</style>
     </div>
