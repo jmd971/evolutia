@@ -4,12 +4,13 @@ import { useState } from "react";
 import Image from "next/image";
 
 const NAV_LINKS = [
-  { label: "Formations", href: "#formations" },
-  { label: "Notre Méthode", href: "#methode" },
-  { label: "Calendrier", href: "#calendrier" },
-  { label: "Témoignages", href: "#temoignages" },
-  { label: "Tarifs & CPF", href: "#financement" },
-  { label: "Contact", href: "#contact" },
+  { label: "Formations", href: "/formations" },
+  { label: "Notre Méthode", href: "/notre-methode" },
+  { label: "Calendrier", href: "/calendrier-concours-guadeloupe" },
+  { label: "Témoignages", href: "/temoignages-laureats" },
+  { label: "Tarifs & CPF", href: "/financement-tarifs" },
+  { label: "Contact", href: "/contact" },
+  { label: "Ressources", href: "/ressources" },
 ];
 
 const FORMATIONS = [
@@ -194,8 +195,8 @@ export default function Home() {
               </div>
               <div style={{ width: 1, background: "rgba(255,255,255,0.15)" }} />
               <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 32, fontWeight: 800, color: "white", fontFamily: "monospace" }}>+500</div>
-                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", fontWeight: 500 }}>lauréats</div>
+                
+                
               </div>
             </div>
 
@@ -238,7 +239,7 @@ export default function Home() {
             { val: "85%", label: "Taux de réussite 2023", color: "#F5A623" },
             { val: "8", label: "Formations disponibles", color: "#4BADD4" },
             { val: "10+", label: "Ans d'expérience", color: "#1B3A6B" },
-            { val: "+500", label: "Lauréats formés", color: "#F5A623" },
+            
           ].map((s, i) => (
             <div key={i} style={{ padding: "32px 24px", textAlign: "center", borderRight: i < 3 ? "1px solid #D6E4F0" : "none" }}>
               <div style={{ fontSize: 40, fontWeight: 800, color: s.color, fontFamily: "monospace", lineHeight: 1 }}>{s.val}</div>
