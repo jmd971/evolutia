@@ -33,7 +33,7 @@ const PILIERS = [
   {
     num: "02",
     titre: "Formateurs experts",
-    desc: "Nos formateurs sont des professionnels de la fonction publique territoriale en Guadeloupe, avec une connaissance précise des jury locaux.",
+    desc: "Nos formateurs sont des professionnels de la fonction publique territoriale en Guadeloupe, avec une connaissance des jurys locaux et nationaux.",
   },
   {
     num: "03",
@@ -171,12 +171,12 @@ export default function Home() {
           <div style={{ maxWidth: 680 }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(245,166,35,0.15)", border: "1px solid rgba(245,166,35,0.3)", borderRadius: 100, padding: "6px 16px", marginBottom: 24 }}>
               <div style={{ width: 8, height: 8, background: "#F5A623", borderRadius: "50%" }} />
-              <span style={{ color: "#F5A623", fontSize: 12, fontWeight: 600, letterSpacing: "0.05em" }}>Centre agréé — Guadeloupe</span>
+              <span style={{ color: "#F5A623", fontSize: 12, fontWeight: 600, letterSpacing: "0.05em" }}>Centre de formation — concours territoriaux</span>
             </div>
 
             <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 800, color: "white", lineHeight: 1.15, marginBottom: 20, margin: "0 0 20px 0" }}>
               Décrochez votre concours<br />
-              <span style={{ color: "#4BADD4" }}>territorial</span> en Guadeloupe
+              <span style={{ color: "#4BADD4" }}>territorial</span> en Guadeloupe et en France
             </h1>
             <p style={{ fontSize: "clamp(16px, 2vw, 20px)", color: "rgba(255,255,255,0.75)", lineHeight: 1.7, marginBottom: 36, margin: "0 0 36px 0", maxWidth: 560 }}>
               Evolutia Formation vous prépare aux concours de la fonction publique territoriale avec une méthode éprouvée, des formateurs experts et un suivi personnalisé.
@@ -255,7 +255,7 @@ export default function Home() {
           <div style={{ textAlign: "center", marginBottom: 56 }}>
             <div style={{ color: "#4BADD4", fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 12 }}>Nos programmes</div>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 800, color: "#1B3A6B", margin: "0 0 16px 0" }}>8 formations pour réussir votre concours</h2>
-            <p style={{ color: "#5a6f8f", fontSize: 17, maxWidth: 540, margin: "0 auto", lineHeight: 1.7 }}>De catégorie A à C, Evolutia couvre l'ensemble des concours et examens de la fonction publique territoriale en Guadeloupe.</p>
+            <p style={{ color: "#5a6f8f", fontSize: 17, maxWidth: 540, margin: "0 auto", lineHeight: 1.7 }}>De catégorie A à C, Evolutia prépare aux concours de la FPT passés en Guadeloupe comme dans l'Hexagone.</p>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(270px, 1fr))", gap: 20 }}>
@@ -284,7 +284,7 @@ export default function Home() {
           <div style={{ textAlign: "center", marginBottom: 56 }}>
             <div style={{ color: "#F5A623", fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 12 }}>Notre approche</div>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 800, color: "white", margin: "0 0 16px 0" }}>La méthode Evolutia</h2>
-            <p style={{ color: "rgba(255,255,255,0.65)", fontSize: 17, maxWidth: 520, margin: "0 auto", lineHeight: 1.7 }}>Une préparation structurée, ancrée dans les réalités de la Guadeloupe et conçue pour maximiser vos chances.</p>
+            <p style={{ color: "rgba(255,255,255,0.65)", fontSize: 17, maxWidth: 520, margin: "0 auto", lineHeight: 1.7 }}>Une préparation structurée pour les concours locaux CDG 971 et les concours nationaux CNFPT, conçue pour maximiser vos chances.</p>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
@@ -516,7 +516,7 @@ export default function Home() {
                   <div style={{ fontSize: 9, color: "#F5A623", letterSpacing: "0.12em" }}>CENTRE DE FORMATION</div>
                 </div>
               </div>
-              <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 13, lineHeight: 1.7, maxWidth: 260, margin: "0 0 16px 0" }}>Centre de préparation aux concours de la fonction publique territoriale en Guadeloupe.</p>
+              <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 13, lineHeight: 1.7, maxWidth: 260, margin: "0 0 16px 0" }}>Centre de formation — préparation aux concours de la fonction publique territoriale, en Guadeloupe et dans l'Hexagone.</p>
               <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 12, lineHeight: 1.8 }}>
                 <div>Immeuble ASP, Grand-Camp</div>
                 <div>Les Abymes 97139</div>
