@@ -13,14 +13,14 @@ const NAV_LINKS = [
 ];
 
 const FORMATIONS = [
-  { titre: "Ingénieur Territorial", cat: "Catégorie A", desc: "Concours externe et interne, épreuves techniques et oraux.", slug: "ingenieur-territorial" },
-  { titre: "Technicien Territorial", cat: "Catégorie B", desc: "Maîtrise des épreuves écrites et préparation aux oraux.", slug: "technicien-territorial" },
-  { titre: "Rédacteur Territorial", cat: "Catégorie B", desc: "Culture générale, note de synthèse, entretien jury.", slug: "redacteur-territorial" },
-  { titre: "Rédacteur Principal", cat: "Catégorie B+", desc: "Examen professionnel interne, dossier RAEP.", slug: "redacteur-principal" },
-  { titre: "Agent de Maîtrise", cat: "Catégorie C+", desc: "Épreuves pratiques et mise en situation professionnelle.", slug: "agent-de-maitrise" },
-  { titre: "Ingénieur Chef", cat: "Catégorie A+", desc: "Concours d'accès au grade supérieur, leadership.", slug: "ingenieur-chef" },
-  { titre: "Ingénieur Externe", cat: "Catégorie A", desc: "Voie externe pour les candidats civils Bac+3.", slug: "ingenieur-externe" },
-  { titre: "Préparation Oraux", cat: "Toutes catégories", desc: "Entraînement intensif aux épreuves d'admission, simulation jury.", slug: "preparation-oraux" },
+  { titre: "Ingénieur Territorial", cat: "Catégorie A", desc: "Concours externe et interne, épreuves techniques et oraux.", slug: "ingenieur-territorial-guadeloupe" },
+  { titre: "Technicien Territorial", cat: "Catégorie B", desc: "Maîtrise des épreuves écrites et préparation aux oraux.", slug: "technicien-territorial-guadeloupe" },
+  { titre: "Rédacteur Territorial", cat: "Catégorie B", desc: "Culture générale, note de synthèse, entretien jury.", slug: "redacteur-territorial-guadeloupe" },
+  { titre: "Rédacteur Principal", cat: "Catégorie B+", desc: "Examen professionnel interne, dossier RAEP.", slug: "redacteur-principal-guadeloupe" },
+  { titre: "Agent de Maîtrise", cat: "Catégorie C+", desc: "Épreuves pratiques et mise en situation professionnelle.", slug: "agent-de-maitrise-guadeloupe" },
+  { titre: "Ingénieur Chef", cat: "Catégorie A+", desc: "Concours d'accès au grade supérieur, leadership.", slug: "ingenieur-chef-guadeloupe" },
+  { titre: "Ingénieur Externe", cat: "Catégorie A", desc: "Voie externe pour les candidats civils Bac+3.", slug: "ingenieur-territorial-externe-guadeloupe" },
+  { titre: "Préparation Oraux", cat: "Toutes catégories", desc: "Entraînement intensif aux épreuves d'admission, simulation jury.", slug: "preparation-oraux-concours-guadeloupe" },
 ];
 
 const PILIERS = [
