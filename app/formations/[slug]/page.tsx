@@ -291,9 +291,23 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
               <div style={{ fontSize: 9, color: "#F5A623", letterSpacing: "0.15em", fontWeight: 600, textTransform: "uppercase" }}>Centre de Formation</div>
             </div>
           </Link>
-          <Link href="/#contact" style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 13, padding: "10px 20px", borderRadius: 8, textDecoration: "none", whiteSpace: "nowrap" }}>
-            Réserver un entretien
-          </Link>
+          <nav style={{ display: "flex", gap: 4, alignItems: "center" }} className="nav-links">
+            {([
+              ["Formations", "/formations"],
+              ["Notre Méthode", "/notre-methode"],
+              ["Calendrier", "/calendrier-concours-guadeloupe"],
+              ["Témoignages", "/temoignages-laureats"],
+              ["Tarifs & CPF", "/financement-tarifs"],
+              ["Contact", "/contact"],
+            ] as [string, string][]).map(([label, href]) => (
+              <Link key={href} href={href} style={{ color: "rgba(255,255,255,0.8)", fontSize: 13, fontWeight: 500, padding: "6px 12px", borderRadius: 6, textDecoration: "none", whiteSpace: "nowrap" }}>
+                {label}
+              </Link>
+            ))}
+            <Link href="/#contact" style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 13, padding: "10px 20px", borderRadius: 8, textDecoration: "none", whiteSpace: "nowrap", marginLeft: 8 }}>
+              Réserver un entretien
+            </Link>
+          </nav>
         </div>
       </header>
 
@@ -446,6 +460,7 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
         @media (max-width: 900px) {
           .formation-grid { grid-template-columns: 1fr !important; }
+          .nav-links { display: none !important; }
         }
       `}</style>
     </div>
