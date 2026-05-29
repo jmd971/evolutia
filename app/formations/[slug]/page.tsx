@@ -454,7 +454,7 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
       </section>
 
       {/* Contenu */}
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 24px", display: "grid", gridTemplateColumns: "1fr 300px", gap: 40, alignItems: "start" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 24px", display: "grid", gridTemplateColumns: "1fr 300px", gap: 40, alignItems: "start" }} className="formation-grid">
         <div>
           {/* Épreuves */}
           <section style={{ marginBottom: 48 }}>
