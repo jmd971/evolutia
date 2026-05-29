@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import NavBar from '../components/NavBar'
+import Footer from '../components/Footer'
 
 export const metadata: Metadata = {
   title: 'Mentions légales — Evolutia Formation',
@@ -10,20 +12,7 @@ export default function MentionsLegales() {
   return (
     <div className="min-h-screen" style={{ background: '#F8FAFF' }}>
       {/* Nav */}
-      <nav style={{ background: '#1B3A6B' }} className="sticky top-0 z-50 shadow-md">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="text-white font-bold text-xl" style={{ fontFamily: 'Playfair Display, serif' }}>
-            Evolutia Formation
-          </Link>
-          <div className="hidden md:flex gap-6 text-sm text-white/80">
-            <Link href="/formations" className="hover:text-white transition-colors">Formations</Link>
-            <Link href="/notre-methode" className="hover:text-white transition-colors">Notre Méthode</Link>
-            <Link href="/calendrier-concours-guadeloupe" className="hover:text-white transition-colors">Calendrier</Link>
-            <Link href="/financement-tarifs" className="hover:text-white transition-colors">Tarifs</Link>
-            <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
-          </div>
-        </div>
-      </nav>
+      <NavBar activeHref="/mentions-legales" />
 
       <main className="max-w-3xl mx-auto px-4 py-12">
         <h1 className="text-3xl font-bold mb-2" style={{ fontFamily: 'Playfair Display, serif', color: '#1B3A6B' }}>
@@ -140,6 +129,7 @@ export default function MentionsLegales() {
           <Link href="/" className="hover:underline">Retour à l'accueil</Link>
         </div>
       </main>
+      <Footer />
     </div>
   )
 }
