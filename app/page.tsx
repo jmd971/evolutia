@@ -87,10 +87,12 @@ const TEMOIGNAGES = [
 ];
 
 const CONCOURS = [
-  { concours: "Ingénieur Territorial", session: "Printemps 2025", inscription: "Janv. – Mars 2025", format: "Écrit + Oral" },
-  { concours: "Technicien Territorial", session: "Automne 2025", inscription: "Avr. – Juin 2025", format: "Écrit + Oral" },
-  { concours: "Rédacteur Territorial", session: "Printemps 2025", inscription: "Janv. – Fév. 2025", format: "Écrit + Oral" },
-  { concours: "Agent de Maîtrise", session: "Été 2025", inscription: "Mars – Mai 2025", format: "Pratique + Oral" },
+  { concours: "Ingénieur Territorial", session: "16 juin 2027", inscription: "8 déc. 2026 → 13 jan. 2027", format: "Écrit + Oral", statut: "À venir" },
+  { concours: "Technicien Territorial", session: "Prochaine session à confirmer", inscription: "CDG 971 — à confirmer", format: "Écrit + Oral", statut: "À confirmer" },
+  { concours: "Rédacteur Territorial", session: "14 oct. 2027", inscription: "2 fév. 2027 → 10 mars 2027", format: "Écrit + Oral", statut: "À venir" },
+  { concours: "Agent de Maîtrise", session: "28 jan. 2027", inscription: "1er sept. → 7 oct. 2026", format: "Pratique + Oral", statut: "Inscriptions bientôt" },
+  { concours: "Ingénieur en Chef", session: "7 sept. 2026", inscription: "Clôturées (session 2026)", format: "Écrit + Oral", statut: "Clôturé" },
+  { concours: "Rédacteur Principal (examen)", session: "24 sept. 2026", inscription: "Clôturées (session 2026)", format: "RAEP + Oral", statut: "Clôturé" },
 ];
 
 export default function Home() {
@@ -370,7 +372,7 @@ export default function Home() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <div style={{ color: "#4BADD4", fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 12 }}>Prochaines sessions</div>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 800, color: "#1B3A6B", margin: "0 0 16px 0" }}>Calendrier des concours 2025</h2>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 800, color: "#1B3A6B", margin: "0 0 16px 0" }}>Calendrier des concours 2026–2027</h2>
             <p style={{ color: "#5a6f8f", fontSize: 16, maxWidth: 500, margin: "0 auto" }}>Consultez les prochaines dates et inscrivez-vous avant la clôture des dossiers.</p>
           </div>
 
@@ -378,29 +380,38 @@ export default function Home() {
             <table style={{ width: "100%", borderCollapse: "collapse" }}>
               <thead>
                 <tr style={{ background: "#1B3A6B" }}>
-                  {["Concours", "Session", "Inscriptions", "Format"].map(h => (
+                  {["Concours", "Épreuves", "Inscriptions", "Statut"].map(h => (
                     <th key={h} style={{ padding: "16px 20px", textAlign: "left", color: "white", fontSize: 12, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {CONCOURS.map((c, i) => (
-                  <tr key={i} style={{ background: i % 2 === 0 ? "white" : "#F8FAFF", borderBottom: "1px solid #D6E4F0" }}>
-                    <td style={{ padding: "16px 20px", fontWeight: 600, color: "#1B3A6B", fontSize: 14 }}>{c.concours}</td>
-                    <td style={{ padding: "16px 20px", color: "#3a4f6a", fontSize: 14 }}>{c.session}</td>
-                    <td style={{ padding: "16px 20px" }}>
-                      <span style={{ background: "#EEF5FF", color: "#1B3A6B", fontSize: 12, fontWeight: 600, padding: "4px 10px", borderRadius: 6 }}>{c.inscription}</span>
-                    </td>
-                    <td style={{ padding: "16px 20px", color: "#5a6f8f", fontSize: 13 }}>{c.format}</td>
-                  </tr>
-                ))}
+                {CONCOURS.map((c, i) => {
+                  const statutColors: Record<string, {bg:string,text:string}> = {
+                    "À venir": {bg:"#EEF5FF", text:"#1B3A6B"},
+                    "Inscriptions bientôt": {bg:"#FFF7E6", text:"#d97706"},
+                    "Clôturé": {bg:"#F3F4F6", text:"#6b7280"},
+                    "À confirmer": {bg:"#F0FDF4", text:"#16a34a"},
+                  };
+                  const sc = statutColors[c.statut] ?? {bg:"#EEF5FF", text:"#1B3A6B"};
+                  return (
+                    <tr key={i} style={{ background: i % 2 === 0 ? "white" : "#F8FAFF", borderBottom: "1px solid #D6E4F0" }}>
+                      <td style={{ padding: "16px 20px", fontWeight: 600, color: "#1B3A6B", fontSize: 14 }}>{c.concours}</td>
+                      <td style={{ padding: "16px 20px", color: "#3a4f6a", fontSize: 14 }}>{c.session}</td>
+                      <td style={{ padding: "16px 20px", color: "#5a6f8f", fontSize: 13 }}>{c.inscription}</td>
+                      <td style={{ padding: "16px 20px" }}>
+                        <span style={{ background: sc.bg, color: sc.text, fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 6 }}>{c.statut}</span>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
 
           <div style={{ textAlign: "center", marginTop: 28 }}>
             <a href="/calendrier-concours-guadeloupe" style={{ color: "#4BADD4", fontSize: 14, fontWeight: 600, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6 }}>
-              Voir le calendrier complet 2025–2027
+              Voir le calendrier complet → CDG 971 Guadeloupe
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
           </div>
