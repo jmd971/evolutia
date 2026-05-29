@@ -40,3 +40,44 @@ body {
 html {
   scroll-behavior: smooth;
 }
+/* ===== RESPONSIVE MOBILE ===== */
+
+/* Nav */
+@media (max-width: 768px) {
+  .nav-desktop { display: none !important; }
+  .nav-hamburger { display: flex !important; }
+}
+@media (min-width: 769px) {
+  .nav-mobile-menu { display: none !important; }
+}
+
+/* Formation grid → stack on mobile */
+@media (max-width: 900px) {
+  .formation-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .formation-sidebar {
+    position: relative !important;
+    top: auto !important;
+  }
+}
+
+/* General mobile tweaks */
+@media (max-width: 768px) {
+  /* Ensure no horizontal overflow */
+  body { overflow-x: hidden; }
+
+  /* Tables overflow */
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Sidebar sticky → relative on mobile */
+  article {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
