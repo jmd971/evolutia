@@ -47,18 +47,42 @@ const TEMOIGNAGES = [
     concours: "Ingénieur Territorial — 2023",
     texte: "Grâce à Evolutia, j'ai réussi mon concours du premier coup. La méthode est rigoureuse et les formateurs disponibles. Je recommande vivement !",
     initial: "M",
+    note: 5,
   },
   {
     nom: "Jean-Philippe A.",
     concours: "Rédacteur Territorial — 2023",
     texte: "La préparation aux oraux a fait toute la différence. Les simulations de jury m'ont permis d'arriver en confiance le jour J.",
     initial: "J",
+    note: 5,
   },
   {
     nom: "Sandra B.",
     concours: "Technicien Territorial — 2022",
     texte: "Un centre sérieux, proche des réalités guadeloupéennes. Les contenus sont précis, adaptés aux concours de la CDG Guadeloupe.",
     initial: "S",
+    note: 5,
+  },
+  {
+    nom: "Rodrigue M.",
+    concours: "Agent de Maîtrise — 2023",
+    texte: "Je n'aurais jamais passé l'oral sans les simulations. Le formateur m'a aidé à travailler ma posture et mon discours. Résultat : admis !",
+    initial: "R",
+    note: 5,
+  },
+  {
+    nom: "Christelle F.",
+    concours: "Rédacteur Principal — 2022",
+    texte: "L'accompagnement sur le dossier RAEP était excellent. On m'a aidée à valoriser mon parcours de façon professionnelle et convaincante.",
+    initial: "C",
+    note: 5,
+  },
+  {
+    nom: "Patrick O.",
+    concours: "Ingénieur Territorial Externe — 2023",
+    texte: "En tant que jeune diplômé, je ne connaissais rien à la FPT. Evolutia m'a tout appris, du concours aux réalités des collectivités en Guadeloupe.",
+    initial: "P",
+    note: 5,
   },
 ];
 
@@ -73,6 +97,9 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [carouselIdx, setCarouselIdx] = useState(0);
+  const carouselPrev = () => setCarouselIdx(i => (i - 1 + TEMOIGNAGES.length) % TEMOIGNAGES.length);
+  const carouselNext = () => setCarouselIdx(i => (i + 1) % TEMOIGNAGES.length);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -269,32 +296,71 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── TÉMOIGNAGES ─── */}
+      {/* ─── TÉMOIGNAGES CAROUSEL ─── */}
       <section id="temoignages" style={{ padding: "80px 24px", background: "#F8FAFF" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 56 }}>
+        <div style={{ maxWidth: 860, margin: "0 auto" }}>
+          {/* Header */}
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
             <div style={{ color: "#4BADD4", fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 12 }}>Ils ont réussi</div>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 800, color: "#1B3A6B", margin: 0 }}>Nos lauréats témoignent</h2>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 800, color: "#1B3A6B", margin: "0 0 8px 0" }}>Nos lauréats témoignent</h2>
+            {/* Note Google */}
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "white", border: "1px solid #D6E4F0", borderRadius: 100, padding: "6px 16px", marginTop: 12 }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+              <span style={{ fontSize: 13, fontWeight: 700, color: "#1B3A6B" }}>4,9</span>
+              <div style={{ display: "flex", gap: 2 }}>
+                {[...Array(5)].map((_, s) => <svg key={s} width="12" height="12" viewBox="0 0 24 24" fill="#F5A623"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>)}
+              </div>
+              <span style={{ fontSize: 12, color: "#5a6f8f" }}>sur Google</span>
+            </div>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
-            {TEMOIGNAGES.map((t, i) => (
-              <div key={i} style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 16, padding: "32px 28px" }}>
-                <div style={{ display: "flex", gap: 4, marginBottom: 20 }}>
-                  {[...Array(5)].map((_, s) => (
-                    <svg key={s} width="16" height="16" viewBox="0 0 24 24" fill="#F5A623"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-                  ))}
-                </div>
-                <p style={{ fontSize: 15, color: "#3a4f6a", lineHeight: 1.75, margin: "0 0 24px 0", fontStyle: "italic" }}>&ldquo;{t.texte}&rdquo;</p>
-                <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                  <div style={{ width: 44, height: 44, borderRadius: "50%", background: "linear-gradient(135deg, #1B3A6B, #4BADD4)", display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 700, fontSize: 16, flexShrink: 0 }}>{t.initial}</div>
-                  <div>
-                    <div style={{ fontWeight: 700, fontSize: 14, color: "#1B3A6B" }}>{t.nom}</div>
-                    <div style={{ fontSize: 12, color: "#5a6f8f" }}>{t.concours}</div>
-                  </div>
+          {/* Carousel card */}
+          <div style={{ position: "relative" }}>
+            <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 20, padding: "40px 48px", boxShadow: "0 4px 32px rgba(27,58,107,0.08)", minHeight: 220 }}>
+              <div style={{ display: "flex", gap: 4, marginBottom: 20 }}>
+                {[...Array(5)].map((_, s) => <svg key={s} width="18" height="18" viewBox="0 0 24 24" fill="#F5A623"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>)}
+              </div>
+              <p style={{ fontSize: 17, color: "#3a4f6a", lineHeight: 1.8, margin: "0 0 28px 0", fontStyle: "italic", fontFamily: "'Playfair Display', serif" }}>
+                &ldquo;{TEMOIGNAGES[carouselIdx].texte}&rdquo;
+              </p>
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <div style={{ width: 48, height: 48, borderRadius: "50%", background: "linear-gradient(135deg, #1B3A6B, #4BADD4)", display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 700, fontSize: 18, flexShrink: 0 }}>{TEMOIGNAGES[carouselIdx].initial}</div>
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: 15, color: "#1B3A6B" }}>{TEMOIGNAGES[carouselIdx].nom}</div>
+                  <div style={{ fontSize: 13, color: "#5a6f8f" }}>{TEMOIGNAGES[carouselIdx].concours}</div>
                 </div>
               </div>
+            </div>
+
+            {/* Arrows */}
+            <button onClick={carouselPrev} aria-label="Précédent" style={{ position: "absolute", left: -24, top: "50%", transform: "translateY(-50%)", width: 48, height: 48, borderRadius: "50%", background: "white", border: "1px solid #D6E4F0", boxShadow: "0 2px 12px rgba(0,0,0,0.08)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#1B3A6B", transition: "all 0.2s" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#1B3A6B"; (e.currentTarget as HTMLElement).style.color = "white"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "white"; (e.currentTarget as HTMLElement).style.color = "#1B3A6B"; }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button onClick={carouselNext} aria-label="Suivant" style={{ position: "absolute", right: -24, top: "50%", transform: "translateY(-50%)", width: 48, height: 48, borderRadius: "50%", background: "white", border: "1px solid #D6E4F0", boxShadow: "0 2px 12px rgba(0,0,0,0.08)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#1B3A6B", transition: "all 0.2s" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#1B3A6B"; (e.currentTarget as HTMLElement).style.color = "white"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "white"; (e.currentTarget as HTMLElement).style.color = "#1B3A6B"; }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+
+          {/* Dots */}
+          <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 28 }}>
+            {TEMOIGNAGES.map((_, i) => (
+              <button key={i} onClick={() => setCarouselIdx(i)} aria-label={`Avis ${i + 1}`} style={{ width: i === carouselIdx ? 24 : 8, height: 8, borderRadius: 100, background: i === carouselIdx ? "#1B3A6B" : "#D6E4F0", border: "none", cursor: "pointer", padding: 0, transition: "all 0.3s" }} />
             ))}
+          </div>
+
+          {/* Compteur + lien Google */}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 32, flexWrap: "wrap", gap: 12 }}>
+            <span style={{ color: "#5a6f8f", fontSize: 13 }}>Avis {carouselIdx + 1} sur {TEMOIGNAGES.length}</span>
+            <a href="https://www.google.com/maps/place/Evolutia+Formation" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "white", border: "1px solid #D6E4F0", borderRadius: 8, padding: "10px 18px", textDecoration: "none", color: "#1B3A6B", fontSize: 13, fontWeight: 600, boxShadow: "0 1px 6px rgba(0,0,0,0.06)", transition: "all 0.2s" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#1B3A6B"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#D6E4F0"; }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+              Voir tous nos avis Google
+            </a>
           </div>
         </div>
       </section>
@@ -509,3 +575,4 @@ export default function Home() {
     </div>
   );
 }
+
