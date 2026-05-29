@@ -3,11 +3,19 @@ import Link from "next/link"
 import Image from "next/image"
 
 export const metadata: Metadata = {
-  title: "Ressources — Guides et conseils concours territoriaux Guadeloupe | Evolutia",
+  title: "Ressources — Guides concours territoriaux Guadeloupe | Evolutia",
   description: "Guides pratiques, conseils de préparation et actualités des concours de la fonction publique territoriale en Guadeloupe. Par Evolutia Formation.",
 }
 
 const ARTICLES = [
+  {
+    titre: "Comment préparer le concours d'Ingénieur Territorial en Guadeloupe (2026-2027)",
+    desc: "Spécialités, épreuves, dates CNFPT, 5 erreurs à éviter et programme de préparation. Le guide complet pour le concours Cat. A le plus sélectif.",
+    href: "/ressources/preparer-concours-ingenieur-territorial-guadeloupe",
+    cat: "Catégorie A",
+    temps: "8 min",
+    date: "Mai 2026",
+  },
   {
     titre: "Comment préparer le concours de Rédacteur Territorial en Guadeloupe (2026-2027)",
     desc: "Épreuves, dates CDG 971, programme de révision et erreurs à éviter. Le guide complet pour les candidats en Guadeloupe.",
@@ -83,7 +91,7 @@ export default function RessourcesPage() {
             <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: 16, color: "white", marginBottom: 8 }}>ÉVOLUTIA Formation</div>
             <p style={{ margin: 0, lineHeight: 1.7 }}>Immeuble ASP, Grand-Camp<br />97139 Les Abymes, Guadeloupe</p>
           </div>
-          <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "flex-start", fontSize: 13 }}>
+          <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "flex-start" }}>
             {[["Formations", "/formations"], ["Notre Méthode", "/notre-methode"], ["Calendrier", "/calendrier-concours-guadeloupe"], ["Contact", "/contact"], ["Mentions légales", "/mentions-legales"]].map(([l, h]) => (
               <Link key={h} href={h} style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>{l}</Link>
             ))}
