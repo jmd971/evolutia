@@ -58,6 +58,10 @@ const DATES_CLES = [
 ]
 
 const ARTICLES = [
+  { titre: "Comment travailler en mairie en Guadeloupe ? (avec ou sans concours)", href: "/ressources/travailler-mairie-guadeloupe", cat: "Guide pratique" },
+  { titre: "Quel concours territorial passer sans diplôme ?", href: "/ressources/concours-territorial-sans-diplome", cat: "Catégorie C" },
+  { titre: "Devenir ATSEM en Guadeloupe : le parcours complet", href: "/ressources/devenir-atsem-guadeloupe", cat: "Guide métier" },
+  { titre: "Admissible à un concours du CDG 971 : et maintenant ?", href: "/ressources/admissible-concours-cdg971-et-apres", cat: "Après le concours" },
   { titre: "Comment préparer le concours de Rédacteur Territorial en Guadeloupe (2026-2027)", href: "/ressources/preparer-concours-redacteur-territorial-guadeloupe", cat: "Catégorie B" },
   { titre: "Comment préparer le concours d'Ingénieur Territorial en Guadeloupe (2026-2027)", href: "/ressources/preparer-concours-ingenieur-territorial-guadeloupe", cat: "Catégorie A" },
 ]

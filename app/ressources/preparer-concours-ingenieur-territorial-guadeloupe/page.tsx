@@ -142,16 +142,16 @@ export default function ArticleIngenieurTerritorial() {
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 28 }}>
               {[
                 {
-                  label: "Note de synthèse — 4 heures",
+                  label: "Externe — Note sur dossier de spécialité — 5 heures",
                   coeff: "Coeff. 5",
                   color: "#1B3A6B",
-                  desc: "Rédaction d'une note à l'intention d'un élu ou d'un directeur à partir d'un dossier documentaire de 20 à 30 pages. L'épreuve exige une capacité d'analyse rapide, une hiérarchisation précise des informations et une expression écrite irréprochable. C'est l'épreuve la plus discriminante.",
+                  desc: "Unique épreuve écrite de la voie externe : rédaction d'une note à partir de l'analyse d'un dossier, tenant compte du contexte technique, économique ou juridique. Le dossier porte sur la spécialité choisie à l'inscription. Capacité d'analyse rapide, hiérarchisation de l'information et expression irréprochable exigées — c'est l'épreuve la plus discriminante.",
                 },
                 {
-                  label: "Note technique — 4 heures",
-                  coeff: "Coeff. 4",
+                  label: "Interne — 3 épreuves écrites",
+                  coeff: "Coeff. 3+3+7",
                   color: "#4BADD4",
-                  desc: "Résolution d'un problème technique dans la spécialité choisie : conception d'un ouvrage, analyse de diagnostic, proposition de solution technique. Évalue la maîtrise des réglementations et des pratiques professionnelles de la spécialité.",
+                  desc: "La voie interne comporte trois écrits : mathématiques et physique appliquées (4 h, coeff. 3), note à partir d'un dossier de spécialité (4 h, coeff. 3) et établissement d'un projet ou étude dans l'option choisie (8 h, coeff. 7).",
                 },
               ].map(e => (
                 <div key={e.label} style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 10, padding: "20px 24px", borderLeft: `4px solid ${e.color}` }}>
@@ -167,13 +167,13 @@ export default function ArticleIngenieurTerritorial() {
             <h3 style={{ fontSize: 18, fontWeight: 700, color: "#1B3A6B", margin: "0 0 12px" }}>Épreuve d&apos;admission (orale)</h3>
             <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 10, padding: "20px 24px", borderLeft: "4px solid #F5A623" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, marginBottom: 8 }}>
-                <strong style={{ fontSize: 15, color: "#1a2740" }}>Entretien avec le jury — 30 minutes</strong>
-                <span style={{ background: "#F5A623", color: "#1B3A6B", fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 100, whiteSpace: "nowrap" }}>Coeff. 6</span>
+                <strong style={{ fontSize: 15, color: "#1a2740" }}>Entretien avec le jury — 40 minutes</strong>
+                <span style={{ background: "#F5A623", color: "#1B3A6B", fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 100, whiteSpace: "nowrap" }}>Coeff. 5</span>
               </div>
               <p style={{ margin: 0, fontSize: 14, color: "#5a6f8f", lineHeight: 1.7 }}>
-                Présentation du parcours professionnel (5 minutes), suivie d&apos;un entretien approfondi avec le jury (25 minutes).
-                Le jury évalue votre vision des enjeux techniques des collectivités, votre capacité managériale et votre connaissance
-                du territoire. Les jurys CDG 971 sont attentifs aux spécificités insulaires de la Guadeloupe : gestion des risques
+                Entretien en deux parties de 15 à 20 minutes chacune : d&apos;abord des questions sur l&apos;option choisie au sein
+                de votre spécialité, puis l&apos;évaluation de votre aptitude à vous intégrer dans l&apos;environnement professionnel
+                et à résoudre les problèmes techniques ou d&apos;encadrement d&apos;un ingénieur. Les jurys CDG 971 sont attentifs aux spécificités insulaires de la Guadeloupe : gestion des risques
                 cycloniques, contraintes des îles, enjeux de la transition énergétique dans les DOM.
               </p>
             </div>
@@ -292,7 +292,7 @@ export default function ArticleIngenieurTerritorial() {
                 {
                   step: "2",
                   titre: "Maîtrisez la note de synthèse avant tout",
-                  desc: "La note de synthèse (coeff. 5) est l'épreuve qui élimine le plus de candidats. Elle se travaille sur des mois, pas des semaines. Objectif : produire une note de 4-5 pages structurée, sans opinion personnelle, en moins de 4 heures. Les 10 premières notes que vous rédigerez seront mauvaises — c'est normal et nécessaire.",
+                  desc: "La note sur dossier (5 heures, coeff. 5) est l'épreuve qui élimine le plus de candidats. Elle se travaille sur des mois, pas des semaines. Objectif : produire une note structurée tenant compte du contexte technique, économique et juridique du dossier. Les 10 premières notes que vous rédigerez seront mauvaises — c'est normal et nécessaire.",
                 },
                 {
                   step: "3",
@@ -331,7 +331,7 @@ export default function ArticleIngenieurTerritorial() {
                 { n: "01", titre: "Sous-estimer la note de synthèse", desc: "Beaucoup de candidats ingénieurs pensent que leur culture technique compensera une note de synthèse faible. Non : c'est une compétence distincte, académique, qui s'apprend. Une note de synthèse à 8/20 élimine même le meilleur technicien." },
                 { n: "02", titre: "Choisir la mauvaise spécialité", desc: "Certains candidats choisissent la spécialité « Informatique » car elle leur semble moins technique que « Réseaux ». Erreur : le jury évalue la maîtrise réelle du domaine, pas la facilité perçue. Choisissez votre spécialité principale." },
                 { n: "03", titre: "Négliger les réglementations DOM", desc: "En Guadeloupe, les normes parasismiques (zone 4-5), les règles thermiques DOM-TOM et les contraintes insulaires créent un cadre réglementaire distinct de la métropole. Un candidat qui ignore ces spécificités perd des points sur la note technique." },
-                { n: "04", titre: "Préparer l'oral après l'admissibilité", desc: "L'entretien avec le jury (coeff. 6, le plus élevé) nécessite des mois de travail sur la posture, la prise de parole et la connaissance des enjeux managériaux. Le commencer à J-30 des résultats d'admissibilité est une erreur fatale." },
+                { n: "04", titre: "Préparer l'oral après l'admissibilité", desc: "L'entretien avec le jury (40 minutes, coeff. 5 — autant que l'écrit) nécessite des mois de travail sur les questions d'option, la posture et la connaissance des enjeux managériaux. Le commencer à J-30 des résultats d'admissibilité est une erreur fatale." },
                 { n: "05", titre: "Se préparer sans correction externe", desc: "À ce niveau de concours, l'autoévaluation est insuffisante. La note technique exige une relecture par un expert de la spécialité ; la note de synthèse doit être corrigée par quelqu'un qui connaît les attentes réelles des jurys territoriaux." },
               ].map(e => (
                 <div key={e.n} style={{ display: "flex", gap: 16, background: "white", border: "1px solid #D6E4F0", borderRadius: 10, padding: "20px", borderLeft: "4px solid #F5A623" }}>

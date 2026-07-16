@@ -110,15 +110,15 @@ export default function ArticleRedacteurTerritorial() {
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 28 }}>
               {[
                 {
-                  label: "Composition sur programme — 4 heures",
-                  coeff: "Coeff. 4",
-                  desc: "Rédaction d'une dissertation sur un sujet de culture générale à portée administrative. Le jury évalue votre structuration de la pensée, la maîtrise de la langue française et votre culture des institutions territoriales. C'est l'épreuve reine du concours — elle se prépare sur plusieurs mois.",
+                  label: "Réponses à une série de questions — 3 heures",
+                  coeff: "Coeff. 1",
+                  desc: "Voie externe : série de questions portant sur le domaine choisi au moment de l'inscription. Le jury évalue la précision des connaissances et la capacité à répondre de façon structurée et concise. En voies interne et 3e voie, cette épreuve n'existe pas.",
                   color: "#1B3A6B",
                 },
                 {
-                  label: "Note de synthèse — 3 heures",
-                  coeff: "Coeff. 3",
-                  desc: "À partir d'un dossier documentaire de 15-20 pages, vous devez rédiger une note à l'intention d'un élu ou d'un responsable hiérarchique. L'enjeu : extraire l'essentiel, hiérarchiser l'information, rédiger clairement — sans opinion personnelle.",
+                  label: "Rédaction d'une note à partir d'un dossier — 3 heures",
+                  coeff: "Coeff. 1",
+                  desc: "Rédaction d'une note à partir des éléments d'un dossier portant sur les missions, compétences et moyens d'action des collectivités territoriales. C'est l'épreuve écrite unique des voies interne et 3e voie. L'enjeu : extraire l'essentiel, hiérarchiser l'information, rédiger clairement — sans opinion personnelle.",
                   color: "#4BADD4",
                 },
               ].map(e => (
@@ -135,13 +135,14 @@ export default function ArticleRedacteurTerritorial() {
             <h3 style={{ fontSize: 18, fontWeight: 700, color: "#1B3A6B", margin: "0 0 12px" }}>Épreuve d'admission (orale)</h3>
             <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 10, padding: "20px 24px", borderLeft: "4px solid #F5A623" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, marginBottom: 8 }}>
-                <strong style={{ fontSize: 15, color: "#1a2740" }}>Entretien avec le jury — 25 minutes</strong>
-                <span style={{ background: "#F5A623", color: "#1B3A6B", fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 100, whiteSpace: "nowrap" }}>Coeff. 5</span>
+                <strong style={{ fontSize: 15, color: "#1a2740" }}>Entretien avec le jury — 20 minutes</strong>
+                <span style={{ background: "#F5A623", color: "#1B3A6B", fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 100, whiteSpace: "nowrap" }}>Coeff. 1</span>
               </div>
               <p style={{ margin: 0, fontSize: 14, color: "#5a6f8f", lineHeight: 1.7 }}>
-                Conversation sur votre parcours, vos motivations et un sujet d'actualité locale ou nationale 
-                tiré au sort 10 minutes avant l'entretien. Le jury apprécie la spontanéité, la clarté d'expression 
-                et la connaissance des enjeux du territoire guadeloupéen. Cette épreuve est souvent sous-préparée — c'est là que se font la différence.
+                Entretien ayant pour point de départ un exposé du candidat sur sa formation et son projet professionnel 
+                (voie externe) ou sur les acquis de son expérience (voies interne et 3e voie). Le jury apprécie la motivation, 
+                la clarté d'expression et l'aptitude à exercer les missions du cadre d'emplois. Les trois épreuves ayant le même 
+                coefficient, cet oral pèse autant que chaque écrit — et il est souvent sous-préparé.
               </p>
             </div>
           </section>
@@ -165,9 +166,9 @@ export default function ArticleRedacteurTerritorial() {
                   voie: "Concours interne",
                   color: "#4BADD4",
                   conditions: [
-                    "Être fonctionnaire ou agent public territorial",
-                    "Justifier de 2 ans de services effectifs en catégorie C",
-                    "Être en activité ou en disponibilité",
+                    "Être fonctionnaire ou agent public (contractuels inclus)",
+                    "Compter au moins 4 ans de services publics au 1er janvier de l'année du concours",
+                    "Aucune condition de diplôme",
                   ],
                 },
               ].map(v => (

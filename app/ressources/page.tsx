@@ -11,6 +11,38 @@ export const metadata: Metadata = {
 
 const ARTICLES = [
   {
+    titre: "Comment travailler en mairie en Guadeloupe ? Concours, contrats et recrutement direct",
+    desc: "Les 3 voies d'accès à un emploi communal — avec ou sans concours, avec ou sans diplôme — et les démarches concrètes auprès des 32 communes et du CDG 971.",
+    href: "/ressources/travailler-mairie-guadeloupe",
+    cat: "Guide pratique",
+    temps: "6 min",
+    date: "Juillet 2026",
+  },
+  {
+    titre: "Quel concours de la fonction publique territoriale passer sans diplôme ?",
+    desc: "Voie interne, 3e voie, dispense parents de 3 enfants, recrutement direct : les concours réellement accessibles sans diplôme au calendrier CDG 971 2026-2027.",
+    href: "/ressources/concours-territorial-sans-diplome",
+    cat: "Guide pratique",
+    temps: "6 min",
+    date: "Juillet 2026",
+  },
+  {
+    titre: "Devenir ATSEM en Guadeloupe : le parcours complet (2026-2027)",
+    desc: "CAP AEPE, concours du CDG 971 (épreuves le 29 septembre 2027), salaire majoré de 40 %, candidature auprès des communes : toutes les étapes.",
+    href: "/ressources/devenir-atsem-guadeloupe",
+    cat: "Guide métier",
+    temps: "7 min",
+    date: "Juillet 2026",
+  },
+  {
+    titre: "Admissible à un concours du CDG 971 : et maintenant ?",
+    desc: "Préparer l'oral d'admission, comprendre la liste d'aptitude (4 ans maximum, renouvellement à demander) et décrocher son poste en collectivité.",
+    href: "/ressources/admissible-concours-cdg971-et-apres",
+    cat: "Guide pratique",
+    temps: "5 min",
+    date: "Juillet 2026",
+  },
+  {
     titre: "Comment préparer le concours d'Ingénieur Territorial en Guadeloupe (2026-2027)",
     desc: "Spécialités, épreuves, dates CNFPT, 5 erreurs à éviter et programme de préparation. Le guide complet pour le concours Cat. A le plus sélectif.",
     href: "/ressources/preparer-concours-ingenieur-territorial-guadeloupe",
