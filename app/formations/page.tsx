@@ -1,92 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import NavBar from "../components/NavBar"
 import Footer from "../components/Footer"
-
-const FORMATIONS = [
-  {
-    titre: "Ingénieur Territorial",
-    categorie: "Catégorie A",
-    slug: "ingenieur-territorial-guadeloupe",
-    desc: "Concours externe, interne et 3e voie. Épreuves techniques et oraux.",
-    duree: "120–180h",
-    taux: "82%",
-    color: "#1B3A6B",
-    accent: "#4BADD4",
-  },
-  {
-    titre: "Technicien Territorial",
-    categorie: "Catégorie B",
-    slug: "technicien-territorial-guadeloupe",
-    desc: "Maîtrise des épreuves écrites et préparation complète aux oraux.",
-    duree: "80–120h",
-    taux: "87%",
-    color: "#4BADD4",
-    accent: "#1B3A6B",
-  },
-  {
-    titre: "Rédacteur Territorial",
-    categorie: "Catégorie B",
-    slug: "redacteur-territorial-guadeloupe",
-    desc: "Culture générale, note de synthèse, entretien jury.",
-    duree: "80–120h",
-    taux: "85%",
-    color: "#1B3A6B",
-    accent: "#4BADD4",
-  },
-  {
-    titre: "Rédacteur Principal",
-    categorie: "Catégorie B+",
-    slug: "redacteur-principal-guadeloupe",
-    desc: "Examen professionnel interne — dossier RAEP et entretien jury.",
-    duree: "40–60h",
-    taux: "88%",
-    color: "#F5A623",
-    accent: "#1B3A6B",
-  },
-  {
-    titre: "Agent de Maîtrise",
-    categorie: "Catégorie C+",
-    slug: "agent-de-maitrise-guadeloupe",
-    desc: "Épreuves pratiques et mise en situation professionnelle.",
-    duree: "60–80h",
-    taux: "84%",
-    color: "#4BADD4",
-    accent: "#1B3A6B",
-  },
-  {
-    titre: "Ingénieur Chef",
-    categorie: "Catégorie A+",
-    slug: "ingenieur-chef-guadeloupe",
-    desc: "Concours de promotion interne — leadership et vision stratégique.",
-    duree: "60–80h",
-    taux: "79%",
-    color: "#1B3A6B",
-    accent: "#F5A623",
-  },
-  {
-    titre: "Ingénieur Territorial Externe",
-    categorie: "Catégorie A",
-    slug: "ingenieur-territorial-externe-guadeloupe",
-    desc: "Voie externe pour diplômés Bac+3 souhaitant intégrer la FPT.",
-    duree: "100–140h",
-    taux: "83%",
-    color: "#4BADD4",
-    accent: "#1B3A6B",
-  },
-  {
-    titre: "Préparation aux Oraux",
-    categorie: "Toutes catégories",
-    slug: "preparation-oraux-concours-guadeloupe",
-    desc: "Coaching intensif oraux — simulations jury filmées et débriefing.",
-    duree: "20–40h",
-    taux: "91%",
-    color: "#F5A623",
-    accent: "#1B3A6B",
-  },
-];
+import { FORMATIONS_LIST, FILIERES_ORDER } from "./data";
 
 export default function FormationsPage() {
   return (
@@ -100,19 +17,19 @@ export default function FormationsPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(245,166,35,0.15)", border: "1px solid rgba(245,166,35,0.3)", borderRadius: 100, padding: "6px 16px", marginBottom: 20 }}>
             <div style={{ width: 8, height: 8, background: "#F5A623", borderRadius: "50%" }} />
-            <span style={{ color: "#F5A623", fontSize: 12, fontWeight: 600, letterSpacing: "0.05em" }}>8 formations disponibles</span>
+            <span style={{ color: "#F5A623", fontSize: 12, fontWeight: 600, letterSpacing: "0.05em" }}>{FORMATIONS_LIST.length} formations disponibles</span>
           </div>
           <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: "white", margin: "0 0 16px 0", lineHeight: 1.15 }}>
             Toutes nos formations
           </h1>
-          <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 18, maxWidth: 600, margin: "0 auto 36px", lineHeight: 1.7 }}>
-            De catégorie A à C, Evolutia couvre l&apos;ensemble des concours et examens de la fonction publique territoriale en Guadeloupe.
+          <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 18, maxWidth: 640, margin: "0 auto 36px", lineHeight: 1.7 }}>
+            Evolutia prépare aux concours et examens professionnels du calendrier CDG 971 — filières administrative, animation, médico-sociale et technique, de la catégorie C à la catégorie A+.
           </p>
-          <div style={{ display: "inline-flex", gap: 32, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(75,173,212,0.2)", borderRadius: 16, padding: "20px 40px" }}>
+          <div style={{ display: "inline-flex", gap: 32, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(75,173,212,0.2)", borderRadius: 16, padding: "20px 40px", flexWrap: "wrap", justifyContent: "center" }}>
             {([
-              { val: "85%", label: "Taux de réussite moyen", c: "#F5A623" },
-              { val: "8", label: "Formations", c: "white" },
-              { val: "+500", label: "Lauréats formés", c: "white" },
+              { val: "85%", label: "Taux de réussite 2023", c: "#F5A623" },
+              { val: String(FORMATIONS_LIST.length), label: "Formations", c: "white" },
+              { val: "4", label: "Filières couvertes", c: "white" },
               { val: "CPF", label: "Financement possible", c: "#4BADD4" },
             ] as {val:string;label:string;c:string}[]).map((s, i) => (
               <div key={i} style={{ textAlign: "center" }}>
@@ -133,49 +50,56 @@ export default function FormationsPage() {
         </div>
       </div>
 
-      {/* Grille */}
+      {/* Grilles par filière */}
       <section style={{ padding: "56px 24px 80px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ marginBottom: 40, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
             <div>
               <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 8px 0" }}>Choisissez votre formation</h2>
-              <p style={{ color: "#5a6f8f", fontSize: 15, margin: 0 }}>Cliquez sur une formation pour accéder au programme complet et aux modalités de financement.</p>
+              <p style={{ color: "#5a6f8f", fontSize: 15, margin: 0 }}>Cliquez sur une formation pour accéder au programme complet, aux épreuves officielles et aux modalités de financement.</p>
             </div>
             <Link href="/#contact" style={{ background: "#1B3A6B", color: "white", fontWeight: 700, fontSize: 14, padding: "14px 24px", borderRadius: 10, textDecoration: "none", whiteSpace: "nowrap" }}>
               Je ne sais pas quoi choisir →
             </Link>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 24 }}>
-            {FORMATIONS.map((f) => (
-              <Link key={f.slug} href={`/formations/${f.slug}`} style={{ textDecoration: "none", display: "block" }}>
-                <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 16, overflow: "hidden", height: "100%", display: "flex", flexDirection: "column", transition: "all 0.2s", cursor: "pointer" }}>
-                  <div style={{ height: 4, background: `linear-gradient(90deg, ${f.color}, ${f.accent})` }} />
-                  <div style={{ padding: "22px 22px 20px", flex: 1, display: "flex", flexDirection: "column" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14 }}>
-                      <div style={{ background: "#EEF5FF", color: "#1B3A6B", fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 6 }}>{f.categorie}</div>
-                      <div style={{ textAlign: "right" }}>
-                        <div style={{ fontSize: 18, fontWeight: 800, color: "#F5A623", fontFamily: "monospace" }}>{f.taux}</div>
-                        <div style={{ fontSize: 10, color: "#5a6f8f" }}>réussite</div>
+          {FILIERES_ORDER.map((filiere) => {
+            const items = FORMATIONS_LIST.filter((f) => f.filiere === filiere);
+            if (items.length === 0) return null;
+            return (
+              <div key={filiere} style={{ marginBottom: 48 }}>
+                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, fontWeight: 800, color: "#1B3A6B", margin: "0 0 6px 0" }}>{filiere}</h3>
+                <div style={{ width: 48, height: 3, background: "linear-gradient(90deg, #F5A623, #4BADD4)", borderRadius: 2, marginBottom: 20 }} />
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 24 }}>
+                  {items.map((f) => (
+                    <Link key={f.slug} href={`/formations/${f.slug}`} style={{ textDecoration: "none", display: "block" }}>
+                      <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 16, overflow: "hidden", height: "100%", display: "flex", flexDirection: "column", transition: "all 0.2s", cursor: "pointer" }}>
+                        <div style={{ height: 4, background: `linear-gradient(90deg, ${f.color}, ${f.accent})` }} />
+                        <div style={{ padding: "22px 22px 20px", flex: 1, display: "flex", flexDirection: "column" }}>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, gap: 8 }}>
+                            <div style={{ background: "#EEF5FF", color: "#1B3A6B", fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 6 }}>{f.categorie}</div>
+                            <div style={{ background: "#FFF7E6", color: "#d97706", fontSize: 10, fontWeight: 700, padding: "4px 8px", borderRadius: 6, whiteSpace: "nowrap" }}>{f.type}</div>
+                          </div>
+                          <h4 style={{ fontFamily: "'Playfair Display', serif", fontSize: 18, fontWeight: 700, color: "#1B3A6B", margin: "0 0 10px 0", lineHeight: 1.3 }}>{f.titre}</h4>
+                          <p style={{ fontSize: 14, color: "#5a6f8f", lineHeight: 1.6, margin: "0 0 20px 0", flex: 1 }}>{f.desc}</p>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 16, borderTop: "1px solid #EEF5FF" }}>
+                            <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5a6f8f" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                              <span style={{ fontSize: 12, color: "#5a6f8f" }}>{f.duree}</span>
+                            </div>
+                            <span style={{ color: "#4BADD4", fontSize: 13, fontWeight: 600, display: "flex", alignItems: "center", gap: 5 }}>
+                              Voir le programme
+                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </span>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 18, fontWeight: 700, color: "#1B3A6B", margin: "0 0 10px 0", lineHeight: 1.3 }}>{f.titre}</h3>
-                    <p style={{ fontSize: 14, color: "#5a6f8f", lineHeight: 1.6, margin: "0 0 20px 0", flex: 1 }}>{f.desc}</p>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 16, borderTop: "1px solid #EEF5FF" }}>
-                      <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5a6f8f" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <span style={{ fontSize: 12, color: "#5a6f8f" }}>{f.duree}</span>
-                      </div>
-                      <span style={{ color: "#4BADD4", fontSize: 13, fontWeight: 600, display: "flex", alignItems: "center", gap: 5 }}>
-                        Voir le programme
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                      </span>
-                    </div>
-                  </div>
+                    </Link>
+                  ))}
                 </div>
-              </Link>
-            ))}
-          </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 

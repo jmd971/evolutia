@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import NavBar from "./components/NavBar"
 import Footer from "./components/Footer"
+import { FORMATIONS_LIST } from "./formations/data"
 
 const NAV_LINKS = [
   { label: "Formations", href: "/formations" },
@@ -15,16 +16,6 @@ const NAV_LINKS = [
   { label: "Ressources", href: "/ressources" },
 ];
 
-const FORMATIONS = [
-  { titre: "Ingénieur Territorial", cat: "Catégorie A", desc: "Concours externe et interne, épreuves techniques et oraux.", slug: "ingenieur-territorial-guadeloupe" },
-  { titre: "Technicien Territorial", cat: "Catégorie B", desc: "Maîtrise des épreuves écrites et préparation aux oraux.", slug: "technicien-territorial-guadeloupe" },
-  { titre: "Rédacteur Territorial", cat: "Catégorie B", desc: "Culture générale, note de synthèse, entretien jury.", slug: "redacteur-territorial-guadeloupe" },
-  { titre: "Rédacteur Principal", cat: "Catégorie B+", desc: "Examen professionnel interne, dossier RAEP.", slug: "redacteur-principal-guadeloupe" },
-  { titre: "Agent de Maîtrise", cat: "Catégorie C+", desc: "Épreuves pratiques et mise en situation professionnelle.", slug: "agent-de-maitrise-guadeloupe" },
-  { titre: "Ingénieur Chef", cat: "Catégorie A+", desc: "Concours d'accès au grade supérieur, leadership.", slug: "ingenieur-chef-guadeloupe" },
-  { titre: "Ingénieur Externe", cat: "Catégorie A", desc: "Voie externe pour les candidats civils Bac+3.", slug: "ingenieur-territorial-externe-guadeloupe" },
-  { titre: "Préparation Oraux", cat: "Toutes catégories", desc: "Entraînement intensif aux épreuves d'admission, simulation jury.", slug: "preparation-oraux-concours-guadeloupe" },
-];
 
 const PILIERS = [
   {
@@ -193,7 +184,7 @@ export default function Home() {
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}>
           {[
             { val: "85%", label: "Taux de réussite 2023", color: "#F5A623" },
-            { val: "8", label: "Formations disponibles", color: "#4BADD4" },
+            { val: String(FORMATIONS_LIST.length), label: "Formations disponibles", color: "#4BADD4" },
             { val: "10+", label: "Ans d'expérience", color: "#1B3A6B" },
             
           ].map((s, i) => (
@@ -210,17 +201,17 @@ export default function Home() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 56 }}>
             <div style={{ color: "#4BADD4", fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 12 }}>Nos programmes</div>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 800, color: "#1B3A6B", margin: "0 0 16px 0" }}>8 formations pour réussir votre concours</h2>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 800, color: "#1B3A6B", margin: "0 0 16px 0" }}>Une préparation pour chaque concours du calendrier CDG 971</h2>
             <p style={{ color: "#5a6f8f", fontSize: 17, maxWidth: 540, margin: "0 auto", lineHeight: 1.7 }}>De catégorie A à C, Evolutia prépare aux concours de la FPT passés en Guadeloupe comme dans l'Hexagone.</p>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(270px, 1fr))", gap: 20 }}>
-            {FORMATIONS.map((f, i) => (
+            {FORMATIONS_LIST.map((f, i) => (
               <a key={i} href={`/formations/${f.slug}`} style={{ textDecoration: "none", display: "block" }}>
                 <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 14, padding: "24px 22px", height: "100%", transition: "all 0.2s", cursor: "pointer" }}
                   onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "#4BADD4"; el.style.transform = "translateY(-3px)"; el.style.boxShadow = "0 8px 32px rgba(27,58,107,0.12)"; }}
                   onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "#D6E4F0"; el.style.transform = "translateY(0)"; el.style.boxShadow = "none"; }}>
-                  <div style={{ display: "inline-block", background: "#EEF5FF", color: "#1B3A6B", fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 6, marginBottom: 14, letterSpacing: "0.04em" }}>{f.cat}</div>
+                  <div style={{ display: "inline-block", background: "#EEF5FF", color: "#1B3A6B", fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 6, marginBottom: 14, letterSpacing: "0.04em" }}>{f.categorie}</div>
                   <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 18, fontWeight: 700, color: "#1B3A6B", margin: "0 0 10px 0", lineHeight: 1.3 }}>{f.titre}</h3>
                   <p style={{ fontSize: 14, color: "#5a6f8f", lineHeight: 1.6, margin: "0 0 16px 0" }}>{f.desc}</p>
                   <span style={{ color: "#4BADD4", fontSize: 13, fontWeight: 600, display: "flex", alignItems: "center", gap: 6 }}>
@@ -446,7 +437,7 @@ export default function Home() {
               <input type="email" placeholder="Votre email" required value={email} onChange={e => setEmail(e.target.value)} style={{ padding: "16px 20px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.08)", color: "white", fontSize: 15, outline: "none" }} />
               <select required style={{ padding: "16px 20px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(27,58,107,0.8)", color: "white", fontSize: 15, outline: "none", cursor: "pointer" }}>
                 <option value="">Quel concours vous intéresse ?</option>
-                {FORMATIONS.map(f => <option key={f.slug} value={f.slug}>{f.titre}</option>)}
+                {FORMATIONS_LIST.map(f => <option key={f.slug} value={f.slug}>{f.titre}</option>)}
               </select>
               <button type="submit" style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 800, fontSize: 16, padding: "18px 32px", borderRadius: 10, border: "none", cursor: "pointer", marginTop: 8, transition: "all 0.2s" }}
                 onMouseEnter={e => { (e.target as HTMLElement).style.background = "#D4901A"; (e.target as HTMLElement).style.transform = "translateY(-1px)"; }}

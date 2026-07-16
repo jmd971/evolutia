@@ -3,6 +3,7 @@ import Link from "next/link"
 import Image from "next/image"
 import NavBar from "../components/NavBar"
 import Footer from "../components/Footer"
+import { FORMATIONS_LIST } from "../formations/data"
 
 export const metadata: Metadata = {
   title: "Guide Complet des Concours Territoriaux en Guadeloupe 2026-2027 | Evolutia",
@@ -10,16 +11,6 @@ export const metadata: Metadata = {
   keywords: "concours territorial Guadeloupe, fonction publique territoriale Guadeloupe, CDG 971, préparation concours territorial, ingénieur territorial Guadeloupe, rédacteur territorial Guadeloupe",
 }
 
-const FORMATIONS = [
-  { titre: "Ingénieur Territorial", cat: "Catégorie A", slug: "ingenieur-territorial-guadeloupe", desc: "Encadrement technique dans les collectivités. Bac+3 requis.", taux: "82%", color: "#1B3A6B" },
-  { titre: "Ingénieur en Chef", cat: "Catégorie A+", slug: "ingenieur-chef-guadeloupe", desc: "Direction technique supérieure. Promotion interne.", taux: "79%", color: "#1B3A6B" },
-  { titre: "Ingénieur Territorial Externe", cat: "Catégorie A", slug: "ingenieur-territorial-externe-guadeloupe", desc: "Voie externe pour diplômés issus du secteur privé.", taux: "83%", color: "#1B3A6B" },
-  { titre: "Rédacteur Territorial", cat: "Catégorie B", slug: "redacteur-territorial-guadeloupe", desc: "Missions administratives polyvalentes. Baccalauréat requis.", taux: "85%", color: "#4BADD4" },
-  { titre: "Rédacteur Principal", cat: "Catégorie B+", slug: "redacteur-principal-guadeloupe", desc: "Promotion interne via dossier RAEP. Examen professionnel.", taux: "88%", color: "#4BADD4" },
-  { titre: "Technicien Territorial", cat: "Catégorie B", slug: "technicien-territorial-guadeloupe", desc: "Missions techniques de terrain. Baccalauréat requis.", taux: "87%", color: "#4BADD4" },
-  { titre: "Agent de Maîtrise", cat: "Catégorie C+", slug: "agent-de-maitrise-guadeloupe", desc: "Encadrement d'équipes techniques. CAP/BEP requis.", taux: "84%", color: "#5a6f8f" },
-  { titre: "Préparation aux Oraux", cat: "Toutes catégories", slug: "preparation-oraux-concours-guadeloupe", desc: "Coaching intensif oraux pour tous concours territoriaux.", taux: "91%", color: "#F5A623" },
-]
 
 const ETAPES = [
   { n: "01", titre: "Choisir son concours", desc: "Identifier le grade et la catégorie qui correspondent à votre profil : diplôme, expérience, statut (externe / interne / 3e voie)." },
@@ -201,18 +192,18 @@ export default function GuideConcoursTerritorialGuadeloupe() {
           {/* Section 3 — Formations */}
           <section id="formations">
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 30, fontWeight: 800, color: "#1B3A6B", margin: "0 0 8px" }}>
-              Les 8 concours préparés par Evolutia Formation
+              Les concours et examens préparés par Evolutia Formation
             </h2>
             <p style={{ fontSize: 16, color: "#5a6f8f", lineHeight: 1.7, margin: "0 0 28px" }}>
               Evolutia Formation prépare aux concours et examens professionnels les plus passés en Guadeloupe,
               du grade C supérieur jusqu&apos;à la catégorie A+.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 14 }}>
-              {FORMATIONS.map(f => (
+              {FORMATIONS_LIST.map(f => (
                 <Link key={f.slug} href={`/formations/${f.slug}`} style={{ textDecoration: "none", display: "block" }}>
                   <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 12, padding: "20px", height: "100%", borderTop: `3px solid ${f.color}` }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
-                      <span style={{ fontSize: 11, fontWeight: 700, color: f.color, textTransform: "uppercase", letterSpacing: "0.04em" }}>{f.cat}</span>
+                      <span style={{ fontSize: 11, fontWeight: 700, color: f.color, textTransform: "uppercase", letterSpacing: "0.04em" }}>{f.categorie}</span>
                       <span style={{ fontSize: 12, fontWeight: 700, color: "#F5A623" }}>{f.taux}</span>
                     </div>
                     <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 16, fontWeight: 700, color: "#1B3A6B", margin: "0 0 8px", lineHeight: 1.3 }}>{f.titre}</h3>
