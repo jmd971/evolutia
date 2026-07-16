@@ -58,6 +58,8 @@ const DATES_CLES = [
 ]
 
 const ARTICLES = [
+  { titre: "Financer sa préparation : CPF, France Travail, employeur", href: "/ressources/financer-preparation-concours-guadeloupe", cat: "Financement" },
+  { titre: "S'inscrire à un concours du CDG 971 pas à pas", href: "/ressources/inscription-concours-cdg971", cat: "Tutoriel" },
   { titre: "Comment travailler en mairie en Guadeloupe ? (avec ou sans concours)", href: "/ressources/travailler-mairie-guadeloupe", cat: "Guide pratique" },
   { titre: "Quel concours territorial passer sans diplôme ?", href: "/ressources/concours-territorial-sans-diplome", cat: "Catégorie C" },
   { titre: "Devenir ATSEM en Guadeloupe : le parcours complet", href: "/ressources/devenir-atsem-guadeloupe", cat: "Guide métier" },
@@ -199,8 +201,8 @@ export default function GuideConcoursTerritorialGuadeloupe() {
               Les concours et examens préparés par Evolutia Formation
             </h2>
             <p style={{ fontSize: 16, color: "#5a6f8f", lineHeight: 1.7, margin: "0 0 28px" }}>
-              Evolutia Formation prépare aux concours et examens professionnels les plus passés en Guadeloupe,
-              du grade C supérieur jusqu&apos;à la catégorie A+.
+              Evolutia Formation prépare aux concours et examens professionnels de la fonction publique territoriale —
+              qu&apos;ils soient passés en Guadeloupe ou dans l&apos;Hexagone — de la catégorie C à la catégorie A+.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 14 }}>
               {FORMATIONS_LIST.map(f => (

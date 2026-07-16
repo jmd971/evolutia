@@ -107,11 +107,14 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
               { label: "Format", val: f.format, highlight: false },
               { label: "Financement", val: "CPF éligible", highlight: false },
             ] as {label:string;val:string;highlight:boolean}[]).map((row, i) => (
-              <div key={i} style={{ padding: "12px 0", borderBottom: i < 3 ? "1px solid rgba(255,255,255,0.07)" : "none" }}>
+              <div key={i} style={{ padding: "12px 0", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
                 <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 11, marginBottom: 3 }}>{row.label}</div>
                 <div style={{ color: row.highlight ? "#F5A623" : "white", fontSize: row.highlight ? 22 : 14, fontWeight: row.highlight ? 800 : 500 }}>{row.val}</div>
               </div>
             ))}
+            <div style={{ paddingTop: 12, fontSize: 12, color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>
+              Concours national : préparation valable pour les sessions passées en Guadeloupe, aux Antilles-Guyane ou dans l&apos;Hexagone.
+            </div>
           </div>
         </div>
       </section>

@@ -28,7 +28,7 @@ export default function FormationsPage() {
             Toutes nos formations
           </h1>
           <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 18, maxWidth: 640, margin: "0 auto 36px", lineHeight: 1.7 }}>
-            Evolutia prépare aux concours et examens professionnels du calendrier CDG 971 — filières administrative, animation, médico-sociale et technique, de la catégorie C à la catégorie A+.
+            Evolutia prépare aux concours et examens professionnels de la fonction publique territoriale — passés en Guadeloupe (calendrier CDG 971) comme dans l'Hexagone. Quatre filières couvertes, de la catégorie C à la catégorie A+.
           </p>
           <div style={{ display: "inline-flex", gap: 32, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(75,173,212,0.2)", borderRadius: 16, padding: "20px 40px", flexWrap: "wrap", justifyContent: "center" }}>
             {([

@@ -11,6 +11,30 @@ export const metadata: Metadata = {
 
 const ARTICLES = [
   {
+    titre: "Concours d'agent de maîtrise 2027 : les inscriptions ouvrent le 1er septembre 2026",
+    desc: "Inscriptions du 1er septembre au 7 octobre 2026, épreuves le 28 janvier 2027. Conditions, épreuves et compte à rebours de préparation.",
+    href: "/ressources/concours-agent-de-maitrise-2027-inscriptions",
+    cat: "Actualité concours",
+    temps: "3 min",
+    date: "Juillet 2026",
+  },
+  {
+    titre: "S'inscrire à un concours du CDG 971 : le tutoriel pas à pas",
+    desc: "Préinscription sur concours-territorial.fr, dossier, pièces justificatives, délais — et pourquoi vous pouvez aussi viser une session dans l'Hexagone.",
+    href: "/ressources/inscription-concours-cdg971",
+    cat: "Tutoriel",
+    temps: "5 min",
+    date: "Juillet 2026",
+  },
+  {
+    titre: "Financer sa préparation aux concours : CPF, France Travail, employeur",
+    desc: "Salarié, agent public ou demandeur d'emploi : les solutions pour financer sa préparation en Guadeloupe, souvent sans avance de frais.",
+    href: "/ressources/financer-preparation-concours-guadeloupe",
+    cat: "Financement",
+    temps: "5 min",
+    date: "Juillet 2026",
+  },
+  {
     titre: "Comment travailler en mairie en Guadeloupe ? Concours, contrats et recrutement direct",
     desc: "Les 3 voies d'accès à un emploi communal — avec ou sans concours, avec ou sans diplôme — et les démarches concrètes auprès des 32 communes et du CDG 971.",
     href: "/ressources/travailler-mairie-guadeloupe",
@@ -72,7 +96,7 @@ export default function RessourcesPage() {
             Ressources & Guides
           </h1>
           <p style={{ fontSize: 18, color: "#5a6f8f", lineHeight: 1.7, margin: 0, maxWidth: 600 }}>
-            Guides pratiques, méthodes de préparation et actualités des concours territoriaux en Guadeloupe — rédigés par l&apos;équipe Evolutia Formation.
+            Guides pratiques, méthodes de préparation et actualités des concours territoriaux — en Guadeloupe comme dans l&apos;Hexagone. Rédigés par l&apos;équipe Evolutia Formation.
           </p>
         </div>
 
