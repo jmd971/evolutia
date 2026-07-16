@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import NavBar from "../../components/NavBar"
 import Footer from "../../components/Footer"
-import { FORMATIONS, FORMATIONS_LIST } from "../data";
+import { FORMATIONS, FORMATIONS_LIST, NOUVELLES_FILIERES } from "../data";
 
 export async function generateStaticParams() {
   return Object.keys(FORMATIONS).map((slug) => ({ slug }));
@@ -55,7 +55,12 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
       <section style={{ background: "linear-gradient(135deg, #1B3A6B 0%, #0d1e3d 100%)", padding: "64px 24px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 260px", gap: 48, alignItems: "center" }}>
           <div>
-            <div style={{ display: "inline-block", background: "rgba(245,166,35,0.15)", border: "1px solid rgba(245,166,35,0.3)", color: "#F5A623", fontSize: 12, fontWeight: 700, padding: "4px 14px", borderRadius: 100, marginBottom: 20 }}>{f.categorie}</div>
+            <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
+              <div style={{ display: "inline-block", background: "rgba(245,166,35,0.15)", border: "1px solid rgba(245,166,35,0.3)", color: "#F5A623", fontSize: 12, fontWeight: 700, padding: "4px 14px", borderRadius: 100 }}>{f.categorie}</div>
+              {NOUVELLES_FILIERES.includes(f.filiere) && (
+                <div style={{ display: "inline-block", background: "#F5A623", color: "#1B3A6B", fontSize: 12, fontWeight: 800, padding: "4px 14px", borderRadius: 100, letterSpacing: "0.04em" }}>NOUVEAU — 2026</div>
+              )}
+            </div>
             <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: "white", margin: "0 0 12px 0", lineHeight: 1.15 }}>{f.titre}</h1>
             <p style={{ color: "rgba(255,255,255,0.65)", fontSize: 18, margin: "0 0 28px 0" }}>{f.sousTitre}</p>
             <p style={{ color: "rgba(255,255,255,0.8)", fontSize: 16, lineHeight: 1.75, maxWidth: 580, margin: "0 0 36px 0" }}>{f.accroche}</p>

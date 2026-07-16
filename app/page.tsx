@@ -211,7 +211,10 @@ export default function Home() {
                 <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 14, padding: "24px 22px", height: "100%", transition: "all 0.2s", cursor: "pointer" }}
                   onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "#4BADD4"; el.style.transform = "translateY(-3px)"; el.style.boxShadow = "0 8px 32px rgba(27,58,107,0.12)"; }}
                   onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "#D6E4F0"; el.style.transform = "translateY(0)"; el.style.boxShadow = "none"; }}>
-                  <div style={{ display: "inline-block", background: "#EEF5FF", color: "#1B3A6B", fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 6, marginBottom: 14, letterSpacing: "0.04em" }}>{f.categorie}</div>
+                  <div style={{ display: "flex", gap: 6, marginBottom: 14 }}>
+                    <div style={{ display: "inline-block", background: "#EEF5FF", color: "#1B3A6B", fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 6, letterSpacing: "0.04em" }}>{f.categorie}</div>
+                    {f.nouveau && <div style={{ display: "inline-block", background: "#F5A623", color: "#1B3A6B", fontSize: 11, fontWeight: 800, padding: "4px 10px", borderRadius: 6, letterSpacing: "0.04em" }}>NOUVEAU</div>}
+                  </div>
                   <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 18, fontWeight: 700, color: "#1B3A6B", margin: "0 0 10px 0", lineHeight: 1.3 }}>{f.titre}</h3>
                   <p style={{ fontSize: 14, color: "#5a6f8f", lineHeight: 1.6, margin: "0 0 16px 0" }}>{f.desc}</p>
                   <span style={{ color: "#4BADD4", fontSize: 13, fontWeight: 600, display: "flex", alignItems: "center", gap: 6 }}>

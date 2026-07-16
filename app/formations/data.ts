@@ -1031,6 +1031,9 @@ export const FORMATIONS: Record<string, Formation> = {
   },
 };
 
+// Filières lancées en 2026 — affichent un badge « Nouveau » sur tout le site
+export const NOUVELLES_FILIERES = ["Filière animation", "Filière médico-sociale"];
+
 export const FORMATIONS_LIST = Object.entries(FORMATIONS).map(([slug, f]) => ({
   slug,
   titre: f.titre,
@@ -1042,4 +1045,5 @@ export const FORMATIONS_LIST = Object.entries(FORMATIONS).map(([slug, f]) => ({
   taux: f.tauxReussite,
   color: f.color,
   accent: f.accent,
+  nouveau: NOUVELLES_FILIERES.includes(f.filiere),
 }));

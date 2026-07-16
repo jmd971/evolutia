@@ -203,7 +203,7 @@ export default function GuideConcoursTerritorialGuadeloupe() {
                 <Link key={f.slug} href={`/formations/${f.slug}`} style={{ textDecoration: "none", display: "block" }}>
                   <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 12, padding: "20px", height: "100%", borderTop: `3px solid ${f.color}` }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
-                      <span style={{ fontSize: 11, fontWeight: 700, color: f.color, textTransform: "uppercase", letterSpacing: "0.04em" }}>{f.categorie}</span>
+                      <span style={{ fontSize: 11, fontWeight: 700, color: f.color, textTransform: "uppercase", letterSpacing: "0.04em" }}>{f.categorie}{f.nouveau && <span style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 800, padding: "2px 7px", borderRadius: 5, marginLeft: 6 }}>NOUVEAU</span>}</span>
                       <span style={{ fontSize: 12, fontWeight: 700, color: "#F5A623" }}>{f.taux}</span>
                     </div>
                     <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 16, fontWeight: 700, color: "#1B3A6B", margin: "0 0 8px", lineHeight: 1.3 }}>{f.titre}</h3>

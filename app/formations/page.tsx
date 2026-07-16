@@ -68,7 +68,12 @@ export default function FormationsPage() {
             if (items.length === 0) return null;
             return (
               <div key={filiere} style={{ marginBottom: 48 }}>
-                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, fontWeight: 800, color: "#1B3A6B", margin: "0 0 6px 0" }}>{filiere}</h3>
+                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, fontWeight: 800, color: "#1B3A6B", margin: "0 0 6px 0", display: "flex", alignItems: "center", gap: 10 }}>
+                  {filiere}
+                  {items.some((f) => f.nouveau) && (
+                    <span style={{ background: "#F5A623", color: "#1B3A6B", fontSize: 11, fontWeight: 800, padding: "3px 10px", borderRadius: 100, letterSpacing: "0.05em", textTransform: "uppercase" }}>Nouveau</span>
+                  )}
+                </h3>
                 <div style={{ width: 48, height: 3, background: "linear-gradient(90deg, #F5A623, #4BADD4)", borderRadius: 2, marginBottom: 20 }} />
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 24 }}>
                   {items.map((f) => (
@@ -78,7 +83,10 @@ export default function FormationsPage() {
                         <div style={{ padding: "22px 22px 20px", flex: 1, display: "flex", flexDirection: "column" }}>
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, gap: 8 }}>
                             <div style={{ background: "#EEF5FF", color: "#1B3A6B", fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 6 }}>{f.categorie}</div>
-                            <div style={{ background: "#FFF7E6", color: "#d97706", fontSize: 10, fontWeight: 700, padding: "4px 8px", borderRadius: 6, whiteSpace: "nowrap" }}>{f.type}</div>
+                            <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                              {f.nouveau && <div style={{ background: "#F5A623", color: "#1B3A6B", fontSize: 10, fontWeight: 800, padding: "4px 8px", borderRadius: 6, whiteSpace: "nowrap", letterSpacing: "0.04em" }}>NOUVEAU</div>}
+                              <div style={{ background: "#FFF7E6", color: "#d97706", fontSize: 10, fontWeight: 700, padding: "4px 8px", borderRadius: 6, whiteSpace: "nowrap" }}>{f.type}</div>
+                            </div>
                           </div>
                           <h4 style={{ fontFamily: "'Playfair Display', serif", fontSize: 18, fontWeight: 700, color: "#1B3A6B", margin: "0 0 10px 0", lineHeight: 1.3 }}>{f.titre}</h4>
                           <p style={{ fontSize: 14, color: "#5a6f8f", lineHeight: 1.6, margin: "0 0 20px 0", flex: 1 }}>{f.desc}</p>
