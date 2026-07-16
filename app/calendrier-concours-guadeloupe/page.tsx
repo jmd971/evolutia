@@ -6,56 +6,57 @@ import Footer from "../components/Footer"
 export const metadata: Metadata = {
   title: "Calendrier Concours Territoriaux Guadeloupe 2026-2027 | Evolutia",
   description: "Dates des concours et examens de la fonction publique territoriale en Guadeloupe par filière. Périodes d'inscription, épreuves, calendrier officiel CDG 971.",
+  alternates: { canonical: "/calendrier-concours-guadeloupe" },
 };
 
-type Concours = { concours:string; cat:string; type:string; inscriptions:string; epreuves:string; statut:string };
+type Concours = { concours:string; cat:string; type:string; inscriptions:string; epreuves:string; statut:string; slug?:string };
 
 const FILIERES: { titre:string; lignes:Concours[] }[] = [
   {
     titre: "Filière administrative",
     lignes: [
-      { concours:"Attaché principal (examen prof.)", cat:"A", type:"Examen prof.", inscriptions:"2 nov. → 15 déc. 2026", epreuves:"8 avril 2027", statut:"bientot" },
-      { concours:"Attaché (externe, interne et 3ème voie)", cat:"A", type:"Concours", inscriptions:"Clôturées", epreuves:"19 novembre 2026", statut:"ferme" },
-      { concours:"Rédacteur principal de 1ère classe (avancement de grade)", cat:"B", type:"Examen prof.", inscriptions:"Clôturées", epreuves:"24 septembre 2026", statut:"ferme" },
-      { concours:"Rédacteur principal de 2ème classe (avancement de grade)", cat:"B", type:"Examen prof.", inscriptions:"Clôturées", epreuves:"24 septembre 2026", statut:"ferme" },
-      { concours:"Rédacteur principal de 2ème classe", cat:"B", type:"Concours", inscriptions:"2 fév. → 10 mars 2027", epreuves:"14 octobre 2027", statut:"bientot" },
-      { concours:"Rédacteur", cat:"B", type:"Concours", inscriptions:"2 fév. → 10 mars 2027", epreuves:"14 octobre 2027", statut:"bientot" },
-      { concours:"Adjoint administratif principal de 2ème classe", cat:"C", type:"Examen prof.", inscriptions:"20 oct. → 25 nov. 2026", epreuves:"18 mars 2027", statut:"bientot" },
+      { slug:"attache-principal-guadeloupe", concours:"Attaché principal (examen prof.)", cat:"A", type:"Examen prof.", inscriptions:"2 nov. → 15 déc. 2026", epreuves:"8 avril 2027", statut:"bientot" },
+      { slug:"attache-territorial-guadeloupe", concours:"Attaché (externe, interne et 3ème voie)", cat:"A", type:"Concours", inscriptions:"Clôturées", epreuves:"19 novembre 2026", statut:"ferme" },
+      { slug:"redacteur-principal-guadeloupe", concours:"Rédacteur principal de 1ère classe (avancement de grade)", cat:"B", type:"Examen prof.", inscriptions:"Clôturées", epreuves:"24 septembre 2026", statut:"ferme" },
+      { slug:"redacteur-principal-guadeloupe", concours:"Rédacteur principal de 2ème classe (avancement de grade)", cat:"B", type:"Examen prof.", inscriptions:"Clôturées", epreuves:"24 septembre 2026", statut:"ferme" },
+      { slug:"redacteur-territorial-guadeloupe", concours:"Rédacteur principal de 2ème classe", cat:"B", type:"Concours", inscriptions:"2 fév. → 10 mars 2027", epreuves:"14 octobre 2027", statut:"bientot" },
+      { slug:"redacteur-territorial-guadeloupe", concours:"Rédacteur", cat:"B", type:"Concours", inscriptions:"2 fév. → 10 mars 2027", epreuves:"14 octobre 2027", statut:"bientot" },
+      { slug:"adjoint-administratif-principal-guadeloupe", concours:"Adjoint administratif principal de 2ème classe", cat:"C", type:"Examen prof.", inscriptions:"20 oct. → 25 nov. 2026", epreuves:"18 mars 2027", statut:"bientot" },
     ],
   },
   {
     titre: "Filière animation",
     lignes: [
-      { concours:"Animateur", cat:"B", type:"Concours", inscriptions:"2 mars → 7 avril 2027", epreuves:"23 septembre 2027", statut:"bientot" },
-      { concours:"Animateur principal de 2ème classe", cat:"B", type:"Concours", inscriptions:"2 mars → 7 avril 2027", epreuves:"23 septembre 2027", statut:"bientot" },
-      { concours:"Adjoint d'animation principal de 2ème classe", cat:"C", type:"Concours", inscriptions:"29 sept. → 4 nov. 2026", epreuves:"25 mars 2027", statut:"bientot" },
+      { slug:"animateur-territorial-guadeloupe", concours:"Animateur", cat:"B", type:"Concours", inscriptions:"2 mars → 7 avril 2027", epreuves:"23 septembre 2027", statut:"bientot" },
+      { slug:"animateur-territorial-guadeloupe", concours:"Animateur principal de 2ème classe", cat:"B", type:"Concours", inscriptions:"2 mars → 7 avril 2027", epreuves:"23 septembre 2027", statut:"bientot" },
+      { slug:"adjoint-animation-principal-guadeloupe", concours:"Adjoint d'animation principal de 2ème classe", cat:"C", type:"Concours", inscriptions:"29 sept. → 4 nov. 2026", epreuves:"25 mars 2027", statut:"bientot" },
     ],
   },
   {
     titre: "Filière médico-sociale",
     lignes: [
-      { concours:"Sage-femme", cat:"A", type:"Concours", inscriptions:"29 sept. → 4 nov. 2026", epreuves:"22 mars 2027", statut:"bientot" },
-      { concours:"Puéricultrice territoriale de classe normale", cat:"A", type:"Concours", inscriptions:"29 sept. → 4 nov. 2026", epreuves:"15 février 2027", statut:"bientot" },
-      { concours:"Assistant socio-éducatif de classe exceptionnelle", cat:"A", type:"Examen prof.", inscriptions:"16 mars → 21 avril 2027", epreuves:"16 septembre 2027", statut:"bientot" },
-      { concours:"Éducateur de jeunes enfants de classe exceptionnelle", cat:"A", type:"Examen prof.", inscriptions:"13 oct. → 18 nov. 2026", epreuves:"11 février 2027", statut:"bientot" },
-      { concours:"Aide-soignant de classe normale", cat:"B", type:"Concours", inscriptions:"8 déc. 2026 → 13 jan. 2027", epreuves:"16 juin 2027", statut:"bientot" },
-      { concours:"Auxiliaire de puériculture de classe normale", cat:"B", type:"Concours", inscriptions:"15 sept. → 21 oct. 2026", epreuves:"1er mars 2027", statut:"bientot" },
-      { concours:"Agent social principal de 2ème classe", cat:"C", type:"Concours", inscriptions:"16 mars → 21 avril 2027", epreuves:"5 octobre 2027", statut:"bientot" },
-      { concours:"ATSEM principal de 2ème classe", cat:"C", type:"Concours", inscriptions:"16 mars → 21 avril 2027", epreuves:"29 septembre 2027", statut:"bientot" },
-      { concours:"Auxiliaire de soins principal de 2ème classe", cat:"C", type:"Concours", inscriptions:"16 mars → 21 avril 2027", epreuves:"4 octobre 2027", statut:"bientot" },
+      { slug:"sage-femme-guadeloupe", concours:"Sage-femme", cat:"A", type:"Concours", inscriptions:"29 sept. → 4 nov. 2026", epreuves:"22 mars 2027", statut:"bientot" },
+      { slug:"puericultrice-guadeloupe", concours:"Puéricultrice territoriale de classe normale", cat:"A", type:"Concours", inscriptions:"29 sept. → 4 nov. 2026", epreuves:"15 février 2027", statut:"bientot" },
+      { slug:"assistant-socio-educatif-guadeloupe", concours:"Assistant socio-éducatif de classe exceptionnelle", cat:"A", type:"Examen prof.", inscriptions:"16 mars → 21 avril 2027", epreuves:"16 septembre 2027", statut:"bientot" },
+      { slug:"educateur-jeunes-enfants-guadeloupe", concours:"Éducateur de jeunes enfants de classe exceptionnelle", cat:"A", type:"Examen prof.", inscriptions:"13 oct. → 18 nov. 2026", epreuves:"11 février 2027", statut:"bientot" },
+      { slug:"aide-soignant-guadeloupe", concours:"Aide-soignant de classe normale", cat:"B", type:"Concours", inscriptions:"8 déc. 2026 → 13 jan. 2027", epreuves:"16 juin 2027", statut:"bientot" },
+      { slug:"auxiliaire-puericulture-guadeloupe", concours:"Auxiliaire de puériculture de classe normale", cat:"B", type:"Concours", inscriptions:"15 sept. → 21 oct. 2026", epreuves:"1er mars 2027", statut:"bientot" },
+      { slug:"agent-social-guadeloupe", concours:"Agent social principal de 2ème classe", cat:"C", type:"Concours", inscriptions:"16 mars → 21 avril 2027", epreuves:"5 octobre 2027", statut:"bientot" },
+      { slug:"atsem-guadeloupe", concours:"ATSEM principal de 2ème classe", cat:"C", type:"Concours", inscriptions:"16 mars → 21 avril 2027", epreuves:"29 septembre 2027", statut:"bientot" },
+      { slug:"auxiliaire-soins-guadeloupe", concours:"Auxiliaire de soins principal de 2ème classe", cat:"C", type:"Concours", inscriptions:"16 mars → 21 avril 2027", epreuves:"4 octobre 2027", statut:"bientot" },
     ],
   },
   {
     titre: "Filière technique",
     lignes: [
-      { concours:"Ingénieur en chef", cat:"A", type:"Concours", inscriptions:"Dates à confirmer", epreuves:"À confirmer", statut:"bientot" },
-      { concours:"Ingénieur", cat:"A", type:"Concours", inscriptions:"8 déc. 2026 → 13 jan. 2027", epreuves:"16 juin 2027", statut:"bientot" },
-      { concours:"Ingénieur (examen prof.)", cat:"A", type:"Examen prof.", inscriptions:"Clôturées", epreuves:"18 juin 2026", statut:"ferme" },
-      { concours:"Technicien principal de 1ère classe (avancement de grade)", cat:"B", type:"Examen prof.", inscriptions:"13 oct. → 18 nov. 2026", epreuves:"15 avril 2027", statut:"bientot" },
-      { concours:"Technicien principal de 2ème classe (avancement de grade)", cat:"B", type:"Examen prof.", inscriptions:"13 oct. → 18 nov. 2026", epreuves:"15 avril 2027", statut:"bientot" },
-      { concours:"Technicien principal de 2ème classe (promotion interne)", cat:"B", type:"Examen prof.", inscriptions:"13 oct. → 18 nov. 2026", epreuves:"15 avril 2027", statut:"bientot" },
-      { concours:"Adjoint technique principal de 2ème classe (externe, interne, 3ème voie)", cat:"C", type:"Concours", inscriptions:"4 mai → 9 juin 2027", epreuves:"25 novembre 2027", statut:"bientot" },
-      { concours:"Agent de maîtrise", cat:"C", type:"Examen prof.", inscriptions:"1er sept. → 7 oct. 2026", epreuves:"28 janvier 2027", statut:"ouvert" },
+      { slug:"ingenieur-chef-guadeloupe", concours:"Ingénieur en chef", cat:"A", type:"Concours", inscriptions:"Dates à confirmer", epreuves:"À confirmer", statut:"bientot" },
+      { slug:"ingenieur-territorial-guadeloupe", concours:"Ingénieur", cat:"A", type:"Concours", inscriptions:"8 déc. 2026 → 13 jan. 2027", epreuves:"16 juin 2027", statut:"bientot" },
+      { slug:"ingenieur-territorial-guadeloupe", concours:"Ingénieur (examen prof.)", cat:"A", type:"Examen prof.", inscriptions:"Clôturées", epreuves:"18 juin 2026", statut:"ferme" },
+      { slug:"technicien-territorial-guadeloupe", concours:"Technicien principal de 1ère classe (avancement de grade)", cat:"B", type:"Examen prof.", inscriptions:"13 oct. → 18 nov. 2026", epreuves:"15 avril 2027", statut:"bientot" },
+      { slug:"technicien-territorial-guadeloupe", concours:"Technicien principal de 2ème classe (avancement de grade)", cat:"B", type:"Examen prof.", inscriptions:"13 oct. → 18 nov. 2026", epreuves:"15 avril 2027", statut:"bientot" },
+      { slug:"technicien-territorial-guadeloupe", concours:"Technicien principal de 2ème classe (promotion interne)", cat:"B", type:"Examen prof.", inscriptions:"13 oct. → 18 nov. 2026", epreuves:"15 avril 2027", statut:"bientot" },
+      { slug:"adjoint-technique-principal-guadeloupe", concours:"Adjoint technique principal de 2ème classe (externe, interne, 3ème voie)", cat:"C", type:"Concours", inscriptions:"4 mai → 9 juin 2027", epreuves:"25 novembre 2027", statut:"bientot" },
+      { slug:"agent-de-maitrise-guadeloupe", concours:"Agent de maîtrise", cat:"C", type:"Examen prof.", inscriptions:"1er sept. → 7 oct. 2026", epreuves:"28 janvier 2027", statut:"ouvert" },
     ],
   },
 ];
@@ -104,7 +105,14 @@ export default function Calendrier() {
                     const s = statutStyle[c.statut];
                     return (
                       <tr key={i} style={{ background:i%2===0?"white":"#F8FAFF", borderBottom:"1px solid #D6E4F0" }}>
-                        <td style={{ padding:"14px 18px", fontWeight:600, color:"#1B3A6B", fontSize:14 }}>{c.concours}</td>
+                        <td style={{ padding:"14px 18px", fontWeight:600, color:"#1B3A6B", fontSize:14 }}>
+                          {c.slug ? (
+                            <Link href={`/formations/${c.slug}`} style={{ color:"#1B3A6B", textDecoration:"none" }}>
+                              {c.concours}
+                              <span style={{ display:"block", color:"#4BADD4", fontSize:11, fontWeight:600, marginTop:2 }}>Se préparer avec Evolutia →</span>
+                            </Link>
+                          ) : c.concours}
+                        </td>
                         <td style={{ padding:"14px 18px" }}><span style={{ background:"#EEF5FF", color:"#1B3A6B", fontSize:11, fontWeight:700, padding:"3px 8px", borderRadius:5 }}>{c.cat}</span></td>
                         <td style={{ padding:"14px 18px", color:"#5a6f8f", fontSize:12 }}>{c.type}</td>
                         <td style={{ padding:"14px 18px", color:"#5a6f8f", fontSize:12 }}>{c.inscriptions}</td>

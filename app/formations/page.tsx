@@ -1,9 +1,14 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
 import NavBar from "../components/NavBar"
 import Footer from "../components/Footer"
 import { FORMATIONS_LIST, FILIERES_ORDER } from "./data";
+
+export const metadata: Metadata = {
+  title: "Formations Concours Territoriaux Guadeloupe | Evolutia",
+  description: "22 préparations aux concours et examens de la fonction publique territoriale en Guadeloupe : filières administrative, animation, médico-sociale, technique. CPF.",
+  alternates: { canonical: "/formations" },
+};
 
 export default function FormationsPage() {
   return (

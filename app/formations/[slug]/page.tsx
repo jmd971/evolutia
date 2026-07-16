@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const f = FORMATIONS[slug];
   if (!f) return {};
-  return { title: f.seoTitle, description: f.seoDesc };
+  return { title: f.seoTitle, description: f.seoDesc, alternates: { canonical: `/formations/${slug}` } };
 }
 
 const OTHER_FORMATIONS = FORMATIONS_LIST.map((f) => ({ label: f.titre, slug: f.slug }));
@@ -34,8 +34,34 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
   const f = FORMATIONS[slug];
   if (!f) notFound();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Course",
+        name: `Préparation ${f.titre} — Guadeloupe`,
+        description: f.seoDesc,
+        provider: {
+          "@type": "Organization",
+          name: "Evolutia Formation",
+          address: "Immeuble ASP, Grand-Camp, 97139 Les Abymes, Guadeloupe",
+          telephone: "+590 690 44 73 60",
+        },
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: f.faq.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
+      },
+    ],
+  };
+
   return (
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif", color: "#1a2740", background: "#F8FAFF" }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* Navbar */}
       <NavBar />
@@ -194,7 +220,10 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
                 <div style={{ fontSize: 12, color: "#5a6f8f", marginTop: 3 }}>{d.date}</div>
               </div>
             ))}
-            <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid #EEF5FF" }}>
+            <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid #EEF5FF", display: "flex", flexDirection: "column", gap: 6 }}>
+              <Link href="/calendrier-concours-guadeloupe" style={{ fontSize: 12, color: "#1B3A6B", textDecoration: "none", fontWeight: 700 }}>
+                → Calendrier complet des concours 2026-2027
+              </Link>
               <a href={f.sourceOfficielle} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "#4BADD4", textDecoration: "none", fontWeight: 600 }}>
                 → Vérifier sur CDG 971 / CNFPT
               </a>
