@@ -22,6 +22,7 @@ export type Formation = {
   duree: string;
   format: string;
   tauxReussite: string;
+  resultats2026?: string;
   color: string;
   accent: string;
   datesCles: DateCle[];
@@ -71,7 +72,8 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "120 à 180 heures",
     format: "Présentiel (Grand-Camp, Les Abymes) + distanciel",
-    tauxReussite: "85%",
+    tauxReussite: "80%",
+    resultats2026: "80% d'admis",
     color: "#1B3A6B",
     accent: "#4BADD4",
     datesCles: [
@@ -160,7 +162,8 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "80 à 120 heures",
     format: "Présentiel (Grand-Camp, Les Abymes) + distanciel",
-    tauxReussite: "85%",
+    tauxReussite: "64%",
+    resultats2026: "7 admis sur 11 candidats",
     color: "#1B3A6B",
     accent: "#4BADD4",
     datesCles: [
@@ -780,7 +783,8 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "120 à 180 heures",
     format: "Présentiel (Grand-Camp, Les Abymes) + distanciel",
-    tauxReussite: "82%",
+    tauxReussite: "53%",
+    resultats2026: "8 lauréats sur 15 candidats",
     color: "#1B3A6B",
     accent: "#4BADD4",
     datesCles: [
@@ -875,7 +879,8 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "60 à 120 heures",
     format: "Présentiel (Grand-Camp, Les Abymes) + distanciel",
-    tauxReussite: "87%",
+    tauxReussite: "60%",
+    resultats2026: "6 admis sur 10 candidats",
     color: "#4BADD4",
     accent: "#1B3A6B",
     datesCles: [
@@ -921,7 +926,8 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "50 à 70 heures",
     format: "Présentiel (Grand-Camp, Les Abymes) + ateliers pratiques",
-    tauxReussite: "85%",
+    tauxReussite: "100%",
+    resultats2026: "100% d'admis",
     color: "#F5A623",
     accent: "#4BADD4",
     datesCles: [
@@ -967,7 +973,8 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "60 à 80 heures",
     format: "Présentiel (Grand-Camp, Les Abymes) + ateliers pratiques",
-    tauxReussite: "84%",
+    tauxReussite: "100%",
+    resultats2026: "100% de réussite",
     color: "#4BADD4",
     accent: "#1B3A6B",
     datesCles: [

@@ -76,7 +76,7 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
           <div style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(75,173,212,0.25)", borderRadius: 16, padding: "28px 24px" }}>
             <div style={{ color: "#4BADD4", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 18 }}>En un coup d&apos;œil</div>
             {([
-              { label: "Taux de réussite", val: f.tauxReussite, highlight: true },
+              { label: f.resultats2026 ? `Résultats 2026 — ${f.resultats2026}` : "Taux de réussite", val: f.tauxReussite, highlight: true },
               { label: "Durée", val: f.duree, highlight: false },
               { label: "Format", val: f.format, highlight: false },
               { label: "Financement", val: "CPF éligible", highlight: false },
