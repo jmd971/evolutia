@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import NavBar from "../components/NavBar"
+import { BOOKING_URL } from "../config"
 import Footer from "../components/Footer"
 
 export const metadata: Metadata = {
@@ -36,51 +37,20 @@ export default function Contact() {
           {/* Formulaire */}
           <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 20, padding: "40px" }}>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 26, fontWeight: 800, color: "#1B3A6B", margin: "0 0 8px 0" }}>Réserver un entretien gratuit</h2>
-            <p style={{ color: "#5a6f8f", fontSize: 14, margin: "0 0 32px 0" }}>Réponse sous 24h — du lundi au vendredi de 15h30 à 18h30</p>
+            <p style={{ color: "#5a6f8f", fontSize: 14, margin: "0 0 24px 0" }}>Choisissez directement votre créneau ci-dessous — confirmation immédiate par e-mail.</p>
 
-            <form action="mailto:contact@evolutiaformation.fr" method="post" encType="text/plain" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-                <div>
-                  <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#1B3A6B", marginBottom: 6 }}>Prénom *</label>
-                  <input name="prenom" required style={{ width: "100%", padding: "12px 14px", border: "1px solid #D6E4F0", borderRadius: 8, fontSize: 14, color: "#1a2740", outline: "none", boxSizing: "border-box" }} />
-                </div>
-                <div>
-                  <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#1B3A6B", marginBottom: 6 }}>Nom *</label>
-                  <input name="nom" required style={{ width: "100%", padding: "12px 14px", border: "1px solid #D6E4F0", borderRadius: 8, fontSize: 14, color: "#1a2740", outline: "none", boxSizing: "border-box" }} />
-                </div>
-              </div>
-              <div>
-                <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#1B3A6B", marginBottom: 6 }}>E-mail *</label>
-                <input name="email" type="email" required style={{ width: "100%", padding: "12px 14px", border: "1px solid #D6E4F0", borderRadius: 8, fontSize: 14, color: "#1a2740", outline: "none", boxSizing: "border-box" }} />
-              </div>
-              <div>
-                <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#1B3A6B", marginBottom: 6 }}>Téléphone</label>
-                <input name="telephone" type="tel" style={{ width: "100%", padding: "12px 14px", border: "1px solid #D6E4F0", borderRadius: 8, fontSize: 14, color: "#1a2740", outline: "none", boxSizing: "border-box" }} />
-              </div>
-              <div>
-                <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#1B3A6B", marginBottom: 6 }}>Concours visé</label>
-                <select name="concours" style={{ width: "100%", padding: "12px 14px", border: "1px solid #D6E4F0", borderRadius: 8, fontSize: 14, color: "#1a2740", outline: "none", background: "white", boxSizing: "border-box" }}>
-                  <option value="">Sélectionnez un concours</option>
-                  <option>Ingénieur Territorial (Cat. A)</option>
-                  <option>Technicien Territorial (Cat. B)</option>
-                  <option>Rédacteur Territorial (Cat. B)</option>
-                  <option>Rédacteur Principal (examen professionnel)</option>
-                  <option>Agent de Maîtrise (Cat. C)</option>
-                  <option>Ingénieur en Chef (Cat. A+)</option>
-                  <option>Ingénieur Territorial Externe (Cat. A)</option>
-                  <option>Préparation aux Oraux</option>
-                  <option>Je ne sais pas encore</option>
-                </select>
-              </div>
-              <div>
-                <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#1B3A6B", marginBottom: 6 }}>Message (facultatif)</label>
-                <textarea name="message" rows={4} style={{ width: "100%", padding: "12px 14px", border: "1px solid #D6E4F0", borderRadius: 8, fontSize: 14, color: "#1a2740", outline: "none", resize: "vertical", fontFamily: "inherit", boxSizing: "border-box" }} placeholder="Parlez-nous de votre situation : votre poste actuel, votre objectif, vos disponibilités..." />
-              </div>
-              <button type="submit" style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 15, padding: "16px", borderRadius: 10, border: "none", cursor: "pointer", width: "100%" }}>
-                Envoyer ma demande d&apos;entretien
-              </button>
-              <p style={{ fontSize: 12, color: "#5a6f8f", textAlign: "center", margin: 0 }}>Ou appelez-nous directement : <a href="tel:+590690447360" style={{ color: "#1B3A6B", fontWeight: 700, textDecoration: "none" }}>0690 44 73 60</a></p>
-            </form>
+            <div style={{ borderRadius: 12, overflow: "hidden", border: "1px solid #EEF5FF" }}>
+              <iframe
+                src={BOOKING_URL}
+                title="Réserver un entretien d'orientation gratuit — Evolutia Formation"
+                style={{ width: "100%", border: "none", minHeight: 780 }}
+              />
+            </div>
+            <script src="https://link.siboard-consulting.fr/js/form_embed.js" async />
+            <p style={{ fontSize: 12, color: "#5a6f8f", textAlign: "center", margin: "16px 0 0" }}>
+              Vous préférez le téléphone ? Appelez-nous directement : <a href="tel:+590690447360" style={{ color: "#1B3A6B", fontWeight: 700, textDecoration: "none" }}>0690 44 73 60</a>
+              {" "}— ou écrivez à <a href="mailto:contact@evolutiaformation.fr" style={{ color: "#1B3A6B", fontWeight: 700, textDecoration: "none" }}>contact@evolutiaformation.fr</a>
+            </p>
           </div>
 
           {/* Infos pratiques */}
