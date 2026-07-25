@@ -89,11 +89,40 @@ const CONCOURS = [
   { concours: "Rédacteur Principal (examen)", session: "24 sept. 2026", inscription: "Clôturées (session 2026)", format: "RAEP + Oral", statut: "Clôturé" },
 ];
 
+const CATEGORY_ORDER = ["Catégorie A", "Catégorie A+", "Catégorie B", "Catégorie C", "Toutes catégories"];
+const CATEGORY_ACCENT: Record<string, string> = {
+  "Catégorie A": "#1B3A6B",
+  "Catégorie A+": "#122852",
+  "Catégorie B": "#4BADD4",
+  "Catégorie C": "#F5A623",
+  "Toutes catégories": "#5a6f8f",
+};
+
+const INFOS_PRATIQUES = [
+  {
+    svg: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>,
+    label: "Grand-Camp, Les Abymes",
+  },
+  {
+    svg: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.35 2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l.91-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>,
+    label: "0690 44 73 60",
+  },
+  {
+    svg: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>,
+    label: "contact@evolutiaformation.fr",
+  },
+  {
+    svg: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
+    label: "Lun–Ven 15h30–18h30",
+  },
+];
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [carouselIdx, setCarouselIdx] = useState(0);
+  const [showAllFormations, setShowAllFormations] = useState(false);
   const carouselPrev = () => setCarouselIdx(i => (i - 1 + TEMOIGNAGES.length) % TEMOIGNAGES.length);
   const carouselNext = () => setCarouselIdx(i => (i + 1) % TEMOIGNAGES.length);
 
@@ -101,6 +130,15 @@ export default function Home() {
     e.preventDefault();
     if (email) setSubmitted(true);
   };
+
+  const formationsToShow = showAllFormations ? FORMATIONS_LIST : FORMATIONS_LIST.slice(0, 9);
+
+  // Group visible formations by category
+  const groupedFormations: Record<string, typeof FORMATIONS_LIST> = {};
+  formationsToShow.forEach(f => {
+    if (!groupedFormations[f.categorie]) groupedFormations[f.categorie] = [];
+    groupedFormations[f.categorie].push(f);
+  });
 
   return (
     <div style={{ fontFamily: "'Inter', system-ui, sans-serif", color: "#1a2740", background: "#F8FAFF" }}>
@@ -137,13 +175,13 @@ export default function Home() {
               </div>
               <div style={{ width: 1, background: "rgba(255,255,255,0.15)" }} />
               <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 32, fontWeight: 800, color: "#4BADD4", fontFamily: "monospace" }}>8</div>
-                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", fontWeight: 500 }}>formations</div>
+                <div style={{ fontSize: 32, fontWeight: 800, color: "#4BADD4", fontFamily: "monospace" }}>{FORMATIONS_LIST.length}</div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", fontWeight: 500 }}>formations disponibles</div>
               </div>
               <div style={{ width: 1, background: "rgba(255,255,255,0.15)" }} />
               <div style={{ textAlign: "center" }}>
-                
-                
+                <div style={{ fontSize: 32, fontWeight: 800, color: "#F5A623", fontFamily: "monospace" }}>4,7★</div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", fontWeight: 500 }}>avis Google</div>
               </div>
             </div>
 
@@ -164,14 +202,9 @@ export default function Home() {
           {/* Hero card */}
           <div style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(75,173,212,0.2)", borderRadius: 16, padding: "28px 24px", minWidth: 220, flexShrink: 0 }} className="hero-card">
             <div style={{ color: "#4BADD4", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 16 }}>Infos pratiques</div>
-            {[
-              { icon: "📍", label: "Grand-Camp, Les Abymes" },
-              { icon: "📞", label: "0690 44 73 60" },
-              { icon: "✉️", label: "contact@evolutiaformation.fr" },
-              { icon: "🕐", label: "Lun–Ven 15h30–18h30" },
-            ].map((item, i) => (
+            {INFOS_PRATIQUES.map((item, i) => (
               <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start", padding: "10px 0", borderBottom: i < 3 ? "1px solid rgba(255,255,255,0.07)" : "none" }}>
-                <span style={{ fontSize: 14, flexShrink: 0 }}>{item.icon}</span>
+                <span style={{ color: "#4BADD4", flexShrink: 0, marginTop: 1 }}>{item.svg}</span>
                 <span style={{ color: "rgba(255,255,255,0.8)", fontSize: 13, lineHeight: 1.4 }}>{item.label}</span>
               </div>
             ))}
@@ -181,14 +214,13 @@ export default function Home() {
 
       {/* ─── BANDEAU RÉASSURANCE ─── */}
       <section style={{ background: "white", borderBottom: "1px solid #D6E4F0", padding: "0" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
           {[
             { val: "85%", label: "Taux de réussite 2023", color: "#F5A623" },
             { val: String(FORMATIONS_LIST.length), label: "Formations disponibles", color: "#4BADD4" },
-            { val: "10+", label: "Ans d'expérience", color: "#1B3A6B" },
-            
+            { val: "15", label: "Avis Google (4,7★)", color: "#1B3A6B" },
           ].map((s, i) => (
-            <div key={i} style={{ padding: "32px 24px", textAlign: "center", borderRight: i < 3 ? "1px solid #D6E4F0" : "none" }}>
+            <div key={i} style={{ padding: "32px 24px", textAlign: "center", borderRight: i < 2 ? "1px solid #D6E4F0" : "none" }}>
               <div style={{ fontSize: 40, fontWeight: 800, color: s.color, fontFamily: "monospace", lineHeight: 1 }}>{s.val}</div>
               <div style={{ fontSize: 13, color: "#5a6f8f", marginTop: 6, fontWeight: 500 }}>{s.label}</div>
             </div>
@@ -197,7 +229,7 @@ export default function Home() {
       </section>
 
       {/* ─── FORMATIONS ─── */}
-      <section id="formations" style={{ padding: "80px 24px" }}>
+      <section id="formations" style={{ padding: "80px 24px", background: "white" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 56 }}>
             <div style={{ color: "#4BADD4", fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 12 }}>Nos programmes</div>
@@ -205,26 +237,45 @@ export default function Home() {
             <p style={{ color: "#5a6f8f", fontSize: 17, maxWidth: 540, margin: "0 auto", lineHeight: 1.7 }}>De catégorie A à C, Evolutia prépare aux concours de la FPT passés en Guadeloupe comme dans l'Hexagone.</p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(270px, 1fr))", gap: 20 }}>
-            {FORMATIONS_LIST.map((f, i) => (
-              <a key={i} href={`/formations/${f.slug}`} style={{ textDecoration: "none", display: "block" }}>
-                <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 14, padding: "24px 22px", height: "100%", transition: "all 0.2s", cursor: "pointer" }}
-                  onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "#4BADD4"; el.style.transform = "translateY(-3px)"; el.style.boxShadow = "0 8px 32px rgba(27,58,107,0.12)"; }}
-                  onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "#D6E4F0"; el.style.transform = "translateY(0)"; el.style.boxShadow = "none"; }}>
-                  <div style={{ display: "flex", gap: 6, marginBottom: 14 }}>
-                    <div style={{ display: "inline-block", background: "#EEF5FF", color: "#1B3A6B", fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 6, letterSpacing: "0.04em" }}>{f.categorie}</div>
-                    {f.nouveau && <div style={{ display: "inline-block", background: "#F5A623", color: "#1B3A6B", fontSize: 11, fontWeight: 800, padding: "4px 10px", borderRadius: 6, letterSpacing: "0.04em" }}>NOUVEAU</div>}
-                  </div>
-                  <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 18, fontWeight: 700, color: "#1B3A6B", margin: "0 0 10px 0", lineHeight: 1.3 }}>{f.titre}</h3>
-                  <p style={{ fontSize: 14, color: "#5a6f8f", lineHeight: 1.6, margin: "0 0 16px 0" }}>{f.desc}</p>
-                  <span style={{ color: "#4BADD4", fontSize: 13, fontWeight: 600, display: "flex", alignItems: "center", gap: 6 }}>
-                    En savoir plus
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </span>
-                </div>
-              </a>
-            ))}
-          </div>
+          {CATEGORY_ORDER.filter(cat => groupedFormations[cat]).map(cat => (
+            <div key={cat} style={{ marginBottom: 40 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+                <div style={{ width: 4, height: 24, background: CATEGORY_ACCENT[cat] ?? "#4BADD4", borderRadius: 2 }} />
+                <span style={{ fontSize: 13, fontWeight: 700, color: CATEGORY_ACCENT[cat] ?? "#4BADD4", letterSpacing: "0.06em", textTransform: "uppercase" }}>{cat}</span>
+                <div style={{ flex: 1, height: 1, background: "#E8EEF7" }} />
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(270px, 1fr))", gap: 16 }}>
+                {groupedFormations[cat].map((f, i) => (
+                  <a key={i} href={`/formations/${f.slug}`} style={{ textDecoration: "none", display: "block" }}>
+                    <div style={{ background: "#F8FAFF", border: "1px solid #D6E4F0", borderRadius: 14, padding: "22px 20px", height: "100%", transition: "all 0.2s", cursor: "pointer" }}
+                      onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = CATEGORY_ACCENT[cat] ?? "#4BADD4"; el.style.background = "white"; el.style.transform = "translateY(-2px)"; el.style.boxShadow = "0 6px 24px rgba(27,58,107,0.1)"; }}
+                      onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "#D6E4F0"; el.style.background = "#F8FAFF"; el.style.transform = "translateY(0)"; el.style.boxShadow = "none"; }}>
+                      <div style={{ display: "flex", gap: 6, marginBottom: 12 }}>
+                        {f.nouveau && <div style={{ display: "inline-block", background: "#FFF3DC", color: "#B8700A", fontSize: 10, fontWeight: 800, padding: "3px 8px", borderRadius: 4, letterSpacing: "0.05em" }}>NOUVEAU</div>}
+                      </div>
+                      <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 17, fontWeight: 700, color: "#1B3A6B", margin: "0 0 8px 0", lineHeight: 1.3 }}>{f.titre}</h3>
+                      <p style={{ fontSize: 13, color: "#5a6f8f", lineHeight: 1.6, margin: "0 0 14px 0" }}>{f.desc}</p>
+                      <span style={{ color: CATEGORY_ACCENT[cat] ?? "#4BADD4", fontSize: 13, fontWeight: 600, display: "flex", alignItems: "center", gap: 5 }}>
+                        En savoir plus
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                      </span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+
+          {!showAllFormations && FORMATIONS_LIST.length > 9 && (
+            <div style={{ textAlign: "center", marginTop: 16 }}>
+              <button onClick={() => setShowAllFormations(true)} style={{ background: "white", border: "1.5px solid #1B3A6B", color: "#1B3A6B", fontWeight: 700, fontSize: 15, padding: "14px 32px", borderRadius: 10, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 8, transition: "all 0.2s" }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#1B3A6B"; (e.currentTarget as HTMLElement).style.color = "white"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "white"; (e.currentTarget as HTMLElement).style.color = "#1B3A6B"; }}>
+                Voir les {FORMATIONS_LIST.length - 9} autres formations
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -250,14 +301,14 @@ export default function Home() {
       </section>
 
       {/* ─── TÉMOIGNAGES CAROUSEL ─── */}
-      <section id="temoignages" style={{ padding: "80px 24px", background: "#F8FAFF" }}>
+      <section id="temoignages" style={{ padding: "80px 24px", background: "white" }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           {/* Header */}
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <div style={{ color: "#4BADD4", fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 12 }}>Ils ont réussi</div>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 800, color: "#1B3A6B", margin: "0 0 8px 0" }}>Nos lauréats témoignent</h2>
             {/* Note Google */}
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "white", border: "1px solid #D6E4F0", borderRadius: 100, padding: "6px 16px", marginTop: 12 }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#F8FAFF", border: "1px solid #D6E4F0", borderRadius: 100, padding: "6px 16px", marginTop: 12 }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
               <span style={{ fontSize: 13, fontWeight: 700, color: "#1B3A6B" }}>4,7</span>
               <div style={{ display: "flex", gap: 2 }}>
@@ -269,7 +320,7 @@ export default function Home() {
 
           {/* Carousel card */}
           <div style={{ position: "relative" }}>
-            <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 20, padding: "40px 48px", boxShadow: "0 4px 32px rgba(27,58,107,0.08)", minHeight: 220 }}>
+            <div style={{ background: "#F8FAFF", border: "1px solid #D6E4F0", borderRadius: 20, padding: "40px 48px", minHeight: 220 }}>
               <div style={{ display: "flex", gap: 4, marginBottom: 20 }}>
                 {[...Array(5)].map((_, s) => <svg key={s} width="18" height="18" viewBox="0 0 24 24" fill="#F5A623"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>)}
               </div>
@@ -319,7 +370,7 @@ export default function Home() {
       </section>
 
       {/* ─── CALENDRIER CONCOURS ─── */}
-      <section id="calendrier" style={{ padding: "80px 24px", background: "white" }}>
+      <section id="calendrier" style={{ padding: "80px 24px", background: "#F8FAFF" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <div style={{ color: "#4BADD4", fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 12 }}>Prochaines sessions</div>
@@ -370,7 +421,7 @@ export default function Home() {
       </section>
 
       {/* ─── FINANCEMENT CPF ─── */}
-      <section id="financement" style={{ padding: "80px 24px", background: "linear-gradient(135deg, #EEF5FF 0%, #F8FAFF 100%)" }}>
+      <section id="financement" style={{ padding: "80px 24px", background: "white" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
           <div>
             <div style={{ color: "#4BADD4", fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 12 }}>Financement</div>
@@ -395,7 +446,7 @@ export default function Home() {
             </a>
           </div>
 
-          <div style={{ background: "white", borderRadius: 20, padding: "40px 36px", border: "1px solid #D6E4F0", boxShadow: "0 8px 40px rgba(27,58,107,0.08)" }}>
+          <div style={{ background: "#F8FAFF", borderRadius: 20, padding: "40px 36px", border: "1px solid #D6E4F0" }}>
             <div style={{ textAlign: "center", marginBottom: 28 }}>
               <div style={{ width: 64, height: 64, background: "linear-gradient(135deg, #1B3A6B, #4BADD4)", borderRadius: 16, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
