@@ -18,6 +18,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 const OTHER_FORMATIONS = FORMATIONS_LIST.map((f) => ({ label: f.titre, slug: f.slug }));
 
+const SLUG_ARTICLES: Record<string, { label: string; href: string }[]> = {
+  "redacteur-territorial-guadeloupe": [{ label: "Préparer le concours de Rédacteur Territorial", href: "/ressources/preparer-concours-redacteur-territorial-guadeloupe" }],
+  "redacteur-principal-guadeloupe": [{ label: "Préparer le concours de Rédacteur Territorial", href: "/ressources/preparer-concours-redacteur-territorial-guadeloupe" }],
+  "ingenieur-territorial-guadeloupe": [{ label: "Préparer le concours d'Ingénieur Territorial", href: "/ressources/preparer-concours-ingenieur-territorial-guadeloupe" }],
+  "ingenieur-chef-guadeloupe": [{ label: "Préparer le concours d'Ingénieur Territorial", href: "/ressources/preparer-concours-ingenieur-territorial-guadeloupe" }],
+  "technicien-territorial-guadeloupe": [{ label: "Préparer le concours de Technicien Territorial", href: "/ressources/preparer-concours-technicien-territorial-guadeloupe" }],
+  "adjoint-technique-principal-guadeloupe": [{ label: "Préparer le concours de Technicien Territorial", href: "/ressources/preparer-concours-technicien-territorial-guadeloupe" }],
+  "agent-de-maitrise-guadeloupe": [{ label: "Concours Agent de Maîtrise 2027 : inscriptions", href: "/ressources/concours-agent-de-maitrise-2027-inscriptions" }],
+  "adjoint-administratif-principal-guadeloupe": [{ label: "Préparer le concours d'Adjoint Administratif", href: "/ressources/preparer-concours-adjoint-administratif-guadeloupe" }],
+  "atsem-guadeloupe": [{ label: "Devenir ATSEM en Guadeloupe", href: "/ressources/devenir-atsem-guadeloupe" }],
+};
+
 const statutColor: Record<string, string> = {
   ouvert: "#16a34a",
   bientot: "#d97706",
@@ -243,6 +255,22 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
             </div>
             <p style={{ fontSize: 13, color: "#5a6f8f", lineHeight: 1.6, margin: 0 }}>Formation éligible au Compte Personnel de Formation. Financement possible sans avance de frais.</p>
           </div>
+
+          {/* Articles liés */}
+          {SLUG_ARTICLES[slug] && SLUG_ARTICLES[slug].length > 0 && (
+            <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 12, padding: "18px" }}>
+              <div style={{ color: "#5a6f8f", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 12 }}>Approfondir</div>
+              {SLUG_ARTICLES[slug].map((a) => (
+                <Link key={a.href} href={a.href} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "9px 0", borderBottom: "1px solid #EEF5FF", textDecoration: "none", color: "#1B3A6B", fontSize: 13, fontWeight: 500, lineHeight: 1.4 }}>
+                  {a.label}
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4BADD4" strokeWidth="2.5" style={{ flexShrink: 0, marginLeft: 8 }}><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </Link>
+              ))}
+              <Link href="/ressources" style={{ display: "block", marginTop: 10, fontSize: 12, color: "#4BADD4", textDecoration: "none", fontWeight: 600 }}>
+                → Tous les guides et articles
+              </Link>
+            </div>
+          )}
 
           {/* Autres formations */}
           <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 12, padding: "18px" }}>
