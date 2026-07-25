@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import NavBar from "../components/NavBar"
 import Footer from "../components/Footer"
+import { FORMATIONS_LIST } from "../formations/data"
 
 export const metadata: Metadata = {
   title: "Notre Méthode | Evolutia Formation Guadeloupe",
@@ -42,9 +43,8 @@ const PILIERS = [
 
 const CHIFFRES = [
   { val: "85%", label: "Taux de réussite moyen 2023" },
-  
-  { val: "10 ans", label: "D'expérience en Guadeloupe" },
-  { val: "8", label: "Formations disponibles" },
+  { val: "15", label: "Avis Google (4,7★)" },
+  { val: String(FORMATIONS_LIST.length), label: "Formations disponibles" },
 ];
 
 export default function NotreMethode() {
@@ -62,7 +62,7 @@ export default function NotreMethode() {
             Une méthode construite<br />pour réussir en Guadeloupe
           </h1>
           <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 18, lineHeight: 1.8, margin: "0 0 48px 0", maxWidth: 600, marginLeft: "auto", marginRight: "auto" }}>
-            Depuis 10 ans, nous avons affiné une approche unique ancrée dans les réalités de la fonction publique territoriale guadeloupéenne. 85% de nos candidats réussissent leur concours.
+            Nous avons affiné une approche unique ancrée dans les réalités de la fonction publique territoriale guadeloupéenne. 85% de nos candidats réussissent leur concours.
           </p>
           <div style={{ display: "flex", gap: 24, justifyContent: "center", flexWrap: "wrap" }}>
             {CHIFFRES.map((c, i) => (
