@@ -1,6 +1,6 @@
-// URL canonique du site. À passer à "https://evolutiaformation.fr"
-// le jour où le domaine pointera sur Vercel (actuellement encore sur GoHighLevel).
-export const SITE_URL = "https://evolutia.vercel.app";
+// URL canonique du site (domaine de production, servi en 200 sans redirection).
+// Le domaine pointe désormais sur Vercel : l'apex evolutiaformation.fr redirige (308) vers www.
+export const SITE_URL = "https://www.evolutiaformation.fr";
 
 // Widget de prise de rendez-vous (entretien d'orientation gratuit).
 // Intégré en iframe sur /contact uniquement — ne pas disséminer l'URL dans le contenu (règle CLAUDE.md).
