@@ -81,3 +81,15 @@ html {
   }
 }
 
+
+/* Grilles à colonnes fixes en inline-style → empilées sur mobile
+   (les media queries ne peuvent pas cibler les inline styles ; on passe
+   par un sélecteur d'attribut + !important, qui l'emporte sur l'inline). */
+@media (max-width: 768px) {
+  [style*="grid-template-columns:1fr auto"],
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns:repeat(3, 1fr)"],
+  [style*="grid-template-columns:1fr 380px"] {
+    grid-template-columns: 1fr !important;
+  }
+}
