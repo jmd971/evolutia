@@ -6,7 +6,7 @@ import Footer from "../components/Footer"
 
 export const metadata: Metadata = {
   title: "Témoignages Lauréats | Evolutia Formation Guadeloupe",
-  description: "Découvrez les témoignages de nos lauréats qui ont réussi leurs concours territoriaux en Guadeloupe grâce à la préparation Evolutia. 85% de réussite.",
+  description: "Découvrez les témoignages de nos lauréats qui ont réussi leurs concours territoriaux en Guadeloupe grâce à la préparation Evolutia. Résultats 2026 : jusqu'à 100% de réussite.",
 };
 
 const TEMOIGNAGES = [
@@ -66,7 +66,7 @@ export default function Temoignages() {
         <div style={{ maxWidth:800, margin:"0 auto", textAlign:"center" }}>
           <h2 style={{ fontFamily:"'Playfair Display', serif", fontSize:"clamp(28px,4vw,40px)", fontWeight:800, color:"white", margin:"0 0 48px 0" }}>Rejoignez nos lauréats</h2>
           <div style={{ display:"flex", gap:32, justifyContent:"center", flexWrap:"wrap", marginBottom:40 }}>
-            {[{val:"85%",label:"Taux de réussite 2023"},{val:"+500",label:"Lauréats depuis 2014"},{val:"10 ans",label:"D'expérience"},{val:"4,7★",label:"Note Google"}].map((s,i) => (
+            {[{val:"100%",label:"réussite Agent de Maîtrise 2026"},{val:"+500",label:"Lauréats depuis 2014"},{val:"10 ans",label:"D'expérience"},{val:"4,7★",label:"Note Google"}].map((s,i) => (
               <div key={i} style={{ textAlign:"center" }}>
                 <div style={{ fontFamily:"'Playfair Display', serif", fontSize:36, fontWeight:800, color:"#F5A623" }}>{s.val}</div>
                 <div style={{ fontSize:13, color:"rgba(255,255,255,0.55)", marginTop:4 }}>{s.label}</div>
