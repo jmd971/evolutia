@@ -21,7 +21,7 @@ export type Formation = {
   conditions: Condition[];
   duree: string;
   format: string;
-  tauxReussite: string;
+  tauxReussite?: string;
   resultats2026?: string;
   color: string;
   accent: string;
@@ -116,7 +116,6 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "50 à 70 heures",
     format: "Présentiel (Grand-Camp, Les Abymes) + distanciel",
-    tauxReussite: "85%",
     color: "#F5A623",
     accent: "#1B3A6B",
     datesCles: [
@@ -250,7 +249,6 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "30 à 50 heures",
     format: "Présentiel (Grand-Camp, Les Abymes)",
-    tauxReussite: "85%",
     color: "#4BADD4",
     accent: "#1B3A6B",
     datesCles: [
@@ -298,7 +296,6 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "80 à 120 heures",
     format: "Présentiel (Grand-Camp, Les Abymes) + distanciel",
-    tauxReussite: "85%",
     color: "#4BADD4",
     accent: "#F5A623",
     datesCles: [
@@ -344,7 +341,6 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "50 à 70 heures",
     format: "Présentiel (Grand-Camp, Les Abymes)",
-    tauxReussite: "85%",
     color: "#F5A623",
     accent: "#4BADD4",
     datesCles: [
@@ -388,7 +384,6 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "20 à 30 heures",
     format: "Présentiel (Grand-Camp) + distanciel",
-    tauxReussite: "85%",
     color: "#1B3A6B",
     accent: "#F5A623",
     datesCles: [
@@ -430,7 +425,6 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "20 à 30 heures",
     format: "Présentiel (Grand-Camp) + distanciel",
-    tauxReussite: "85%",
     color: "#4BADD4",
     accent: "#1B3A6B",
     datesCles: [
@@ -473,7 +467,6 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "30 à 50 heures",
     format: "Présentiel (Grand-Camp) + accompagnement individuel en distanciel",
-    tauxReussite: "85%",
     color: "#1B3A6B",
     accent: "#4BADD4",
     datesCles: [
@@ -516,7 +509,6 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "30 à 50 heures",
     format: "Présentiel (Grand-Camp) + accompagnement individuel en distanciel",
-    tauxReussite: "85%",
     color: "#4BADD4",
     accent: "#F5A623",
     datesCles: [
@@ -558,7 +550,6 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "15 à 25 heures",
     format: "Présentiel (Grand-Camp, Les Abymes)",
-    tauxReussite: "85%",
     color: "#F5A623",
     accent: "#4BADD4",
     datesCles: [
@@ -600,7 +591,6 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "15 à 25 heures",
     format: "Présentiel (Grand-Camp, Les Abymes)",
-    tauxReussite: "85%",
     color: "#4BADD4",
     accent: "#F5A623",
     datesCles: [
@@ -645,7 +635,6 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "40 à 60 heures",
     format: "Présentiel (Grand-Camp, Les Abymes)",
-    tauxReussite: "85%",
     color: "#1B3A6B",
     accent: "#4BADD4",
     datesCles: [
@@ -691,7 +680,6 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "40 à 60 heures",
     format: "Présentiel (Grand-Camp, Les Abymes)",
-    tauxReussite: "85%",
     color: "#F5A623",
     accent: "#1B3A6B",
     datesCles: [
@@ -734,7 +722,6 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "15 à 25 heures",
     format: "Présentiel (Grand-Camp, Les Abymes)",
-    tauxReussite: "85%",
     color: "#4BADD4",
     accent: "#1B3A6B",
     datesCles: [
