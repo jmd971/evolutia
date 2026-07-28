@@ -89,7 +89,9 @@ html {
   [style*="grid-template-columns:1fr auto"],
   [style*="grid-template-columns:1fr 1fr"],
   [style*="grid-template-columns:repeat(3, 1fr)"],
-  [style*="grid-template-columns:1fr 380px"] {
+  [style*="grid-template-columns:1fr 380px"],
+  [style*="grid-template-columns:1fr 300px"],
+  [style*="grid-template-columns:1fr 260px"] {
     grid-template-columns: 1fr !important;
   }
 }
