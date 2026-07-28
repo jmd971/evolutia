@@ -56,7 +56,7 @@ const FILIERES: { titre:string; lignes:Concours[] }[] = [
       { slug:"technicien-territorial-guadeloupe", concours:"Technicien principal de 2ème classe (avancement de grade)", cat:"B", type:"Examen prof.", inscriptions:"13 oct. → 18 nov. 2026", epreuves:"15 avril 2027", statut:"bientot" },
       { slug:"technicien-territorial-guadeloupe", concours:"Technicien principal de 2ème classe (promotion interne)", cat:"B", type:"Examen prof.", inscriptions:"13 oct. → 18 nov. 2026", epreuves:"15 avril 2027", statut:"bientot" },
       { slug:"adjoint-technique-principal-guadeloupe", concours:"Adjoint technique principal de 2ème classe (externe, interne, 3ème voie)", cat:"C", type:"Concours", inscriptions:"4 mai → 9 juin 2027", epreuves:"25 novembre 2027", statut:"bientot" },
-      { slug:"agent-de-maitrise-guadeloupe", concours:"Agent de maîtrise", cat:"C", type:"Examen prof.", inscriptions:"1er sept. → 7 oct. 2026", epreuves:"28 janvier 2027", statut:"ouvert" },
+      { slug:"agent-de-maitrise-guadeloupe", concours:"Agent de maîtrise", cat:"C", type:"Examen prof.", inscriptions:"1er sept. → 7 oct. 2026", epreuves:"28 janvier 2027", statut:"bientot" },
     ],
   },
 ];
