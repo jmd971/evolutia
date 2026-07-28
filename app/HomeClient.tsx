@@ -154,7 +154,7 @@ export default function Home() {
 
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr auto", gap: 48, alignItems: "center" }}>
           <div style={{ maxWidth: 680 }}>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(245,166,35,0.15)", border: "1px solid rgba(245,166,35,0.3)", borderRadius: 100, padding: "6px 16px", marginBottom: 24 }}>
+            <div className="hero-badge" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(245,166,35,0.15)", border: "1px solid rgba(245,166,35,0.3)", borderRadius: 100, padding: "6px 16px", marginBottom: 24 }}>
               <div style={{ width: 8, height: 8, background: "#F5A623", borderRadius: "50%" }} />
               <span style={{ color: "#F5A623", fontSize: 12, fontWeight: 600, letterSpacing: "0.05em" }}>Centre de formation — concours territoriaux</span>
             </div>
@@ -168,17 +168,17 @@ export default function Home() {
             </p>
 
             {/* Stats highlight */}
-            <div style={{ display: "inline-flex", gap: 24, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(75,173,212,0.25)", borderRadius: 12, padding: "16px 24px", marginBottom: 40 }}>
+            <div className="hero-stats" style={{ display: "inline-flex", gap: 24, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(75,173,212,0.25)", borderRadius: 12, padding: "16px 24px", marginBottom: 40 }}>
               <div style={{ textAlign: "center" }}>
                 <div style={{ fontSize: 32, fontWeight: 800, color: "#F5A623", fontFamily: "monospace" }}>85%</div>
                 <div style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", fontWeight: 500 }}>de réussite 2023</div>
               </div>
-              <div style={{ width: 1, background: "rgba(255,255,255,0.15)" }} />
+              <div className="hero-stat-sep" style={{ width: 1, background: "rgba(255,255,255,0.15)" }} />
               <div style={{ textAlign: "center" }}>
                 <div style={{ fontSize: 32, fontWeight: 800, color: "#4BADD4", fontFamily: "monospace" }}>{FORMATIONS_LIST.length}</div>
                 <div style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", fontWeight: 500 }}>formations disponibles</div>
               </div>
-              <div style={{ width: 1, background: "rgba(255,255,255,0.15)" }} />
+              <div className="hero-stat-sep" style={{ width: 1, background: "rgba(255,255,255,0.15)" }} />
               <div style={{ textAlign: "center" }}>
                 <div style={{ fontSize: 32, fontWeight: 800, color: "#F5A623", fontFamily: "monospace" }}>4,7★</div>
                 <div style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", fontWeight: 500 }}>avis Google</div>
@@ -337,12 +337,12 @@ export default function Home() {
             </div>
 
             {/* Arrows */}
-            <button onClick={carouselPrev} aria-label="Précédent" style={{ position: "absolute", left: -24, top: "50%", transform: "translateY(-50%)", width: 48, height: 48, borderRadius: "50%", background: "white", border: "1px solid #D6E4F0", boxShadow: "0 2px 12px rgba(0,0,0,0.08)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#1B3A6B", transition: "all 0.2s" }}
+            <button onClick={carouselPrev} aria-label="Précédent" className="carousel-arrow-l" style={{ position: "absolute", left: -24, top: "50%", transform: "translateY(-50%)", width: 48, height: 48, borderRadius: "50%", background: "white", border: "1px solid #D6E4F0", boxShadow: "0 2px 12px rgba(0,0,0,0.08)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#1B3A6B", transition: "all 0.2s" }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#1B3A6B"; (e.currentTarget as HTMLElement).style.color = "white"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "white"; (e.currentTarget as HTMLElement).style.color = "#1B3A6B"; }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M15 18l-6-6 6-6"/></svg>
             </button>
-            <button onClick={carouselNext} aria-label="Suivant" style={{ position: "absolute", right: -24, top: "50%", transform: "translateY(-50%)", width: 48, height: 48, borderRadius: "50%", background: "white", border: "1px solid #D6E4F0", boxShadow: "0 2px 12px rgba(0,0,0,0.08)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#1B3A6B", transition: "all 0.2s" }}
+            <button onClick={carouselNext} aria-label="Suivant" className="carousel-arrow-r" style={{ position: "absolute", right: -24, top: "50%", transform: "translateY(-50%)", width: 48, height: 48, borderRadius: "50%", background: "white", border: "1px solid #D6E4F0", boxShadow: "0 2px 12px rgba(0,0,0,0.08)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#1B3A6B", transition: "all 0.2s" }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#1B3A6B"; (e.currentTarget as HTMLElement).style.color = "white"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "white"; (e.currentTarget as HTMLElement).style.color = "#1B3A6B"; }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M9 18l6-6-6-6"/></svg>
