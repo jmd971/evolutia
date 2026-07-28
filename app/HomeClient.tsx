@@ -5,6 +5,7 @@ import Image from "next/image";
 import NavBar from "./components/NavBar"
 import Footer from "./components/Footer"
 import { FORMATIONS_LIST } from "./formations/data"
+import { CONTACT_FORM_URL } from "./config"
 
 const NAV_LINKS = [
   { label: "Formations", href: "/formations" },
@@ -119,17 +120,10 @@ const INFOS_PRATIQUES = [
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
   const [carouselIdx, setCarouselIdx] = useState(0);
   const [showAllFormations, setShowAllFormations] = useState(false);
   const carouselPrev = () => setCarouselIdx(i => (i - 1 + TEMOIGNAGES.length) % TEMOIGNAGES.length);
   const carouselNext = () => setCarouselIdx(i => (i + 1) % TEMOIGNAGES.length);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) setSubmitted(true);
-  };
 
   const formationsToShow = showAllFormations ? FORMATIONS_LIST : FORMATIONS_LIST.slice(0, 9);
 
@@ -479,28 +473,16 @@ export default function Home() {
             Réservez un entretien gratuit avec notre équipe. Nous analysons votre profil et vous orientons vers la meilleure préparation.
           </p>
 
-          {submitted ? (
-            <div style={{ background: "rgba(75,173,212,0.15)", border: "1px solid rgba(75,173,212,0.4)", borderRadius: 12, padding: "32px 24px" }}>
-              <div style={{ fontSize: 40, marginBottom: 12 }}>✅</div>
-              <p style={{ color: "white", fontSize: 18, fontWeight: 600, margin: 0 }}>Merci ! Nous vous contactons sous 24h.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 14, maxWidth: 480, margin: "0 auto" }}>
-              <input type="text" placeholder="Votre nom" required style={{ padding: "16px 20px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.08)", color: "white", fontSize: 15, outline: "none" }} />
-              <input type="tel" placeholder="Votre téléphone" required style={{ padding: "16px 20px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.08)", color: "white", fontSize: 15, outline: "none" }} />
-              <input type="email" placeholder="Votre email" required value={email} onChange={e => setEmail(e.target.value)} style={{ padding: "16px 20px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.08)", color: "white", fontSize: 15, outline: "none" }} />
-              <select required style={{ padding: "16px 20px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(27,58,107,0.8)", color: "white", fontSize: 15, outline: "none", cursor: "pointer" }}>
-                <option value="">Quel concours vous intéresse ?</option>
-                {FORMATIONS_LIST.map(f => <option key={f.slug} value={f.slug}>{f.titre}</option>)}
-              </select>
-              <button type="submit" style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 800, fontSize: 16, padding: "18px 32px", borderRadius: 10, border: "none", cursor: "pointer", marginTop: 8, transition: "all 0.2s" }}
-                onMouseEnter={e => { (e.target as HTMLElement).style.background = "#D4901A"; (e.target as HTMLElement).style.transform = "translateY(-1px)"; }}
-                onMouseLeave={e => { (e.target as HTMLElement).style.background = "#F5A623"; (e.target as HTMLElement).style.transform = "translateY(0)"; }}>
-                Réserver mon entretien gratuit
-              </button>
-              <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 12, margin: 0 }}>Réponse garantie sous 24h ouvrées. Aucun engagement.</p>
-            </form>
-          )}
+          <div style={{ maxWidth: 560, margin: "0 auto", background: "white", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(255,255,255,0.15)", boxShadow: "0 20px 60px rgba(0,0,0,0.25)" }}>
+            <iframe
+              src={CONTACT_FORM_URL}
+              id="inline-n4T5zoDr0V95hQloBneb"
+              title="Réserver un entretien gratuit — Evolutia Formation"
+              style={{ width: "100%", border: "none", minHeight: 640, display: "block" }}
+            />
+          </div>
+          <script src="https://link.siboard-consulting.fr/js/form_embed.js" async />
+          <p style={{ color: "rgba(255,255,255,0.5)", fontSize: 12, margin: "16px 0 0" }}>Réponse garantie sous 24h ouvrées. Aucun engagement.</p>
         </div>
       </section>
 
