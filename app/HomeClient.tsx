@@ -164,8 +164,8 @@ export default function Home() {
             {/* Stats highlight */}
             <div className="hero-stats" style={{ display: "inline-flex", gap: 24, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(75,173,212,0.25)", borderRadius: 12, padding: "16px 24px", marginBottom: 40 }}>
               <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 32, fontWeight: 800, color: "#F5A623", fontFamily: "monospace" }}>85%</div>
-                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", fontWeight: 500 }}>de réussite 2023</div>
+                <div style={{ fontSize: 32, fontWeight: 800, color: "#F5A623", fontFamily: "monospace" }}>100%</div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", fontWeight: 500 }}>réussite Agent de Maîtrise 2026</div>
               </div>
               <div className="hero-stat-sep" style={{ width: 1, background: "rgba(255,255,255,0.15)" }} />
               <div style={{ textAlign: "center" }}>
@@ -210,7 +210,7 @@ export default function Home() {
       <section style={{ background: "white", borderBottom: "1px solid #D6E4F0", padding: "0" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
           {[
-            { val: "85%", label: "Taux de réussite 2023", color: "#F5A623" },
+            { val: "8/15", label: "lauréats Ingénieur 2026", color: "#F5A623" },
             { val: String(FORMATIONS_LIST.length), label: "Formations disponibles", color: "#4BADD4" },
             { val: "15", label: "Avis Google (4,7★)", color: "#1B3A6B" },
           ].map((s, i) => (

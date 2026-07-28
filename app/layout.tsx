@@ -4,7 +4,7 @@ import "./globals.css";
 
 const TITLE = "Evolutia Formation | Préparation Concours Territoriaux en Guadeloupe";
 const DESCRIPTION =
-  "Centre de formation à Grand-Camp, Les Abymes. Préparez les concours d'ingénieur, technicien et rédacteur territorial. 85% de réussite en 2023. Financement CPF.";
+  "Centre de formation à Grand-Camp, Les Abymes. Préparez les concours territoriaux en Guadeloupe. Résultats 2026 : jusqu'à 100% de réussite. Financement CPF.";
 
 // Données structurées communes à tout le site (identité de l'organisme + site web).
 // Coordonnées et note reprises du contenu affiché (Footer + section avis).
