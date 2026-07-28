@@ -32,7 +32,7 @@ export default function FormationsPage() {
           </p>
           <div style={{ display: "inline-flex", gap: 32, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(75,173,212,0.2)", borderRadius: 16, padding: "20px 40px", flexWrap: "wrap", justifyContent: "center" }}>
             {([
-              { val: "85%", label: "Taux de réussite 2023", c: "#F5A623" },
+              { val: "100%", label: "réussite Agent de Maîtrise 2026", c: "#F5A623" },
               { val: String(FORMATIONS_LIST.length), label: "Formations", c: "white" },
               { val: "4", label: "Filières couvertes", c: "white" },
               { val: "CPF", label: "Financement possible", c: "#4BADD4" },
