@@ -553,9 +553,9 @@ export const FORMATIONS: Record<string, Formation> = {
     color: "#F5A623",
     accent: "#4BADD4",
     datesCles: [
-      { label: "Inscriptions (session 2027)", date: "16 mars → 21 avril 2027*", statut: "bientot" },
-      { label: "Épreuve d'entretien", date: "4 octobre 2027*", statut: "bientot" },
-      { label: "*Dates du portail national", date: "À confirmer auprès du CDG 971", statut: "bientot" },
+      { label: "Inscriptions (session 2027)", date: "Dates à confirmer", statut: "bientot" },
+      { label: "Épreuve d'entretien", date: "À confirmer", statut: "bientot" },
+      { label: "À vérifier", date: "auprès du CDG 971 avant inscription", statut: "bientot" },
     ],
     faq: [
       { q: "Où travaille un aide-soignant territorial en Guadeloupe ?", a: "Dans les EHPAD et résidences autonomie gérés par les CCAS ou les communes, les services de soins infirmiers à domicile (SSIAD) territoriaux et certaines structures médico-sociales du Département." },
