@@ -49,7 +49,7 @@ const FILIERES: { titre:string; lignes:Concours[] }[] = [
   {
     titre: "Filière technique",
     lignes: [
-      { slug:"ingenieur-chef-guadeloupe", concours:"Ingénieur en chef", cat:"A", type:"Concours", inscriptions:"Dates à confirmer", epreuves:"À confirmer", statut:"bientot" },
+      { slug:"ingenieur-chef-guadeloupe", concours:"Ingénieur en chef", cat:"A+", type:"Concours", inscriptions:"Clôturées (session 2026)", epreuves:"7 sept. 2026", statut:"ferme" },
       { slug:"ingenieur-territorial-guadeloupe", concours:"Ingénieur", cat:"A", type:"Concours", inscriptions:"8 déc. 2026 → 13 jan. 2027", epreuves:"16 juin 2027", statut:"bientot" },
       { slug:"ingenieur-territorial-guadeloupe", concours:"Ingénieur (examen prof.)", cat:"A", type:"Examen prof.", inscriptions:"Clôturées", epreuves:"18 juin 2026", statut:"ferme" },
       { slug:"technicien-territorial-guadeloupe", concours:"Technicien principal de 1ère classe (avancement de grade)", cat:"B", type:"Examen prof.", inscriptions:"13 oct. → 18 nov. 2026", epreuves:"15 avril 2027", statut:"bientot" },
