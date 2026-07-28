@@ -965,7 +965,7 @@ export const FORMATIONS: Record<string, Formation> = {
     color: "#4BADD4",
     accent: "#1B3A6B",
     datesCles: [
-      { label: "Inscriptions", date: "1er sept. → 7 oct. 2026", statut: "ouvert" },
+      { label: "Inscriptions", date: "1er sept. → 7 oct. 2026", statut: "bientot" },
       { label: "Épreuves", date: "28 janvier 2027", statut: "bientot" },
       { label: "Démarrage préparation conseillé", date: "Immédiat — 4 mois avant les épreuves", statut: "ouvert" },
     ],
