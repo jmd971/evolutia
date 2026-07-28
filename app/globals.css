@@ -93,3 +93,29 @@ html {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ===== HERO + carrousel : ajustements petits écrans =====
+   La barre de stats en inline-flex imposait une largeur mini (~440px) à la
+   colonne du hero, ce qui coupait titre/badge/paragraphe sous ~380px. */
+@media (max-width: 768px) {
+  .hero-badge { max-width: 100%; flex-wrap: wrap; }
+  .hero-badge span { font-size: 10px !important; letter-spacing: 0.03em !important; white-space: normal !important; }
+
+  .hero-stats {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    gap: 4px !important;
+    padding: 14px 8px !important;
+  }
+  .hero-stat-sep { display: none !important; }
+
+  /* Flèches du carrousel ramenées dans le cadre (au lieu de déborder de -24px) */
+  .carousel-arrow-l { left: 0 !important; }
+  .carousel-arrow-r { right: 0 !important; }
+}
+
+/* Très petits écrans : réduire un peu les gros chiffres de stats */
+@media (max-width: 360px) {
+  .hero-stats [style*="font-size:32px"] { font-size: 26px !important; }
+}
