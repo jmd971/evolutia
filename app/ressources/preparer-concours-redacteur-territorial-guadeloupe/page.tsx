@@ -97,7 +97,7 @@ export default function ArticleRedacteurTerritorial() {
             <div style={{ background: "rgba(75,173,212,0.07)", border: "1px solid rgba(75,173,212,0.25)", borderRadius: 10, padding: "16px 20px", fontSize: 15 }}>
               <strong style={{ color: "#1B3A6B" }}>À savoir :</strong> Le rédacteur territorial est l'un des concours 
               de catégorie B les plus accessibles, mais son taux de réussite reste faible faute de préparation adaptée. 
-              Avec Evolutia, notre taux de réussite sur ce concours atteint <strong style={{ color: "#F5A623" }}>85%</strong>.
+              Avec Evolutia, nos candidats préparés au rédacteur affichent de solides résultats : <strong style={{ color: "#F5A623" }}>7 admis sur 11 en 2026</strong> (64%).
             </div>
           </section>
 
@@ -317,7 +317,7 @@ export default function ArticleRedacteurTerritorial() {
             </h2>
             <p style={{ lineHeight: 1.8, margin: "0 0 24px", color: "rgba(255,255,255,0.8)", fontSize: 16 }}>
               Notre programme Rédacteur Territorial couvre l'intégralité des épreuves, avec des formateurs qui connaissent 
-              les spécificités des jury CDG 971. En 2023, <strong style={{ color: "#F5A623" }}>85% de nos candidats préparés</strong> sur ce concours ont été reçus.
+              les spécificités des jury CDG 971. En 2026, <strong style={{ color: "#F5A623" }}>7 de nos candidats préparés sur 11</strong> ont été reçus à ce concours (64%).
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 28 }}>
               {["Programme calé sur les épreuves CDG 971", "Corrections individualisées", "Simulations jury filmées", "Financement CPF disponible"].map(p => (

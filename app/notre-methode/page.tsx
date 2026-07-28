@@ -42,7 +42,7 @@ const PILIERS = [
 ];
 
 const CHIFFRES = [
-  { val: "85%", label: "Taux de réussite moyen 2023" },
+  { val: "100%", label: "réussite Agent de Maîtrise 2026" },
   { val: "15", label: "Avis Google (4,7★)" },
   { val: String(FORMATIONS_LIST.length), label: "Formations disponibles" },
 ];
@@ -62,7 +62,7 @@ export default function NotreMethode() {
             Une méthode construite<br />pour réussir en Guadeloupe
           </h1>
           <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 18, lineHeight: 1.8, margin: "0 0 48px 0", maxWidth: 600, marginLeft: "auto", marginRight: "auto" }}>
-            Nous avons affiné une approche unique ancrée dans les réalités de la fonction publique territoriale guadeloupéenne. 85% de nos candidats réussissent leur concours.
+            Nous avons affiné une approche unique ancrée dans les réalités de la fonction publique territoriale guadeloupéenne. En 2026, nos candidats ont obtenu jusqu'à 100% de réussite selon les concours (100% en Agent de Maîtrise, 88% en Rédacteur principal).
           </p>
           <div style={{ display: "flex", gap: 24, justifyContent: "center", flexWrap: "wrap" }}>
             {CHIFFRES.map((c, i) => (
