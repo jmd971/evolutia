@@ -1,6 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // pdfkit charge ses fichiers .afm (polices) au runtime : il faut l'exclure
+  // du bundling et forcer leur inclusion dans le tracing de sortie, sinon
+  // ENOENT sur Vercel (voir new_livret_transmiexpert pour le même problème).
+  serverExternalPackages: ["pdfkit"],
+  outputFileTracingIncludes: {
+    "/api/inscriptions/generer-convention": ["./node_modules/pdfkit/js/data/**/*"],
+  },
   async redirects() {
     return [
       // Anciennes URLs GoHighLevel (voir docs/redirects.md)
