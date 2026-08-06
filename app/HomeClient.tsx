@@ -165,7 +165,7 @@ export default function Home() {
             <div className="hero-stats" style={{ display: "inline-flex", gap: 24, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(75,173,212,0.25)", borderRadius: 12, padding: "16px 24px", marginBottom: 40 }}>
               <div style={{ textAlign: "center" }}>
                 <div style={{ fontSize: 32, fontWeight: 800, color: "#F5A623", fontFamily: "monospace" }}>100%</div>
-                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", fontWeight: 500 }}>réussite Agent de Maîtrise 2026</div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", fontWeight: 500 }}>réussite Adjoint Technique Territorial 2026</div>
               </div>
               <div className="hero-stat-sep" style={{ width: 1, background: "rgba(255,255,255,0.15)" }} />
               <div style={{ textAlign: "center" }}>
