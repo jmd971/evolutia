@@ -398,7 +398,7 @@ export default function GuideConcoursTerritorialGuadeloupe() {
               </Link>
             </div>
             <p style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginTop: 16 }}>
-              Evolutia Formation — Immeuble ASP, Grand-Camp, Les Abymes · 0690 44 73 60
+              Evolutia Formation — Immeuble La Coupole, Grand-Camp, Les Abymes · 0690 44 73 60
             </p>
           </section>
 
