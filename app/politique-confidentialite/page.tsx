@@ -22,7 +22,7 @@ export default function PolitiqueConfidentialite() {
           {
             titre: "1. Responsable du traitement",
             contenu: `<strong>Evolutia Formation</strong><br/>
-Immeuble ASP, Grand-Camp, Les Abymes 97139, Guadeloupe<br/>
+Immeuble La Coupole, Grand-Camp, Les Abymes 97139, Guadeloupe<br/>
 Téléphone : 0690 44 73 60<br/>
 E-mail : contact@evolutiaformation.fr`
           },
