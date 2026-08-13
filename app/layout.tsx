@@ -22,7 +22,7 @@ const ORGANIZATION_JSONLD = {
       email: "contact@evolutiaformation.fr",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Immeuble ASP, Grand-Camp",
+        streetAddress: "Immeuble La Coupole, Grand-Camp",
         postalCode: "97139",
         addressLocality: "Les Abymes",
         addressRegion: "Guadeloupe",
