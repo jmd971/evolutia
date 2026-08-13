@@ -6,7 +6,7 @@ export default function Footer() {
       <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", flexWrap: "wrap", gap: 32, justifyContent: "space-between" }}>
         <div>
           <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: 16, color: "white", marginBottom: 8 }}>ÉVOLUTIA Formation</div>
-          <p style={{ margin: "0 0 4px", lineHeight: 1.7 }}>Immeuble ASP, Grand-Camp<br />97139 Les Abymes, Guadeloupe</p>
+          <p style={{ margin: "0 0 4px", lineHeight: 1.7 }}>Immeuble La Coupole, Grand-Camp<br />97139 Les Abymes, Guadeloupe</p>
           <p style={{ margin: 0 }}>0690 44 73 60 · contact@evolutiaformation.fr</p>
         </div>
         <div style={{ display: "flex", gap: 20, flexWrap: "wrap", alignItems: "flex-start" }}>
