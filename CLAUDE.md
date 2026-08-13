@@ -2,7 +2,7 @@
 
 ## Contexte
 Centre de formation spécialisé préparation concours territoriaux, Guadeloupe.
-Localisation : Immeuble ASP, Grand-Camp, Les Abymes 97139.
+Localisation : Immeuble La Coupole, Grand-Camp, Les Abymes 97139.
 Contact : 0690 44 73 60 | contact@evolutiaformation.fr
 Horaires : Lun-Ven 15h30-18h30.
 Taux de réussite 2023 : 85%.
