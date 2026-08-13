@@ -58,7 +58,7 @@ export default function Contact() {
             <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 16, padding: "24px" }}>
               <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 18, fontWeight: 700, color: "#1B3A6B", margin: "0 0 20px 0" }}>Informations pratiques</h3>
               {([
-                { icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4BADD4" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>, titre: "Adresse", val: "Immeuble ASP, Grand-Camp\nLes Abymes 97139, Guadeloupe" },
+                { icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4BADD4" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>, titre: "Adresse", val: "Immeuble La Coupole, Grand-Camp\nLes Abymes 97139, Guadeloupe" },
                 { icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4BADD4" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.39 2 2 0 0 1 3.57 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>, titre: "Téléphone", val: "0690 44 73 60" },
                 { icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4BADD4" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>, titre: "E-mail", val: "contact@evolutiaformation.fr" },
                 { icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4BADD4" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>, titre: "Horaires", val: "Lundi – Vendredi\n15h30 – 18h30" },
@@ -87,7 +87,7 @@ export default function Contact() {
             <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 16, padding: "24px" }}>
               <div style={{ fontSize: 13, fontWeight: 600, color: "#1B3A6B", marginBottom: 12 }}>Accès Grand-Camp, Les Abymes</div>
               <div style={{ background: "#F8FAFF", borderRadius: 8, height: 160, display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid #D6E4F0" }}>
-                <a href="https://maps.google.com/maps?q=Immeuble+ASP+Grand-Camp+Les+Abymes+97139+Guadeloupe" target="_blank" rel="noopener noreferrer" style={{ color: "#4BADD4", fontSize: 14, fontWeight: 600, textDecoration: "none" }}>
+                <a href="https://maps.google.com/maps?q=Immeuble+La+Coupole+Grand-Camp+Les+Abymes+97139+Guadeloupe" target="_blank" rel="noopener noreferrer" style={{ color: "#4BADD4", fontSize: 14, fontWeight: 600, textDecoration: "none" }}>
                   Voir sur Google Maps →
                 </a>
               </div>
