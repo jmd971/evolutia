@@ -56,7 +56,7 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
         provider: {
           "@type": "Organization",
           name: "Evolutia Formation",
-          address: "Immeuble ASP, Grand-Camp, 97139 Les Abymes, Guadeloupe",
+          address: "Immeuble La Coupole, Grand-Camp, 97139 Les Abymes, Guadeloupe",
           telephone: "+590 690 44 73 60",
         },
       },
