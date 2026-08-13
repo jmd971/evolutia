@@ -38,7 +38,7 @@ export default function MentionsLegales() {
                     ['Code NAF / APE', '85.59A — Formation continue d\'adultes'],
                     ['Convention collective', 'IDCC 1516 — Formation professionnelle'],
                     ['Qualité', 'Organisme de formation'],
-                    ['Adresse', 'Immeuble ASP, Grand-Camp, 97139 Les Abymes, Guadeloupe'],
+                    ['Adresse', 'Immeuble La Coupole, Grand-Camp, 97139 Les Abymes, Guadeloupe'],
                     ['Téléphone', '0690 44 73 60'],
                     ['Email', 'contact@evolutiaformation.fr'],
                   ].map(([label, value]) => (
