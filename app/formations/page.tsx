@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import NavBar from "../components/NavBar"
 import Footer from "../components/Footer"
+import ProchainesSessions from "../components/ProchainesSessions"
 import { FORMATIONS_LIST, FILIERES_ORDER } from "./data";
 
 export const metadata: Metadata = {
@@ -55,6 +56,9 @@ export default function FormationsPage() {
         </div>
       </div>
 
+      {/* Sessions dont les inscriptions sont ouvertes */}
+      <ProchainesSessions />
+
       {/* Grilles par filière */}
       <section style={{ padding: "56px 24px 80px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -89,6 +93,7 @@ export default function FormationsPage() {
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, gap: 8 }}>
                             <div style={{ background: "#EEF5FF", color: "#1B3A6B", fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 6 }}>{f.categorie}</div>
                             <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                              {f.session?.inscription === "ouverte" && <div style={{ background: "#E7F6EC", color: "#16a34a", fontSize: 10, fontWeight: 800, padding: "4px 8px", borderRadius: 6, whiteSpace: "nowrap", letterSpacing: "0.04em" }}>INSCRIPTION OUVERTE</div>}
                               {f.nouveau && <div style={{ background: "#F5A623", color: "#1B3A6B", fontSize: 10, fontWeight: 800, padding: "4px 8px", borderRadius: 6, whiteSpace: "nowrap", letterSpacing: "0.04em" }}>NOUVEAU</div>}
                               <div style={{ background: "#FFF7E6", color: "#d97706", fontSize: 10, fontWeight: 700, padding: "4px 8px", borderRadius: 6, whiteSpace: "nowrap" }}>{f.type}</div>
                             </div>
@@ -100,8 +105,8 @@ export default function FormationsPage() {
                               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5a6f8f" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                               <span style={{ fontSize: 12, color: "#5a6f8f" }}>{f.duree}</span>
                             </div>
-                            <span style={{ color: "#4BADD4", fontSize: 13, fontWeight: 600, display: "flex", alignItems: "center", gap: 5 }}>
-                              Voir le programme
+                            <span style={{ color: f.session?.inscription === "ouverte" ? "#16a34a" : "#4BADD4", fontSize: 13, fontWeight: 600, display: "flex", alignItems: "center", gap: 5 }}>
+                              {f.session?.inscription === "ouverte" ? `Dès le ${f.session.demarrage.replace(/^\w+ /, "")}` : "Voir le programme"}
                               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </span>
                           </div>

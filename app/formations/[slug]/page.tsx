@@ -4,6 +4,7 @@ import Link from "next/link";
 import NavBar from "../../components/NavBar"
 import Footer from "../../components/Footer"
 import { FORMATIONS, FORMATIONS_LIST, NOUVELLES_FILIERES } from "../data";
+import { inscriptionUrl } from "../../config";
 
 export async function generateStaticParams() {
   return Object.keys(FORMATIONS).map((slug) => ({ slug }));
@@ -98,17 +99,41 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
               {NOUVELLES_FILIERES.includes(f.filiere) && (
                 <div style={{ display: "inline-block", background: "#F5A623", color: "#1B3A6B", fontSize: 12, fontWeight: 800, padding: "4px 14px", borderRadius: 100, letterSpacing: "0.04em" }}>NOUVEAU — 2026</div>
               )}
+              {f.session?.inscription === "ouverte" && (
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "rgba(22,163,74,0.18)", border: "1px solid rgba(22,163,74,0.45)", color: "#5ee08a", fontSize: 12, fontWeight: 700, padding: "4px 14px", borderRadius: 100 }}>
+                  <span style={{ width: 7, height: 7, background: "#5ee08a", borderRadius: "50%" }} />
+                  Inscription ouverte
+                </div>
+              )}
             </div>
             <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: "white", margin: "0 0 12px 0", lineHeight: 1.15 }}>{f.titre}</h1>
             <p style={{ color: "rgba(255,255,255,0.65)", fontSize: 18, margin: "0 0 28px 0" }}>{f.sousTitre}</p>
             <p style={{ color: "rgba(255,255,255,0.8)", fontSize: 16, lineHeight: 1.75, maxWidth: 580, margin: "0 0 36px 0" }}>{f.accroche}</p>
+            {f.session?.inscription === "ouverte" && (
+              <p style={{ color: "white", fontSize: 15, margin: "-16px 0 24px 0" }}>
+                Prochaine session : <strong>{f.session.intitule}</strong> — démarrage le {f.session.demarrage}.
+              </p>
+            )}
             <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-              <Link href="/contact" style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none" }}>
-                Réserver un entretien gratuit
-              </Link>
-              <Link href="/formations" style={{ background: "transparent", color: "white", fontWeight: 600, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none", border: "2px solid rgba(255,255,255,0.3)" }}>
-                Toutes les formations
-              </Link>
+              {f.session?.inscription === "ouverte" ? (
+                <>
+                  <a href={inscriptionUrl(slug, f.session.demarrageISO)} style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 800, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none" }}>
+                    Je m&apos;inscris à cette session
+                  </a>
+                  <Link href="/contact" style={{ background: "transparent", color: "white", fontWeight: 600, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none", border: "2px solid rgba(255,255,255,0.3)" }}>
+                    Réserver un entretien gratuit
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link href="/contact" style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none" }}>
+                    Réserver un entretien gratuit
+                  </Link>
+                  <Link href="/formations" style={{ background: "transparent", color: "white", fontWeight: 600, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none", border: "2px solid rgba(255,255,255,0.3)" }}>
+                    Toutes les formations
+                  </Link>
+                </>
+              )}
             </div>
           </div>
           <div style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(75,173,212,0.25)", borderRadius: 16, padding: "28px 24px" }}>
@@ -136,7 +161,7 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
         <div>
           {/* Épreuves */}
           <section style={{ marginBottom: 48 }}>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 8px 0" }}>Les épreuves du concours</h2>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 8px 0" }}>{f.type.includes("Examen pro.") ? "Les épreuves officielles" : "Les épreuves du concours"}</h2>
             <p style={{ color: "#5a6f8f", fontSize: 14, marginBottom: 24 }}>Programme officiel — source : CNFPT / CDG 971 Guadeloupe</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               {f.epreuves.map((e, i) => (
@@ -168,7 +193,7 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
 
           {/* Conditions */}
           <section style={{ marginBottom: 48 }}>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 24px 0" }}>Conditions d&apos;accès au concours</h2>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 24px 0" }}>{f.type.includes("Examen pro.") ? "Conditions d'accès" : "Conditions d'accès au concours"}</h2>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {f.conditions.map((c, i) => (
                 <div key={i} style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 10, padding: "16px 20px", display: "flex", gap: 14, alignItems: "center" }}>
@@ -210,6 +235,23 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
 
         {/* Sidebar */}
         <div className="formation-sidebar" style={{ position: "sticky", top: 88, display: "flex", flexDirection: "column", gap: 20 }}>
+          {/* Inscription à la session en cours */}
+          {f.session?.inscription === "ouverte" && (
+            <div style={{ background: "white", border: "2px solid #16a34a", borderRadius: 16, padding: "22px" }}>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "rgba(22,163,74,0.1)", color: "#16a34a", fontSize: 11, fontWeight: 800, padding: "4px 10px", borderRadius: 100, marginBottom: 12, letterSpacing: "0.04em" }}>
+                <span style={{ width: 7, height: 7, background: "#16a34a", borderRadius: "50%" }} />
+                INSCRIPTION OUVERTE
+              </div>
+              <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 18, fontWeight: 700, color: "#1B3A6B", marginBottom: 6 }}>{f.session.intitule}</div>
+              <p style={{ fontSize: 13, color: "#5a6f8f", lineHeight: 1.6, margin: "0 0 16px 0" }}>
+                Démarrage le <strong style={{ color: "#1B3A6B" }}>{f.session.demarrage}</strong>. Places limitées.
+              </p>
+              <a href={inscriptionUrl(slug, f.session.demarrageISO)} style={{ display: "block", background: "#16a34a", color: "white", fontWeight: 800, fontSize: 14, padding: "14px", borderRadius: 8, textDecoration: "none", textAlign: "center" }}>
+                Je m&apos;inscris
+              </a>
+            </div>
+          )}
+
           {/* CTA */}
           <div style={{ background: "linear-gradient(135deg, #1B3A6B, #2a4f8f)", borderRadius: 16, padding: "28px 22px" }}>
             <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 20, fontWeight: 700, color: "white", margin: "0 0 12px 0" }}>Intéressé(e) par cette formation ?</h3>
