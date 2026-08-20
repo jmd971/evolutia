@@ -116,3 +116,64 @@ formations de `app/formations/data.ts` (testé sur les 22).
    trigger/wait/if-else de chaque workflow.
 6. **Formulaire d'inscription GHL** — le champ « Formation choisie » doit
    poster un des 22 slugs de `data.ts` (voir plus haut).
+
+## Liens d'inscription par session (août 2026)
+
+Quatre sessions de préparation ont ouvert leurs inscriptions. Elles sont
+décrites par le champ `session` de `app/formations/data.ts` :
+
+| Formation (slug) | Session | Démarrage |
+|---|---|---|
+| `agent-de-maitrise-guadeloupe` | Examen professionnel Agent de maîtrise | vendredi 4 septembre 2026 |
+| `technicien-territorial-guadeloupe` | Examen professionnel Technicien | mercredi 9 septembre 2026 |
+| `ingenieur-territorial-guadeloupe` | Concours Ingénieur | mercredi 25 novembre 2026 |
+| `redacteur-territorial-guadeloupe` | Concours Rédacteur | vendredi 27 novembre 2026 |
+
+Le site construit le lien avec `inscriptionUrl(slug, demarrageISO)`
+(`app/config.ts`), qui produit :
+
+```
+<INSCRIPTION_HOST>/widget/form/102GjFFxUq6b5VHVRUc8
+  ?formation_choisie=<slug>&session_choisie=<AAAA-MM-JJ>
+```
+
+### Formulaire GHL
+
+`102GjFFxUq6b5VHVRUc8` — « Inscription Evolutia — sessions 2026-2027 ».
+Créé par duplication de « Formulaire d'inscription Evolutia_toutes_formations »
+(il en hérite le style et les champs Prénom / Nom / Téléphone / Email /
+Commentaires / consentement).
+
+⚠️ **Trois réglages restent à faire à la main dans le form builder GHL** — le
+canvas est une iframe cross-origin, non automatisable :
+
+1. **Supprimer le champ « Formation souhaitée »**. Il pointe sur le custom field
+   `personne_44dp`, dont la picklist est corrompue : « Rédacteur territorrial »,
+   « Rédacteur principal » en double, « Adjoint administratif
+   principRédacteur principalal de 2eme classe », « Option 7 ». Ce même champ
+   sert le formulaire de la page d'accueil (`n4T5zoDr0V95hQloBneb`) : la
+   corriger dans `Paramètres → Champs personnalisés` répare les deux.
+2. **Ajouter deux champs cachés** (`Ajouter des champs d'objet` → Contact) :
+   `Formation choisie` (`contact.formation_choisie`) et `Session choisie`
+   (`contact.session_choisie`), tous deux en *hidden*. C'est ce qui rend le
+   préremplissage par URL effectif et ce que relit
+   `/api/inscriptions/generer-convention`. Tant qu'ils sont absents, les
+   paramètres d'URL sont ignorés — le lien fonctionne, mais la formation n'est
+   pas tracée.
+3. **Ajouter les deux listes déroulantes existantes** `Voie concours
+   (inscription)` et `Mode de financement`, et renommer le bouton en
+   « Je m'inscris ».
+
+### Domaine
+
+`INSCRIPTION_HOST` sert aujourd'hui `https://api.leadconnectorhq.com`.
+Cible : `https://inscription.evolutiaformation.fr`, à activer en trois temps :
+
+1. GHL → `Paramètres → Domaines → Connecter un domaine`, saisir
+   `inscription.evolutiaformation.fr` et relever le CNAME affiché.
+2. Poser ce CNAME chez Hostinger (le DNS d'`evolutiaformation.fr` y est géré).
+   Ne pas toucher aux enregistrements de `www`, qui pointent sur Vercel.
+3. Basculer `INSCRIPTION_HOST` dans `app/config.ts`.
+
+Ne jamais utiliser `link.siboard-consulting.fr` pour un lien visible par un
+candidat (règle du `CLAUDE.md`).

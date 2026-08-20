@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import NavBar from "./components/NavBar"
 import Footer from "./components/Footer"
+import ProchainesSessions from "./components/ProchainesSessions"
 import { FORMATIONS_LIST } from "./formations/data"
 import { CONTACT_FORM_URL } from "./config"
 
@@ -221,6 +222,9 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* ─── PROCHAINES SESSIONS ─── */}
+      <ProchainesSessions />
 
       {/* ─── FORMATIONS ─── */}
       <section id="formations" style={{ padding: "80px 24px", background: "white" }}>

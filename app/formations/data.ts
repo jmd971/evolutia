@@ -6,6 +6,16 @@ export type Condition = { voie: string; condition: string };
 export type DateCle = { label: string; date: string; statut: "ouvert" | "bientot" | "ferme" };
 export type Faq = { q: string; a: string };
 
+// Session de préparation dont les inscriptions sont ouvertes. `demarrageISO`
+// sert de valeur au champ GHL « Session choisie » dans le lien d'inscription
+// (voir app/config.ts → inscriptionUrl).
+export type Session = {
+  intitule: string;
+  demarrage: string;
+  demarrageISO: string;
+  inscription: "ouverte" | "bientot" | "close";
+};
+
 export type Formation = {
   titre: string;
   sousTitre: string;
@@ -26,6 +36,7 @@ export type Formation = {
   color: string;
   accent: string;
   datesCles: DateCle[];
+  session?: Session;
   faq: Faq[];
   sourceOfficielle: string;
 };
@@ -137,7 +148,7 @@ export const FORMATIONS: Record<string, Formation> = {
     categorie: "Catégorie B",
     filiere: "Filière administrative",
     type: "Concours",
-    descCourte: "Questions et note sur dossier (3h chacune), entretien jury. Session 2027 : inscriptions février-mars 2027.",
+    descCourte: "Questions et note sur dossier (3h chacune), entretien jury. Prochaine session Evolutia : démarrage le 27 novembre 2026.",
     seoTitle: "Préparation Concours Rédacteur Territorial Guadeloupe 2026-2027 | Evolutia",
     seoDesc: "Préparez le concours de rédacteur territorial en Guadeloupe : questions, note sur dossier, entretien. Session 2027, financement CPF. Evolutia, Les Abymes.",
     accroche: "Le concours de rédacteur territorial (catégorie B) est la porte d'entrée des missions administratives qualifiées : instruction de dossiers, rédaction d'actes, comptabilité, gestion. Les concours de rédacteur et de rédacteur principal de 2e classe sont organisés aux mêmes dates en 2027 — notre préparation couvre les deux.",
@@ -166,10 +177,16 @@ export const FORMATIONS: Record<string, Formation> = {
     color: "#1B3A6B",
     accent: "#4BADD4",
     datesCles: [
-      { label: "Inscriptions (session 2027)", date: "2 fév. → 10 mars 2027", statut: "bientot" },
+      { label: "Démarrage de la préparation Evolutia", date: "Vendredi 27 novembre 2026", statut: "ouvert" },
+      { label: "Inscriptions au concours (session 2027)", date: "2 fév. → 10 mars 2027", statut: "bientot" },
       { label: "Épreuves écrites", date: "14 octobre 2027", statut: "bientot" },
-      { label: "Démarrage préparation conseillé", date: "Janvier 2027", statut: "ouvert" },
     ],
+    session: {
+      intitule: "Concours Rédacteur",
+      demarrage: "vendredi 27 novembre 2026",
+      demarrageISO: "2026-11-27",
+      inscription: "ouverte",
+    },
     faq: [
       { q: "Quelles sont exactement les épreuves écrites du concours de rédacteur ?", a: "En voie externe : une série de questions (3h) et la rédaction d'une note à partir d'un dossier (3h). En voie interne et 3e voie : uniquement la note sur dossier (3h). Contrairement à une idée répandue, il n'y a ni dissertation de culture générale ni note de synthèse classique — la méthodologie attendue est précisée dans les notes de cadrage officielles, sur lesquelles nous nous appuyons." },
       { q: "Rédacteur ou rédacteur principal de 2e classe : quel concours choisir ?", a: "Les deux concours sont organisés aux mêmes dates en 2027. Le concours de rédacteur principal de 2e classe exige un Bac+2 et des épreuves plus techniques (droit public et finances publiques), mais offre un grade et une rémunération supérieurs dès l'entrée. Si vous avez le diplôme requis, il est souvent pertinent de viser le principal." },
@@ -745,7 +762,7 @@ export const FORMATIONS: Record<string, Formation> = {
     categorie: "Catégorie A",
     filiere: "Filière technique",
     type: "Concours",
-    descCourte: "Note de spécialité (5h, coef. 5) et entretien de 40 minutes. Inscriptions déc. 2026 - janv. 2027.",
+    descCourte: "Note de spécialité (5h, coef. 5) et entretien de 40 minutes. Prochaine session Evolutia : démarrage le 25 novembre 2026.",
     seoTitle: "Préparation Concours Ingénieur Territorial Guadeloupe 2026-2027 | Evolutia",
     seoDesc: "Préparez le concours d'ingénieur territorial en Guadeloupe : note de spécialité 5h, entretien 40 min. Session 2027, financement CPF. Evolutia, Les Abymes.",
     accroche: "Le concours d'ingénieur territorial ouvre l'accès aux postes d'encadrement technique des collectivités : infrastructures, bâtiment, réseaux, informatique, prévention des risques. En voie externe, tout repose sur deux épreuves à fort coefficient — une note de 5 heures et un entretien de 40 minutes.",
@@ -775,10 +792,17 @@ export const FORMATIONS: Record<string, Formation> = {
     color: "#1B3A6B",
     accent: "#4BADD4",
     datesCles: [
-      { label: "Inscriptions concours (session 2027)", date: "8 déc. 2026 → 13 jan. 2027", statut: "bientot" },
+      { label: "Démarrage de la préparation Evolutia", date: "Mercredi 25 novembre 2026", statut: "ouvert" },
+      { label: "Inscriptions au concours (session 2027)", date: "8 déc. 2026 → 13 jan. 2027", statut: "bientot" },
       { label: "Épreuves écrites", date: "16 juin 2027", statut: "bientot" },
       { label: "Examen pro. promotion interne 2026", date: "Épreuves passées le 18 juin 2026", statut: "ferme" },
     ],
+    session: {
+      intitule: "Concours Ingénieur",
+      demarrage: "mercredi 25 novembre 2026",
+      demarrageISO: "2026-11-25",
+      inscription: "ouverte",
+    },
     faq: [
       { q: "Quelles sont exactement les épreuves du concours externe d'ingénieur ?", a: "Deux épreuves seulement, mais à très fort coefficient : une note à partir d'un dossier de spécialité (5 heures, coefficient 5) et un entretien de 40 minutes (coefficient 5) portant d'abord sur l'option choisie, puis sur votre aptitude professionnelle. Une épreuve facultative de langue peut s'y ajouter. Il n'y a pas d'épreuve de culture générale." },
       { q: "Le concours externe exige-t-il Bac+5 ?", a: "Oui : diplôme d'ingénieur, d'architecte ou autre diplôme scientifique ou technique sanctionnant au moins 5 années d'études supérieures dans l'une des spécialités du concours. Les titulaires d'un Bac+3 technique peuvent viser le concours de technicien puis la promotion interne." },
@@ -841,7 +865,7 @@ export const FORMATIONS: Record<string, Formation> = {
     categorie: "Catégorie B",
     filiere: "Filière technique",
     type: "Concours + Examen pro.",
-    descCourte: "Examens pro. technicien principal : rapport technique (3h) + entretien. Épreuves le 15 avril 2027.",
+    descCourte: "Examens pro. technicien principal : rapport technique (3h) + entretien. Préparation à partir du 9 septembre 2026.",
     seoTitle: "Concours et Examens Technicien Territorial Guadeloupe 2026-2027 | Evolutia",
     seoDesc: "Préparez le concours de technicien territorial et les examens de technicien principal en Guadeloupe : rapport technique, entretien. Épreuves avril 2027.",
     accroche: "Le technicien territorial est le pivot des services techniques des collectivités. Au calendrier 2026-2027 : les examens professionnels de technicien principal (1re et 2e classe, avancement de grade et promotion interne), avec inscriptions à l'automne 2026. La prochaine session du concours de technicien sera annoncée par le CDG 971.",
@@ -871,10 +895,17 @@ export const FORMATIONS: Record<string, Formation> = {
     color: "#4BADD4",
     accent: "#1B3A6B",
     datesCles: [
+      { label: "Démarrage de la préparation Evolutia", date: "Mercredi 9 septembre 2026", statut: "ouvert" },
       { label: "Inscriptions examens pro. technicien principal", date: "13 oct. → 18 nov. 2026", statut: "bientot" },
       { label: "Épreuves écrites examens pro.", date: "15 avril 2027", statut: "bientot" },
       { label: "Prochain concours de technicien", date: "À confirmer — CDG 971", statut: "bientot" },
     ],
+    session: {
+      intitule: "Examen professionnel Technicien",
+      demarrage: "mercredi 9 septembre 2026",
+      demarrageISO: "2026-09-09",
+      inscription: "ouverte",
+    },
     faq: [
       { q: "Quelle différence entre avancement de grade et promotion interne pour technicien principal de 2e classe ?", a: "L'avancement de grade s'adresse aux techniciens (catégorie B) qui montent en grade dans leur cadre d'emplois. La promotion interne s'adresse aux agents de catégorie C (agents de maîtrise avec 8 ans de services, adjoints techniques principaux avec 10 ans) qui accèdent à la catégorie B. Les épreuves sont proches — rapport technique de 3h puis entretien — mais les jurys n'attendent pas la même chose." },
       { q: "Quand aura lieu le prochain concours de technicien territorial ?", a: "La dernière session s'est tenue le 9 avril 2026. La prochaine session n'est pas encore annoncée : les concours de technicien sont généralement organisés tous les deux ans. Inscrivez-vous à notre veille pour être alerté dès la publication des dates par le CDG 971." },
@@ -932,31 +963,35 @@ export const FORMATIONS: Record<string, Formation> = {
 
   "agent-de-maitrise-guadeloupe": {
     titre: "Agent de Maîtrise",
-    sousTitre: "Concours externe, interne et 3e voie",
+    sousTitre: "Examen professionnel de promotion interne + concours externe, interne et 3e voie",
     categorie: "Catégorie C",
     filiere: "Filière technique",
-    type: "Concours",
-    descCourte: "Mathématiques et cas pratique (externe), connaissances techniques (interne), entretien. Épreuves janv. 2027.",
-    seoTitle: "Préparation Concours Agent de Maîtrise Guadeloupe 2026-2027 | Evolutia",
-    seoDesc: "Préparez le concours d'agent de maîtrise territorial en Guadeloupe : maths, cas pratique, entretien. Inscriptions sept.-oct. 2026, épreuves janvier 2027.",
-    accroche: "L'agent de maîtrise territorial encadre les équipes techniques des collectivités : espaces verts, bâtiment, voirie. Les inscriptions ouvrent le 1er septembre 2026 pour des épreuves le 28 janvier 2027 — c'est maintenant qu'il faut lancer la préparation.",
+    type: "Concours + Examen pro.",
+    descCourte: "Examen professionnel de promotion interne : cas pratique (2h) + entretien (15 min). Préparation à partir du 4 septembre 2026.",
+    seoTitle: "Examen Professionnel et Concours Agent de Maîtrise Guadeloupe 2026-2027 | Evolutia",
+    seoDesc: "Préparez l'examen professionnel de promotion interne et le concours d'agent de maîtrise territorial en Guadeloupe : cas pratique, entretien, maths. Evolutia, Les Abymes.",
+    accroche: "L'agent de maîtrise territorial encadre les équipes techniques des collectivités : espaces verts, bâtiment, voirie. Deux portes y mènent — l'examen professionnel de promotion interne, réservé aux adjoints techniques et aux ATSEM justifiant de sept ans de services effectifs, et le concours, ouvert aux candidats externes comme aux agents publics. Notre préparation couvre les deux voies, dans une session qui démarre le vendredi 4 septembre 2026.",
     epreuves: [
-      { type: "Écrit", label: "Externe — Mathématiques (2h, coef. 2) + cas pratique (2h, coef. 3)", desc: "Problèmes d'application sur le programme de mathématiques, puis résolution d'un cas pratique exposé dans un dossier portant sur les problèmes rencontrés par un agent de maîtrise dans la spécialité choisie." },
-      { type: "Écrit", label: "Interne / 3e voie — Connaissances techniques (2h, coef. 2) + cas pratique (2h, coef. 3)", desc: "Vérification des connaissances techniques, notamment en hygiène et sécurité, au moyen de questionnaires, tableaux ou graphiques (aucune épreuve rédactionnelle), puis résolution d'un cas pratique de spécialité." },
-      { type: "Oral", label: "Entretien avec le jury (15 min, coef. 4)", desc: "Aptitude à s'intégrer dans l'environnement professionnel, motivation, connaissances en hygiène et sécurité, et capacité d'encadrement d'agents de catégorie C. En interne et 3e voie, l'entretien débute par un exposé de 5 minutes sur l'expérience." },
+      { type: "Examen pro.", label: "Écrit — Résolution d'un cas pratique (2h, coef. 1)", desc: "À partir d'un dossier comprenant différentes pièces, résolution d'un cas pratique portant sur les missions incombant aux agents de maîtrise territoriaux et notamment sur les missions d'encadrement. L'épreuve est anonyme et fait l'objet d'une double correction. Toute note inférieure à 5/20 est éliminatoire." },
+      { type: "Examen pro.", label: "Oral — Entretien avec le jury (15 min, coef. 1)", desc: "Présentation par le candidat de son expérience professionnelle et de ses motivations, suivie d'une conversation avec le jury destinée à apprécier sa personnalité et ses capacités à exercer les missions du cadre d'emplois. Un candidat ne peut être admis si la moyenne de ses deux notes est inférieure à 10/20." },
+      { type: "Concours", label: "Externe — Mathématiques (2h, coef. 2) + cas pratique (2h, coef. 3)", desc: "Problèmes d'application sur le programme de mathématiques, puis résolution d'un cas pratique exposé dans un dossier portant sur les problèmes rencontrés par un agent de maîtrise dans la spécialité choisie." },
+      { type: "Concours", label: "Interne / 3e voie — Connaissances techniques (2h, coef. 2) + cas pratique (2h, coef. 3)", desc: "Vérification des connaissances techniques, notamment en hygiène et sécurité, au moyen de questionnaires, tableaux ou graphiques (aucune épreuve rédactionnelle), puis résolution d'un cas pratique de spécialité." },
+      { type: "Concours", label: "Oral — Entretien avec le jury (15 min, coef. 4)", desc: "Aptitude à s'intégrer dans l'environnement professionnel, motivation, connaissances en hygiène et sécurité, et capacité d'encadrement d'agents de catégorie C. En interne et 3e voie, l'entretien débute par un exposé de 5 minutes sur l'expérience." },
     ],
     programme: [
-      "Remise à niveau en mathématiques appliquées (voie externe) — programme officiel",
-      "Méthodologie du cas pratique : diagnostic, organisation du chantier, propositions",
+      "Méthodologie du cas pratique sur dossier : diagnostic, organisation du chantier, propositions opérationnelles",
+      "Missions d'encadrement : consignes, planning, contrôle qualité, gestion des situations difficiles",
       "Hygiène et sécurité : réglementation, évaluation des risques, EPI",
-      "Management d'équipe technique : consignes, planning, contrôle qualité",
-      "Entraînements chronométrés sur sujets d'annales corrigés",
-      "Simulations d'entretien avec mise en situation d'encadrement",
+      "Construction de l'exposé d'expérience professionnelle et des motivations pour l'entretien",
+      "Remise à niveau en mathématiques appliquées pour les candidats au concours externe — programme officiel",
+      "Entraînements chronométrés sur annales corrigées et simulations d'entretien avec mise en situation d'encadrement",
     ],
     conditions: [
-      { voie: "Externe", condition: "Deux titres ou diplômes de niveau 3 (CAP/BEP) sanctionnant une formation technique et professionnelle, ou qualifications équivalentes" },
-      { voie: "Interne", condition: "Fonctionnaires et agents publics — conditions de services précisées par l'organisateur" },
-      { voie: "3e voie", condition: "4 ans au moins d'activités professionnelles, de mandats d'élu local ou de responsabilités associatives" },
+      { voie: "Examen pro. (promotion interne)", condition: "Adjoints techniques territoriaux ou adjoints techniques des établissements d'enseignement comptant au moins 7 ans de services effectifs dans un ou plusieurs cadres d'emplois techniques" },
+      { voie: "Examen pro. — ATSEM", condition: "Agents territoriaux spécialisés des écoles maternelles comptant au moins 7 ans de services effectifs dans leur cadre d'emplois" },
+      { voie: "Concours externe", condition: "Deux titres ou diplômes de niveau 3 (CAP/BEP) sanctionnant une formation technique et professionnelle, ou qualifications équivalentes" },
+      { voie: "Concours interne", condition: "Fonctionnaires et agents publics — conditions de services précisées par l'organisateur" },
+      { voie: "Concours 3e voie", condition: "4 ans au moins d'activités professionnelles, de mandats d'élu local ou de responsabilités associatives" },
     ],
     duree: "60 à 80 heures",
     format: "Présentiel (Grand-Camp, Les Abymes) + ateliers pratiques",
@@ -965,14 +1000,21 @@ export const FORMATIONS: Record<string, Formation> = {
     color: "#4BADD4",
     accent: "#1B3A6B",
     datesCles: [
-      { label: "Inscriptions", date: "1er sept. → 7 oct. 2026", statut: "bientot" },
-      { label: "Épreuves", date: "28 janvier 2027", statut: "bientot" },
-      { label: "Démarrage préparation conseillé", date: "Immédiat — 4 mois avant les épreuves", statut: "ouvert" },
+      { label: "Démarrage de la préparation Evolutia", date: "Vendredi 4 septembre 2026", statut: "ouvert" },
+      { label: "Inscriptions au concours", date: "1er sept. → 7 oct. 2026", statut: "ouvert" },
+      { label: "Épreuves du concours", date: "28 janvier 2027", statut: "bientot" },
     ],
+    session: {
+      intitule: "Examen professionnel Agent de maîtrise",
+      demarrage: "vendredi 4 septembre 2026",
+      demarrageISO: "2026-09-04",
+      inscription: "ouverte",
+    },
     faq: [
-      { q: "Le concours externe exige-t-il vraiment deux diplômes ?", a: "Oui, particularité de ce concours : la voie externe exige deux titres ou diplômes de niveau 3 (CAP/BEP) sanctionnant une formation technique et professionnelle, ou des qualifications reconnues équivalentes. Si vous n'en avez qu'un, la voie interne (si vous êtes agent public) ou la 3e voie peuvent s'appliquer." },
-      { q: "L'épreuve de mathématiques est-elle difficile ?", a: "Elle porte sur un programme défini (arithmétique, géométrie, unités, pourcentages appliqués aux situations techniques) et représente le principal obstacle des candidats externes. Une remise à niveau structurée sur 2 à 3 mois suffit généralement — c'est intégré à notre préparation." },
-      { q: "Quelles sont les dates à retenir ?", a: "Inscriptions du 1er septembre au 7 octobre 2026 sur concours-territorial.fr, épreuves écrites le 28 janvier 2027. Compte tenu de l'épreuve de mathématiques et du cas pratique, nous recommandons de commencer la préparation dès septembre 2026." },
+      { q: "Quelle différence entre l'examen professionnel et le concours d'agent de maîtrise ?", a: "L'examen professionnel est une voie de promotion interne : il est réservé aux adjoints techniques territoriaux et aux ATSEM justifiant d'au moins 7 ans de services effectifs, et se compose de deux épreuves seulement — un cas pratique de 2 heures et un entretien de 15 minutes, chacun de coefficient 1. Le concours, lui, est ouvert à des candidats extérieurs (avec deux diplômes de niveau CAP/BEP), aux agents publics en interne et à la 3e voie ; il ajoute une épreuve de mathématiques en externe et un entretien de coefficient 4. Réussir l'examen professionnel n'entraîne pas la nomination automatique : il faut ensuite être inscrit sur la liste d'aptitude par votre employeur." },
+      { q: "Comment se calculent les 7 ans de services effectifs ?", a: "Ce sont les services accomplis dans un grade ou cadre d'emplois, comptabilisés à partir de la nomination comme stagiaire ou titulaire. Les périodes travaillées en qualité de contractuel ne sont pas prises en compte. Vous pouvez toutefois passer les épreuves au plus tôt un an avant de remplir la condition, et vous devez être en activité à la date de clôture des inscriptions." },
+      { q: "Le cas pratique de l'examen professionnel est-il difficile ?", a: "C'est l'épreuve qui élimine le plus : deux heures pour analyser un dossier technique, en tirer un diagnostic et formuler des propositions concrètes, en gardant l'angle de l'encadrement d'équipe. Une note sous 5/20 est éliminatoire. La méthode s'acquiert par des entraînements corrigés — c'est le cœur de notre préparation." },
+      { q: "L'épreuve de mathématiques du concours externe est-elle difficile ?", a: "Elle porte sur un programme défini (arithmétique, géométrie, unités, pourcentages appliqués aux situations techniques) et représente le principal obstacle des candidats externes. Une remise à niveau structurée sur 2 à 3 mois suffit généralement — elle est intégrée à notre préparation." },
     ],
     sourceOfficielle: "https://www.concours-territorial.fr/session.aspx?id=331",
   },
@@ -1040,4 +1082,12 @@ export const FORMATIONS_LIST = Object.entries(FORMATIONS).map(([slug, f]) => ({
   color: f.color,
   accent: f.accent,
   nouveau: NOUVELLES_FILIERES.includes(f.filiere),
+  session: f.session,
 }));
+
+// Sessions dont les inscriptions sont ouvertes, de la plus proche à la plus
+// lointaine. Alimente le bandeau « Prochaines sessions » (accueil + /formations).
+export const SESSIONS_OUVERTES = Object.entries(FORMATIONS)
+  .filter(([, f]) => f.session?.inscription === "ouverte")
+  .map(([slug, f]) => ({ slug, titre: f.titre, color: f.color, accent: f.accent, ...f.session! }))
+  .sort((a, b) => a.demarrageISO.localeCompare(b.demarrageISO));
