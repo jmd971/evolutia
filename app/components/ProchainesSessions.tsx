@@ -70,12 +70,12 @@ export default function ProchainesSessions({ fond = "clair" }: { fond?: "clair" 
                   </span>
                 </div>
                 <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", gap: 8 }}>
-                  <a
-                    href={inscriptionUrl(s.slug, s.demarrageISO)}
+                  <Link
+                    href={inscriptionUrl(s.slug)}
                     style={{ display: "block", background: "#F5A623", color: "#1B3A6B", fontWeight: 800, fontSize: 14, padding: "13px", borderRadius: 8, textDecoration: "none", textAlign: "center" }}
                   >
                     Je m&apos;inscris
-                  </a>
+                  </Link>
                   <Link href={`/formations/${s.slug}`} style={{ fontSize: 13, color: "#4BADD4", textDecoration: "none", fontWeight: 600, textAlign: "center" }}>
                     Voir le programme →
                   </Link>

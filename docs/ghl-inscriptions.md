@@ -144,36 +144,53 @@ Créé par duplication de « Formulaire d'inscription Evolutia_toutes_formations
 (il en hérite le style et les champs Prénom / Nom / Téléphone / Email /
 Commentaires / consentement).
 
-⚠️ **Trois réglages restent à faire à la main dans le form builder GHL** — le
-canvas est une iframe cross-origin, non automatisable :
+**Réglé le 20/08/2026** (à la main : le canvas du form builder est une iframe
+cross-origin, non automatisable) :
 
-1. **Supprimer le champ « Formation souhaitée »**. Il pointe sur le custom field
-   `personne_44dp`, dont la picklist est corrompue : « Rédacteur territorrial »,
-   « Rédacteur principal » en double, « Adjoint administratif
-   principRédacteur principalal de 2eme classe », « Option 7 ». Ce même champ
-   sert le formulaire de la page d'accueil (`n4T5zoDr0V95hQloBneb`) : la
-   corriger dans `Paramètres → Champs personnalisés` répare les deux.
-2. **Ajouter deux champs cachés** (`Ajouter des champs d'objet` → Contact) :
-   `Formation choisie` (`contact.formation_choisie`) et `Session choisie`
-   (`contact.session_choisie`), tous deux en *hidden*. C'est ce qui rend le
-   préremplissage par URL effectif et ce que relit
-   `/api/inscriptions/generer-convention`. Tant qu'ils sont absents, les
-   paramètres d'URL sont ignorés — le lien fonctionne, mais la formation n'est
-   pas tracée.
-3. **Ajouter les deux listes déroulantes existantes** `Voie concours
-   (inscription)` et `Mode de financement`, et renommer le bouton en
-   « Je m'inscris ».
+1. Le champ « Formation souhaitée » a été supprimé de ce formulaire. Il pointait
+   sur le custom field `personne_44dp`, dont la picklist était corrompue.
+   Celle-ci a par ailleurs été refaite — 6 options de filière au lieu des 11
+   libellés cassés — ce qui répare aussi le formulaire de la page d'accueil
+   (`n4T5zoDr0V95hQloBneb`) qui partage ce champ.
+2. `Formation choisie` (`contact.formation_choisie`) et `Session choisie`
+   (`contact.session_choisie`) sont posés en **champs masqués**, clés de requête
+   `formation_choisie` / `session_choisie`. Préremplissage vérifié sur les
+   4 liens de session.
+3. Le bouton est renommé « Je m'inscris ».
 
-### Domaine
+Restent optionnels : ajouter `Voie concours (inscription)` et
+`Mode de financement`, utiles à la convention.
 
-`INSCRIPTION_HOST` sert aujourd'hui `https://api.leadconnectorhq.com`.
-Cible : `https://inscription.evolutiaformation.fr`, à activer en trois temps :
+### Où vit le formulaire
 
-1. GHL → `Paramètres → Domaines → Connecter un domaine`, saisir
-   `inscription.evolutiaformation.fr` et relever le CNAME affiché.
-2. Poser ce CNAME chez Hostinger (le DNS d'`evolutiaformation.fr` y est géré).
-   Ne pas toucher aux enregistrements de `www`, qui pointent sur Vercel.
-3. Basculer `INSCRIPTION_HOST` dans `app/config.ts`.
+Le candidat n'atteint jamais GHL directement. Les boutons « Je m'inscris » du
+site pointent sur **`/inscription/[slug]`** (`app/inscription/[slug]/page.tsx`),
+une page du site qui embarque le widget GHL en iframe avec le préremplissage.
+Le visiteur ne voit que `www.evolutiaformation.fr` dans sa barre d'adresse.
+
+`app/config.ts` expose deux fonctions distinctes :
+- `inscriptionUrl(slug)` → `/inscription/<slug>`, le lien affiché sur le site ;
+- `inscriptionEmbedUrl(slug, dateISO)` → l'URL du widget GHL mise dans l'iframe.
+
+La page est en `robots: noindex` (page transactionnelle : c'est la fiche
+formation qui doit être indexée) et n'est pas dans `app/sitemap.ts`.
+
+### ⚠️ Pourquoi pas un sous-domaine GHL
+
+`inscription.evolutiaformation.fr` a été connecté entièrement le 20/08/2026 —
+CNAME `inscription` → `sites.ludicrous.cloud` chez Hostinger, domaine validé
+dans GHL, certificat SSL émis. Résultat : **404 sur `/widget/form/<id>`**, avec
+une page 404 Nuxt.
+
+Un domaine connecté dans `Paramètres → Domaines` d'un sous-compte est rattaché
+au produit **Entonnoirs / Sites web** et ne rend que des pages de funnel. Les
+widgets (`/widget/form/`, `/widget/bookings/`) sont servis par le **domaine de
+liens white-label de l'agence** (`link.siboard-consulting.fr`), réglable
+uniquement au niveau agence — donc impossible de le personnaliser par client.
+
+Ne pas refaire cette tentative. Le CNAME reste en place, inoffensif ; il
+servirait si un jour un funnel GHL est publié sur ce sous-domaine.
 
 Ne jamais utiliser `link.siboard-consulting.fr` pour un lien visible par un
-candidat (règle du `CLAUDE.md`).
+candidat (règle du `CLAUDE.md`) : le widget est servi depuis
+`api.leadconnectorhq.com`, à l'intérieur de l'iframe.

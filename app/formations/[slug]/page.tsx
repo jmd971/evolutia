@@ -117,9 +117,9 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
             <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
               {f.session?.inscription === "ouverte" ? (
                 <>
-                  <a href={inscriptionUrl(slug, f.session.demarrageISO)} style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 800, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none" }}>
+                  <Link href={inscriptionUrl(slug)} style={{ background: "#F5A623", color: "#1B3A6B", fontWeight: 800, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none" }}>
                     Je m&apos;inscris à cette session
-                  </a>
+                  </Link>
                   <Link href="/contact" style={{ background: "transparent", color: "white", fontWeight: 600, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none", border: "2px solid rgba(255,255,255,0.3)" }}>
                     Réserver un entretien gratuit
                   </Link>
@@ -246,9 +246,9 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
               <p style={{ fontSize: 13, color: "#5a6f8f", lineHeight: 1.6, margin: "0 0 16px 0" }}>
                 Démarrage le <strong style={{ color: "#1B3A6B" }}>{f.session.demarrage}</strong>. Places limitées.
               </p>
-              <a href={inscriptionUrl(slug, f.session.demarrageISO)} style={{ display: "block", background: "#16a34a", color: "white", fontWeight: 800, fontSize: 14, padding: "14px", borderRadius: 8, textDecoration: "none", textAlign: "center" }}>
+              <Link href={inscriptionUrl(slug)} style={{ display: "block", background: "#16a34a", color: "white", fontWeight: 800, fontSize: 14, padding: "14px", borderRadius: 8, textDecoration: "none", textAlign: "center" }}>
                 Je m&apos;inscris
-              </a>
+              </Link>
             </div>
           )}
 
