@@ -27,6 +27,11 @@ export default function ConventionClient({ formations }: { formations: Formation
   const [resultats, setResultats] = useState<Contact[]>([]);
   const [contact, setContact] = useState<Contact | null>(null);
   const [chargeRecherche, setChargeRecherche] = useState(false);
+  const [erreurRecherche, setErreurRecherche] = useState<string | null>(null);
+  const [creation, setCreation] = useState(false);
+  const [nouveau, setNouveau] = useState({ prenom: "", nom: "", email: "", telephone: "" });
+  const [erreurCreation, setErreurCreation] = useState<string | null>(null);
+  const [enCreation, setEnCreation] = useState(false);
 
   const [formationSlug, setFormationSlug] = useState(formations[0]?.slug ?? "");
   const [voieConcours, setVoieConcours] = useState(VOIES[0]);
@@ -50,13 +55,25 @@ export default function ConventionClient({ formations }: { formations: Formation
 
   // Recherche de contacts, avec un délai pour ne pas appeler GHL à chaque frappe.
   useEffect(() => {
-    if (recherche.trim().length < 2) { setResultats([]); return; }
+    if (recherche.trim().length < 2) { setResultats([]); setErreurRecherche(null); return; }
     const t = setTimeout(async () => {
       setChargeRecherche(true);
+      setErreurRecherche(null);
       try {
         const res = await fetch(`/api/interne/contacts?q=${encodeURIComponent(recherche.trim())}`);
-        const body = await res.json();
-        setResultats(res.ok ? body.contacts : []);
+        const body = await res.json().catch(() => ({}));
+        if (res.ok) {
+          setResultats(body.contacts ?? []);
+        } else {
+          // Un échec doit se voir : sans ça, une variable d'environnement
+          // manquante ressemblerait à « ce candidat n'existe pas » et on
+          // créerait des doublons de gens déjà inscrits.
+          setResultats([]);
+          setErreurRecherche(body.erreur ?? "La recherche a échoué.");
+        }
+      } catch {
+        setResultats([]);
+        setErreurRecherche("La recherche n'a pas abouti (réseau).");
       } finally {
         setChargeRecherche(false);
       }
@@ -80,6 +97,31 @@ export default function ConventionClient({ formations }: { formations: Formation
       return { texte: "", erreur: e instanceof Error ? e.message : "Échéancier incalculable." };
     }
   }, [montant, acompte, nombreEcheances, premiereEcheance]);
+
+  async function creerCandidat() {
+    setEnCreation(true);
+    setErreurCreation(null);
+    try {
+      const res = await fetch("/api/interne/contacts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(nouveau),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setErreurCreation(body.erreur ?? "Création impossible.");
+        return;
+      }
+      setContact(body.contact);
+      setCreation(false);
+      setResultats([]);
+      setMessage(body.nouveau
+        ? { type: "ok", texte: `Fiche créée pour ${body.contact.nom}.` }
+        : { type: "ok", texte: `${body.contact.nom} existait déjà dans GHL : sa fiche a été reprise, aucun doublon créé.` });
+    } finally {
+      setEnCreation(false);
+    }
+  }
 
   async function enregistrer() {
     if (!contact) return;
@@ -140,8 +182,53 @@ export default function ConventionClient({ formations }: { formations: Formation
                   <div style={{ fontSize: 13, color: "#5a6f8f" }}>{[c.email, c.phone].filter(Boolean).join(" · ")}</div>
                 </button>
               ))}
-              {!chargeRecherche && recherche.trim().length >= 2 && resultats.length === 0 && (
-                <p style={{ fontSize: 13, color: "#5a6f8f", margin: "10px 0 0" }}>Aucun contact trouvé.</p>
+              {erreurRecherche && (
+                <div style={{ background: "#FEF2F2", border: "1px solid #FCA5A5", borderRadius: 10, padding: "13px 15px", marginTop: 10 }}>
+                  <div style={{ color: "#b91c1c", fontSize: 13.5, fontWeight: 600 }}>{erreurRecherche}</div>
+                  <div style={{ color: "#7f1d1d", fontSize: 12.5, marginTop: 5, lineHeight: 1.55 }}>
+                    Tant que la recherche échoue, ne créez pas de candidat : vous risqueriez de dupliquer
+                    une fiche existante.
+                  </div>
+                </div>
+              )}
+
+              {!chargeRecherche && !erreurRecherche && recherche.trim().length >= 2 && resultats.length === 0 && !creation && (
+                <div style={{ marginTop: 12 }}>
+                  <p style={{ fontSize: 13, color: "#5a6f8f", margin: "0 0 10px" }}>
+                    Aucun contact trouvé pour « {recherche.trim()} ».
+                  </p>
+                  <button onClick={() => { setCreation(true); setErreurCreation(null); }}
+                    style={{ background: "white", border: "1px solid #1B3A6B", color: "#1B3A6B", borderRadius: 8, padding: "9px 15px", fontSize: 14, fontWeight: 600, cursor: "pointer" }}>
+                    Créer ce candidat
+                  </button>
+                </div>
+              )}
+
+              {creation && (
+                <div style={{ marginTop: 14, background: "#F8FAFF", border: "1px solid #D6E4F0", borderRadius: 10, padding: 16 }}>
+                  <div style={{ ...label, marginBottom: 10 }}>Nouveau candidat</div>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 12 }}>
+                    <input value={nouveau.prenom} onChange={(e) => setNouveau({ ...nouveau, prenom: e.target.value })} placeholder="Prénom" style={champ} />
+                    <input value={nouveau.nom} onChange={(e) => setNouveau({ ...nouveau, nom: e.target.value })} placeholder="Nom" style={champ} />
+                    <input value={nouveau.email} onChange={(e) => setNouveau({ ...nouveau, email: e.target.value })} placeholder="E-mail" type="email" style={champ} />
+                    <input value={nouveau.telephone} onChange={(e) => setNouveau({ ...nouveau, telephone: e.target.value })} placeholder="Téléphone" style={champ} />
+                  </div>
+                  <p style={{ fontSize: 12, color: "#5a6f8f", margin: "10px 0 0", lineHeight: 1.55 }}>
+                    L&apos;e-mail ou le téléphone est obligatoire : c&apos;est ce qui permet de rattacher
+                    la fiche si le candidat s&apos;est déjà inscrit par le site, au lieu d&apos;en créer une seconde.
+                  </p>
+                  {erreurCreation && <p style={{ color: "#b91c1c", fontSize: 13, margin: "10px 0 0" }}>{erreurCreation}</p>}
+                  <div style={{ display: "flex", gap: 10, marginTop: 14 }}>
+                    <button onClick={creerCandidat} disabled={enCreation}
+                      style={{ background: enCreation ? "#94a3b8" : "#1B3A6B", color: "white", border: "none", borderRadius: 8, padding: "10px 18px", fontSize: 14, fontWeight: 700, cursor: enCreation ? "default" : "pointer" }}>
+                      {enCreation ? "Création…" : "Créer et continuer"}
+                    </button>
+                    <button onClick={() => setCreation(false)}
+                      style={{ background: "none", border: "1px solid #D6E4F0", borderRadius: 8, padding: "10px 16px", fontSize: 14, cursor: "pointer" }}>
+                      Annuler
+                    </button>
+                  </div>
+                </div>
               )}
             </div>
           )}

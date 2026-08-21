@@ -124,3 +124,52 @@ export async function updateContactCustomFieldsByKey(
     throw new Error(`GHL updateContactCustomFieldsByKey ${contactId} a échoué (${res.status}): ${await res.text()}`);
   }
 }
+
+/**
+ * Crée le contact s'il n'existe pas, le met à jour sinon.
+ *
+ * On passe par /contacts/upsert et non /contacts/ : GHL rapproche sur l'e-mail
+ * ou le téléphone et renvoie la fiche existante au lieu d'en créer une seconde.
+ * Sans ça, un candidat déjà inscrit par le formulaire du site se retrouverait
+ * en double dès qu'une personne d'Evolutia le ressaisit au bureau — et la
+ * convention partirait sur la mauvaise fiche.
+ */
+export async function upsertContact(donnees: {
+  firstName: string;
+  lastName: string;
+  email?: string;
+  phone?: string;
+}): Promise<{ contact: GhlContactResume; nouveau: boolean }> {
+  const locationId = process.env.GHL_LOCATION_ID;
+  if (!locationId) throw new Error("GHL_LOCATION_ID manquant");
+  if (!donnees.email && !donnees.phone) {
+    throw new Error("Un e-mail ou un téléphone est nécessaire pour éviter de créer un doublon.");
+  }
+
+  const res = await fetch(`${GHL_BASE_URL}/contacts/upsert`, {
+    method: "POST",
+    headers: ghlHeaders(),
+    body: JSON.stringify({
+      locationId,
+      firstName: donnees.firstName,
+      lastName: donnees.lastName,
+      ...(donnees.email ? { email: donnees.email } : {}),
+      ...(donnees.phone ? { phone: donnees.phone } : {}),
+    }),
+  });
+  if (!res.ok) {
+    throw new Error(`GHL upsertContact a échoué (${res.status}): ${await res.text()}`);
+  }
+  const body = await res.json();
+  const c = body.contact ?? {};
+  return {
+    contact: {
+      id: String(c.id),
+      nom: [c.firstName, c.lastName].filter(Boolean).join(" ").trim() || String(c.email ?? "(sans nom)"),
+      email: c.email ?? null,
+      phone: c.phone ?? null,
+    },
+    // GHL renvoie `new: false` quand il a rapproché une fiche existante.
+    nouveau: body.new === true,
+  };
+}
