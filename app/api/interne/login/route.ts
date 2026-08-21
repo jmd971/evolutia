@@ -1,7 +1,14 @@
 import { NextResponse } from "next/server";
-import { motDePasseValide, jeton, NOM_COOKIE } from "../../../../lib/interne/auth";
+import { motDePasseValide, jetonCourant, estConfigure, NOM_COOKIE } from "../../../../lib/interne/auth";
 
 export async function POST(req: Request) {
+  if (!estConfigure()) {
+    return NextResponse.json(
+      { erreur: "INTERNE_PASSWORD n'est pas défini sur le serveur." },
+      { status: 503 }
+    );
+  }
+
   let motDePasse = "";
   try {
     ({ motDePasse } = await req.json());
@@ -16,7 +23,7 @@ export async function POST(req: Request) {
   }
 
   const res = NextResponse.json({ ok: true });
-  res.cookies.set(NOM_COOKIE, jeton(), {
+  res.cookies.set(NOM_COOKIE, jetonCourant()!, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
