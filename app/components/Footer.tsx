@@ -25,6 +25,15 @@ export default function Footer() {
           ))}
         </div>
       </div>
+      <div style={{ maxWidth: 1200, margin: "28px auto 0", paddingTop: 16, borderTop: "1px solid rgba(255,255,255,0.15)", fontSize: 12, color: "rgba(255,255,255,0.6)" }}>
+        Conception et développement{" "}
+        <a
+          href="https://www.siboard-consulting.fr"
+          style={{ color: "rgba(255,255,255,0.85)", textDecoration: "underline", textUnderlineOffset: 2 }}
+        >
+          Siboard Consulting
+        </a>
+      </div>
     </footer>
   )
 }
