@@ -13,6 +13,7 @@ const FORMATIONS_TARIFS = [
   { titre: "Préparation Oraux", duree: "20–40h", prix: "À partir de 890 €", cat: "Toutes cat.", cpf: true },
   { titre: "Rédacteur Principal (RAEP)", duree: "40–60h", prix: "À partir de 1 490 €", cat: "Cat. B+", cpf: true },
   { titre: "Agent de Maîtrise", duree: "60–80h", prix: "À partir de 1 890 €", cat: "Cat. C+", cpf: true },
+  { titre: "Attaché Territorial", duree: "166h", prix: "1 900 €", cat: "Cat. A", cpf: true },
   { titre: "Ingénieur en Chef", duree: "60–80h", prix: "À partir de 2 190 €", cat: "Cat. A+", cpf: true },
   { titre: "Technicien Territorial", duree: "80–120h", prix: "À partir de 2 490 €", cat: "Cat. B", cpf: true },
   { titre: "Rédacteur Territorial", duree: "80–120h", prix: "À partir de 2 490 €", cat: "Cat. B", cpf: true },

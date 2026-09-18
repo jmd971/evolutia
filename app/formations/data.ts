@@ -6,6 +6,25 @@ export type Condition = { voie: string; condition: string };
 export type DateCle = { label: string; date: string; statut: "ouvert" | "bientot" | "ferme" };
 export type Faq = { q: string; a: string };
 
+// Fiche programme complète (format Qualiopi : objectifs, prérequis, moyens,
+// contenu, suivi, accessibilité). Affichée en section « Programme détaillé »
+// sur la page de la formation quand elle est renseignée.
+export type ProgrammeModule = { titre: string; desc: string };
+export type ProgrammeSession = { titre: string; intro?: string; modules: ProgrammeModule[] };
+export type ProgrammeDetaille = {
+  publics: string;
+  objectifs: string[];
+  prerequis: string[];
+  equipe: string;
+  delaiAcces: string;
+  tarif: string;
+  moyens: string[];
+  contenuIntro: string;
+  contenu: ProgrammeSession[];
+  suivi: string[];
+  accessibilite: string;
+};
+
 // Session de préparation dont les inscriptions sont ouvertes. `demarrageISO`
 // sert de valeur au champ GHL « Session choisie » dans le lien d'inscription
 // (voir app/config.ts → inscriptionUrl).
@@ -37,6 +56,7 @@ export type Formation = {
   accent: string;
   datesCles: DateCle[];
   session?: Session;
+  programmeDetaille?: ProgrammeDetaille;
   faq: Faq[];
   sourceOfficielle: string;
 };
@@ -69,20 +89,20 @@ export const FORMATIONS: Record<string, Formation> = {
       { type: "Oral", label: "Entretien avec le jury (25 min, coef. 4 à 5)", desc: "Présentation du parcours puis échange, le cas échéant sous forme de mise en situation professionnelle, sur les connaissances administratives, la motivation et l'aptitude à exercer. Épreuve facultative de langue vivante possible (15 min, coef. 1)." },
     ],
     programme: [
-      "Méthodologie de la composition générale et de la note de spécialité — entraînements corrigés",
-      "Culture territoriale : institutions, droit public, finances locales, actualité de la FPT",
-      "Approfondissement de la spécialité choisie (administration générale, sanitaire et social…)",
-      "Enjeux des collectivités de Guadeloupe : intercommunalité, développement, transition écologique",
-      "Simulations d'entretien jury filmées avec débriefing individuel",
-      "Veille sur le calendrier et les notes de cadrage officielles",
+      "146 h de préparation écrite : méthodologie et entraînement au rapport / note sur dossier, conformes aux notes de cadrage nationales",
+      "Module « Composition » réservé à la voie externe : sujets d'ordre général liés aux collectivités territoriales",
+      "Culture territoriale : institutions, droit public, finances publiques, actualité et enjeux contemporains",
+      "Cadre d'emplois d'attaché territorial : statut, missions, positionnement dans la collectivité (spécialité administration générale)",
+      "20 h de préparation orale : exposé du parcours, techniques face au jury, oraux blancs filmés avec bilan individuel",
+      "Devoirs corrigés individuellement, concours blancs et évaluation formative continue",
     ],
     conditions: [
       { voie: "Externe", condition: "Diplôme de niveau 6 (Bac+3, licence) ou qualification reconnue équivalente" },
       { voie: "Interne", condition: "Fonctionnaires et agents publics comptant au moins 4 ans de services publics au 1er janvier de l'année du concours" },
       { voie: "3e voie", condition: "4 ans au moins d'activités professionnelles, de mandats d'élu local ou de responsabilités associatives" },
     ],
-    duree: "120 à 180 heures",
-    format: "Présentiel (Grand-Camp, Les Abymes) + distanciel",
+    duree: "166 heures",
+    format: "Présentiel (Grand-Camp, Les Abymes) + distanciel — 146 h d'écrit, 20 h d'oral",
     tauxReussite: "80%",
     resultats2026: "80% d'admis",
     color: "#1B3A6B",
@@ -92,6 +112,61 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Inscriptions (session 2026)", date: "Clôturées le 15 avril 2026", statut: "ferme" },
       { label: "Préparation à l'oral d'admission", date: "Dès les résultats d'admissibilité", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      publics: "Fonctionnaires, agents publics et adultes motivés hors fonction publique (salariés du privé, demandeurs d'emploi) : tout public remplissant les conditions d'accès au concours.",
+      objectifs: [
+        "Comprendre les attendus de l'épreuve écrite (rapport / note sur dossier, et composition pour la voie externe) et de l'épreuve orale du concours d'attaché territorial.",
+        "Maîtriser les notions clés liées à la place et au rôle des collectivités territoriales dans les problématiques locales.",
+        "Analyser un dossier professionnel dans la spécialité administration générale et rédiger un rapport avec propositions opérationnelles, structuré et argumenté.",
+        "Pour la voie externe : analyser un sujet d'ordre général et rédiger une composition structurée.",
+        "Présenter et valoriser son parcours professionnel de manière pertinente pour l'épreuve orale, selon le format propre à sa voie d'accès.",
+        "Gérer le temps et le stress lors des épreuves.",
+      ],
+      prerequis: [
+        "Connaissance du programme du concours (notes de cadrage)",
+        "Niveau de motivation suffisant",
+        "Implication personnelle hors temps de formation",
+        "Remplir les conditions d'accès au concours",
+      ],
+      equipe: "2 formateurs pour la session d'admissibilité (écrit), 2 formateurs pour la session d'admission (oral).",
+      delaiAcces: "15 jours après inscription",
+      tarif: "1 900 €",
+      moyens: [
+        "Alternance d'apports théoriques et méthodologiques et de travaux pratiques à partir de dossiers types, conformes aux exigences des notes de cadrage nationales du rapport / note sur dossier et de la composition (cadrage actualisé du 28/08/2023).",
+        "Études de cas et mises en situation proches des conditions réelles du concours, à partir des thématiques des annales nationales (spécialité administration générale et sujets de culture territoriale).",
+        "Exercices individuels et collectifs avec corrections personnalisées, différenciés selon la voie d'accès (interne / externe) lorsque les épreuves diffèrent.",
+        "Outils interactifs : quiz, questionnaires à choix multiples, mises en situation.",
+        "Devoirs corrigés individuellement avec conseils personnalisés.",
+        "Simulations d'oraux filmés et analysés dans les conditions réelles du concours (avec attestation de droit à l'image signée par le stagiaire).",
+        "Évaluation formative continue, avec bref rappel de la séance précédente à chaque début de cours.",
+      ],
+      contenuIntro: "La formation comprend 146 heures de préparation écrite (tronc commun aux deux voies et module complémentaire pour la voie externe) et 20 heures de préparation orale commune.",
+      contenu: [
+        {
+          titre: "Session écrite — épreuve d'admissibilité",
+          modules: [
+            { titre: "Tronc commun (interne et externe) — Méthodologie et entraînement au rapport / note sur dossier", desc: "Analyse du dossier documentaire, élaboration d'un plan et entraînement à la rédaction (introduction avec annonce de plan, parties et sous-parties numérotées, style neutre et concis), conformément aux notes de cadrage nationales. Évaluations corrigées et commentées sur sujets et dossiers types représentatifs des annales du concours." },
+            { titre: "Module complémentaire « Composition » — réservé à la voie externe", desc: "Méthodologie de la composition sur un sujet d'ordre général lié aux collectivités territoriales (introduction de 20 à 30 lignes, problématisation, plan, conclusion), à partir de sujets types des annales nationales : démocratie, société, économie, emploi, éducation, santé, culture, urbanisme, relations extérieures. En parallèle, les stagiaires de la voie interne poursuivent l'entraînement au rapport sur dossier et des études de cas complémentaires." },
+          ],
+        },
+        {
+          titre: "Session orale — épreuve d'admission",
+          modules: [
+            { titre: "Méthodologie de l'épreuve orale et techniques de communication face à un jury", desc: "Adaptée au format propre à chaque voie : 20 minutes, coefficient 4, pour la voie externe ; 25 minutes dont 10 minutes d'exposé, coefficient 5, pour la voie interne." },
+            { titre: "Tronc commun — Connaissances liées au cadre d'emplois d'attaché territorial", desc: "Statut, missions et responsabilités de l'attaché territorial (décret n° 87-1099 du 30 décembre 1987) ; positionnement au sein des services de la collectivité (spécialité administration générale) ; études de cas et mises en situation liées au cadre d'emplois visé." },
+            { titre: "Tronc commun — Environnement territorial, droit public, finances publiques, culture générale et enjeux contemporains", desc: "Missions et compétences des collectivités territoriales et organisation administrative locale ; notions essentielles de droit public et de finances publiques ; culture générale et actualité territoriale utiles au rapport, à la note et, pour la voie externe, à la composition." },
+            { titre: "Mises en situation devant jury", desc: "Oraux blancs filmés et analysés en conditions réelles, à partir d'un exposé du parcours professionnel du candidat, avec bilan individuel personnalisé et conseils de progression." },
+          ],
+        },
+      ],
+      suivi: [
+        "Un bref rappel de la séance précédente à chaque début de cours",
+        "Des sujets d'entraînement aux épreuves écrites, corrigés et commentés",
+        "Des concours blancs",
+        "Des entretiens avec un jury professionnel",
+      ],
+      accessibilite: "Formation accessible aux personnes en situation de handicap : contactez notre référent handicap, M. Tony Barbier, à contact@evolutiaformation.fr pour étudier les adaptations possibles.",
+    },
     faq: [
       { q: "Quelles sont les spécialités du concours d'attaché territorial ?", a: "Cinq spécialités au choix à l'inscription : administration générale, gestion du secteur sanitaire et social, analyste, animation, urbanisme et développement des territoires. En Guadeloupe, l'administration générale offre le plus de débouchés, mais la spécialité sanitaire et sociale est très recherchée par le Département." },
       { q: "Peut-on encore se préparer pour la session 2026 ?", a: "Les inscriptions 2026 sont closes, mais les candidats inscrits passent les écrits le 19 novembre 2026 : c'est le moment d'intensifier la préparation aux épreuves écrites, puis de préparer l'oral d'admission. Pour les autres candidats, nous préparons dès maintenant la prochaine session." },

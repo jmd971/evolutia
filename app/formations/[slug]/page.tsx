@@ -142,6 +142,7 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
               ...(f.tauxReussite ? [{ label: f.resultats2026 ? `Résultats 2026 — ${f.resultats2026}` : "Taux de réussite", val: f.tauxReussite, highlight: true }] : []),
               { label: "Durée", val: f.duree, highlight: false },
               { label: "Format", val: f.format, highlight: false },
+              ...(f.programmeDetaille?.tarif ? [{ label: "Tarif", val: `${f.programmeDetaille.tarif} — non assujetti à la TVA`, highlight: false }] : []),
               { label: "Financement", val: "CPF éligible", highlight: false },
             ] as {label:string;val:string;highlight:boolean}[]).map((row, i) => (
               <div key={i} style={{ padding: "12px 0", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
@@ -190,6 +191,98 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
               ))}
             </div>
           </section>
+
+          {/* Programme détaillé (fiche Qualiopi) */}
+          {f.programmeDetaille && (() => {
+            const pd = f.programmeDetaille;
+            const h3 = { fontFamily: "'Playfair Display', serif", fontSize: 19, fontWeight: 700, color: "#1B3A6B", margin: "0 0 12px 0" } as const;
+            const card = { background: "white", border: "1px solid #D6E4F0", borderRadius: 16, padding: "24px 28px" } as const;
+            const ul = { margin: 0, paddingLeft: 20, display: "flex", flexDirection: "column", gap: 8 } as const;
+            const li = { fontSize: 15, color: "#3a4f6a", lineHeight: 1.6 } as const;
+            return (
+              <section style={{ marginBottom: 48 }}>
+                <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 8px 0" }}>Programme détaillé de la formation</h2>
+                <p style={{ color: "#5a6f8f", fontSize: 14, marginBottom: 24 }}>Fiche programme complète : objectifs, prérequis, moyens pédagogiques, contenu et modalités de suivi</p>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+                  {/* Publics + objectifs */}
+                  <div style={card}>
+                    <h3 style={h3}>Public et objectifs pédagogiques</h3>
+                    <p style={{ fontSize: 15, color: "#3a4f6a", lineHeight: 1.6, margin: "0 0 14px 0" }}><strong style={{ color: "#1B3A6B" }}>Public cible :</strong> {pd.publics}</p>
+                    <ul style={ul}>
+                      {pd.objectifs.map((o, i) => <li key={i} style={li}>{o}</li>)}
+                    </ul>
+                  </div>
+
+                  {/* Prérequis + infos pratiques */}
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }} className="formation-grid">
+                    <div style={card}>
+                      <h3 style={h3}>Prérequis</h3>
+                      <ul style={ul}>
+                        {pd.prerequis.map((p, i) => <li key={i} style={li}>{p}</li>)}
+                      </ul>
+                    </div>
+                    <div style={card}>
+                      <h3 style={h3}>Informations pratiques</h3>
+                      {[
+                        { label: "Durée", val: f.duree },
+                        { label: "Tarif", val: `${pd.tarif} (non assujetti à la TVA)` },
+                        { label: "Délai d'accès", val: pd.delaiAcces },
+                        { label: "Équipe pédagogique", val: pd.equipe },
+                      ].map((row, i) => (
+                        <div key={i} style={{ padding: "8px 0", borderBottom: i < 3 ? "1px solid #EEF5FF" : "none" }}>
+                          <div style={{ fontSize: 11, color: "#5a6f8f", textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 700, marginBottom: 2 }}>{row.label}</div>
+                          <div style={{ fontSize: 14, color: "#1a2740", lineHeight: 1.5 }}>{row.val}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Moyens pédagogiques */}
+                  <div style={card}>
+                    <h3 style={h3}>Moyens pédagogiques et techniques</h3>
+                    <ul style={ul}>
+                      {pd.moyens.map((m, i) => <li key={i} style={li}>{m}</li>)}
+                    </ul>
+                  </div>
+
+                  {/* Contenu */}
+                  <div style={card}>
+                    <h3 style={h3}>Contenu de la formation</h3>
+                    <p style={{ fontSize: 15, color: "#3a4f6a", lineHeight: 1.6, margin: "0 0 18px 0" }}>{pd.contenuIntro}</p>
+                    {pd.contenu.map((sess, i) => (
+                      <div key={i} style={{ marginBottom: i < pd.contenu.length - 1 ? 22 : 0 }}>
+                        <div style={{ display: "inline-block", background: "#EEF5FF", color: "#1B3A6B", fontSize: 13, fontWeight: 700, padding: "6px 14px", borderRadius: 8, marginBottom: 12 }}>{sess.titre}</div>
+                        {sess.intro && <p style={{ fontSize: 14, color: "#5a6f8f", lineHeight: 1.6, margin: "0 0 12px 0" }}>{sess.intro}</p>}
+                        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                          {sess.modules.map((m, j) => (
+                            <div key={j} style={{ borderLeft: "3px solid #4BADD4", paddingLeft: 14 }}>
+                              <div style={{ fontWeight: 700, fontSize: 15, color: "#1B3A6B", marginBottom: 4 }}>{m.titre}</div>
+                              <div style={{ fontSize: 14, color: "#5a6f8f", lineHeight: 1.65 }}>{m.desc}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Suivi + accessibilité */}
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }} className="formation-grid">
+                    <div style={card}>
+                      <h3 style={h3}>Suivi et évaluation des résultats</h3>
+                      <ul style={ul}>
+                        {pd.suivi.map((sv, i) => <li key={i} style={li}>{sv}</li>)}
+                      </ul>
+                    </div>
+                    <div style={card}>
+                      <h3 style={h3}>Accessibilité handicap</h3>
+                      <p style={{ fontSize: 15, color: "#3a4f6a", lineHeight: 1.6, margin: 0 }}>{pd.accessibilite}</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            );
+          })()}
 
           {/* Conditions */}
           <section style={{ marginBottom: 48 }}>
