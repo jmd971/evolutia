@@ -833,7 +833,7 @@ export const FORMATIONS: Record<string, Formation> = {
 
   "ingenieur-territorial-guadeloupe": {
     titre: "Ingénieur Territorial",
-    sousTitre: "Concours externe et interne + examen professionnel de promotion interne",
+    sousTitre: "Concours externe et interne",
     categorie: "Catégorie A",
     filiere: "Filière technique",
     type: "Concours",
@@ -845,7 +845,6 @@ export const FORMATIONS: Record<string, Formation> = {
       { type: "Écrit", label: "Externe — Note à partir d'un dossier de spécialité (5h, coef. 5)", desc: "Rédaction d'une note à partir de l'analyse d'un dossier, tenant compte du contexte technique, économique ou juridique. Le dossier porte sur la spécialité choisie à l'inscription (infrastructures, bâtiment, réseaux, informatique, prévention des risques…)." },
       { type: "Écrit", label: "Interne — 3 épreuves écrites", desc: "Mathématiques et physique appliquées (4h, coef. 3), note sur dossier de spécialité (4h, coef. 3) et établissement d'un projet ou étude dans l'option choisie (8h, coef. 7)." },
       { type: "Oral", label: "Entretien avec le jury (40 min, coef. 5)", desc: "Première partie : questions sur l'option choisie au sein de la spécialité. Seconde partie : aptitude à s'intégrer dans l'environnement professionnel et à résoudre les problèmes techniques ou d'encadrement d'un ingénieur. Fiche individuelle de renseignement transmise à l'inscription (non notée). Épreuve facultative de langue possible." },
-      { type: "Examen pro.", label: "Promotion interne — écrit + entretien", desc: "Pour les techniciens avec 8 ans de services en catégorie B : note sur dossier (4h, coef. 3), projet ou étude dans l'option choisie (4h, coef. 5) et entretien de 40 minutes (coef. 5). Voie spécifique sur entretien seul pour les directeurs des services techniques de communes de moins de 20 000 habitants." },
     ],
     programme: [
       "Méthodologie de la note sur dossier de spécialité — la seule épreuve écrite externe, coef. 5",
@@ -857,8 +856,8 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     conditions: [
       { voie: "Externe", condition: "Diplôme d'ingénieur, d'architecte ou diplôme scientifique/technique de niveau Bac+5 correspondant à l'une des spécialités" },
-      { voie: "Interne (concours)", condition: "Fonctionnaires et agents publics comptant au moins 4 ans de services publics" },
-      { voie: "Examen pro. (promotion interne)", condition: "Techniciens territoriaux justifiant de 8 ans de services effectifs dans un cadre d'emplois technique de catégorie B" },
+      { voie: "Externe — dispense de diplôme", condition: "Sont dispensés de la condition de diplôme : les mères et pères d'au moins 3 enfants qu'ils élèvent ou ont élevés effectivement, et les sportifs de haut niveau figurant sur la liste publiée l'année du concours par le ministre chargé des Sports" },
+      { voie: "Interne", condition: "Fonctionnaires et agents publics comptant au moins 4 ans de services publics" },
     ],
     duree: "120 à 180 heures",
     format: "Présentiel (Grand-Camp, Les Abymes) + distanciel",
@@ -870,7 +869,6 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Démarrage de la préparation Evolutia", date: "Mercredi 25 novembre 2026", statut: "ouvert" },
       { label: "Inscriptions au concours (session 2027)", date: "8 déc. 2026 → 13 jan. 2027", statut: "bientot" },
       { label: "Épreuves écrites", date: "16 juin 2027", statut: "bientot" },
-      { label: "Examen pro. promotion interne 2026", date: "Épreuves passées le 18 juin 2026", statut: "ferme" },
     ],
     session: {
       intitule: "Concours Ingénieur",
@@ -880,8 +878,7 @@ export const FORMATIONS: Record<string, Formation> = {
     },
     faq: [
       { q: "Quelles sont exactement les épreuves du concours externe d'ingénieur ?", a: "Deux épreuves seulement, mais à très fort coefficient : une note à partir d'un dossier de spécialité (5 heures, coefficient 5) et un entretien de 40 minutes (coefficient 5) portant d'abord sur l'option choisie, puis sur votre aptitude professionnelle. Une épreuve facultative de langue peut s'y ajouter. Il n'y a pas d'épreuve de culture générale." },
-      { q: "Le concours externe exige-t-il Bac+5 ?", a: "Oui : diplôme d'ingénieur, d'architecte ou autre diplôme scientifique ou technique sanctionnant au moins 5 années d'études supérieures dans l'une des spécialités du concours. Les titulaires d'un Bac+3 technique peuvent viser le concours de technicien puis la promotion interne." },
-      { q: "Qu'est-ce que l'examen professionnel de promotion interne ?", a: "Il permet aux techniciens territoriaux justifiant de 8 ans de services en catégorie B technique d'accéder au grade d'ingénieur sans passer le concours : une note sur dossier (4h), un projet ou étude (4h) et un entretien de 40 minutes. La session 2026 a eu lieu le 18 juin — nous préparons déjà la suivante." },
+      { q: "Le concours externe exige-t-il Bac+5 ?", a: "Oui : diplôme d'ingénieur, d'architecte ou autre diplôme scientifique ou technique sanctionnant au moins 5 années d'études supérieures dans l'une des spécialités du concours. Deux dispenses existent toutefois : les mères et pères d'au moins 3 enfants qu'ils élèvent ou ont élevés effectivement, et les sportifs de haut niveau inscrits sur la liste ministérielle de l'année du concours." },
       { q: "Quelle spécialité choisir en Guadeloupe ?", a: "Les collectivités guadeloupéennes recrutent surtout en infrastructures et réseaux (eau, assainissement, voirie), bâtiment et construction, et prévention des risques (sismique, cyclonique). Choisissez la spécialité de votre formation initiale : le jury évalue une expertise réelle." },
     ],
     sourceOfficielle: "https://www.concours-territorial.fr/session.aspx?id=327",
