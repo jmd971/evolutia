@@ -861,8 +861,8 @@ export const FORMATIONS: Record<string, Formation> = {
     ],
     duree: "120 à 180 heures",
     format: "Présentiel (Grand-Camp, Les Abymes) + distanciel",
-    tauxReussite: "53%",
-    resultats2026: "8 lauréats sur 15 candidats",
+    tauxReussite: "64%",
+    resultats2026: "9 admissibles sur 14 candidats, dont 6 admis",
     color: "#1B3A6B",
     accent: "#4BADD4",
     datesCles: [
