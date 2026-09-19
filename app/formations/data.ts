@@ -1017,7 +1017,7 @@ export const FORMATIONS: Record<string, Formation> = {
     duree: "50 à 70 heures",
     format: "Présentiel (Grand-Camp, Les Abymes) + ateliers pratiques",
     tauxReussite: "100%",
-    resultats2026: "100% d'admis",
+    resultats2026: "16 admis sur 16 candidats",
     color: "#F5A623",
     accent: "#4BADD4",
     datesCles: [
