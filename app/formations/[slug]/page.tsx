@@ -266,18 +266,12 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
                     ))}
                   </div>
 
-                  {/* Suivi + accessibilité */}
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }} className="formation-grid">
-                    <div style={card}>
-                      <h3 style={h3}>Suivi et évaluation des résultats</h3>
-                      <ul style={ul}>
-                        {pd.suivi.map((sv, i) => <li key={i} style={li}>{sv}</li>)}
-                      </ul>
-                    </div>
-                    <div style={card}>
-                      <h3 style={h3}>Accessibilité handicap</h3>
-                      <p style={{ fontSize: 15, color: "#3a4f6a", lineHeight: 1.6, margin: 0 }}>{pd.accessibilite}</p>
-                    </div>
+                  {/* Suivi */}
+                  <div style={card}>
+                    <h3 style={h3}>Suivi et évaluation des résultats</h3>
+                    <ul style={ul}>
+                      {pd.suivi.map((sv, i) => <li key={i} style={li}>{sv}</li>)}
+                    </ul>
                   </div>
                 </div>
               </section>
@@ -294,6 +288,21 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
                   <span style={{ fontSize: 15, color: "#3a4f6a" }}>{c.condition}</span>
                 </div>
               ))}
+            </div>
+          </section>
+
+          {/* Accessibilité handicap — toutes les formations */}
+          <section style={{ marginBottom: 48 }}>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 24px 0" }}>Accessibilité handicap</h2>
+            <div style={{ background: "white", border: "1px solid #D6E4F0", borderLeft: "4px solid #F5A623", borderRadius: 12, padding: "20px 24px", display: "flex", gap: 16, alignItems: "flex-start" }}>
+              <div style={{ width: 40, height: 40, background: "#EEF5FF", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B3A6B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="4" r="2"/><path d="M19 13v-2a7 7 0 0 0-14 0v2"/><path d="M12 6v8"/><path d="M8 20l4-6 4 6"/></svg>
+              </div>
+              <p style={{ fontSize: 15, color: "#3a4f6a", lineHeight: 1.7, margin: 0 }}>
+                Formation accessible aux personnes en situation de handicap. Contactez notre référent handicap, M. Tony Barbier, à{" "}
+                <a href="mailto:contact@evolutiaformation.fr" style={{ color: "#1B3A6B", fontWeight: 600 }}>contact@evolutiaformation.fr</a>
+                {" "}pour étudier les adaptations possibles.
+              </p>
             </div>
           </section>
 
