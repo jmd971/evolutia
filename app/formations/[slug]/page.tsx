@@ -177,6 +177,21 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
             </div>
           </section>
 
+          {/* Objectifs de la formation */}
+          {f.objectifs && f.objectifs.length > 0 && (
+            <section style={{ marginBottom: 48 }}>
+              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 24px 0" }}>Objectifs de la formation</h2>
+              <div style={{ background: "white", border: "1px solid #D6E4F0", borderLeft: "4px solid #F5A623", borderRadius: 16, padding: "28px 32px" }}>
+                {f.objectifs.map((item, i) => (
+                  <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start", marginBottom: i < f.objectifs!.length - 1 ? 14 : 0 }}>
+                    <div style={{ width: 26, height: 26, background: "#F5A623", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1, color: "#1B3A6B", fontSize: 12, fontWeight: 800 }}>{i + 1}</div>
+                    <span style={{ fontSize: 15, color: "#3a4f6a", lineHeight: 1.6 }}>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
           {/* Programme */}
           <section style={{ marginBottom: 48 }}>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 24px 0" }}>Notre programme de préparation</h2>

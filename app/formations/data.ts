@@ -55,6 +55,9 @@ export type Formation = {
   accent: string;
   datesCles: DateCle[];
   session?: Session;
+  // Objectifs pédagogiques (section « Objectifs de la formation »), pour les
+  // formations sans fiche programme complète.
+  objectifs?: string[];
   programmeDetaille?: ProgrammeDetaille;
   faq: Faq[];
   sourceOfficielle: string;
@@ -994,6 +997,14 @@ export const FORMATIONS: Record<string, Formation> = {
     seoTitle: "Concours Adjoint Technique Principal Guadeloupe 2027 | Evolutia",
     seoDesc: "Préparez le concours d'adjoint technique principal 2e classe en Guadeloupe : écrit technique + entretien. Inscriptions mai-juin 2027, épreuves nov. 2027.",
     accroche: "Le concours d'adjoint technique principal de 2e classe (catégorie C) recrute les agents qualifiés des services techniques : bâtiment, espaces verts, voirie, restauration, mécanique. Les épreuves privilégient les connaissances techniques concrètes de la spécialité choisie.",
+    objectifs: [
+      "Permettre aux agents de maîtriser les épreuves écrites et orales de l'examen professionnel.",
+      "Renforcer leurs acquis méthodologiques et leurs connaissances administratives et techniques en lien avec leurs missions : méthodologie, rédaction, analyse et expression orale.",
+      "Permettre aux agents de comprendre la nature et les attendus des épreuves de l'examen professionnel d'Adjoint Technique Principal de 2e classe.",
+      "Développer des compétences rédactionnelles, d'analyse et d'organisation adaptées aux épreuves.",
+      "Mettre en situation les participants afin de les préparer efficacement aux conditions réelles de l'examen.",
+      "Favoriser la réussite individuelle et collective en créant une dynamique de préparation.",
+    ],
     epreuves: [
       { type: "Écrit", label: "Questions techniques à réponses courtes (1h à 2h, coef. 2 à 3)", desc: "Vérification des connaissances techniques de la spécialité, notamment en matière d'hygiène et de sécurité, au moyen de questions à réponses courtes, tableaux ou graphiques à compléter. Selon les sessions, un cas pratique de spécialité peut s'y ajouter (2h, coef. 3)." },
       { type: "Oral", label: "Entretien dans l'option choisie (15 min, coef. 3 à 4)", desc: "Entretien permettant d'apprécier les connaissances, les aptitudes et la motivation. En externe s'ajoute une interrogation orale sur l'hygiène, la sécurité et l'environnement professionnel (15 min, coef. 2)." },
