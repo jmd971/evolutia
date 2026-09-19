@@ -22,7 +22,6 @@ export type ProgrammeDetaille = {
   contenuIntro: string;
   contenu: ProgrammeSession[];
   suivi: string[];
-  accessibilite: string;
 };
 
 // Session de préparation dont les inscriptions sont ouvertes. `demarrageISO`
@@ -165,7 +164,6 @@ export const FORMATIONS: Record<string, Formation> = {
         "Des concours blancs",
         "Des entretiens avec un jury professionnel",
       ],
-      accessibilite: "Formation accessible aux personnes en situation de handicap : contactez notre référent handicap, M. Tony Barbier, à contact@evolutiaformation.fr pour étudier les adaptations possibles.",
     },
     faq: [
       { q: "Quelles sont les spécialités du concours d'attaché territorial ?", a: "Cinq spécialités au choix à l'inscription : administration générale, gestion du secteur sanitaire et social, analyste, animation, urbanisme et développement des territoires. En Guadeloupe, l'administration générale offre le plus de débouchés, mais la spécialité sanitaire et sociale est très recherchée par le Département." },
