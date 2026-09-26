@@ -1,4 +1,6 @@
 import Link from "next/link"
+import QualiopiBadge from "./QualiopiBadge"
+import { QUALIOPI } from "../qualiopi"
 
 export default function Footer() {
   return (
@@ -7,7 +9,11 @@ export default function Footer() {
         <div>
           <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: 16, color: "white", marginBottom: 8 }}>ÉVOLUTIA Formation</div>
           <p style={{ margin: "0 0 4px", lineHeight: 1.7 }}>Immeuble La Coupole, Grand-Camp<br />97139 Les Abymes, Guadeloupe</p>
-          <p style={{ margin: 0 }}>0690 44 73 60 · contact@evolutiaformation.fr</p>
+          <p style={{ margin: "0 0 4px" }}>0690 44 73 60 · contact@evolutiaformation.fr</p>
+          <p style={{ margin: 0, fontSize: 12, color: "rgba(255,255,255,0.55)" }}>
+            Déclaration d&apos;activité enregistrée sous le n° {QUALIOPI.nda} auprès du préfet de région
+            Guadeloupe. Cet enregistrement ne vaut pas agrément de l&apos;État.
+          </p>
         </div>
         <div style={{ display: "flex", gap: 20, flexWrap: "wrap", alignItems: "flex-start" }}>
           {([
@@ -16,6 +22,7 @@ export default function Footer() {
             ["Calendrier", "/calendrier-concours-guadeloupe"],
             ["Ressources", "/ressources"],
             ["Tarifs & CPF", "/financement-tarifs"],
+            ["Certification Qualiopi", "/certification-qualiopi"],
             ["Contact", "/contact"],
             ["Mentions légales", "/mentions-legales"],
             ["Politique de confidentialité", "/politique-confidentialite"],
@@ -25,7 +32,10 @@ export default function Footer() {
           ))}
         </div>
       </div>
-      <div style={{ maxWidth: 1200, margin: "28px auto 0", paddingTop: 16, borderTop: "1px solid rgba(255,255,255,0.15)", fontSize: 12, color: "rgba(255,255,255,0.6)" }}>
+      <div style={{ maxWidth: 1200, margin: "28px auto 0", paddingTop: 24, borderTop: "1px solid rgba(255,255,255,0.15)" }}>
+        <QualiopiBadge variante="footer" hauteurLogo={64} />
+      </div>
+      <div style={{ maxWidth: 1200, margin: "24px auto 0", paddingTop: 16, borderTop: "1px solid rgba(255,255,255,0.15)", fontSize: 12, color: "rgba(255,255,255,0.6)" }}>
         Conception et développement{" "}
         <a
           href="https://www.siboard-consulting.fr"

@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/temoignages-laureats", priority: 0.6, freq: "monthly" },
     { path: "/financement-tarifs", priority: 0.7, freq: "monthly" },
     { path: "/contact", priority: 0.7, freq: "monthly" },
+    { path: "/certification-qualiopi", priority: 0.5, freq: "monthly" },
     { path: "/ressources", priority: 0.6, freq: "monthly" },
     { path: "/ressources/preparer-concours-redacteur-territorial-guadeloupe", priority: 0.6, freq: "monthly" },
     { path: "/ressources/preparer-concours-ingenieur-territorial-guadeloupe", priority: 0.6, freq: "monthly" },
