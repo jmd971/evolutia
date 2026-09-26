@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SITE_URL } from "./config";
+import { QUALIOPI } from "./qualiopi";
 import "./globals.css";
 
 const TITLE = "Evolutia Formation | Préparation Concours Territoriaux en Guadeloupe";
@@ -45,6 +46,23 @@ const ORGANIZATION_JSONLD = {
       sameAs: [
         "https://www.google.com/maps/place/?q=place_id:ChIJX83z1iJHE4wRXyQgrNUeR60",
       ],
+      // Certification Qualiopi (voir app/qualiopi.ts et /certification-qualiopi).
+      hasCredential: {
+        "@type": "EducationalOccupationalCredential",
+        "@id": `${SITE_URL}${QUALIOPI.page}#qualiopi`,
+        name: "Qualiopi",
+        credentialCategory: "certification",
+        description: QUALIOPI.mentionLegale,
+        identifier: QUALIOPI.numeroCertificat,
+        url: `${SITE_URL}${QUALIOPI.page}`,
+        validFrom: QUALIOPI.debutValiditeISO,
+        expires: QUALIOPI.finValiditeISO,
+        recognizedBy: {
+          "@type": "Organization",
+          name: QUALIOPI.certificateur,
+          url: QUALIOPI.certificateurUrl,
+        },
+      },
     },
     {
       "@type": "WebSite",

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import NavBar from "../components/NavBar"
 import Footer from "../components/Footer"
+import QualiopiBadge from "../components/QualiopiBadge"
 
 export const metadata: Metadata = {
   title: "Tarifs & Financement CPF | Evolutia Formation Guadeloupe",
@@ -41,6 +42,17 @@ export default function FinancementTarifs() {
           <div style={{ color:"#4BADD4", fontSize:12, fontWeight:700, letterSpacing:"0.15em", textTransform:"uppercase", marginBottom:16 }}>Tarifs & Financement</div>
           <h1 style={{ fontFamily:"'Playfair Display', serif", fontSize:"clamp(28px,4vw,48px)", fontWeight:800, color:"white", margin:"0 0 20px 0", lineHeight:1.15 }}>Votre formation financée<br/>à 100% avec le CPF</h1>
           <p style={{ color:"rgba(255,255,255,0.75)", fontSize:17, lineHeight:1.75, margin:0 }}>Toutes nos formations sont éligibles au Compte Personnel de Formation. Investir dans votre réussite ne devrait pas peser sur votre budget.</p>
+        </div>
+      </section>
+
+      {/* Certification Qualiopi — condition d'accès aux fonds de la formation */}
+      <section style={{ padding:"40px 24px 0" }}>
+        <div style={{ maxWidth:1100, margin:"0 auto" }}>
+          <QualiopiBadge hauteurLogo={80} />
+          <p style={{ fontSize:14, color:"#5a6f8f", lineHeight:1.7, margin:"14px 2px 0" }}>
+            Cette certification conditionne l&apos;accès aux fonds publics et mutualisés de la formation
+            professionnelle : c&apos;est elle qui rend possible une prise en charge CPF, OPCO ou France Travail.
+          </p>
         </div>
       </section>
 

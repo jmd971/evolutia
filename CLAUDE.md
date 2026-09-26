@@ -29,6 +29,21 @@ le plan complet des URLs et contenus.
 - Police titre : Playfair Display (serif, autorité)
 - Police corps : Inter (lisibilité)
 
+## Certification Qualiopi (depuis le 21/09/2026)
+Certificat Certifopac n° 984211-1, catégorie « L.6313-1 – 1° Actions de formation »,
+valable du 21/09/2026 au 20/09/2029. Toutes les valeurs sont centralisées dans
+`app/qualiopi.ts` — ne jamais les recopier en dur ailleurs.
+- Le logo officiel (`public/qualiopi/`) vient du kit Certifopac : ne jamais le
+  redessiner, le recolorer, le détourer ni le recadrer.
+- Le logo n'apparaît JAMAIS seul : la mention « La certification qualité a été
+  délivrée au titre de la catégorie d'action suivante : ACTIONS DE FORMATION »
+  l'accompagne partout (composant `QualiopiBadge`).
+- Ne pas écrire « formation certifiée Qualiopi » : c'est l'organisme et son
+  processus qui sont certifiés, pas une formation en particulier.
+- L'affichage du certificat sur le site est obligatoire (arrêté du 31 mai 2023).
+- Après chaque audit de surveillance, remplacer le PDF et mettre à jour
+  `app/qualiopi.ts` (numéro, dates).
+
 ## Règles obligatoires
 - JAMAIS de liens vers siboard-consulting.fr dans le contenu
 - TOUJOURS inclure les balises meta title + description sur chaque page
@@ -36,6 +51,8 @@ le plan complet des URLs et contenus.
 - Textes en français, orthographe vérifiée (ancienne faute : "terrotorial")
 - Redirection 301 obligatoire pour les 6 URLs listées dans /docs/redirects.md
 - Composant CTAButton réutilisable pour tous les CTA
+- Numéro de déclaration d'activité affiché avec la mention « Cet enregistrement
+  ne vaut pas agrément de l'État » (art. L. 6352-12 du Code du travail)
 
 ## SEO — Règles de base
 - H1 unique par page avec mot-clé principal

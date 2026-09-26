@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import NavBar from '../components/NavBar'
 import Footer from '../components/Footer'
+import { QUALIOPI } from '../qualiopi'
 
 export const metadata: Metadata = {
   title: 'Mentions légales — Evolutia Formation',
@@ -18,7 +19,7 @@ export default function MentionsLegales() {
         <h1 className="text-3xl font-bold mb-2" style={{ fontFamily: 'Playfair Display, serif', color: '#1B3A6B' }}>
           Mentions légales
         </h1>
-        <p className="text-sm mb-10" style={{ color: '#5a6f8f' }}>Dernière mise à jour : mai 2026</p>
+        <p className="text-sm mb-10" style={{ color: '#5a6f8f' }}>Dernière mise à jour : septembre 2026</p>
 
         <div className="space-y-10 text-base leading-relaxed" style={{ color: '#1a2740' }}>
 
@@ -38,6 +39,8 @@ export default function MentionsLegales() {
                     ['Code NAF / APE', '85.59A — Formation continue d\'adultes'],
                     ['Convention collective', 'IDCC 1516 — Formation professionnelle'],
                     ['Qualité', 'Organisme de formation'],
+                    ['N° de déclaration d\'activité', `${QUALIOPI.nda} (préfet de région Guadeloupe) — cet enregistrement ne vaut pas agrément de l'État`],
+                    ['Certification qualité', `Qualiopi — certificat n° ${QUALIOPI.numeroCertificat} délivré par ${QUALIOPI.certificateur}, valable du ${QUALIOPI.debutValidite} au ${QUALIOPI.finValidite}`],
                     ['Adresse', 'Immeuble La Coupole, Grand-Camp, 97139 Les Abymes, Guadeloupe'],
                     ['Téléphone', '0690 44 73 60'],
                     ['Email', 'contact@evolutiaformation.fr'],
@@ -86,7 +89,20 @@ export default function MentionsLegales() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold mb-3" style={{ color: '#1B3A6B' }}>6. Cookies</h2>
+            <h2 className="text-xl font-semibold mb-3" style={{ color: '#1B3A6B' }}>6. Certification qualité</h2>
+            <p>
+              EVOLUTIA est certifié <strong>Qualiopi</strong> au titre de la catégorie d&apos;action{' '}
+              « {QUALIOPI.categorie} », sous le certificat n° {QUALIOPI.numeroCertificat} délivré par{' '}
+              {QUALIOPI.certificateur} ({QUALIOPI.accreditation}), valable du {QUALIOPI.debutValidite} au{' '}
+              {QUALIOPI.finValidite}. {QUALIOPI.mentionLegale}{' '}
+              <Link href={QUALIOPI.page} className="underline" style={{ color: '#4BADD4' }}>
+                Consulter et télécharger le certificat
+              </Link>.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold mb-3" style={{ color: '#1B3A6B' }}>7. Cookies</h2>
             <p>
               Ce site utilise des cookies techniques nécessaires à son bon fonctionnement. Aucun cookie de traçage
               ou publicitaire n'est déposé sans votre consentement.
@@ -94,7 +110,7 @@ export default function MentionsLegales() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold mb-3" style={{ color: '#1B3A6B' }}>7. Limitation de responsabilité</h2>
+            <h2 className="text-xl font-semibold mb-3" style={{ color: '#1B3A6B' }}>8. Limitation de responsabilité</h2>
             <p>
               EVOLUTIA s'efforce d'assurer l'exactitude des informations publiées sur ce site. Cependant, elle ne peut
               garantir l'exhaustivité ni l'absence d'erreurs. Les informations relatives aux concours (dates, programmes,
@@ -104,7 +120,7 @@ export default function MentionsLegales() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold mb-3" style={{ color: '#1B3A6B' }}>8. Droit applicable</h2>
+            <h2 className="text-xl font-semibold mb-3" style={{ color: '#1B3A6B' }}>9. Droit applicable</h2>
             <p>
               Les présentes mentions légales sont soumises au droit français. Tout litige relatif à l'utilisation de ce site
               relève de la compétence exclusive des tribunaux compétents de Guadeloupe.
@@ -112,7 +128,7 @@ export default function MentionsLegales() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold mb-3" style={{ color: '#1B3A6B' }}>9. Contact</h2>
+            <h2 className="text-xl font-semibold mb-3" style={{ color: '#1B3A6B' }}>10. Contact</h2>
             <p>
               Pour toute question relative au site ou à vos données personnelles, vous pouvez nous contacter à :{' '}
               <a href="mailto:contact@evolutiaformation.fr" className="underline" style={{ color: '#4BADD4' }}>

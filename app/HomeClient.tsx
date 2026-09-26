@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import NavBar from "./components/NavBar"
 import Footer from "./components/Footer"
+import QualiopiBadge from "./components/QualiopiBadge"
 import ProchainesSessions from "./components/ProchainesSessions"
 import { FORMATIONS_LIST } from "./formations/data"
 import { CONTACT_FORM_URL } from "./config"
@@ -424,9 +425,12 @@ export default function Home() {
           <div>
             <div style={{ color: "#4BADD4", fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 12 }}>Financement</div>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 3vw, 38px)", fontWeight: 800, color: "#1B3A6B", margin: "0 0 20px 0", lineHeight: 1.2 }}>Formations finançables à 100% via le CPF</h2>
-            <p style={{ color: "#5a6f8f", fontSize: 16, lineHeight: 1.8, margin: "0 0 28px 0" }}>
+            <p style={{ color: "#5a6f8f", fontSize: 16, lineHeight: 1.8, margin: "0 0 20px 0" }}>
               Nos formations sont éligibles au Compte Personnel de Formation. Vous pouvez financer tout ou partie de votre préparation sans avancer de frais.
             </p>
+            <div style={{ marginBottom: 28 }}>
+              <QualiopiBadge />
+            </div>
             <ul style={{ listStyle: "none", padding: 0, margin: "0 0 36px 0", display: "flex", flexDirection: "column", gap: 14 }}>
               {["Éligible CPF — aucune avance de frais", "Prise en charge OPCO pour les salariés", "Tarifs adaptés aux demandeurs d'emploi", "Facilités de paiement disponibles"].map((item, i) => (
                 <li key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
