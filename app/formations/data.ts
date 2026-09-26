@@ -12,16 +12,25 @@ export type Faq = { q: string; a: string };
 export type ProgrammeModule = { titre: string; desc: string };
 export type ProgrammeSession = { titre: string; intro?: string; modules: ProgrammeModule[] };
 export type ProgrammeDetaille = {
-  publics: string;
+  // Propre à la formation : c'est ce qu'un auditeur vérifie en premier.
   objectifs: string[];
   prerequis: string[];
-  equipe: string;
-  delaiAcces: string;
-  tarif: string;
-  moyens: string[];
   contenuIntro: string;
   contenu: ProgrammeSession[];
-  suivi: string[];
+  // Tarif et équipe pédagogique : omis tant qu'Evolutia ne les a pas communiqués
+  // pour la préparation concernée — mieux vaut l'absence qu'une valeur inventée.
+  tarif?: string;
+  equipe?: string;
+  // Repris du socle commun (app/formations/socle-qualiopi.ts) quand la fiche ne
+  // les précise pas : ne renseigner ici que ce qui diffère réellement.
+  publics?: string;
+  delaiAcces?: string;
+  moyens?: string[];
+  suivi?: string[];
+  // Ajoutés au socle, pour ce qui est propre à la préparation sans avoir à
+  // recopier le contenu commun.
+  moyensEnPlus?: string[];
+  suiviEnPlus?: string[];
 };
 
 // Session de préparation dont les inscriptions sont ouvertes. `demarrageISO`
@@ -262,6 +271,49 @@ export const FORMATIONS: Record<string, Formation> = {
       demarrage: "vendredi 27 novembre 2026",
       demarrageISO: "2026-11-27",
       inscription: "ouverte",
+    },
+    programmeDetaille: {
+      objectifs: [
+        "Identifier les attendus des deux épreuves écrites du concours — la série de questions et la note ou le rapport à partir d'un dossier — et la forme de rédaction que chacune appelle.",
+        "Mobiliser les connaissances de droit public, de finances publiques et de fonctionnement des collectivités territoriales nécessaires aux réponses à questions.",
+        "Analyser un dossier documentaire en temps limité, en extraire les éléments utiles et rédiger une note structurée dans les trois heures imparties.",
+        "Pour le concours de rédacteur principal de 2e classe : assortir le rapport de propositions opérationnelles argumentées, adressées à un destinataire identifié.",
+        "Construire et présenter à l'oral un exposé de sa formation et de son projet professionnel (voie externe) ou des acquis de son expérience (voies interne et 3e voie).",
+        "Suivre et exploiter l'actualité territoriale nationale et guadeloupéenne au service des épreuves.",
+        "Gérer le temps et le stress le jour des épreuves.",
+      ],
+      prerequis: [
+        "Remplir les conditions d'accès à la voie visée : baccalauréat en externe pour rédacteur, Bac+2 pour rédacteur principal de 2e classe, quatre ans de services publics en interne, quatre ans d'activité professionnelle, de mandat électif ou de responsabilité associative en 3e voie",
+        "Avoir pris connaissance des notes de cadrage nationales des épreuves",
+        "Pouvoir consacrer du temps de travail personnel entre les séances",
+        "Maîtriser l'expression écrite en français",
+      ],
+      tarif: "À partir de 2 490 €",
+      contenuIntro: "La préparation représente 80 à 120 heures, réparties entre les deux épreuves écrites d'admissibilité et l'entretien d'admission. Les concours de rédacteur et de rédacteur principal de 2e classe étant organisés aux mêmes dates en 2027, les deux sont préparés dans la même session, avec des travaux différenciés là où les épreuves divergent.",
+      contenu: [
+        {
+          titre: "Épreuves écrites — admissibilité",
+          intro: "En voie externe, les deux épreuves écrites comptent ; en voie interne et en 3e voie, la note sur dossier est l'unique épreuve écrite.",
+          modules: [
+            { titre: "Droit public, finances publiques et fonctionnement des collectivités", desc: "Organisation administrative locale, compétences et moyens d'action des collectivités, notions essentielles de droit public et de finances publiques. Ce module est approfondi pour les candidats au concours de rédacteur principal de 2e classe, dont la série de questions porte spécifiquement sur ces deux domaines." },
+            { titre: "Méthodologie de la série de questions (3h, coef. 1)", desc: "Lecture et cadrage de la question posée, construction d'une réponse courte et hiérarchisée, gestion du temps entre les questions. Entraînements sur les domaines proposés à l'inscription en voie externe." },
+            { titre: "Méthodologie de la note ou du rapport sur dossier (3h, coef. 1)", desc: "Analyse du dossier documentaire, sélection des éléments pertinents, élaboration d'un plan, rédaction d'une note sur les missions, compétences et moyens d'action des collectivités territoriales. Pour le rapport de rédacteur principal, formulation de propositions opérationnelles. Conforme aux notes de cadrage nationales." },
+            { titre: "Actualité territoriale nationale et guadeloupéenne", desc: "Veille structurée sur les réformes, les finances locales et les enjeux propres aux Antilles-Guyane, réinvestie dans les réponses à questions comme dans la note." },
+            { titre: "Entraînements sur sujets officiels", desc: "Devoirs sur annales, corrigés individuellement et commentés, puis concours blancs en conditions et en temps réels." },
+          ],
+        },
+        {
+          titre: "Entretien avec le jury — admission",
+          modules: [
+            { titre: "Construction de l'exposé", desc: "Voie externe : présentation de la formation et du projet professionnel. Voies interne et 3e voie : mise en valeur des acquis de l'expérience. Choix des éléments à retenir, articulation et conduite de l'exposé dans le temps imparti." },
+            { titre: "Connaissance du cadre d'emplois et de l'environnement professionnel", desc: "Missions du rédacteur territorial — instruction de dossiers, rédaction d'actes, comptabilité, gestion — positionnement dans les services et attentes d'un employeur territorial guadeloupéen." },
+            { titre: "Simulations d'entretien (20 min, coef. 1)", desc: "Entretiens blancs devant un jury professionnel, portant sur la motivation et l'aptitude à exercer les missions, suivis d'un bilan individuel et de conseils de progression." },
+          ],
+        },
+      ],
+      moyensEnPlus: [
+        "Suivi personnalisé par un formateur référent jusqu'aux épreuves écrites d'octobre 2027.",
+      ],
     },
     faq: [
       { q: "Quelles sont exactement les épreuves écrites du concours de rédacteur ?", a: "En voie externe : une série de questions (3h) et la rédaction d'une note à partir d'un dossier (3h). En voie interne et 3e voie : uniquement la note sur dossier (3h). Contrairement à une idée répandue, il n'y a ni dissertation de culture générale ni note de synthèse classique — la méthodologie attendue est précisée dans les notes de cadrage officielles, sur lesquelles nous nous appuyons." },
@@ -780,6 +832,55 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuves", date: "29 septembre 2027", statut: "bientot" },
       { label: "Démarrage préparation conseillé", date: "Printemps 2027", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      publics: "Titulaires du CAP Accompagnant éducatif petite enfance ou d'une qualification équivalente pour la voie externe ; agents publics justifiant de services auprès de jeunes enfants pour la voie interne ; personnes justifiant de quatre ans d'activité auprès de jeunes enfants, de mandat électif ou de responsabilité associative pour la 3e voie.",
+      objectifs: [
+        "Décrire le rôle de l'ATSEM auprès des enfants, de l'enseignant et de la collectivité employeuse, et situer ce rôle dans la communauté éducative.",
+        "Traiter les situations professionnelles types rencontrées en école maternelle : hygiène, sécurité, accompagnement des activités, restauration, sieste.",
+        "Répondre à un questionnaire à choix multiples de 20 questions en 45 minutes, en gérant le temps et les pièges de formulation (voie externe).",
+        "Répondre de façon courte et précise à une série de questions posées à partir d'un dossier succinct (voies interne et 3e voie).",
+        "Présenter son expérience et ses motivations devant un jury, et traiter une mise en situation professionnelle.",
+        "Connaître le fonctionnement des recrutements communaux en Guadeloupe et les démarches qui suivent l'inscription sur liste d'aptitude.",
+      ],
+      prerequis: [
+        "Voie externe : CAP Accompagnant éducatif petite enfance (ex-CAP petite enfance) ou qualification reconnue équivalente",
+        "Voie interne : être fonctionnaire ou agent public justifiant de services effectifs auprès de jeunes enfants",
+        "3e voie : quatre ans au moins d'activités professionnelles auprès de jeunes enfants, de mandats d'élu local ou de responsabilités associatives",
+        "Aucun prérequis scolaire au-delà du diplôme exigé par la voie choisie",
+      ],
+      contenuIntro: "La préparation représente 40 à 60 heures en présentiel à Grand-Camp. Elle couvre l'épreuve écrite dans la forme propre à chaque voie — QCM de 20 questions en 45 minutes en externe, questions à réponses courtes sur dossier en 2 heures en interne et 3e voie — puis l'entretien avec le jury, dont le coefficient 2 départage les admissibles sur ce concours très demandé.",
+      contenu: [
+        {
+          titre: "Épreuve écrite — admissibilité",
+          intro: "Le fond est commun aux trois voies : ce sont les situations professionnelles de l'ATSEM. Seule la forme de l'épreuve change.",
+          modules: [
+            { titre: "Le métier d'ATSEM", desc: "Missions auprès des enfants, assistance à l'enseignant, place dans l'équipe de l'école et rattachement à la commune. Cadre d'emplois, droits et obligations de l'agent territorial." },
+            { titre: "Situations professionnelles types", desc: "Hygiène des locaux et des enfants, sécurité et conduite à tenir en cas d'incident, préparation et accompagnement des activités pédagogiques, restauration scolaire, sieste, accueil et départ des enfants. Ce sont les situations sur lesquelles portent les questions de l'épreuve." },
+            { titre: "Entraînement au QCM — voie externe (45 min, coef. 1)", desc: "Séries chronométrées de 20 questions à choix multiples sur les situations concrètes du métier, avec correction commentée : lecture des énoncés, repérage des formulations trompeuses, gestion du temps, stratégie de réponse." },
+            { titre: "Entraînement aux questions à réponses courtes — voies interne et 3e voie (2h, coef. 1)", desc: "Traitement d'un dossier succinct et rédaction de trois à cinq réponses courtes : précision du propos, appui sur l'expérience professionnelle, respect du temps imparti." },
+            { titre: "Environnement professionnel", desc: "Organisation de l'école maternelle, rôle de la commune, relations avec les familles et la communauté éducative." },
+          ],
+        },
+        {
+          titre: "Entretien avec le jury — admission",
+          intro: "Épreuve de coefficient 2 : elle pèse davantage que l'écrit et départage les candidates admissibles.",
+          modules: [
+            { titre: "Construction de la présentation", desc: "Voie externe : aptitude, motivation et connaissance de l'environnement professionnel, sur un entretien de 15 minutes. Voies interne et 3e voie : présentation de l'expérience en 5 minutes, suivie d'une conversation de 20 minutes." },
+            { titre: "Mises en situation", desc: "Traitement à l'oral de situations professionnelles — un enfant en difficulté, un désaccord avec l'enseignant, un incident de sécurité, une demande d'un parent — avec les réponses attendues d'une ATSEM." },
+            { titre: "Simulations d'entretien", desc: "Entretiens blancs devant un jury professionnel, avec bilan individuel portant sur le fond, la posture et l'expression." },
+          ],
+        },
+        {
+          titre: "Après le concours",
+          modules: [
+            { titre: "Liste d'aptitude et recrutement en Guadeloupe", desc: "Inscription sur liste d'aptitude pour quatre ans au maximum, qui ne vaut pas recrutement : méthode de candidature auprès des communes de l'archipel, calendrier des recrutements et réalités du terrain local." },
+          ],
+        },
+      ],
+      moyensEnPlus: [
+        "Banque de questionnaires à choix multiples reprenant les 20 questions types de l'épreuve externe.",
+      ],
+    },
     faq: [
       { q: "Le CAP AEPE est-il obligatoire pour devenir ATSEM ?", a: "Pour le concours externe, oui : le CAP Accompagnant éducatif petite enfance (ou une qualification équivalente) est exigé. Si vous êtes déjà agent public ou si vous justifiez de 4 ans d'expérience auprès de jeunes enfants, les voies interne et 3e voie sont possibles sans ce diplôme." },
       { q: "Le concours d'ATSEM est-il très sélectif en Guadeloupe ?", a: "Oui, c'est l'un des concours de catégorie C les plus demandés : le nombre de candidates dépasse largement le nombre de postes. Le QCM élimine beaucoup de candidates non préparées, et l'entretien (coefficient 2) départage les admissibles — la préparation fait clairement la différence." },
@@ -1090,6 +1191,58 @@ export const FORMATIONS: Record<string, Formation> = {
       demarrage: "vendredi 4 septembre 2026",
       demarrageISO: "2026-09-04",
       inscription: "ouverte",
+    },
+    programmeDetaille: {
+      publics: "Adjoints techniques territoriaux et ATSEM justifiant d'au moins sept ans de services effectifs, pour l'examen professionnel de promotion interne ; candidats externes titulaires de deux diplômes de niveau CAP/BEP, agents publics et candidats de 3e voie, pour le concours.",
+      objectifs: [
+        "Analyser un dossier technique en deux heures, en dégager un diagnostic et formuler des propositions concrètes, sous l'angle de l'encadrement d'équipe.",
+        "Mobiliser les savoirs professionnels attendus d'un agent de maîtrise : organisation de chantier, planification, contrôle de la qualité du travail réalisé.",
+        "Maîtriser la réglementation en hygiène et sécurité, l'évaluation des risques et l'usage des équipements de protection individuelle.",
+        "Conduire une équipe : donner des consignes, répartir le travail, traiter les situations difficiles et rendre compte à sa hiérarchie.",
+        "Construire un exposé de son expérience professionnelle et de ses motivations, et le soutenir devant un jury.",
+        "Pour le concours externe : traiter les problèmes d'application du programme officiel de mathématiques.",
+        "Gérer le temps et le stress le jour des épreuves, en tenant compte des notes éliminatoires.",
+      ],
+      prerequis: [
+        "Examen professionnel : être adjoint technique territorial, adjoint technique des établissements d'enseignement ou ATSEM, et justifier d'au moins sept ans de services effectifs — les épreuves peuvent être passées au plus tôt un an avant de remplir cette condition, en étant en activité à la clôture des inscriptions",
+        "Concours externe : deux titres ou diplômes de niveau 3 (CAP/BEP) sanctionnant une formation technique et professionnelle, ou qualifications équivalentes",
+        "Concours interne et 3e voie : conditions de services publics ou quatre ans d'activité professionnelle, de mandat électif ou de responsabilité associative",
+        "Expérience de terrain dans un métier technique, sur laquelle appuyer le cas pratique et l'exposé",
+      ],
+      tarif: "À partir de 1 890 €",
+      contenuIntro: "La préparation représente 60 à 80 heures et couvre les deux voies d'accès dans une même session : l'examen professionnel de promotion interne — cas pratique de 2 heures et entretien de 15 minutes, chacun de coefficient 1 — et le concours, qui ajoute une épreuve de mathématiques en externe, une épreuve de connaissances techniques en interne et 3e voie, et un entretien de coefficient 4. Le cas pratique, commun aux deux voies, occupe la place centrale : c'est l'épreuve la plus éliminatoire.",
+      contenu: [
+        {
+          titre: "Cas pratique sur dossier — tronc commun aux deux voies",
+          modules: [
+            { titre: "Méthodologie du cas pratique (2h)", desc: "Lecture rapide d'un dossier composé de pièces hétérogènes, identification du problème posé, diagnostic, puis rédaction de propositions opérationnelles. L'épreuve étant anonyme et doublement corrigée, l'entraînement porte aussi sur la lisibilité et la structure de la copie. Toute note inférieure à 5/20 est éliminatoire." },
+            { titre: "Missions d'encadrement", desc: "Transmission des consignes, établissement d'un planning, répartition des tâches, contrôle de la qualité, gestion des situations difficiles au sein d'une équipe technique — l'angle attendu par le jury dans le traitement du cas." },
+            { titre: "Organisation de chantier", desc: "Préparation et suivi d'une intervention en espaces verts, bâtiment ou voirie : moyens, matériels, délais, coordination avec les autres services de la collectivité." },
+          ],
+        },
+        {
+          titre: "Connaissances techniques et mathématiques — concours",
+          intro: "Modules suivis selon la voie d'accès : mathématiques pour le concours externe, connaissances techniques pour les voies interne et 3e voie.",
+          modules: [
+            { titre: "Hygiène et sécurité", desc: "Réglementation applicable aux agents des collectivités, évaluation des risques professionnels, équipements de protection individuelle, conduite à tenir en cas d'accident. Ces connaissances sont vérifiées à l'écrit en interne et en 3e voie, par questionnaires, tableaux ou graphiques, et reviennent à l'entretien." },
+            { titre: "Remise à niveau en mathématiques appliquées — voie externe (2h, coef. 2)", desc: "Programme officiel de l'épreuve : arithmétique, géométrie, unités, pourcentages et proportions appliqués à des situations techniques. Module progressif destiné aux candidats externes, pour qui cette épreuve constitue l'obstacle principal." },
+          ],
+        },
+        {
+          titre: "Entretien avec le jury",
+          modules: [
+            { titre: "Construction de l'exposé d'expérience", desc: "Sélection des réalisations à mettre en avant, formulation des motivations, conduite de l'exposé — cinq minutes en interne et 3e voie au concours, présentation libre à l'examen professionnel." },
+            { titre: "Simulations d'entretien", desc: "Entretiens blancs de 15 minutes devant un jury professionnel, incluant des mises en situation d'encadrement d'agents de catégorie C, avec bilan individuel. À l'examen professionnel, un candidat ne peut être admis si la moyenne de ses deux notes est inférieure à 10/20 : l'oral rattrape ou condamne l'écrit." },
+          ],
+        },
+      ],
+      moyensEnPlus: [
+        "Ateliers pratiques en petit groupe, adossés à des situations de chantier réelles.",
+        "Entraînements chronométrés sur annales, dans les conditions de durée des épreuves.",
+      ],
+      suiviEnPlus: [
+        "Un point d'étape individuel sur la progression au cas pratique, épreuve la plus éliminatoire",
+      ],
     },
     faq: [
       { q: "Quelle différence entre l'examen professionnel et le concours d'agent de maîtrise ?", a: "L'examen professionnel est une voie de promotion interne : il est réservé aux adjoints techniques territoriaux et aux ATSEM justifiant d'au moins 7 ans de services effectifs, et se compose de deux épreuves seulement — un cas pratique de 2 heures et un entretien de 15 minutes, chacun de coefficient 1. Le concours, lui, est ouvert à des candidats extérieurs (avec deux diplômes de niveau CAP/BEP), aux agents publics en interne et à la 3e voie ; il ajoute une épreuve de mathématiques en externe et un entretien de coefficient 4. Réussir l'examen professionnel n'entraîne pas la nomination automatique : il faut ensuite être inscrit sur la liste d'aptitude par votre employeur." },

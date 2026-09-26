@@ -4,6 +4,7 @@ import Link from "next/link";
 import NavBar from "../../components/NavBar"
 import Footer from "../../components/Footer"
 import { FORMATIONS, FORMATIONS_LIST, NOUVELLES_FILIERES } from "../data";
+import { ficheQualiopi } from "../socle-qualiopi";
 import { inscriptionUrl } from "../../config";
 
 export async function generateStaticParams() {
@@ -209,7 +210,7 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
 
           {/* Programme détaillé (fiche Qualiopi) */}
           {f.programmeDetaille && (() => {
-            const pd = f.programmeDetaille;
+            const pd = ficheQualiopi(f.programmeDetaille);
             const h3 = { fontFamily: "'Playfair Display', serif", fontSize: 19, fontWeight: 700, color: "#1B3A6B", margin: "0 0 12px 0" } as const;
             const card = { background: "white", border: "1px solid #D6E4F0", borderRadius: 16, padding: "24px 28px" } as const;
             const ul = { margin: 0, paddingLeft: 20, display: "flex", flexDirection: "column", gap: 8 } as const;
@@ -239,13 +240,16 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
                     </div>
                     <div style={card}>
                       <h3 style={h3}>Informations pratiques</h3>
-                      {[
+                      {([
                         { label: "Durée", val: f.duree },
-                        { label: "Tarif", val: `${pd.tarif} (non assujetti à la TVA)` },
+                        // Tarif et équipe : affichés seulement quand Evolutia les a
+                        // communiqués pour cette préparation.
+                        { label: "Tarif", val: pd.tarif ? `${pd.tarif} (non assujetti à la TVA)` : "Sur devis — nous consulter" },
                         { label: "Délai d'accès", val: pd.delaiAcces },
-                        { label: "Équipe pédagogique", val: pd.equipe },
-                      ].map((row, i) => (
-                        <div key={i} style={{ padding: "8px 0", borderBottom: i < 3 ? "1px solid #EEF5FF" : "none" }}>
+                        ...(pd.equipe ? [{ label: "Équipe pédagogique", val: pd.equipe }] : []),
+                        { label: "Accessibilité", val: "Formation accessible aux personnes en situation de handicap — voir ci-dessous" },
+                      ] as { label: string; val: string }[]).map((row, i, rows) => (
+                        <div key={i} style={{ padding: "8px 0", borderBottom: i < rows.length - 1 ? "1px solid #EEF5FF" : "none" }}>
                           <div style={{ fontSize: 11, color: "#5a6f8f", textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 700, marginBottom: 2 }}>{row.label}</div>
                           <div style={{ fontSize: 14, color: "#1a2740", lineHeight: 1.5 }}>{row.val}</div>
                         </div>
