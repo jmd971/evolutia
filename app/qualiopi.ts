@@ -38,6 +38,10 @@ export const QUALIOPI = {
   nda: "01973722197",
   siren: "927 489 690",
   pdf: "/qualiopi/certificat-qualiopi-evolutia-984211-1.pdf",
+  // Logo officiel tel que Certifopac l'intègre dans le certificat (439 x 174 px,
+  // aucune retouche). Ne pas l'afficher au-delà de 87 px de haut : au-delà il
+  // perd en netteté sur les écrans 2x. Pour un affichage plus grand, reprendre
+  // le fichier haute définition du kit Certifopac sous le même nom.
   logo: "/qualiopi/logo-qualiopi-actions-de-formation.png",
   page: "/certification-qualiopi",
 } as const;

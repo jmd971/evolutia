@@ -86,7 +86,9 @@ export default function CertificationQualiopi() {
             <img
               src={QUALIOPI.logo}
               alt="Qualiopi — processus certifié — République Française"
-              style={{ height: 120, width: "auto" }}
+              // Le fichier officiel mesure 439 x 174 px : on ne dépasse pas
+              // 87 px de haut, pour qu'il reste net sur les écrans 2x.
+              style={{ height: 87, width: "auto" }}
             />
             <p style={{ margin: 0, fontSize: 16, lineHeight: 1.7, color: "#1a2740", fontWeight: 600, maxWidth: 460 }}>
               {QUALIOPI.mentionLegale}
