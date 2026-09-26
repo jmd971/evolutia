@@ -11,8 +11,8 @@ export default function Footer() {
           <p style={{ margin: "0 0 4px", lineHeight: 1.7 }}>Immeuble La Coupole, Grand-Camp<br />97139 Les Abymes, Guadeloupe</p>
           <p style={{ margin: "0 0 4px" }}>0690 44 73 60 · contact@evolutiaformation.fr</p>
           <p style={{ margin: 0, fontSize: 12, color: "rgba(255,255,255,0.55)" }}>
-            Déclaration d&apos;activité enregistrée sous le n° {QUALIOPI.nda} auprès du préfet de région
-            Guadeloupe. Cet enregistrement ne vaut pas agrément de l&apos;État.
+            Déclaration d&apos;activité enregistrée sous le n° {QUALIOPI.nda}{" "}
+            auprès du préfet de région Guadeloupe. Cet enregistrement ne vaut pas agrément de l&apos;État.
           </p>
         </div>
         <div style={{ display: "flex", gap: 20, flexWrap: "wrap", alignItems: "flex-start" }}>
