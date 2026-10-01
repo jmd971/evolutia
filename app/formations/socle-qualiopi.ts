@@ -29,6 +29,13 @@ export const MOYENS_DEFAUT = [
   "Évaluation formative continue, avec bref rappel de la séance précédente à chaque début de cours.",
 ];
 
+// Préparations dont les oraux blancs sont filmés : la modalité et le prérequis
+// de droit à l'image sont écrits ici, pas recopiés dans chaque fiche.
+export const MOYEN_SIMULATION_FILMEE =
+  "Simulations d'entretien filmées, analysées avec le candidat et comparées d'une séance à l'autre, dans les conditions réelles du jury.";
+export const PREREQUIS_DROIT_IMAGE =
+  "Accepter d'être filmé pendant les simulations — une attestation de droit à l'image est signée en début de préparation";
+
 export const SUIVI_DEFAUT = [
   "Un bref rappel de la séance précédente à chaque début de cours",
   "Des sujets d'entraînement aux épreuves, corrigés et commentés",
@@ -57,11 +64,15 @@ export function ficheQualiopi(pd: ProgrammeDetaille): FicheAffichee {
   return {
     publics: pd.publics ?? PUBLICS_DEFAUT,
     objectifs: pd.objectifs,
-    prerequis: pd.prerequis,
+    prerequis: [...pd.prerequis, ...(pd.simulationsFilmees ? [PREREQUIS_DROIT_IMAGE] : [])],
     equipe: pd.equipe,
     delaiAcces: pd.delaiAcces ?? DELAI_ACCES_DEFAUT,
     tarif: pd.tarif,
-    moyens: [...(pd.moyens ?? MOYENS_DEFAUT), ...(pd.moyensEnPlus ?? [])],
+    moyens: [
+      ...(pd.moyens ?? MOYENS_DEFAUT),
+      ...(pd.simulationsFilmees ? [MOYEN_SIMULATION_FILMEE] : []),
+      ...(pd.moyensEnPlus ?? []),
+    ],
     contenuIntro: pd.contenuIntro,
     contenu: pd.contenu,
     suivi: [...(pd.suivi ?? SUIVI_DEFAUT), ...(pd.suiviEnPlus ?? [])],

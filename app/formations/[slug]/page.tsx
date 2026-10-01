@@ -178,8 +178,10 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
             </div>
           </section>
 
-          {/* Objectifs de la formation */}
-          {f.objectifs && f.objectifs.length > 0 && (
+          {/* Objectifs de la formation — seulement pour les formations sans fiche
+              programme complète : sinon les objectifs y figurent déjà et le
+              doublon se lit comme une information non tenue à jour. */}
+          {!f.programmeDetaille && f.objectifs && f.objectifs.length > 0 && (
             <section style={{ marginBottom: 48 }}>
               <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 24px 0" }}>Objectifs de la formation</h2>
               <div style={{ background: "white", border: "1px solid #D6E4F0", borderLeft: "4px solid #F5A623", borderRadius: 16, padding: "28px 32px" }}>

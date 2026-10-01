@@ -31,6 +31,9 @@ export type ProgrammeDetaille = {
   // recopier le contenu commun.
   moyensEnPlus?: string[];
   suiviEnPlus?: string[];
+  // Oraux blancs filmés : ajoute la modalité aux moyens et le prérequis de
+  // droit à l'image, tous deux définis une seule fois dans socle-qualiopi.ts.
+  simulationsFilmees?: boolean;
 };
 
 // Session de préparation dont les inscriptions sont ouvertes. `demarrageISO`
@@ -219,6 +222,47 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuve écrite", date: "8 avril 2027", statut: "bientot" },
       { label: "Démarrage préparation conseillé", date: "Dès septembre 2026", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      publics: "Attachés territoriaux en poste remplissant les conditions d'inscription à l'examen professionnel d'avancement au grade d'attaché principal.",
+      simulationsFilmees: true,
+      objectifs: [
+        "Traiter en quatre heures un dossier de mise en situation professionnelle et produire une note d'analyse assortie de solutions opérationnelles argumentées.",
+        "Se placer dans la position du cadre à qui la note est commandée : identifier le commanditaire, l'enjeu de la décision et les contraintes de la collectivité.",
+        "Mobiliser l'actualité des collectivités — finances locales, commande publique, ressources humaines, transition écologique — au service des propositions formulées.",
+        "Construire un exposé de cinq minutes sur son expérience professionnelle, centré sur les responsabilités réellement exercées.",
+        "Démontrer devant le jury une posture d'encadrement : conduite de projet, animation d'équipe, relations aux élus et arbitrages.",
+        "Sécuriser l'écrit, dont toute note inférieure à 5/20 est éliminatoire.",
+      ],
+      prerequis: [
+        "Être attaché territorial, justifier de trois ans de services effectifs en catégorie A et avoir atteint le 5e échelon du grade — il est possible de se présenter un an avant de remplir ces conditions",
+        "Exercer ou avoir exercé des responsabilités sur lesquelles appuyer l'exposé et l'entretien",
+        "Pouvoir consacrer du temps de travail personnel entre les séances",
+      ],
+      contenuIntro: "La préparation représente 50 à 70 heures, réparties entre l'écrit de mise en situation professionnelle et l'entretien, chacun de coefficient 1. L'examen étant un avancement de grade, les attendus portent moins sur les connaissances académiques que sur la capacité à se comporter en cadre confirmé — c'est l'axe de toute la préparation.",
+      contenu: [
+        {
+          titre: "Note de mise en situation professionnelle — écrit (4h, coef. 1)",
+          modules: [
+            { titre: "Méthodologie de la note de mise en situation", desc: "Lecture du dossier sous l'angle de la commande, identification de la problématique de gestion, construction d'un plan orienté vers la décision, puis rédaction dans un style de cadre territorial. Travail sur sujets d'annales corrigés." },
+            { titre: "Formuler des propositions opérationnelles", desc: "Passer du constat à la solution : hiérarchiser les scénarios, en mesurer le coût et les conditions de mise en œuvre, assumer une recommandation. C'est ce que le jury attend d'un futur attaché principal, et ce qui distingue la copie moyenne de la copie admise." },
+            { titre: "Actualité des collectivités", desc: "Finances locales et contraintes budgétaires, commande publique, gestion des ressources humaines, transition écologique et adaptation aux risques en Guadeloupe. Veille structurée, réinvestie dans les propositions." },
+            { titre: "Entraînements corrigés", desc: "Devoirs sur dossiers types corrigés individuellement, puis épreuve blanche en temps réel, avec un point de vigilance sur la note éliminatoire de 5/20." },
+          ],
+        },
+        {
+          titre: "Entretien avec le jury — oral (20 min dont 5 min d'exposé, coef. 1)",
+          modules: [
+            { titre: "Construction de l'exposé de cinq minutes", desc: "Sélection des réalisations marquantes du parcours, mise en évidence du niveau de responsabilité, structuration et conduite de l'exposé dans un temps court." },
+            { titre: "Posture managériale", desc: "Encadrement d'une équipe, conduite de projet transversal, gestion d'un conflit, relation avec les élus et la direction générale : les situations sur lesquelles le jury interroge pour apprécier l'aptitude au grade supérieur." },
+            { titre: "Connaissances administratives générales", desc: "Organisation territoriale, cadre juridique de l'action des collectivités et grands équilibres financiers, au niveau attendu d'un attaché principal." },
+            { titre: "Simulations d'entretien", desc: "Oraux blancs filmés devant un jury professionnel, avec débriefing individuel sur le fond, la posture et la gestion des questions déstabilisantes." },
+          ],
+        },
+      ],
+      moyensEnPlus: [
+        "Planning de révision personnalisé jusqu'aux épreuves d'avril 2027.",
+      ],
+    },
     faq: [
       { q: "Qui peut se présenter à l'examen d'attaché principal ?", a: "Les attachés territoriaux justifiant de 3 ans de services effectifs dans un cadre d'emplois de catégorie A et ayant atteint le 5e échelon du grade d'attaché. Vous pouvez vous présenter au plus tôt un an avant de remplir ces conditions — vérifiez votre situation avec votre service RH ou avec nous." },
       { q: "La réussite à l'examen garantit-elle la promotion ?", a: "Non. La réussite vous rend inscriptible au tableau d'avancement, mais la nomination reste une décision de votre collectivité. Un bon dossier et un entretien réussi renforcent toutefois nettement votre position." },
@@ -359,6 +403,47 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Inscriptions (session 2026)", date: "Clôturées — CDG 971", statut: "ferme" },
       { label: "Préparation intensive à l'écrit et à l'oral", date: "Disponible dès maintenant", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      publics: "Rédacteurs territoriaux et rédacteurs principaux de 2e classe en poste, remplissant les conditions d'inscription à l'examen professionnel d'avancement au grade visé.",
+      simulationsFilmees: true,
+      objectifs: [
+        "Rédiger en trois heures un rapport à partir d'un dossier portant sur les missions, compétences et moyens d'action des collectivités territoriales.",
+        "Assortir ce rapport de propositions opérationnelles réalistes, adressées à un destinataire identifié.",
+        "Maîtriser les fondamentaux attendus sur le fonctionnement des collectivités, support des propositions comme des questions du jury.",
+        "Construire un exposé de cinq minutes sur les acquis de son expérience professionnelle.",
+        "Démontrer son aptitude à encadrer une équipe et à organiser un service.",
+        "Sécuriser l'écrit, dont une note inférieure à 5/20 interdit l'accès à l'oral.",
+      ],
+      prerequis: [
+        "Avancement en 2e classe : être rédacteur, avoir atteint le 6e échelon du grade et justifier d'au moins trois ans de services effectifs en catégorie B",
+        "Avancement en 1re classe : être rédacteur principal de 2e classe, justifier d'au moins un an dans le 6e échelon et de trois ans de services effectifs en catégorie B",
+        "Disposer d'une expérience professionnelle sur laquelle appuyer l'exposé oral",
+      ],
+      tarif: "À partir de 1 490 €",
+      contenuIntro: "La préparation représente 40 à 60 heures. L'épreuve écrite étant identique pour la 1re et la 2e classe, les deux examens sont préparés dans la même session ; seules les attentes du jury à l'oral se renforcent pour la 1re classe. Contrairement à une idée répandue, cet examen comporte bien un écrit exigeant : c'est là que se joue l'admissibilité.",
+      contenu: [
+        {
+          titre: "Rapport avec propositions — écrit (3h, coef. 1)",
+          modules: [
+            { titre: "Méthodologie du rapport", desc: "Analyse du dossier, identification de la commande, plan en deux parties — constat puis propositions — et rédaction dans la forme administrative attendue : en-tête, destinataire, objet, références. Entraînement sur annales corrigées." },
+            { titre: "Formuler des propositions opérationnelles", desc: "Transformer l'analyse en décisions applicables : moyens, calendrier, acteurs à mobiliser, points de vigilance. C'est le critère qui différencie le rapport du simple résumé de dossier." },
+            { titre: "Missions, compétences et moyens d'action des collectivités", desc: "Organisation administrative locale, répartition des compétences, moyens budgétaires et humains : les fondamentaux sur lesquels reposent les dossiers proposés à l'examen." },
+            { titre: "Relecture et correction individuelles", desc: "Chaque écrit d'entraînement est corrigé et commenté personnellement, avec un axe de progression défini pour le devoir suivant." },
+          ],
+        },
+        {
+          titre: "Entretien avec le jury — oral (20 min dont 5 min d'exposé, coef. 1)",
+          modules: [
+            { titre: "Construction de l'exposé d'expérience", desc: "Mise en valeur des acquis de l'expérience professionnelle : dossiers conduits, responsabilités prises, résultats obtenus, en cinq minutes tenues." },
+            { titre: "Posture d'encadrement", desc: "Animer une équipe, organiser un service, répartir la charge de travail, traiter une difficulté relationnelle : les mises en situation que le jury utilise pour apprécier l'aptitude au grade." },
+            { titre: "Simulations d'entretien", desc: "Entretiens blancs filmés devant un jury professionnel, avec débriefing individuel." },
+          ],
+        },
+      ],
+      moyensEnPlus: [
+        "Accompagnement individuel en distanciel entre les séances présentielles.",
+      ],
+    },
     faq: [
       { q: "L'examen de rédacteur principal comporte-t-il un écrit ?", a: "Oui. L'examen d'avancement de grade comporte une épreuve écrite de 3h — un rapport à partir d'un dossier, assorti de propositions opérationnelles — puis un entretien de 20 minutes. Une note inférieure à 5/20 à l'écrit est éliminatoire : ne négligez pas cette épreuve." },
       { q: "Quelle est la différence entre la 1re et la 2e classe ?", a: "Les épreuves sont identiques, mais les conditions d'accès diffèrent : la 2e classe est ouverte aux rédacteurs ayant atteint le 6e échelon avec 3 ans de services en catégorie B ; la 1re classe aux rédacteurs principaux de 2e classe avec 1 an dans le 6e échelon. Le jury attend un niveau de recul et de responsabilité supérieur pour la 1re classe." },
@@ -401,6 +486,44 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuve écrite", date: "18 mars 2027", statut: "bientot" },
       { label: "Démarrage préparation conseillé", date: "Novembre 2026", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      publics: "Adjoints administratifs territoriaux en poste remplissant les conditions d'inscription à l'examen professionnel d'avancement au grade d'adjoint administratif principal de 2e classe.",
+      objectifs: [
+        "Lire rapidement des documents administratifs succincts et en retranscrire les idées principales.",
+        "Répondre de façon brève et exacte à trois à cinq questions, y compris sous forme de tableaux, dans un temps limité à une heure trente.",
+        "Employer à bon escient le vocabulaire administratif et situer son service dans le fonctionnement de la collectivité.",
+        "Rédiger le document retraçant son parcours professionnel, support de l'entretien.",
+        "Présenter son expérience en cinq minutes, puis répondre aux questions du jury sur sa motivation et son aptitude aux missions confiées.",
+        "Sécuriser l'écrit, dont la note minimale de 5/20 conditionne l'accès à l'oral.",
+      ],
+      prerequis: [
+        "Être adjoint administratif territorial, avoir atteint le 4e échelon et compter au moins trois ans de services effectifs dans le grade ou un grade équivalent (échelle C1)",
+        "Maîtriser l'expression écrite en français",
+        "Aucune connaissance académique préalable n'est exigée au-delà de la pratique du poste",
+      ],
+      contenuIntro: "La préparation représente 30 à 50 heures, en séances de fin de journée adaptées aux agents en poste. L'oral pèse davantage que l'écrit — coefficient 3 contre 2 — mais l'écrit reste éliminatoire sous 5/20 : la préparation sécurise d'abord l'admissibilité, puis travaille l'entretien, qui fait la différence au classement.",
+      contenu: [
+        {
+          titre: "Épreuve écrite à caractère professionnel (1h30, coef. 2)",
+          modules: [
+            { titre: "Lecture rapide et repérage de l'essentiel", desc: "Méthode de lecture de documents administratifs courts, repérage des informations utiles et reformulation fidèle : l'épreuve vérifie la compréhension, pas la culture générale." },
+            { titre: "Réponses brèves et présentation en tableaux", desc: "Formuler une réponse complète en peu de lignes, construire un tableau lisible, gérer le temps entre trois et cinq questions. Entraînements chronométrés sur sujets types." },
+            { titre: "Vocabulaire administratif et fonctionnement des collectivités", desc: "Termes et formules du quotidien administratif, organisation de la commune et de l'intercommunalité, circuit d'un dossier et d'un acte." },
+          ],
+        },
+        {
+          titre: "Entretien avec le jury (15 min dont 5 min de présentation, coef. 3)",
+          modules: [
+            { titre: "Rédaction du document de parcours professionnel", desc: "Mise en forme du document qui sert de base à l'entretien : postes occupés, missions, compétences acquises, formations suivies, rédigés de façon claire et valorisante." },
+            { titre: "Construction de la présentation orale", desc: "Cinq minutes structurées sur le parcours et les motivations, travaillées jusqu'à être tenues sans notes." },
+            { titre: "Simulations d'entretien", desc: "Entretiens blancs devant un jury fictif, suivis d'un débriefing individuel sur le fond, l'expression et la posture." },
+          ],
+        },
+      ],
+      moyensEnPlus: [
+        "Séances programmées en fin de journée, pour permettre aux agents de suivre la préparation sans interrompre leur service.",
+      ],
+    },
     faq: [
       { q: "Qui peut passer l'examen d'adjoint administratif principal de 2e classe ?", a: "Les adjoints administratifs territoriaux ayant atteint le 4e échelon et comptant au moins 3 ans de services effectifs dans le grade. Vous pouvez vous présenter au plus tôt un an avant de remplir ces conditions." },
       { q: "En quoi consiste l'épreuve écrite ?", a: "C'est une épreuve courte (1h30) mais exigeante : à partir de documents succincts, vous répondez à 3 à 5 questions par des réponses brèves ou des tableaux. Elle teste la rapidité de compréhension et la capacité à retranscrire les idées essentielles — cela s'entraîne avec des sujets types." },
@@ -448,6 +571,49 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuves écrites", date: "23 septembre 2027", statut: "bientot" },
       { label: "Démarrage préparation conseillé", date: "Début 2027", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      objectifs: [
+        "Identifier les attendus de l'épreuve écrite propre à son grade et à sa voie : questions sur dossier, note, ou rapport assorti de propositions.",
+        "Connaître les politiques d'animation des collectivités — jeunesse, périscolaire, vie sociale et culturelle — et les acteurs qui les mettent en œuvre.",
+        "Maîtriser le cadre réglementaire des accueils collectifs de mineurs, les règles de sécurité et les responsabilités engagées.",
+        "Analyser un dossier portant sur l'animation sociale, socio-éducative ou culturelle et en restituer l'essentiel en trois heures.",
+        "Pour le grade principal : formuler des propositions opérationnelles adaptées aux moyens d'une collectivité.",
+        "Construire un exposé de cinq minutes sur son projet professionnel ou les acquis de son expérience, et soutenir l'échange avec le jury.",
+      ],
+      prerequis: [
+        "Voie externe : diplôme professionnel de niveau 4 du domaine de l'animation pour animateur, de niveau 5 pour animateur principal de 2e classe",
+        "Voie interne : quatre ans de services publics — une voie interne spéciale est ouverte aux ATSEM justifiant de quatre ans de services pour le grade d'animateur",
+        "3e voie : quatre ans au moins d'activités professionnelles, de mandats d'élu local ou de responsabilités associatives",
+        "Une expérience de terrain en animation facilite l'ancrage des contenus, sans être exigée en voie externe",
+      ],
+      contenuIntro: "La préparation représente 80 à 120 heures et couvre dans une même session les concours d'animateur et d'animateur principal de 2e classe, organisés aux mêmes dates en 2027. Les contenus de fond sont communs ; les travaux écrits sont différenciés selon le grade et la voie, dont les épreuves diffèrent sensiblement.",
+      contenu: [
+        {
+          titre: "Épreuve écrite — admissibilité",
+          intro: "Trois formats d'épreuve coexistent selon le grade et la voie : questions sur dossier, note, ou rapport avec propositions. Les séances communes portent sur le fond, les entraînements sont différenciés.",
+          modules: [
+            { titre: "Politiques d'animation des collectivités", desc: "Politique jeunesse, animation périscolaire et extrascolaire, vie sociale et culturelle, animation de quartier : compétences des communes et des intercommunalités, financements et partenaires." },
+            { titre: "Cadre réglementaire des accueils collectifs de mineurs", desc: "Déclaration des accueils, taux et qualifications d'encadrement, règles d'hygiène et de sécurité, responsabilité de l'organisateur et de l'animateur." },
+            { titre: "Méthodologie des questions sur dossier et de la note", desc: "Pour le grade d'animateur : réponses à trois à cinq questions en voie externe, note sur dossier en interne et 3e voie. Analyse du dossier, hiérarchisation des informations, rédaction dans le temps imparti." },
+            { titre: "Méthodologie du rapport avec propositions — grade principal", desc: "Rapport sur dossier assorti de propositions opérationnelles, auquel s'ajoutent des questions sur l'animation en interne et en 3e voie. Travail sur la faisabilité des propositions au regard des moyens d'une collectivité." },
+            { titre: "Entraînements corrigés", desc: "Devoirs sur sujets officiels, corrigés individuellement, puis épreuves blanches en temps réel dans le format correspondant à la voie du candidat." },
+          ],
+        },
+        {
+          titre: "Entretien avec le jury (20 min dont 5 min d'exposé, coef. 1)",
+          modules: [
+            { titre: "Construction de l'exposé", desc: "Voie externe : formation et projet professionnel. Voies interne et 3e voie : acquis de l'expérience. Pour le grade principal, mise en évidence de l'aptitude à encadrer une équipe d'animation." },
+            { titre: "Simulations d'entretien", desc: "Entretiens blancs devant un jury professionnel, adaptés au grade visé, avec débriefing individuel." },
+          ],
+        },
+        {
+          titre: "Ancrage guadeloupéen",
+          modules: [
+            { titre: "Dispositifs, acteurs et enjeux du territoire", desc: "Dispositifs d'animation déployés en Guadeloupe, collectivités et associations qui les portent, enjeux propres au territoire — jeunesse, lien social, accès aux activités. De quoi nourrir les écrits et répondre concrètement au jury." },
+          ],
+        },
+      ],
+    },
     faq: [
       { q: "Quel diplôme faut-il pour le concours d'animateur territorial ?", a: "En voie externe, un diplôme professionnel de l'animation de niveau 4 (BPJEPS notamment) pour le concours d'animateur, ou de niveau 5 (DEJEPS…) pour animateur principal de 2e classe. La voie interne est ouverte sans condition de diplôme aux agents publics avec 4 ans de services, dont une voie spéciale pour les ATSEM." },
       { q: "Le BAFA suffit-il pour se présenter ?", a: "Non, le BAFA n'est pas un diplôme professionnel : il ne permet pas l'accès au concours externe. Il faut un BPJEPS ou équivalent (niveau 4). En revanche, une expérience d'animation avec BAFA peut ouvrir la 3e voie si vous justifiez de 4 ans d'activité." },
@@ -493,6 +659,52 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuves", date: "25 mars 2027", statut: "bientot" },
       { label: "Démarrage préparation conseillé", date: "Octobre 2026", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      objectifs: [
+        "Maîtriser les notions élémentaires d'organisation et de fonctionnement des collectivités locales évaluées au questionnaire à choix multiples.",
+        "Connaître les consignes d'hygiène et de sécurité, la protection et les droits de l'enfant applicables aux activités d'animation.",
+        "Répondre à un questionnaire à choix multiples en 45 minutes, en gérant le temps et les formulations trompeuses.",
+        "Pour la voie interne : rédiger une note à partir d'un texte ou d'un article de presse relatif à l'animation ; pour la 3e voie : traiter un cas pratique en une heure trente.",
+        "Présenter sa motivation et son parcours devant un jury, dans le format propre à sa voie d'accès.",
+        "Pour la voie interne : exploiter les vingt minutes de préparation précédant l'entretien à partir d'une question, d'un texte ou d'un document.",
+      ],
+      prerequis: [
+        "Voie externe : diplôme professionnel de niveau 3 (CAP/BEP) du domaine de l'animation ou qualification reconnue équivalente",
+        "Voie interne : être fonctionnaire ou agent public, conditions de services précisées par l'organisateur du concours",
+        "3e voie : quatre ans au moins d'activités professionnelles, de mandats d'élu local ou de responsabilités associatives",
+      ],
+      contenuIntro: "La préparation représente 50 à 70 heures en présentiel à Grand-Camp. Les épreuves varient fortement d'une voie à l'autre — un seul questionnaire à choix multiples en externe, un questionnaire doublé d'une note en interne, des questions et un cas pratique en 3e voie : chaque candidat suit le parcours correspondant à la voie qu'il présente, sur un socle de connaissances commun.",
+      contenu: [
+        {
+          titre: "Socle de connaissances — commun aux trois voies",
+          modules: [
+            { titre: "Organisation et fonctionnement des collectivités locales", desc: "Commune, intercommunalité, département et région : compétences, élus, services. Le niveau attendu est celui de notions élémentaires, telles qu'elles sont interrogées au questionnaire à choix multiples." },
+            { titre: "Hygiène, sécurité, protection et droits de l'enfant", desc: "Consignes d'hygiène applicables aux activités et aux locaux, règles de sécurité, repères sur la protection de l'enfance et les droits de l'enfant, accueil et compréhension du public accueilli." },
+          ],
+        },
+        {
+          titre: "Épreuves écrites — selon la voie d'accès",
+          modules: [
+            { titre: "Questionnaire à choix multiples (45 min)", desc: "Coefficient 1 en voie externe, coefficient 3 en voie interne. Entraînements chronométrés en conditions réelles : lecture des énoncés, repérage des formulations trompeuses, stratégie de réponse et gestion du temps." },
+            { titre: "Note à partir d'un texte — voie interne (2h, coef. 2)", desc: "Rédaction d'une note à partir d'un texte ou d'un article de presse relatif à l'animation : compréhension du propos, structuration de la restitution, expression écrite." },
+            { titre: "Questions et cas pratique — 3e voie", desc: "Questions sur les collectivités en 45 minutes, puis cas pratique en une heure trente : analyse d'une situation d'animation et formulation d'une réponse adaptée." },
+          ],
+        },
+        {
+          titre: "Entretien avec le jury (15 à 20 min, coef. 2 à 4)",
+          modules: [
+            { titre: "Préparation à l'entretien selon la voie", desc: "Externe : entretien de motivation de quinze minutes. Interne : vingt minutes de préparation à partir d'une question, d'un texte ou d'un document, puis vingt minutes d'échange — l'exploitation de ce temps de préparation est travaillée spécifiquement. 3e voie : exposé sur l'expérience puis échange." },
+            { titre: "Simulations d'entretien", desc: "Entretiens blancs devant un jury professionnel, dans le format de la voie présentée, avec débriefing individuel." },
+          ],
+        },
+        {
+          titre: "Ancrage guadeloupéen",
+          modules: [
+            { titre: "Le secteur de l'animation en Guadeloupe", desc: "Structures et collectivités qui recrutent, activités périscolaires et centres de loisirs du territoire, animation de quartier : repères utiles à l'entretien comme à la recherche de poste après la réussite." },
+          ],
+        },
+      ],
+    },
     faq: [
       { q: "Le CAP AEPE ou le CPJEPS permettent-ils de se présenter ?", a: "Oui, le concours externe est ouvert aux titulaires d'un diplôme professionnel de niveau 3 délivré dans les domaines correspondant aux missions du cadre d'emplois — le CPJEPS ou le CAP AEPE en font partie. Une qualification reconnue équivalente peut aussi être acceptée." },
       { q: "Comment se préparer au QCM ?", a: "Le QCM de 45 minutes porte sur des notions précises : organisation des collectivités, hygiène et sécurité, et en interne les droits de l'enfant. La clé est l'entraînement répété sur des QCM types chronométrés — c'est le cœur de notre préparation écrite." },
@@ -536,6 +748,42 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuve d'entretien", date: "22 mars 2027", statut: "bientot" },
       { label: "Démarrage préparation conseillé", date: "Janvier 2027", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      publics: "Sages-femmes titulaires du diplôme d'État ou autorisées à exercer en France, candidates et candidats au concours sur titres de sage-femme territoriale.",
+      simulationsFilmees: true,
+      objectifs: [
+        "Construire un exposé de dix minutes sur sa formation et son projet professionnel, et le tenir devant un jury.",
+        "Situer l'exercice de la sage-femme dans l'environnement territorial : service de protection maternelle et infantile du Département, centres de santé des collectivités, articulation avec l'hôpital et la médecine de ville.",
+        "Connaître les politiques de santé publique conduites localement et la place de la prévention dans les missions du Département.",
+        "Mobiliser les enjeux de santé maternelle et infantile propres à la Guadeloupe dans ses réponses au jury.",
+        "Répondre aux questions portant sur la capacité à s'intégrer dans un service territorial, la motivation et l'aptitude aux missions du cadre d'emplois.",
+        "Renseigner la fiche individuelle de renseignement transmise à l'inscription, qui n'est pas notée mais sert de support au jury.",
+      ],
+      prerequis: [
+        "Diplôme d'État de sage-femme, ou autorisation d'exercice de la profession en France",
+        "Aucune épreuve écrite : la préparation suppose seulement d'accepter de travailler sa prise de parole",
+      ],
+      contenuIntro: "La préparation représente 20 à 30 heures. Le concours est un concours sur titres : le diplôme ouvre l'accès, et tout se joue sur un entretien unique de vingt-cinq minutes dont dix minutes d'exposé. La préparation porte donc entièrement sur cet oral et sur la connaissance de l'environnement territorial, que les sages-femmes issues du secteur hospitalier ou libéral connaissent rarement.",
+      contenu: [
+        {
+          titre: "L'environnement territorial de la sage-femme",
+          modules: [
+            { titre: "Le Département et la protection maternelle et infantile", desc: "Compétences du Département en matière de PMI, organisation du service, missions de consultation, de prévention et de visite à domicile, place de la sage-femme dans l'équipe pluriprofessionnelle." },
+            { titre: "Politiques de santé publique locales", desc: "Prévention et promotion de la santé, suivi des grossesses à risque, planification familiale, articulation entre collectivités, agence régionale de santé et établissements de santé." },
+            { titre: "Santé maternelle et infantile en Guadeloupe", desc: "Indicateurs et enjeux du territoire, difficultés d'accès aux soins sur certaines communes, prévention auprès des publics éloignés : des éléments concrets que le jury attend d'une candidate exerçant sur l'archipel." },
+          ],
+        },
+        {
+          titre: "L'entretien avec le jury (25 min dont 10 min d'exposé, coef. 1)",
+          modules: [
+            { titre: "Construction de l'exposé de dix minutes", desc: "Formation, parcours, projet professionnel et motivation pour la fonction publique territoriale : sélection des éléments, fil conducteur et conduite de l'exposé sur une durée longue, qui ne s'improvise pas." },
+            { titre: "Préparation de la fiche individuelle de renseignement", desc: "Rédaction de la fiche transmise à l'inscription : non notée, elle oriente les questions du jury, et chaque élément qui y figure doit pouvoir être défendu." },
+            { titre: "Questions types et posture professionnelle", desc: "Motivation du passage au territorial, positionnement dans une équipe de PMI, secret professionnel, relation aux familles : banque de questions et entraînement aux réponses." },
+            { titre: "Simulations d'entretien", desc: "Oraux blancs filmés dans la durée officielle, devant un jury professionnel, avec débriefing individuel sur le fond et la forme." },
+          ],
+        },
+      ],
+    },
     faq: [
       { q: "Pourquoi préparer un simple entretien de 25 minutes ?", a: "Parce que tout le concours repose dessus. Le jury évalue en 25 minutes votre connaissance de l'environnement territorial (PMI, Département, politiques de santé), votre projet professionnel et votre posture. Les candidates non préparées échouent souvent sur les questions institutionnelles, pas sur le cœur de métier." },
       { q: "Où exerce une sage-femme territoriale en Guadeloupe ?", a: "Principalement en PMI au sein du Conseil départemental : consultations prénatales et postnatales, planification familiale, visites à domicile, actions de prévention. Des postes existent aussi dans les centres de santé municipaux." },
@@ -577,6 +825,42 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuve d'entretien", date: "15 février 2027", statut: "bientot" },
       { label: "Démarrage préparation conseillé", date: "Décembre 2026", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      publics: "Puéricultrices titulaires du diplôme d'État, ou autorisées à exercer pour les ressortissants de l'Union européenne et de l'Espace économique européen, candidates et candidats au concours sur titres de puéricultrice territoriale.",
+      simulationsFilmees: true,
+      objectifs: [
+        "Construire un exposé de cinq minutes sur sa formation et son projet professionnel, et le tenir devant un jury.",
+        "Situer l'exercice de la puéricultrice dans les collectivités : service de protection maternelle et infantile, crèche municipale, services petite enfance.",
+        "Connaître les politiques petite enfance des collectivités et l'organisation des modes d'accueil sur un territoire.",
+        "Répondre aux questions relevant des responsabilités d'une puéricultrice territoriale : direction d'un établissement d'accueil du jeune enfant, agrément et suivi des assistantes maternelles, actions de prévention.",
+        "Adopter la posture attendue d'un cadre de catégorie A en collectivité.",
+        "Mobiliser les enjeux de la petite enfance en Guadeloupe — offre d'accueil, prévention, soutien à la parentalité — dans ses réponses.",
+      ],
+      prerequis: [
+        "Diplôme d'État de puéricultrice, ou autorisation d'exercice pour les ressortissants de l'Union européenne et de l'Espace économique européen",
+        "Aucune épreuve écrite : la préparation suppose seulement d'accepter de travailler sa prise de parole",
+      ],
+      contenuIntro: "La préparation représente 20 à 30 heures. Le concours est un concours sur titres : le diplôme d'État ouvre l'accès, et l'admission se joue sur un entretien unique de vingt-cinq minutes dont cinq minutes d'exposé. L'exposé étant court, l'essentiel du temps est consacré aux questions du jury : c'est là que se mesure la connaissance de l'environnement territorial.",
+      contenu: [
+        {
+          titre: "L'environnement territorial de la puéricultrice",
+          modules: [
+            { titre: "Protection maternelle et infantile et modes d'accueil", desc: "Compétences du Département en PMI, consultations et bilans de santé en école maternelle, agrément et accompagnement des assistantes maternelles, contrôle des établissements d'accueil du jeune enfant." },
+            { titre: "Politiques petite enfance des collectivités", desc: "Crèches municipales, multi-accueils, relais petite enfance, financement et conventionnement, projet d'établissement et projet pédagogique." },
+            { titre: "Enjeux de la petite enfance en Guadeloupe", desc: "Offre d'accueil sur le territoire, prévention précoce, soutien à la parentalité et accompagnement des familles en difficulté." },
+          ],
+        },
+        {
+          titre: "L'entretien avec le jury (25 min dont 5 min d'exposé, coef. 1)",
+          modules: [
+            { titre: "Construction de l'exposé de cinq minutes", desc: "Formation, parcours et projet professionnel resserrés sur l'essentiel : en cinq minutes, chaque phrase compte." },
+            { titre: "Questions types du jury", desc: "Direction d'une crèche, encadrement d'une équipe d'auxiliaires, agrément des assistantes maternelles, situation d'enfant en danger, relation avec les familles : banque de questions et entraînement aux réponses." },
+            { titre: "Posture de cadre de catégorie A", desc: "Positionnement vis-à-vis de l'équipe, de la direction et des élus, capacité à décider et à rendre compte : ce que le jury cherche derrière les compétences soignantes." },
+            { titre: "Simulations d'entretien", desc: "Oraux blancs filmés dans la durée officielle, devant un jury professionnel, avec débriefing individuel." },
+          ],
+        },
+      ],
+    },
     faq: [
       { q: "Quels postes pour une puéricultrice territoriale en Guadeloupe ?", a: "Les débouchés principaux : PMI du Conseil départemental (consultations infantiles, agrément et suivi des assistantes maternelles), direction ou direction adjointe de crèche municipale, coordination petite enfance en intercommunalité." },
       { q: "Que demande le jury lors de l'entretien ?", a: "Au-delà de votre parcours, le jury teste votre connaissance du cadre territorial : missions de la PMI, rôle du Département, réglementation des établissements d'accueil du jeune enfant, management d'équipe. C'est là que la préparation est déterminante." },
@@ -619,6 +903,49 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuve d'entretien", date: "16 septembre 2027", statut: "bientot" },
       { label: "Accompagnement dossier", date: "Dès l'ouverture des inscriptions", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      publics: "Assistants socio-éducatifs territoriaux — assistants de service social, éducateurs spécialisés, conseillers en économie sociale et familiale — remplissant les conditions d'inscription à l'examen professionnel d'accès à la classe exceptionnelle.",
+      objectifs: [
+        "Construire le dossier réglementaire d'admissibilité : formation et niveau de qualification, parcours professionnel, acquis de l'expérience et motivations, description d'une réalisation professionnelle.",
+        "Choisir et décrire une réalisation professionnelle qui démontre un niveau d'expertise et de responsabilité correspondant au grade sommital.",
+        "Construire un exposé de dix minutes sur les acquis de son expérience.",
+        "Démontrer son expertise technique en travail social et sa connaissance de l'action sociale des collectivités.",
+        "Démontrer son aptitude à concevoir et mettre en œuvre des politiques sociales, à diriger un service ou à coordonner des équipes.",
+        "Soutenir vingt-cinq minutes d'échange avec un jury après l'exposé, sans s'épuiser ni se répéter.",
+      ],
+      prerequis: [
+        "Être assistant socio-éducatif territorial, justifier d'au moins trois ans de services effectifs en catégorie A et d'un an d'ancienneté dans le 3e échelon du grade, appréciés au 31 décembre de l'année du tableau d'avancement",
+        "Disposer d'une réalisation professionnelle significative à décrire dans le dossier",
+        "Pouvoir consacrer du temps à la rédaction du dossier, qui conditionne l'admissibilité",
+      ],
+      contenuIntro: "La préparation représente 30 à 50 heures. L'examen se joue en deux temps bien distincts : un dossier écrit, seul élément de l'admissibilité, puis un entretien de trente-cinq minutes au coefficient 2. Le dossier n'est pas une formalité administrative — c'est lui qui fait passer ou non à l'oral, et il oriente ensuite toutes les questions du jury.",
+      contenu: [
+        {
+          titre: "Le dossier d'admissibilité (coef. 1)",
+          modules: [
+            { titre: "Construction du dossier réglementaire", desc: "Renseignement de chaque rubrique du modèle officiel : formation et qualification, parcours professionnel, acquis de l'expérience et motivations. Travail sur la formulation, qui doit donner à lire un niveau d'expertise, pas une liste de postes." },
+            { titre: "Description de la réalisation professionnelle", desc: "Choix de l'action à décrire — ouverture ou réorganisation d'un dispositif, projet social innovant, démarche partenariale — puis rédaction mettant en évidence le rôle tenu, les arbitrages opérés et les résultats obtenus." },
+            { titre: "Relectures et corrections individuelles", desc: "Plusieurs relectures du dossier avant dépôt, avec corrections personnalisées : c'est le livrable qui décide de l'admissibilité." },
+          ],
+        },
+        {
+          titre: "L'entretien avec le jury (35 min, coef. 2)",
+          intro: "Dix minutes d'exposé puis vingt-cinq minutes d'échange : un oral long, qui suppose de la matière et de l'endurance.",
+          modules: [
+            { titre: "Construction de l'exposé de dix minutes", desc: "Mise en récit des acquis de l'expérience, articulée au dossier déposé, et conduite de l'exposé sans notes sur une durée longue." },
+            { titre: "Politiques sociales et médico-sociales des collectivités", desc: "Compétences sociales du Département et des communes, protection de l'enfance, insertion et accompagnement du RSA, autonomie et grand âge, logement et hébergement, coordination avec les partenaires associatifs — mis à jour des évolutions récentes." },
+            { titre: "Posture de cadre expert", desc: "Conception de dispositifs, coordination d'équipes pluriprofessionnelles, animation de partenariats, positionnement entre le terrain et la direction : les aptitudes que le jury vérifie pour le grade sommital." },
+            { titre: "Simulations d'entretien", desc: "Oraux blancs de trente-cinq minutes devant un jury fictif, avec débriefing individuel." },
+          ],
+        },
+      ],
+      moyensEnPlus: [
+        "Accompagnement individuel en distanciel sur la rédaction du dossier, entre les séances présentielles.",
+      ],
+      suiviEnPlus: [
+        "Des relectures successives du dossier jusqu'à sa version déposée",
+      ],
+    },
     faq: [
       { q: "Le dossier est-il vraiment déterminant ?", a: "Oui : c'est l'épreuve d'admissibilité. Le jury sélectionne sur dossier avant même de vous rencontrer. La description de votre réalisation professionnelle doit démontrer un niveau d'expertise et de responsabilité correspondant à la classe exceptionnelle — nous le construisons ensemble, avec plusieurs relectures." },
       { q: "Qui est concerné par cet examen ?", a: "Les assistants socio-éducatifs territoriaux (assistants de service social, éducateurs spécialisés, conseillers en économie sociale et familiale) avec au moins 3 ans de services en catégorie A et 1 an dans le 3e échelon de leur grade." },
@@ -661,6 +988,49 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuve d'entretien", date: "11 février 2027", statut: "bientot" },
       { label: "Accompagnement dossier", date: "Dès maintenant", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      publics: "Éducateurs de jeunes enfants territoriaux remplissant les conditions d'inscription à l'examen professionnel d'accès à la classe exceptionnelle.",
+      objectifs: [
+        "Construire le dossier réglementaire d'admissibilité : formation et niveau de qualification, parcours professionnel, acquis de l'expérience et motivations, description d'une réalisation professionnelle.",
+        "Choisir et décrire une réalisation professionnelle démontrant un niveau de responsabilité correspondant au grade sommital — projet pédagogique, ouverture ou réorganisation d'une structure, démarche d'inclusion.",
+        "Construire un exposé de dix minutes sur les acquis de son expérience.",
+        "Démontrer son expertise dans l'accueil du jeune enfant et sa connaissance de l'action des collectivités en matière de petite enfance.",
+        "Démontrer son aptitude à diriger un établissement d'accueil du jeune enfant et à coordonner des équipes.",
+        "Soutenir vingt-cinq minutes d'échange avec le jury après l'exposé.",
+      ],
+      prerequis: [
+        "Être éducateur de jeunes enfants territorial, justifier d'au moins trois ans de services effectifs en catégorie A et d'un an d'ancienneté dans le 3e échelon du grade, appréciés au 31 décembre de l'année du tableau d'avancement",
+        "Disposer d'une réalisation professionnelle significative à décrire dans le dossier",
+        "Pouvoir consacrer du temps à la rédaction du dossier, qui conditionne l'admissibilité",
+      ],
+      contenuIntro: "La préparation représente 30 à 50 heures. L'examen se joue en deux temps : un dossier écrit, seul élément de l'admissibilité, puis un entretien de trente-cinq minutes au coefficient 2, tourné vers la direction de structures et la coordination d'équipes. Le dossier décide du passage à l'oral et oriente ensuite les questions du jury.",
+      contenu: [
+        {
+          titre: "Le dossier d'admissibilité (coef. 1)",
+          modules: [
+            { titre: "Construction du dossier réglementaire", desc: "Renseignement de chaque rubrique du modèle officiel : formation et qualification, parcours, acquis de l'expérience et motivations. L'enjeu est de faire apparaître une trajectoire professionnelle, non une succession de postes." },
+            { titre: "Description de la réalisation professionnelle", desc: "Choix de l'action à décrire — conception et mise en œuvre d'un projet pédagogique, ouverture ou réorganisation d'un établissement d'accueil, démarche d'inclusion d'enfants en situation de handicap — et rédaction mettant en évidence le rôle tenu et les résultats obtenus." },
+            { titre: "Relectures et corrections individuelles", desc: "Plusieurs relectures avant dépôt, avec corrections personnalisées." },
+          ],
+        },
+        {
+          titre: "L'entretien avec le jury (35 min, coef. 2)",
+          intro: "Dix minutes d'exposé puis vingt-cinq minutes d'échange.",
+          modules: [
+            { titre: "Construction de l'exposé de dix minutes", desc: "Mise en récit des acquis de l'expérience, articulée au dossier déposé, tenue sans notes." },
+            { titre: "Politiques petite enfance des collectivités", desc: "Accueil du jeune enfant et pilotage de l'offre sur un territoire, soutien à la parentalité, inclusion des enfants en situation de handicap, articulation avec la protection maternelle et infantile et les partenaires, financement et conventionnement des structures." },
+            { titre: "Posture de direction", desc: "Pilotage d'un établissement d'accueil : projet d'établissement, gestion d'équipe, taux d'encadrement, sécurité, relation aux familles et aux élus. Les aptitudes attendues au grade sommital." },
+            { titre: "Simulations d'entretien", desc: "Oraux blancs de trente-cinq minutes devant un jury fictif, avec débriefing individuel." },
+          ],
+        },
+      ],
+      moyensEnPlus: [
+        "Accompagnement individuel en distanciel sur la rédaction du dossier, entre les séances présentielles.",
+      ],
+      suiviEnPlus: [
+        "Des relectures successives du dossier jusqu'à sa version déposée",
+      ],
+    },
     faq: [
       { q: "Quelle différence entre cet examen et le concours d'EJE ?", a: "Le concours d'éducateur de jeunes enfants permet d'entrer dans la fonction publique territoriale. L'examen de classe exceptionnelle est un avancement de grade réservé aux EJE territoriaux déjà titulaires, avec 3 ans de services en catégorie A et 1 an dans le 3e échelon." },
       { q: "Que doit contenir la description de la réalisation professionnelle ?", a: "Une action significative que vous avez conçue ou pilotée : ouverture ou réorganisation d'une structure, projet pédagogique innovant, démarche d'inclusion… Le jury y cherche la preuve d'un niveau de responsabilité correspondant à la classe exceptionnelle. Nous vous aidons à choisir et à rédiger cette réalisation." },
@@ -702,6 +1072,42 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuve d'entretien", date: "Automne 2027 (à confirmer)", statut: "bientot" },
       { label: "Démarrage préparation conseillé", date: "Fin 2026", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      publics: "Aides-soignants titulaires du diplôme d'État, du certificat d'aptitude ou du diplôme professionnel d'aide-soignant, candidates et candidats au concours sur titres d'aide-soignant territorial de classe normale.",
+      simulationsFilmees: true,
+      objectifs: [
+        "Construire un exposé de cinq minutes sur sa formation, son parcours et son projet professionnel.",
+        "Situer l'exercice de l'aide-soignant dans les structures des collectivités : établissements d'hébergement pour personnes âgées dépendantes publics territoriaux, services de soins et d'aide à domicile, centres communaux d'action sociale.",
+        "Distinguer l'exercice territorial de l'exercice hospitalier : rythme, publics accompagnés, place dans l'équipe, relation avec les familles et les élus.",
+        "Répondre aux questions récurrentes du jury : bientraitance, travail en équipe pluriprofessionnelle, secret professionnel, signalement d'une situation préoccupante.",
+        "Mobiliser les enjeux du grand âge et de la perte d'autonomie en Guadeloupe dans ses réponses.",
+        "Constituer un dossier d'inscription complet et conforme.",
+      ],
+      prerequis: [
+        "Diplôme d'État d'aide-soignant, certificat d'aptitude ou diplôme professionnel d'aide-soignant",
+        "Aucune épreuve écrite : la préparation suppose seulement d'accepter de travailler sa prise de parole",
+      ],
+      contenuIntro: "La préparation représente 15 à 25 heures en présentiel. Le concours est un concours sur titres : le diplôme ouvre l'accès et l'admission se joue sur un entretien unique de vingt minutes dont cinq minutes d'exposé. Court, cet oral ne laisse aucune place à l'approximation — d'où une préparation entièrement centrée sur lui.",
+      contenu: [
+        {
+          titre: "L'environnement territorial de l'aide-soignant",
+          modules: [
+            { titre: "Les structures employeuses", desc: "Établissements d'hébergement pour personnes âgées dépendantes publics territoriaux, services de soins infirmiers et d'aide à domicile, centres communaux d'action sociale : statuts, organisation, financement et fonctionnement au quotidien." },
+            { titre: "Maintien à domicile et accompagnement de la perte d'autonomie", desc: "Évaluation du besoin, coordination entre intervenants, allocation personnalisée d'autonomie, articulation entre la commune, le Département et les services de soins." },
+            { titre: "Le grand âge et l'autonomie en Guadeloupe", desc: "Vieillissement de la population, isolement sur certaines communes, place des aidants familiaux, offre d'hébergement et de maintien à domicile sur l'archipel." },
+          ],
+        },
+        {
+          titre: "L'entretien avec le jury (20 min dont 5 min d'exposé, coef. 1)",
+          modules: [
+            { titre: "Construction de l'exposé de cinq minutes", desc: "Formation, parcours et projet professionnel resserrés sur l'essentiel, avec une motivation argumentée pour la fonction publique territoriale." },
+            { titre: "Questions types du jury", desc: "Bientraitance et maltraitance, refus de soin, fin de vie, travail en équipe pluriprofessionnelle, secret professionnel, relation aux familles : banque de questions et entraînement aux réponses." },
+            { titre: "Simulations d'entretien", desc: "Oraux blancs filmés dans la durée officielle, devant un jury professionnel, avec débriefing individuel." },
+            { titre: "Préparation du dossier d'inscription", desc: "Vérification des pièces, respect des délais et formulation des rubriques du dossier de candidature." },
+          ],
+        },
+      ],
+    },
     faq: [
       { q: "Où travaille un aide-soignant territorial en Guadeloupe ?", a: "Dans les EHPAD et résidences autonomie gérés par les CCAS ou les communes, les services de soins infirmiers à domicile (SSIAD) territoriaux et certaines structures médico-sociales du Département." },
       { q: "Pourquoi passer le concours si j'ai déjà mon diplôme d'État ?", a: "Le diplôme permet d'exercer, mais le concours donne accès au statut de fonctionnaire territorial : sécurité de l'emploi, grille indiciaire, déroulement de carrière (aide-soignant de classe supérieure, puis auxiliaire de soins principal). Beaucoup de contractuels passent le concours pour être titularisés." },
@@ -743,6 +1149,42 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuve d'entretien", date: "1er mars 2027", statut: "bientot" },
       { label: "Démarrage préparation conseillé", date: "Novembre 2026", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      publics: "Auxiliaires de puériculture titulaires du diplôme d'État, ou autorisées à exercer pour les ressortissants de l'Union européenne et de l'Espace économique européen, candidates et candidats au concours sur titres de classe normale.",
+      simulationsFilmees: true,
+      objectifs: [
+        "Construire un exposé de cinq minutes sur sa formation, son parcours et son projet professionnel.",
+        "Situer l'exercice de l'auxiliaire de puériculture dans les collectivités : crèche municipale, multi-accueil, halte-garderie, service de protection maternelle et infantile.",
+        "Connaître les politiques petite enfance d'une commune et l'organisation d'un établissement d'accueil du jeune enfant.",
+        "Répondre aux questions récurrentes du jury : sécurité affective de l'enfant, hygiène, rythmes et besoins du jeune enfant, relation aux familles.",
+        "Mobiliser les enjeux de l'accueil du jeune enfant en Guadeloupe dans ses réponses.",
+        "Constituer un dossier d'inscription complet et conforme.",
+      ],
+      prerequis: [
+        "Diplôme d'État d'auxiliaire de puériculture, ou autorisation d'exercice pour les ressortissants de l'Union européenne et de l'Espace économique européen",
+        "Aucune épreuve écrite : la préparation suppose seulement d'accepter de travailler sa prise de parole",
+      ],
+      contenuIntro: "La préparation représente 15 à 25 heures en présentiel. Le diplôme d'État rend éligible au concours sur titres ; l'admission se joue sur un entretien unique de vingt minutes dont cinq minutes d'exposé. La préparation porte donc entièrement sur cet oral et sur la connaissance du cadre territorial, distinct du cadre hospitalier où beaucoup de candidates ont exercé.",
+      contenu: [
+        {
+          titre: "L'environnement territorial de l'auxiliaire de puériculture",
+          modules: [
+            { titre: "Les structures d'accueil municipales", desc: "Crèche collective, multi-accueil, halte-garderie et micro-crèche : organisation, projet d'établissement, projet pédagogique, taux d'encadrement et place de l'auxiliaire dans l'équipe." },
+            { titre: "Protection maternelle et infantile et politiques petite enfance", desc: "Rôle du Département en PMI, rôle de la commune dans l'offre d'accueil, relais petite enfance, articulation avec les assistantes maternelles." },
+            { titre: "L'accueil du jeune enfant en Guadeloupe", desc: "Offre d'accueil sur le territoire, attentes des familles, enjeux de prévention et de soutien à la parentalité." },
+          ],
+        },
+        {
+          titre: "L'entretien avec le jury (20 min dont 5 min d'exposé, coef. 1)",
+          modules: [
+            { titre: "Construction de l'exposé de cinq minutes", desc: "Formation, parcours et projet professionnel, avec une motivation argumentée pour l'exercice en collectivité." },
+            { titre: "Questions types du jury", desc: "Sécurité affective et adaptation de l'enfant, hygiène et sécurité, rythmes et besoins, accueil d'un enfant en situation de handicap, relation aux familles et transmission : banque de questions et entraînement aux réponses." },
+            { titre: "Simulations d'entretien", desc: "Oraux blancs filmés dans la durée officielle, devant un jury professionnel, avec débriefing individuel." },
+            { titre: "Préparation du dossier d'inscription", desc: "Vérification des pièces, respect des délais et formulation des rubriques du dossier de candidature." },
+          ],
+        },
+      ],
+    },
     faq: [
       { q: "Je travaille déjà en crèche comme contractuelle, le concours m'apporte quoi ?", a: "La titularisation : statut de fonctionnaire, sécurité de l'emploi, grille indiciaire et perspectives d'évolution (auxiliaire de puériculture de classe supérieure). Les collectivités privilégient les lauréates du concours pour les postes permanents." },
       { q: "Que demande le jury à l'entretien ?", a: "Au-delà de votre pratique professionnelle : votre connaissance du fonctionnement d'une commune, du rôle de la PMI, des normes d'accueil du jeune enfant, et votre projet professionnel en collectivité. L'exposé initial de 5 minutes doit être construit et répété." },
@@ -787,6 +1229,47 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuves", date: "5 octobre 2027", statut: "bientot" },
       { label: "Démarrage préparation conseillé", date: "Printemps 2027", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      objectifs: [
+        "Maîtriser les notions élémentaires d'organisation et de fonctionnement des collectivités locales évaluées au questionnaire à choix multiples.",
+        "Comprendre et appliquer les consignes élémentaires d'hygiène et de sécurité propres à l'intervention auprès de publics fragiles.",
+        "Répondre à un questionnaire à choix multiples en 45 minutes, en gérant le temps et les formulations trompeuses.",
+        "Connaître les missions de l'agent social : publics accompagnés, structures d'intervention, déontologie et limites de son rôle.",
+        "Présenter sa motivation et son aptitude aux missions devant le jury — en interne et en 3e voie, en s'appuyant sur son expérience professionnelle.",
+        "Situer l'action sociale conduite en Guadeloupe par les centres communaux d'action sociale et le Département.",
+      ],
+      prerequis: [
+        "Voie externe : diplôme de niveau 3 (CAP, BEP, diplôme d'État d'accompagnant éducatif et social) ou qualification reconnue équivalente",
+        "Voie interne : être fonctionnaire ou agent public, conditions de services précisées par l'organisateur",
+        "3e voie : quatre ans au moins d'activités professionnelles, de mandats d'élu local ou de responsabilités associatives",
+      ],
+      contenuIntro: "La préparation représente 40 à 60 heures en présentiel. Le concours combine un questionnaire à choix multiples de 45 minutes et un entretien de quinze minutes affecté du coefficient 2 : l'écrit sécurise l'admissibilité, l'oral fait le classement. En interne et en 3e voie, l'entretien s'appuie sur l'expérience professionnelle du candidat.",
+      contenu: [
+        {
+          titre: "Épreuve écrite — questionnaire à choix multiples (45 min, coef. 1)",
+          modules: [
+            { titre: "Organisation et fonctionnement des collectivités locales", desc: "Commune, centre communal d'action sociale, intercommunalité, Département : compétences, élus, services. Le niveau attendu est celui de notions élémentaires, telles qu'elles sont interrogées au questionnaire." },
+            { titre: "Consignes d'hygiène et de sécurité", desc: "Règles élémentaires applicables à l'intervention au domicile et en structure, prévention des risques, gestes et postures, conduite à tenir en cas d'incident." },
+            { titre: "Entraînements chronométrés", desc: "Séries de questionnaires en conditions réelles de durée, avec correction commentée : lecture des énoncés, repérage des formulations trompeuses, gestion du temps." },
+          ],
+        },
+        {
+          titre: "Le métier d'agent social",
+          modules: [
+            { titre: "Publics, structures et missions", desc: "Aide à domicile auprès des personnes âgées et des personnes en situation de handicap, accompagnement des familles et des publics fragiles, intervention en structure d'accueil : ce que recouvre concrètement le cadre d'emplois." },
+            { titre: "Déontologie et posture", desc: "Discrétion et secret professionnel, juste distance, repérage et transmission d'une situation préoccupante, limites de son rôle et relais vers les travailleurs sociaux." },
+            { titre: "L'action sociale en Guadeloupe", desc: "Rôle des centres communaux d'action sociale et du Département, dispositifs d'aide, partenaires associatifs du territoire." },
+          ],
+        },
+        {
+          titre: "Entretien avec le jury (15 min, coef. 2)",
+          modules: [
+            { titre: "Préparation de l'entretien de motivation", desc: "Formuler sa motivation et son aptitude aux missions en quinze minutes, en s'appuyant sur son expérience professionnelle pour les voies interne et 3e voie." },
+            { titre: "Simulations d'entretien", desc: "Entretiens blancs devant un jury professionnel, avec débriefing individuel sur le fond, l'expression et la posture." },
+          ],
+        },
+      ],
+    },
     faq: [
       { q: "Quel diplôme faut-il pour le concours d'agent social principal ?", a: "En voie externe, un diplôme de niveau 3 : CAP, BEP, ou le DEAES (diplôme d'État d'accompagnant éducatif et social). Une qualification reconnue équivalente est également acceptée. Les voies interne et 3e voie sont ouvertes sans condition de diplôme." },
       { q: "Où exerce un agent social territorial ?", a: "Principalement dans les CCAS (aide à domicile, portage de repas, accompagnement des personnes âgées), les EHPAD territoriaux, les résidences autonomie et les services sociaux des communes." },
@@ -923,6 +1406,42 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuve d'entretien", date: "4 octobre 2027", statut: "bientot" },
       { label: "Démarrage préparation conseillé", date: "Été 2027", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      publics: "Candidates et candidats titulaires des diplômes requis dans l'une des deux spécialités du cadre d'emplois : aide médico-psychologique ou assistant dentaire.",
+      simulationsFilmees: true,
+      objectifs: [
+        "Présenter son parcours et son projet professionnel en quelques minutes, l'entretien n'étant que de quinze minutes au total.",
+        "Situer l'exercice de l'auxiliaire de soins dans les structures des collectivités : centres communaux d'action sociale, établissements d'hébergement pour personnes âgées dépendantes, centres de santé municipaux.",
+        "Démontrer ses capacités professionnelles dans sa spécialité — accompagnement de la vie quotidienne pour l'aide médico-psychologique, assistance au praticien pour l'assistant dentaire.",
+        "Répondre aux questions du jury sur la déontologie, la bientraitance et le travail en équipe pluridisciplinaire.",
+        "Argumenter sa motivation pour l'exercice en collectivité territoriale.",
+        "Constituer un dossier d'inscription complet et conforme à la spécialité présentée.",
+      ],
+      prerequis: [
+        "Spécialité aide médico-psychologique : diplôme d'État d'accompagnant éducatif et social (accompagnement de la vie en structure collective), diplôme d'État ou certificat d'aptitude aux fonctions d'aide médico-psychologique, ou diplôme d'État d'auxiliaire de vie sociale",
+        "Spécialité assistant dentaire : titre ou diplôme de niveau 3 du domaine dentaire inscrit au répertoire national des certifications professionnelles",
+      ],
+      contenuIntro: "La préparation représente 15 à 25 heures en présentiel. Le concours est un concours sur titres : le diplôme ouvre l'accès et tout se décide sur un entretien de quinze minutes, sans exposé formellement distinct. C'est le format le plus court de nos préparations à l'oral, et le plus exigeant en concision — chaque réponse doit porter.",
+      contenu: [
+        {
+          titre: "L'environnement territorial de l'auxiliaire de soins",
+          modules: [
+            { titre: "Les structures employeuses", desc: "Centres communaux d'action sociale, établissements d'hébergement pour personnes âgées dépendantes, centres de santé et centres dentaires municipaux : organisation, publics accueillis, place de l'auxiliaire de soins dans l'équipe." },
+            { titre: "Travail en équipe pluridisciplinaire", desc: "Articulation avec les soignants, les travailleurs sociaux et le praticien, transmission des informations, limites de son champ d'intervention." },
+          ],
+        },
+        {
+          titre: "L'entretien avec le jury (15 min, coef. 1)",
+          modules: [
+            { titre: "Présentation du parcours et du projet", desc: "Formuler l'essentiel en quelques minutes : formation, expérience, motivation pour la fonction publique territoriale. Entraînement à la concision, le format n'autorisant aucun développement superflu." },
+            { titre: "Questions types selon la spécialité", desc: "Spécialité aide médico-psychologique : accompagnement de la vie quotidienne, bientraitance, refus d'aide, relation aux familles. Spécialité assistant dentaire : assistance au fauteuil, stérilisation et asepsie, gestion du dossier patient, accueil et relation au patient." },
+            { titre: "Déontologie et bientraitance", desc: "Secret professionnel, discrétion, respect de la personne accompagnée, repérage et signalement d'une situation préoccupante." },
+            { titre: "Simulations d'entretien", desc: "Oraux blancs filmés dans la durée officielle de quinze minutes, devant un jury professionnel, avec débriefing individuel." },
+            { titre: "Préparation du dossier d'inscription", desc: "Vérification des pièces et des diplômes exigés dans la spécialité présentée, respect des délais." },
+          ],
+        },
+      ],
+    },
     faq: [
       { q: "Quelles spécialités sont ouvertes au concours d'auxiliaire de soins ?", a: "Les principales spécialités sont l'aide médico-psychologique (accessible avec le DEAES, le DEAMP ou le DEAVS) et l'assistant dentaire (titre de niveau 3 du domaine dentaire). Vérifiez les spécialités effectivement ouvertes lors de la session auprès de l'organisateur." },
       { q: "Comment réussir un entretien de seulement 15 minutes ?", a: "En allant à l'essentiel : une présentation de parcours calibrée, des exemples concrets de situations professionnelles, et une vraie connaissance de l'environnement territorial (CCAS, EHPAD publics). 15 minutes ne pardonnent pas l'improvisation — chaque minute se prépare." },
@@ -978,6 +1497,60 @@ export const FORMATIONS: Record<string, Formation> = {
       demarrageISO: "2026-11-25",
       inscription: "ouverte",
     },
+    programmeDetaille: {
+      simulationsFilmees: true,
+      objectifs: [
+        "Analyser en cinq heures un dossier technique de spécialité et rédiger une note tenant compte du contexte technique, économique et juridique de la collectivité.",
+        "Approfondir la spécialité choisie à l'inscription — infrastructures, bâtiment, réseaux, informatique, prévention des risques — au niveau attendu d'un ingénieur territorial.",
+        "Situer un projet technique dans son cadre territorial : commande publique, financement, conduite de projet, relations avec les élus et les usagers.",
+        "Pour la voie interne : traiter les épreuves de mathématiques et physique appliquées, et conduire l'établissement d'un projet ou d'une étude dans l'option choisie.",
+        "Répondre aux questions d'option de l'entretien et démontrer son aptitude à résoudre les problèmes techniques et d'encadrement d'un ingénieur.",
+        "Mobiliser les enjeux techniques propres à la Guadeloupe — eau, énergie, risques naturels, aménagement — dans les écrits comme à l'oral.",
+      ],
+      prerequis: [
+        "Voie externe : diplôme d'ingénieur, d'architecte ou diplôme scientifique ou technique de niveau Bac+5 correspondant à l'une des spécialités",
+        "Dispense de diplôme en voie externe : mères et pères d'au moins trois enfants élevés effectivement, et sportifs de haut niveau inscrits sur la liste publiée l'année du concours",
+        "Voie interne : être fonctionnaire ou agent public et compter au moins quatre ans de services publics",
+        "Avoir choisi sa spécialité et son option avant l'entrée en préparation : tout le travail technique en découle",
+      ],
+      tarif: "À partir de 3 290 €",
+      contenuIntro: "La préparation représente 120 à 180 heures. Les deux voies n'ont rien de comparable : en externe, tout se joue sur une note de cinq heures (coefficient 5) et un entretien de quarante minutes (coefficient 5) ; en interne s'ajoutent trois écrits, dont l'établissement d'un projet en huit heures au coefficient 7. Le parcours est donc différencié dès les premières séances.",
+      contenu: [
+        {
+          titre: "Note sur dossier de spécialité — voie externe (5h, coef. 5)",
+          intro: "Unique épreuve écrite de la voie externe : elle décide à elle seule de l'admissibilité.",
+          modules: [
+            { titre: "Méthodologie de la note technique", desc: "Analyse d'un dossier volumineux en temps contraint, identification de la commande, construction d'un plan technique lisible et rédaction destinée à un décideur non spécialiste. Entraînements sur dossiers de la spécialité choisie." },
+            { titre: "Intégrer le contexte économique et juridique", desc: "Coût d'investissement et de fonctionnement, contraintes réglementaires, procédures de commande publique, calendrier de réalisation : ce que le jury attend en plus de la solution technique." },
+            { titre: "Gestion des cinq heures d'épreuve", desc: "Répartition du temps entre lecture, plan et rédaction, et entraînements en conditions réelles de durée." },
+          ],
+        },
+        {
+          titre: "Épreuves écrites complémentaires — voie interne",
+          modules: [
+            { titre: "Mathématiques et physique appliquées (4h, coef. 3)", desc: "Remise à niveau et entraînement sur le programme de l'épreuve, appliqué à des situations techniques de collectivité." },
+            { titre: "Note sur dossier de spécialité (4h, coef. 3)", desc: "Même méthodologie que la voie externe, sur un format resserré à quatre heures." },
+            { titre: "Établissement d'un projet ou d'une étude (8h, coef. 7)", desc: "Épreuve au coefficient le plus élevé du concours : conduite d'une étude complète dans l'option choisie, du diagnostic au chiffrage. Entraînement progressif, puis épreuve blanche en durée réelle." },
+          ],
+        },
+        {
+          titre: "Approfondissement technique et territorial",
+          modules: [
+            { titre: "Spécialité et option", desc: "Approfondissement ciblé selon le choix du candidat : infrastructures et réseaux, bâtiment et constructions publiques, informatique et systèmes d'information, prévention et gestion des risques." },
+            { titre: "Culture territoriale de l'ingénieur", desc: "Commande publique, finances locales, maîtrise d'ouvrage publique, conduite de projet en collectivité et positionnement de l'ingénieur face aux élus." },
+            { titre: "Enjeux techniques de la Guadeloupe", desc: "Gestion de l'eau et de l'assainissement, énergie et transition, risques naturels majeurs, aménagement en milieu insulaire : des cas concrets qui alimentent la note comme l'entretien." },
+          ],
+        },
+        {
+          titre: "Entretien avec le jury (40 min, coef. 5)",
+          modules: [
+            { titre: "Questions d'option", desc: "Première partie de l'entretien : interrogation technique sur l'option choisie au sein de la spécialité. Entraînement par questions-réponses sur les attendus du niveau ingénieur." },
+            { titre: "Aptitude professionnelle et encadrement", desc: "Seconde partie : intégration dans l'environnement professionnel, résolution de problèmes techniques et d'encadrement. La fiche individuelle de renseignement transmise à l'inscription n'est pas notée mais sert de support aux questions." },
+            { titre: "Simulations d'oral", desc: "Oraux blancs filmés dans la durée officielle de quarante minutes, avec débriefing individuel." },
+          ],
+        },
+      ],
+    },
     faq: [
       { q: "Quelles sont exactement les épreuves du concours externe d'ingénieur ?", a: "Deux épreuves seulement, mais à très fort coefficient : une note à partir d'un dossier de spécialité (5 heures, coefficient 5) et un entretien de 40 minutes (coefficient 5) portant d'abord sur l'option choisie, puis sur votre aptitude professionnelle. Une épreuve facultative de langue peut s'y ajouter. Il n'y a pas d'épreuve de culture générale." },
       { q: "Le concours externe exige-t-il Bac+5 ?", a: "Oui : diplôme d'ingénieur, d'architecte ou autre diplôme scientifique ou technique sanctionnant au moins 5 années d'études supérieures dans l'une des spécialités du concours. Deux dispenses existent toutefois : les mères et pères d'au moins 3 enfants qu'ils élèvent ou ont élevés effectivement, et les sportifs de haut niveau inscrits sur la liste ministérielle de l'année du concours." },
@@ -1025,6 +1598,54 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Inscriptions (session 2026)", date: "Clôturées — CNFPT", statut: "ferme" },
       { label: "Préparation aux oraux d'admission", date: "Dès les résultats d'admissibilité", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      publics: "Cadres techniques visant les plus hautes fonctions territoriales — direction générale des services techniques, pilotage de grandes directions — remplissant les conditions d'accès au concours d'ingénieur en chef organisé par le CNFPT.",
+      objectifs: [
+        "Produire en cinq heures une note de synthèse et de propositions sur un sujet technique relevant de l'une des cinq options du concours.",
+        "Traiter une conduite de projet soulevant un problème d'organisation ou de gestion rencontré par une collectivité, et formuler des propositions de niveau direction générale.",
+        "Composer sur une question de société contemporaine en développant une analyse des faits et une interprétation personnelle argumentée.",
+        "Constituer le dossier remis au jury et préparer l'entretien de trente minutes qui s'appuie dessus — seul l'entretien est noté.",
+        "Tenir son rôle dans une mise en situation professionnelle collective : écoute, apport, synthèse, puis compte rendu individuel au jury.",
+        "Adopter la posture d'un cadre dirigeant territorial : gouvernance, arbitrages, pilotage de politiques publiques.",
+      ],
+      prerequis: [
+        "Voie externe : titres et diplômes spécifiques (écoles d'ingénieurs, architectes) ou qualification reconnue équivalente",
+        "Voie interne : être fonctionnaire ou agent public et remplir les conditions de services fixées par le statut particulier",
+        "Disposer d'une expérience de pilotage technique ou de direction sur laquelle appuyer le dossier et l'entretien",
+        "Pouvoir consacrer un temps de travail personnel soutenu : trois écrits de cinq heures se préparent dans la durée",
+      ],
+      tarif: "À partir de 2 190 €",
+      contenuIntro: "La préparation représente 80 à 120 heures. Le concours d'ingénieur en chef est un concours de catégorie A+ : trois épreuves écrites de cinq heures à l'admissibilité, puis un entretien sur dossier et une mise en situation collective à l'admission, complétés d'une épreuve orale de langue vivante. Le niveau attendu est celui d'un futur directeur général des services techniques.",
+      contenu: [
+        {
+          titre: "Épreuves écrites — admissibilité",
+          modules: [
+            { titre: "Note de synthèse et de propositions technique (5h, coef. 5)", desc: "Dossier portant sur l'option choisie parmi les cinq du concours : ingénierie environnementale ; constructions publiques, gestion immobilière et énergie ; aménagement, déplacements et urbanisme ; réseaux techniques urbains et infrastructures ; systèmes d'information et de communication. Méthodologie, puis entraînements en conditions réelles de durée." },
+            { titre: "Note de synthèse et de propositions — conduite de projet (5h, coef. 4, coef. 5 en interne)", desc: "Dossier portant sur une conduite de projet soulevant un problème d'organisation ou de gestion. L'attendu dépasse la technique : organisation des services, pilotage des moyens, conduite du changement." },
+            { titre: "Composition sur une question de société contemporaine (5h, coef. 3)", desc: "Culture générale contemporaine et construction d'une argumentation personnelle. Travail sur les grands débats de société et entraînement à la prise de position argumentée, exercice inhabituel pour des profils techniques." },
+            { titre: "Entraînements en conditions réelles", desc: "Épreuves blanches de cinq heures, corrigées individuellement, avec un calendrier de montée en charge jusqu'aux écrits." },
+          ],
+        },
+        {
+          titre: "Épreuves orales — admission",
+          modules: [
+            { titre: "Constitution du dossier candidat", desc: "Rédaction du dossier remis au jury : parcours, réalisations marquantes, responsabilités exercées. Le dossier n'est pas noté, mais il oriente tout l'entretien : sa construction est un exercice stratégique." },
+            { titre: "Entretien avec le jury (30 min, coef. 5)", desc: "Capacités d'analyse et de synthèse, motivation et aptitude à exercer les fonctions d'ingénieur en chef. Simulations devant jury professionnel, avec débriefing individuel." },
+            { titre: "Mise en situation professionnelle collective (45 min, coef. 2)", desc: "Trente minutes de travail collectif puis quinze minutes de compte rendu et d'échanges individuels. Entraînement au positionnement en groupe : apporter sans écraser, écouter, faire émerger une synthèse." },
+            { titre: "Épreuve orale de langue vivante (30 min, coef. 1)", desc: "Préparation à l'échange en langue vivante, sur des sujets professionnels." },
+          ],
+        },
+        {
+          titre: "Posture de cadre dirigeant",
+          modules: [
+            { titre: "Gouvernance territoriale et politiques publiques", desc: "Relations entre direction générale et exécutif, construction et pilotage d'une politique publique, dialogue de gestion, maîtrise des grands équilibres budgétaires : le niveau A+ attendu dans toutes les épreuves." },
+          ],
+        },
+      ],
+      moyensEnPlus: [
+        "Coaching individuel intensif sur la posture de cadre dirigeant, en distanciel entre les séances présentielles.",
+      ],
+    },
     faq: [
       { q: "Quelles sont les épreuves écrites du concours d'ingénieur en chef ?", a: "Trois épreuves de 5 heures chacune : une note de synthèse et de propositions sur un sujet technique dans l'option choisie (coef. 5), une note sur une conduite de projet (coef. 4 en externe), et une composition sur une question de société contemporaine (coef. 3). L'admissibilité exige donc autant de culture générale que d'expertise technique." },
       { q: "En quoi consiste la mise en situation professionnelle collective ?", a: "C'est une épreuve d'admission originale : 30 minutes de travail collectif avec d'autres candidats sur un cas donné, puis 15 minutes de compte-rendu individuel devant le jury. Elle évalue le leadership, l'écoute et la capacité de synthèse — des compétences qui s'entraînent en conditions réelles." },
@@ -1079,6 +1700,56 @@ export const FORMATIONS: Record<string, Formation> = {
       demarrage: "mercredi 9 septembre 2026",
       demarrageISO: "2026-09-09",
       inscription: "ouverte",
+    },
+    programmeDetaille: {
+      objectifs: [
+        "Rédiger en trois heures un rapport technique portant sur la spécialité choisie, assorti de propositions opérationnelles.",
+        "Consolider les connaissances techniques de sa spécialité — bâtiment, voirie, réseaux, informatique — au niveau attendu d'un technicien territorial.",
+        "Construire un exposé de cinq minutes sur son expérience professionnelle et répondre aux questions techniques du jury.",
+        "Pour la 1re classe et la promotion interne : démontrer son aptitude à encadrer une équipe technique, l'entretien y étant affecté du coefficient 2.",
+        "Pour le concours en voie externe : répondre à des questions techniques à partir d'un dossier de spécialité ; en interne et 3e voie : élaborer un rapport technique sur dossier.",
+        "Sécuriser l'écrit des examens professionnels, dont une note inférieure à 5/20 interdit l'accès à l'oral.",
+      ],
+      prerequis: [
+        "Examen professionnel de 2e classe par avancement : être technicien, avoir atteint le 6e échelon et justifier de trois ans de services effectifs en catégorie B",
+        "Examen professionnel de 1re classe par avancement : être technicien principal de 2e classe, justifier d'un an dans le 6e échelon et de trois ans de services effectifs en catégorie B",
+        "Examen professionnel de 2e classe par promotion interne : être agent de maîtrise avec huit ans de services effectifs, ou adjoint technique principal avec dix ans dont cinq dans un cadre d'emplois technique territorial",
+        "Concours en voie externe : baccalauréat technologique ou professionnel, ou diplôme de niveau 4 technico-professionnel correspondant à une spécialité",
+      ],
+      tarif: "À partir de 2 490 €",
+      contenuIntro: "La préparation représente 60 à 120 heures selon la voie présentée. Au calendrier 2026-2027 figurent les examens professionnels de technicien principal de 1re et de 2e classe, par avancement de grade comme par promotion interne, dont l'épreuve écrite est commune ; la prochaine session du concours de technicien sera annoncée par le CDG 971. Les séances de fond sont mutualisées, les entraînements et les simulations d'oral sont calés sur l'examen de chacun.",
+      contenu: [
+        {
+          titre: "Rapport technique avec propositions — écrit (3h, coef. 1)",
+          intro: "Épreuve commune aux examens professionnels de 1re et de 2e classe.",
+          modules: [
+            { titre: "Méthodologie du rapport technique", desc: "Analyse du dossier de spécialité, identification du problème posé, structuration du rapport et rédaction destinée à un responsable de service. Entraînement sur sujets d'annales." },
+            { titre: "Formuler des propositions opérationnelles", desc: "Passer du diagnostic technique à des solutions applicables : moyens, délais, coût, organisation du chantier ou du service. C'est ce qui est attendu d'un technicien principal." },
+            { titre: "Connaissances techniques par spécialité", desc: "Révisions ciblées selon la spécialité du candidat : bâtiment, voirie et réseaux divers, espaces verts, informatique et systèmes d'information, prévention et sécurité." },
+            { titre: "Entraînements corrigés individuellement", desc: "Devoirs sur annales corrigés et commentés, puis épreuve blanche en temps réel, avec vigilance sur la note éliminatoire de 5/20." },
+          ],
+        },
+        {
+          titre: "Épreuves écrites du concours de technicien",
+          intro: "Session à confirmer par le CDG 971 ; la préparation est assurée dès l'annonce du calendrier.",
+          modules: [
+            { titre: "Questions techniques sur dossier — voie externe (3h, coef. 1)", desc: "Réponses à des questions techniques à partir d'un dossier de spécialité : précision, exactitude, gestion du temps." },
+            { titre: "Rapport technique sur dossier — voies interne et 3e voie (3h, coef. 1)", desc: "Même méthodologie que l'examen professionnel, appliquée au format du concours." },
+          ],
+        },
+        {
+          titre: "Entretien avec le jury (20 min dont 5 min d'exposé)",
+          modules: [
+            { titre: "Construction de l'exposé d'expérience", desc: "Cinq minutes sur le parcours technique, les chantiers conduits et les responsabilités exercées, tenues sans notes." },
+            { titre: "Questions techniques et d'aptitude", desc: "Préparation aux questions du jury sur la spécialité, l'organisation du travail et la sécurité." },
+            { titre: "Encadrement — 1re classe et promotion interne", desc: "L'entretien y est affecté du coefficient 2, avec un accent sur l'encadrement : conduite d'équipe, répartition du travail, gestion des tensions, rendu compte à la hiérarchie." },
+            { titre: "Simulations d'entretien", desc: "Entretiens blancs devant un jury professionnel, adaptés à l'examen visé — 2e classe, 1re classe ou promotion interne — avec débriefing individuel." },
+          ],
+        },
+      ],
+      suiviEnPlus: [
+        "Une veille sur le calendrier du CDG 971, les stagiaires étant informés dès l'ouverture de la prochaine session du concours de technicien",
+      ],
     },
     faq: [
       { q: "Quelle différence entre avancement de grade et promotion interne pour technicien principal de 2e classe ?", a: "L'avancement de grade s'adresse aux techniciens (catégorie B) qui montent en grade dans leur cadre d'emplois. La promotion interne s'adresse aux agents de catégorie C (agents de maîtrise avec 8 ans de services, adjoints techniques principaux avec 10 ans) qui accèdent à la catégorie B. Les épreuves sont proches — rapport technique de 3h puis entretien — mais les jurys n'attendent pas la même chose." },
@@ -1135,6 +1806,53 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Épreuves", date: "25 novembre 2027", statut: "bientot" },
       { label: "Démarrage préparation conseillé", date: "Printemps 2027", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      objectifs: [
+        "Permettre aux agents de maîtriser les épreuves écrites et orales de l'examen professionnel.",
+        "Renforcer leurs acquis méthodologiques et leurs connaissances administratives et techniques en lien avec leurs missions : méthodologie, rédaction, analyse et expression orale.",
+        "Permettre aux agents de comprendre la nature et les attendus des épreuves de l'examen professionnel d'Adjoint Technique Principal de 2e classe.",
+        "Développer des compétences rédactionnelles, d'analyse et d'organisation adaptées aux épreuves.",
+        "Mettre en situation les participants afin de les préparer efficacement aux conditions réelles de l'examen.",
+        "Favoriser la réussite individuelle et collective en créant une dynamique de préparation.",
+      ],
+      prerequis: [
+        "Voie externe : titre ou diplôme de niveau 3 (CAP/BEP) sanctionnant une formation technique et professionnelle dans la spécialité présentée",
+        "Voie interne : être fonctionnaire ou agent public, conditions de services précisées par l'organisateur",
+        "3e voie : quatre ans au moins d'activités professionnelles dans le domaine, de mandats d'élu local ou de responsabilités associatives",
+        "Pratiquer un métier technique — bâtiment, espaces verts, voirie, restauration, mécanique — support de l'épreuve pratique et de l'entretien",
+      ],
+      contenuIntro: "La préparation représente 50 à 70 heures, en présentiel avec ateliers pratiques. Les épreuves privilégient les connaissances techniques concrètes de la spécialité choisie plutôt que la rédaction : questions à réponses courtes, tableaux à compléter, épreuve pratique en interne et en 3e voie, entretien d'option.",
+      contenu: [
+        {
+          titre: "Épreuve écrite — questions techniques (1h à 2h, coef. 2 à 3)",
+          modules: [
+            { titre: "Connaissances techniques de la spécialité", desc: "Révisions ciblées et fiches pratiques sur la spécialité présentée : bâtiment, espaces verts, voirie, restauration, mécanique. Matériels, matériaux, techniques d'intervention et vocabulaire professionnel." },
+            { titre: "Hygiène et sécurité au travail", desc: "Réglementation applicable, équipements de protection individuelle, gestes et postures, signalisation de chantier, conduite à tenir en cas d'incident — un axe explicitement évalué." },
+            { titre: "Entraînement aux réponses courtes et aux tableaux", desc: "Répondre avec exactitude en peu de mots, compléter un tableau ou un graphique, gérer le temps. Selon les sessions, un cas pratique de spécialité peut s'ajouter (2h, coef. 3) : il est préparé de la même façon." },
+          ],
+        },
+        {
+          titre: "Épreuve pratique — voies interne et 3e voie (coef. 3)",
+          modules: [
+            { titre: "Préparation à l'épreuve pratique selon l'option", desc: "Accomplissement d'une ou plusieurs tâches se rapportant à la maîtrise des techniques et des instruments de l'option, d'une durée d'une à quatre heures selon le cas. Ateliers pratiques en conditions proches de l'épreuve, centrés sur le geste, la méthode et la sécurité." },
+          ],
+        },
+        {
+          titre: "Épreuves orales",
+          modules: [
+            { titre: "Entretien dans l'option choisie (15 min, coef. 3 à 4)", desc: "Connaissances techniques, aptitudes et motivation. Entraînement par questions types de la spécialité, puis simulations devant jury avec débriefing." },
+            { titre: "Interrogation orale sur l'hygiène et la sécurité — voie externe (15 min, coef. 2)", desc: "Épreuve supplémentaire pour les candidats externes, portant sur l'hygiène, la sécurité et l'environnement professionnel." },
+            { titre: "Environnement professionnel", desc: "La collectivité, l'organisation d'un service technique, la chaîne hiérarchique et la relation aux usagers : les repères que le jury attend d'un agent qualifié." },
+          ],
+        },
+      ],
+      moyensEnPlus: [
+        "Ateliers pratiques en petit groupe, sur les gestes et les matériels de la spécialité.",
+      ],
+      suiviEnPlus: [
+        "Une dynamique de groupe entretenue d'une séance à l'autre, la préparation collective faisant partie des leviers de réussite",
+      ],
+    },
     faq: [
       { q: "Quelles spécialités sont proposées au concours ?", a: "Les spécialités classiques : bâtiment et travaux publics, espaces naturels et espaces verts, voirie et réseaux divers, restauration, environnement et hygiène, mécanique et électromécanique, conduite de véhicules… Les spécialités effectivement ouvertes pour la session 2027 seront précisées par l'organisateur à l'ouverture des inscriptions." },
       { q: "Je n'ai pas de CAP, puis-je me présenter ?", a: "En voie externe, un titre de niveau 3 est requis. Mais si vous êtes déjà agent public, la voie interne est ouverte sans condition de diplôme ; et si vous justifiez de 4 ans d'activité professionnelle dans le domaine, la 3e voie est possible." },
@@ -1291,6 +2009,59 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Oraux d'admission après écrits", date: "Dès les résultats d'admissibilité", statut: "ouvert" },
       { label: "Réservation entretien d'orientation", date: "Disponible maintenant", statut: "ouvert" },
     ],
+    programmeDetaille: {
+      publics: "Candidates et candidats admissibles ou se préparant à l'oral d'un concours ou d'un examen professionnel territorial, toutes catégories (A, B, C) et toutes filières — y compris les concours médico-sociaux dont l'entretien est l'épreuve unique.",
+      simulationsFilmees: true,
+      objectifs: [
+        "Construire un exposé de parcours calibré sur la durée officielle de l'épreuve visée, de cinq à dix minutes, et le tenir sans notes.",
+        "Répondre aux questions difficiles et déstabilisantes d'un jury territorial sans perdre le fil ni la posture.",
+        "Maîtriser sa communication non verbale : posture, regard, gestuelle, voix, débit.",
+        "Gérer le stress avant et pendant l'épreuve, par des techniques de respiration et d'ancrage.",
+        "Situer son discours dans l'environnement territorial attendu par le jury du concours présenté.",
+        "Mesurer sa progression d'une simulation à l'autre et corriger les points faibles identifiés.",
+      ],
+      prerequis: [
+        "Être candidate ou candidat à un concours ou à un examen professionnel territorial, toutes catégories et toutes filières",
+        "Connaître le format officiel de l'épreuve orale visée : durée, composition du jury, temps d'exposé",
+      ],
+      tarif: "À partir de 890 €",
+      contenuIntro: "La préparation représente 20 à 40 heures, exclusivement en présentiel : l'oral ne se travaille pas à distance. Chaque participant est préparé au format exact de son propre concours — durée, composition du jury, temps d'exposé — et alterne simulations filmées et séances de correction individuelle.",
+      contenu: [
+        {
+          titre: "Construire son discours",
+          modules: [
+            { titre: "Exposé de parcours", desc: "Sélection des éléments à retenir, fil conducteur, articulation et conclusion. L'exposé est calibré sur la durée officielle du concours présenté, de cinq à dix minutes, puis répété jusqu'à être tenu sans notes." },
+            { titre: "Ancrage territorial du propos", desc: "Rattacher son parcours aux missions du cadre d'emplois visé et à l'environnement des collectivités : ce que le jury cherche à entendre derrière la présentation." },
+            { titre: "Réponses aux questions difficiles", desc: "Questions de mise en difficulté, relances, objections, silences : banque de questions par filière et entraînement à la réponse construite, y compris quand on ne sait pas." },
+          ],
+        },
+        {
+          titre: "Travailler sa présence",
+          modules: [
+            { titre: "Prise de parole en public", desc: "Voix, débit, articulation, silences et respiration : travail pratique individuel et en groupe." },
+            { titre: "Langage corporel", desc: "Posture assise, regard vers l'ensemble du jury, gestuelle, entrée et sortie de salle — travaillés en situation, pas en théorie." },
+            { titre: "Gestion du stress", desc: "Techniques de respiration et d'ancrage avant l'épreuve, reprise après une question qui déstabilise, gestion du trou de mémoire." },
+          ],
+        },
+        {
+          titre: "Simulations et progression",
+          modules: [
+            { titre: "Jury blanc en conditions réelles", desc: "Entretien filmé reproduisant les conditions du concours visé : durée officielle, composition du jury, exposé initial chronométré." },
+            { titre: "Débriefing fond et forme", desc: "Analyse vidéo point par point : contenu et arguments, connaissances territoriales, posture, voix, regard, gestion du temps, attitude face aux relances." },
+            { titre: "Séances individuelles de progression", desc: "Travail ciblé sur les points faibles identifiés en simulation, avec une progression mesurée d'une séance à la suivante." },
+          ],
+        },
+      ],
+      moyensEnPlus: [
+        "Jurys blancs composés de professionnels, dans la configuration du concours présenté.",
+      ],
+      suivi: [
+        "Un bilan individuel après chaque simulation, portant sur le fond et sur la forme",
+        "Une progression mesurée d'une simulation à l'autre, sur les points faibles identifiés",
+        "Des séances de coaching individuel intercalées entre les jurys blancs",
+        "Un dernier point de préparation à l'approche de la date d'oral du candidat",
+      ],
+    },
     faq: [
       { q: "À quel moment commencer la préparation aux oraux ?", a: "Idéalement dès le début de votre préparation globale — et non après les résultats d'admissibilité. Pour les concours sur titres (sage-femme, puéricultrice, aide-soignant, auxiliaire de puériculture…), l'entretien est l'épreuve unique : la préparation de l'oral EST la préparation du concours." },
       { q: "Combien de simulations sont nécessaires pour progresser ?", a: "En général, 3 à 5 simulations espacées et suivies d'un débriefing approfondi transforment radicalement une prestation. La première simulation est souvent difficile — c'est normal et nécessaire : c'est là que nous identifions précisément ce qu'il faut travailler." },
