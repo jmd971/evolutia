@@ -332,7 +332,7 @@ export const FORMATIONS: Record<string, Formation> = {
         "Pouvoir consacrer du temps de travail personnel entre les séances",
         "Maîtriser l'expression écrite en français",
       ],
-      tarif: "À partir de 2 490 €",
+      tarif: "1 600 €",
       contenuIntro: "La préparation représente 80 à 120 heures, réparties entre les deux épreuves écrites d'admissibilité et l'entretien d'admission. Les concours de rédacteur et de rédacteur principal de 2e classe étant organisés aux mêmes dates en 2027, les deux sont préparés dans la même session, avec des travaux différenciés là où les épreuves divergent.",
       contenu: [
         {
@@ -373,7 +373,7 @@ export const FORMATIONS: Record<string, Formation> = {
     categorie: "Catégorie B",
     filiere: "Filière administrative",
     type: "Examen pro.",
-    descCourte: "Avancement de grade : rapport avec propositions (3h) et entretien jury. Épreuves le 24 septembre 2026.",
+    descCourte: "Avancement de grade : rapport avec propositions (3h) et entretien jury. Préparation à l'oral à partir du 7 octobre 2026.",
     seoTitle: "Examen Professionnel Rédacteur Principal Guadeloupe 2026 | Evolutia",
     seoDesc: "Préparez l'examen professionnel de rédacteur principal 1re ou 2e classe en Guadeloupe : rapport écrit 3h + entretien. Épreuves sept. 2026. CPF possible.",
     accroche: "Les examens professionnels de rédacteur principal (2e classe et 1re classe) permettent aux rédacteurs en poste d'accéder aux grades supérieurs. Contrairement à une idée reçue, l'examen comporte une véritable épreuve écrite : un rapport avec propositions opérationnelles, en plus de l'entretien avec le jury.",
@@ -399,10 +399,16 @@ export const FORMATIONS: Record<string, Formation> = {
     color: "#F5A623",
     accent: "#1B3A6B",
     datesCles: [
-      { label: "Épreuve écrite (session 2026)", date: "24 septembre 2026", statut: "bientot" },
+      { label: "Démarrage de la préparation à l'oral", date: "Mercredi 7 octobre 2026", statut: "ouvert" },
+      { label: "Épreuve écrite (session 2026)", date: "Passée le 24 septembre 2026", statut: "ferme" },
       { label: "Inscriptions (session 2026)", date: "Clôturées — CDG 971", statut: "ferme" },
-      { label: "Préparation intensive à l'écrit et à l'oral", date: "Disponible dès maintenant", statut: "ouvert" },
     ],
+    session: {
+      intitule: "Oral examen professionnel Rédacteur principal 2026",
+      demarrage: "mercredi 7 octobre 2026",
+      demarrageISO: "2026-10-07",
+      inscription: "ouverte",
+    },
     programmeDetaille: {
       publics: "Rédacteurs territoriaux et rédacteurs principaux de 2e classe en poste, remplissant les conditions d'inscription à l'examen professionnel d'avancement au grade visé.",
       simulationsFilmees: true,
@@ -419,7 +425,7 @@ export const FORMATIONS: Record<string, Formation> = {
         "Avancement en 1re classe : être rédacteur principal de 2e classe, justifier d'au moins un an dans le 6e échelon et de trois ans de services effectifs en catégorie B",
         "Disposer d'une expérience professionnelle sur laquelle appuyer l'exposé oral",
       ],
-      tarif: "À partir de 1 490 €",
+      tarif: "1 600 €",
       contenuIntro: "La préparation représente 40 à 60 heures. L'épreuve écrite étant identique pour la 1re et la 2e classe, les deux examens sont préparés dans la même session ; seules les attentes du jury à l'oral se renforcent pour la 1re classe. Contrairement à une idée répandue, cet examen comporte bien un écrit exigeant : c'est là que se joue l'admissibilité.",
       contenu: [
         {
@@ -1513,7 +1519,7 @@ export const FORMATIONS: Record<string, Formation> = {
         "Voie interne : être fonctionnaire ou agent public et compter au moins quatre ans de services publics",
         "Avoir choisi sa spécialité et son option avant l'entrée en préparation : tout le travail technique en découle",
       ],
-      tarif: "À partir de 3 290 €",
+      tarif: "1 900 €",
       contenuIntro: "La préparation représente 120 à 180 heures. Les deux voies n'ont rien de comparable : en externe, tout se joue sur une note de cinq heures (coefficient 5) et un entretien de quarante minutes (coefficient 5) ; en interne s'ajoutent trois écrits, dont l'établissement d'un projet en huit heures au coefficient 7. Le parcours est donc différencié dès les premières séances.",
       contenu: [
         {
@@ -1614,7 +1620,7 @@ export const FORMATIONS: Record<string, Formation> = {
         "Disposer d'une expérience de pilotage technique ou de direction sur laquelle appuyer le dossier et l'entretien",
         "Pouvoir consacrer un temps de travail personnel soutenu : trois écrits de cinq heures se préparent dans la durée",
       ],
-      tarif: "À partir de 2 190 €",
+      tarif: "1 900 €",
       contenuIntro: "La préparation représente 80 à 120 heures. Le concours d'ingénieur en chef est un concours de catégorie A+ : trois épreuves écrites de cinq heures à l'admissibilité, puis un entretien sur dossier et une mise en situation collective à l'admission, complétés d'une épreuve orale de langue vivante. Le niveau attendu est celui d'un futur directeur général des services techniques.",
       contenu: [
         {
@@ -1660,7 +1666,7 @@ export const FORMATIONS: Record<string, Formation> = {
     categorie: "Catégorie B",
     filiere: "Filière technique",
     type: "Concours + Examen pro.",
-    descCourte: "Examens pro. technicien principal : rapport technique (3h) + entretien. Préparation à partir du 9 septembre 2026.",
+    descCourte: "Examens pro. technicien principal : rapport technique (3h) + entretien. Préparation à partir du 4 novembre 2026.",
     seoTitle: "Concours et Examens Technicien Territorial Guadeloupe 2026-2027 | Evolutia",
     seoDesc: "Préparez le concours de technicien territorial et les examens de technicien principal en Guadeloupe : rapport technique, entretien. Épreuves avril 2027.",
     accroche: "Le technicien territorial est le pivot des services techniques des collectivités. Au calendrier 2026-2027 : les examens professionnels de technicien principal (1re et 2e classe, avancement de grade et promotion interne), avec inscriptions à l'automne 2026. La prochaine session du concours de technicien sera annoncée par le CDG 971.",
@@ -1690,15 +1696,15 @@ export const FORMATIONS: Record<string, Formation> = {
     color: "#4BADD4",
     accent: "#1B3A6B",
     datesCles: [
-      { label: "Démarrage de la préparation Evolutia", date: "Mercredi 9 septembre 2026", statut: "ouvert" },
+      { label: "Démarrage de la préparation Evolutia", date: "Mercredi 4 novembre 2026", statut: "ouvert" },
       { label: "Inscriptions examens pro. technicien principal", date: "13 oct. → 18 nov. 2026", statut: "bientot" },
       { label: "Épreuves écrites examens pro.", date: "15 avril 2027", statut: "bientot" },
       { label: "Prochain concours de technicien", date: "À confirmer — CDG 971", statut: "bientot" },
     ],
     session: {
-      intitule: "Examen professionnel Technicien",
-      demarrage: "mercredi 9 septembre 2026",
-      demarrageISO: "2026-09-09",
+      intitule: "Examen professionnel Technicien 2027",
+      demarrage: "mercredi 4 novembre 2026",
+      demarrageISO: "2026-11-04",
       inscription: "ouverte",
     },
     programmeDetaille: {
@@ -1716,7 +1722,7 @@ export const FORMATIONS: Record<string, Formation> = {
         "Examen professionnel de 2e classe par promotion interne : être agent de maîtrise avec huit ans de services effectifs, ou adjoint technique principal avec dix ans dont cinq dans un cadre d'emplois technique territorial",
         "Concours en voie externe : baccalauréat technologique ou professionnel, ou diplôme de niveau 4 technico-professionnel correspondant à une spécialité",
       ],
-      tarif: "À partir de 2 490 €",
+      tarif: "1 600 €",
       contenuIntro: "La préparation représente 60 à 120 heures selon la voie présentée. Au calendrier 2026-2027 figurent les examens professionnels de technicien principal de 1re et de 2e classe, par avancement de grade comme par promotion interne, dont l'épreuve écrite est commune ; la prochaine session du concours de technicien sera annoncée par le CDG 971. Les séances de fond sont mutualisées, les entraînements et les simulations d'oral sont calés sur l'examen de chacun.",
       contenu: [
         {
@@ -1927,7 +1933,7 @@ export const FORMATIONS: Record<string, Formation> = {
         "Concours interne et 3e voie : conditions de services publics ou quatre ans d'activité professionnelle, de mandat électif ou de responsabilité associative",
         "Expérience de terrain dans un métier technique, sur laquelle appuyer le cas pratique et l'exposé",
       ],
-      tarif: "À partir de 1 890 €",
+      tarif: "1 200 €",
       contenuIntro: "La préparation représente 60 à 80 heures et couvre les deux voies d'accès dans une même session : l'examen professionnel de promotion interne — cas pratique de 2 heures et entretien de 15 minutes, chacun de coefficient 1 — et le concours, qui ajoute une épreuve de mathématiques en externe, une épreuve de connaissances techniques en interne et 3e voie, et un entretien de coefficient 4. Le cas pratique, commun aux deux voies, occupe la place centrale : c'est l'épreuve la plus éliminatoire.",
       contenu: [
         {
