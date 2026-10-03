@@ -119,13 +119,14 @@ formations de `app/formations/data.ts` (testé sur les 22).
 
 ## Liens d'inscription par session (août 2026)
 
-Quatre sessions de préparation ont ouvert leurs inscriptions. Elles sont
+Cinq sessions de préparation ont ouvert leurs inscriptions (MAJ 03/10/2026). Elles sont
 décrites par le champ `session` de `app/formations/data.ts` :
 
 | Formation (slug) | Session | Démarrage |
 |---|---|---|
 | `agent-de-maitrise-guadeloupe` | Examen professionnel Agent de maîtrise | vendredi 4 septembre 2026 |
-| `technicien-territorial-guadeloupe` | Examen professionnel Technicien | mercredi 9 septembre 2026 |
+| `redacteur-principal-guadeloupe` | Oral examen professionnel Rédacteur principal 2026 | mercredi 7 octobre 2026 |
+| `technicien-territorial-guadeloupe` | Examen professionnel Technicien 2027 | mercredi 4 novembre 2026 |
 | `ingenieur-territorial-guadeloupe` | Concours Ingénieur | mercredi 25 novembre 2026 |
 | `redacteur-territorial-guadeloupe` | Concours Rédacteur | vendredi 27 novembre 2026 |
 
