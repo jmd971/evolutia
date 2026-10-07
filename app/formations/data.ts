@@ -2024,7 +2024,7 @@ export const FORMATIONS: Record<string, Formation> = {
         "Être candidate ou candidat à un concours ou à un examen professionnel territorial, toutes catégories et toutes filières",
         "Connaître le format officiel de l'épreuve orale visée : durée, composition du jury, temps d'exposé",
       ],
-      tarif: "À partir de 890 €",
+      tarif: "300 € en catégorie B, 500 € en catégorie A",
       contenuIntro: "La préparation représente 20 à 40 heures, exclusivement en présentiel : l'oral ne se travaille pas à distance. Chaque participant est préparé au format exact de son propre concours — durée, composition du jury, temps d'exposé — et alterne simulations filmées et séances de correction individuelle.",
       contenu: [
         {
