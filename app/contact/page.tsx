@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import NavBar from "../components/NavBar"
-import { BOOKING_URL } from "../config"
+import { BOOKING_URL, GHL_FORM_EMBED_JS } from "../config"
 import Footer from "../components/Footer"
 
 export const metadata: Metadata = {
@@ -31,22 +31,22 @@ export default function Contact() {
       </section>
 
       {/* Contenu */}
-      <section style={{ padding: "64px 24px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 380px", gap: 48, alignItems: "start" }}>
+      <section className="contact-section" style={{ padding: "64px 24px" }}>
+        <div className="contact-grid" style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 380px", gap: 48, alignItems: "start" }}>
 
           {/* Formulaire */}
-          <div style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 20, padding: "40px" }}>
+          <div className="contact-card" style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 20, padding: "40px", minWidth: 0 }}>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 26, fontWeight: 800, color: "#1B3A6B", margin: "0 0 8px 0" }}>Réserver un entretien gratuit</h2>
             <p style={{ color: "#5a6f8f", fontSize: 14, margin: "0 0 24px 0" }}>Choisissez directement votre créneau ci-dessous — confirmation immédiate par e-mail.</p>
 
-            <div style={{ borderRadius: 12, overflow: "hidden", border: "1px solid #EEF5FF" }}>
+            <div className="contact-booking" style={{ borderRadius: 12, overflow: "hidden", border: "1px solid #EEF5FF" }}>
               <iframe
                 src={BOOKING_URL}
                 title="Réserver un entretien d'orientation gratuit — Evolutia Formation"
                 style={{ width: "100%", border: "none", minHeight: 780 }}
               />
             </div>
-            <script src="https://link.siboard-consulting.fr/js/form_embed.js" async />
+            <script src={GHL_FORM_EMBED_JS} async />
             <p style={{ fontSize: 12, color: "#5a6f8f", textAlign: "center", margin: "16px 0 0" }}>
               Vous préférez le téléphone ? Appelez-nous directement : <a href="tel:+590690447360" style={{ color: "#1B3A6B", fontWeight: 700, textDecoration: "none" }}>0690 44 73 60</a>
               {" "}— ou écrivez à <a href="mailto:contact@evolutiaformation.fr" style={{ color: "#1B3A6B", fontWeight: 700, textDecoration: "none" }}>contact@evolutiaformation.fr</a>
@@ -99,7 +99,21 @@ export default function Contact() {
       {/* Footer */}
       <Footer />
 
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');`}</style>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+        @media (max-width: 900px) {
+          .contact-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+        }
+        /* Mobile : le widget de réservation a besoin d'environ 320px de large.
+           Avec 24px de marge de section + 40px de padding de carte, il n'en
+           restait que ~245px sur un écran de 375px : calendrier tronqué. */
+        @media (max-width: 600px) {
+          .contact-section { padding: 32px 12px !important; }
+          .contact-card { padding: 24px 12px !important; border-radius: 16px !important; }
+          .contact-card h2 { font-size: 22px !important; }
+          .contact-booking { margin: 0 -11px; border-radius: 0 !important; border-left: none !important; border-right: none !important; }
+        }
+      `}</style>
     </div>
   );
 }
