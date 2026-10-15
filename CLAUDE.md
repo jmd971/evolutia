@@ -41,7 +41,11 @@ valable du 21/09/2026 au 20/09/2029. Toutes les valeurs sont centralisées dans
 - Ne pas écrire « formation certifiée Qualiopi » : c'est l'organisme et son
   processus qui sont certifiés, pas une formation en particulier.
 - L'affichage du certificat sur le site est obligatoire (arrêté du 31 mai 2023).
-- Après chaque audit de surveillance, remplacer le PDF et mettre à jour
+- Le certificat est en CONSULTATION SEULE : aucun lien ni bouton de téléchargement,
+  aucun PDF dans `public/`. Seule l'image est publiée (`public/qualiopi/`) ; le PDF
+  source est dans `docs/qualiopi/`.
+- Après chaque audit de surveillance, déposer le nouveau PDF dans `docs/qualiopi/`,
+  régénérer l'image (commande dans `app/qualiopi.ts`) et mettre à jour
   `app/qualiopi.ts` (numéro, dates).
 
 ## Règles obligatoires
