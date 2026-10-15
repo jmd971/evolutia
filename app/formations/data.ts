@@ -1660,7 +1660,7 @@ export const FORMATIONS: Record<string, Formation> = {
     categorie: "Catégorie B",
     filiere: "Filière technique",
     type: "Concours + Examen pro.",
-    descCourte: "Examens pro. technicien principal : rapport technique (3h) + entretien. Préparation à partir du 9 septembre 2026.",
+    descCourte: "Examens pro. technicien principal : rapport technique (3h) + entretien. Préparation : démarrage le 21 octobre 2026 à 15h.",
     seoTitle: "Concours et Examens Technicien Territorial Guadeloupe 2026-2027 | Evolutia",
     seoDesc: "Préparez le concours de technicien territorial et les examens de technicien principal en Guadeloupe : rapport technique, entretien. Épreuves avril 2027.",
     accroche: "Le technicien territorial est le pivot des services techniques des collectivités. Au calendrier 2026-2027 : les examens professionnels de technicien principal (1re et 2e classe, avancement de grade et promotion interne), avec inscriptions à l'automne 2026. La prochaine session du concours de technicien sera annoncée par le CDG 971.",
@@ -1690,15 +1690,15 @@ export const FORMATIONS: Record<string, Formation> = {
     color: "#4BADD4",
     accent: "#1B3A6B",
     datesCles: [
-      { label: "Démarrage de la préparation Evolutia", date: "Mercredi 9 septembre 2026", statut: "ouvert" },
+      { label: "Démarrage de la préparation Evolutia", date: "Mercredi 21 octobre 2026 à 15h", statut: "ouvert" },
       { label: "Inscriptions examens pro. technicien principal", date: "13 oct. → 18 nov. 2026", statut: "bientot" },
       { label: "Épreuves écrites examens pro.", date: "15 avril 2027", statut: "bientot" },
       { label: "Prochain concours de technicien", date: "À confirmer — CDG 971", statut: "bientot" },
     ],
     session: {
       intitule: "Examen professionnel Technicien",
-      demarrage: "mercredi 9 septembre 2026",
-      demarrageISO: "2026-09-09",
+      demarrage: "mercredi 21 octobre 2026 à 15h",
+      demarrageISO: "2026-10-21",
       inscription: "ouverte",
     },
     programmeDetaille: {
