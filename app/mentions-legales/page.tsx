@@ -96,7 +96,7 @@ export default function MentionsLegales() {
               {QUALIOPI.certificateur} ({QUALIOPI.accreditation}), valable du {QUALIOPI.debutValidite} au{' '}
               {QUALIOPI.finValidite}. {QUALIOPI.mentionLegale}{' '}
               <Link href={QUALIOPI.page} className="underline" style={{ color: '#4BADD4' }}>
-                Consulter et télécharger le certificat
+                Consulter le certificat
               </Link>.
             </p>
           </section>

@@ -8,7 +8,7 @@ import { SITE_URL } from "../config"
 export const metadata: Metadata = {
   title: "Certification Qualiopi — Evolutia Formation Guadeloupe",
   description:
-    "Evolutia est certifié Qualiopi au titre des actions de formation. Consultez et téléchargez le certificat n° 984211-1 délivré par Certifopac, valable jusqu'au 20/09/2029.",
+    "Evolutia est certifié Qualiopi au titre des actions de formation. Consultez le certificat n° 984211-1 délivré par Certifopac, valable jusqu'au 20/09/2029.",
   alternates: { canonical: `${SITE_URL}${QUALIOPI.page}` },
 }
 
@@ -125,20 +125,22 @@ export default function CertificationQualiopi() {
             </table>
           </div>
 
+          {/* Certificat affiché en consultation seule : image sans lien ni bouton de
+              téléchargement, non sélectionnable ni glissable. Le PDF source n'est pas
+              servi (docs/qualiopi/). */}
+          <div style={{ marginTop: 28, background: "white", border: "1px solid #D6E4F0", borderRadius: 16, padding: 16 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={QUALIOPI.certificatImage}
+              alt={`Certificat Qualiopi n° ${QUALIOPI.numeroCertificat} délivré à Evolutia par ${QUALIOPI.certificateur}, catégorie ${QUALIOPI.categorieCourte}, valable du ${QUALIOPI.debutValidite} au ${QUALIOPI.finValidite}`}
+              width={1241}
+              height={1754}
+              draggable={false}
+              style={{ display: "block", width: "100%", height: "auto", maxWidth: 760, margin: "0 auto", pointerEvents: "none", userSelect: "none", WebkitUserSelect: "none" }}
+            />
+          </div>
+
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 24 }}>
-            <a
-              href={QUALIOPI.pdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", gap: 10, background: "#1B3A6B", color: "white", fontWeight: 700, fontSize: 15, padding: "14px 26px", borderRadius: 10, textDecoration: "none" }}
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg>
-              Télécharger le certificat (PDF)
-            </a>
             <a
               href={QUALIOPI.accreditationUrl}
               target="_blank"

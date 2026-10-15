@@ -12,7 +12,10 @@
 //    entraîner la suspension ou le retrait du certificat.
 // Un audit de surveillance interviendra entre le 14e et le 22e mois suivant le
 // 21/09/2026 : penser à remplacer le certificat publié après chaque nouvelle
-// édition (numéro, dates de validité, fichier PDF).
+// édition (numéro, dates de validité, image du certificat).
+// Le certificat est affiché en consultation seule : le PDF source est rangé
+// dans docs/qualiopi/ (hors de public/, donc non servi) et seule son image
+// est publiée.
 
 export const QUALIOPI = {
   certificateur: "CERTIFOPAC",
@@ -37,7 +40,10 @@ export const QUALIOPI = {
   // « Cet enregistrement ne vaut pas agrément de l'État ».
   nda: "01973722197",
   siren: "927 489 690",
-  pdf: "/qualiopi/certificat-qualiopi-evolutia-984211-1.pdf",
+  // Image du certificat (A4, 150 dpi) affichée sur la page de certification.
+  // Régénérer après chaque édition :
+  //   pdftoppm -png -r 150 -singlefile docs/qualiopi/<certificat>.pdf public/qualiopi/<certificat>
+  certificatImage: "/qualiopi/certificat-qualiopi-evolutia-984211-1.png",
   // Logo officiel tel que Certifopac l'intègre dans le certificat (439 x 174 px,
   // aucune retouche). Ne pas l'afficher au-delà de 87 px de haut : au-delà il
   // perd en netteté sur les écrans 2x. Pour un affichage plus grand, reprendre
