@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const FORMATIONS_TARIFS = [
-  { titre: "Préparation Oraux", duree: "20–40h", prix: "À partir de 890 €", cat: "Toutes cat.", cpf: true },
+  { titre: "Préparation Oraux", duree: "20–40h", prix: "300 € (cat. B) / 500 € (cat. A)", cat: "Cat. A et B", cpf: true },
   { titre: "Rédacteur Principal (RAEP)", duree: "40–60h", prix: "À partir de 1 490 €", cat: "Cat. B+", cpf: true },
   { titre: "Agent de Maîtrise", duree: "60–80h", prix: "À partir de 1 890 €", cat: "Cat. C+", cpf: true },
   { titre: "Attaché Territorial", duree: "166h", prix: "1 900 €", cat: "Cat. A", cpf: true },
