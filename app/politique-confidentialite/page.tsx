@@ -34,6 +34,9 @@ E-mail : contact@evolutiaformation.fr`
 — Concours visé et message libre<br/><br/>
 <strong>Via la navigation sur le site :</strong><br/>
 — Données de connexion (adresse IP, navigateur, pages visitées) à des fins statistiques anonymes<br/><br/>
+<strong>Via l'assistant virtuel (messagerie du site) :</strong><br/>
+— Les messages que vous échangez avec l'assistant, et les coordonnées ou informations de projet que vous choisissez d'y indiquer (prénom, téléphone, e-mail, concours visé)<br/>
+— Les réponses sont générées automatiquement par une intelligence artificielle ; un membre de l'équipe peut relire la conversation. Merci de ne pas y communiquer de données sensibles.<br/><br/>
 Ces données sont collectées avec votre consentement explicite ou sur la base de notre intérêt légitime à vous répondre.`
           },
           {
@@ -48,6 +51,7 @@ Nous ne vendons, ne louons ni ne partageons vos données personnelles avec des t
           {
             titre: "4. Durée de conservation",
             contenu: `— <strong>Données prospects</strong> (demandes d'entretien sans suite) : 3 ans à compter du dernier contact<br/>
+— <strong>Conversations avec l'assistant virtuel</strong> : 3 ans à compter du dernier contact<br/>
 — <strong>Données stagiaires</strong> (inscrits à une formation) : 5 ans à compter de la fin de la formation (obligation légale)<br/>
 — <strong>Données comptables</strong> (conventions, factures) : 10 ans (obligation fiscale)<br/>
 — <strong>Données de navigation</strong> : 13 mois maximum`
@@ -56,6 +60,7 @@ Nous ne vendons, ne louons ni ne partageons vos données personnelles avec des t
             titre: "5. Destinataires des données",
             contenu: `Vos données peuvent être partagées avec :<br/><br/>
 — Notre prestataire d'hébergement (Vercel Inc., États-Unis) dans le cadre d'un accord de traitement conforme au RGPD<br/>
+— Notre prestataire de relation client et de messagerie (GoHighLevel) et le fournisseur du modèle d'intelligence artificielle qui génère les réponses de l'assistant virtuel, dans le cadre de contrats de sous-traitance<br/>
 — Les organismes financeurs (OPCO, France Travail, Caisse des Dépôts pour le CPF) dans le cadre du financement de votre formation<br/>
 — Les autorités administratives compétentes (DREETS Guadeloupe) dans le cadre de nos obligations légales d'organisme de formation<br/><br/>
 Aucun transfert de données hors UE n'est effectué sans garanties appropriées.`
@@ -76,7 +81,8 @@ En cas de réclamation non résolue, vous pouvez saisir la <strong>CNIL</strong>
             titre: "7. Cookies",
             contenu: `Notre site utilise des cookies techniques nécessaires au bon fonctionnement du site (pas de cookies publicitaires ni de tracking tiers).<br/><br/>
 — <strong>Cookies techniques</strong> : essentiels au fonctionnement du site (session, préférences)<br/>
-— <strong>Cookies analytiques anonymes</strong> : mesure d'audience sans identification personnelle<br/><br/>
+— <strong>Cookies analytiques anonymes</strong> : mesure d'audience sans identification personnelle<br/>
+— <strong>Messagerie instantanée</strong> : un identifiant technique est conservé dans votre navigateur pour retrouver votre conversation, sans usage publicitaire<br/><br/>
 Vous pouvez configurer votre navigateur pour refuser les cookies. Cela n'affectera pas l'accès aux contenus du site.`
           },
           {

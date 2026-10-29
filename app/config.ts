@@ -45,3 +45,16 @@ export function inscriptionEmbedUrl(slug: string, sessionISO?: string): string {
   if (sessionISO) params.set("session_choisie", sessionISO);
   return `${GHL_WIDGET_HOST}/widget/form/${INSCRIPTION_FORM_ID}?${params.toString()}`;
 }
+
+// ─── Assistant virtuel (chat) ────────────────────────────────────────────────
+// Widget de chat GHL « Chat Evolutia » (sous-compte Evolutia), relié à l'agent
+// Conversation AI « Léa - Conseillère Evolutia ». Le script est servi par le
+// domaine neutre LeadConnector : aucun lien siboard n'apparaît (règle CLAUDE.md).
+// Le widget n'est chargé que si NEXT_PUBLIC_CHAT_WIDGET=on côté Vercel : fusionner
+// ce code ne change rien tant que l'interrupteur n'est pas posé (voir docs/chatbot.md).
+export const CHAT_WIDGET_ENABLED = process.env.NEXT_PUBLIC_CHAT_WIDGET === "on";
+export const CHAT_WIDGET_ID = "66c03927d1bc9e2e73f3ab9e";
+export const CHAT_WIDGET_SCRIPT = "https://widgets.leadconnectorhq.com/loader.js";
+export const CHAT_WIDGET_RESOURCES = "https://widgets.leadconnectorhq.com/chat-widget/loader.js";
+// Pages où la bulle de chat ne doit pas se charger : espace interne et tunnel d'inscription.
+export const CHAT_WIDGET_EXCLUDED_PREFIXES = ["/interne", "/inscription"];
