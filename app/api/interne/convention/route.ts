@@ -64,6 +64,12 @@ export async function POST(req: Request) {
   try {
     await updateContactCustomFieldsByKey(c.contactId, {
       formation_choisie: c.formationSlug,
+      // La session vient de data.ts et non d'une saisie : la convention doit
+      // mentionner le calendrier, et un candidat inscrit au bureau plutôt que
+      // par le site n'a pas ce champ rempli.
+      ...(formation.session?.demarrageISO
+        ? { session_choisie: formation.session.demarrageISO }
+        : {}),
       voie_concours_inscription: c.voieConcours,
       specialite_concours: c.specialite,
       montant_formation: String(montantCentimes / 100),
