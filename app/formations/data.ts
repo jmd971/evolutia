@@ -277,7 +277,7 @@ export const FORMATIONS: Record<string, Formation> = {
     categorie: "Catégorie B",
     filiere: "Filière administrative",
     type: "Concours",
-    descCourte: "Questions et note sur dossier (3h chacune), entretien jury. Prochaine session Evolutia : démarrage le 27 novembre 2026.",
+    descCourte: "Questions et note sur dossier (3h chacune), entretien jury. Prochaine session Evolutia : démarrage le 6 novembre 2026 à 15h.",
     seoTitle: "Préparation Concours Rédacteur Territorial Guadeloupe 2026-2027 | Evolutia",
     seoDesc: "Préparez le concours de rédacteur territorial en Guadeloupe : questions, note sur dossier, entretien. Session 2027, financement CPF. Evolutia, Les Abymes.",
     accroche: "Le concours de rédacteur territorial (catégorie B) est la porte d'entrée des missions administratives qualifiées : instruction de dossiers, rédaction d'actes, comptabilité, gestion. Les concours de rédacteur et de rédacteur principal de 2e classe sont organisés aux mêmes dates en 2027 — notre préparation couvre les deux.",
@@ -306,14 +306,14 @@ export const FORMATIONS: Record<string, Formation> = {
     color: "#1B3A6B",
     accent: "#4BADD4",
     datesCles: [
-      { label: "Démarrage de la préparation Evolutia", date: "Vendredi 27 novembre 2026", statut: "ouvert" },
+      { label: "Démarrage de la préparation Evolutia", date: "Vendredi 6 novembre 2026 à 15h", statut: "ouvert" },
       { label: "Inscriptions au concours (session 2027)", date: "2 fév. → 10 mars 2027", statut: "bientot" },
       { label: "Épreuves écrites", date: "14 octobre 2027", statut: "bientot" },
     ],
     session: {
       intitule: "Concours Rédacteur",
-      demarrage: "vendredi 27 novembre 2026",
-      demarrageISO: "2026-11-27",
+      demarrage: "vendredi 6 novembre 2026 à 15h",
+      demarrageISO: "2026-11-06",
       inscription: "ouverte",
     },
     programmeDetaille: {

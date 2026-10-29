@@ -127,7 +127,7 @@ décrites par le champ `session` de `app/formations/data.ts` :
 | `agent-de-maitrise-guadeloupe` | Examen professionnel Agent de maîtrise | vendredi 4 septembre 2026 |
 | `technicien-territorial-guadeloupe` | Examen professionnel Technicien | mercredi 21 octobre 2026 à 15h |
 | `ingenieur-territorial-guadeloupe` | Concours Ingénieur | mercredi 25 novembre 2026 |
-| `redacteur-territorial-guadeloupe` | Concours Rédacteur | vendredi 27 novembre 2026 |
+| `redacteur-territorial-guadeloupe` | Concours Rédacteur | vendredi 6 novembre 2026 à 15h |
 
 Le site construit le lien avec `inscriptionUrl(slug, demarrageISO)`
 (`app/config.ts`), qui produit :
