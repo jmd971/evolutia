@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SITE_URL } from "./config";
 import { QUALIOPI } from "./qualiopi";
+import ChatWidget from "./components/ChatWidget";
 import "./globals.css";
 
 const TITLE = "Evolutia Formation | Préparation Concours Territoriaux en Guadeloupe";
@@ -116,6 +117,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSONLD) }}
         />
         {children}
+        <ChatWidget />
       </body>
     </html>
   );
