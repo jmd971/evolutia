@@ -139,7 +139,7 @@ export default function ConventionClient({ formations }: { formations: Formation
     });
     const body = await res.json().catch(() => ({}));
     setMessage(res.ok
-      ? { type: "ok", texte: `Fiche de ${contact.nom} mise à jour dans GHL. Vous pouvez envoyer la convention à signer.` }
+      ? { type: "ok", texte: `Valeurs enregistrées dans la fiche de ${contact.nom}. La convention n'est pas encore envoyée : ajoutez la balise convention_a_envoyer sur sa fiche GHL pour l'envoyer à signer.` }
       : { type: "ko", texte: body.erreur ?? "Enregistrement impossible." });
     setEnvoi(false);
   }
