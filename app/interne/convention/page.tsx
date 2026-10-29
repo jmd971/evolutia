@@ -33,6 +33,7 @@ export default async function PageInterneConvention() {
   const formations = Object.entries(FORMATIONS).map(([slug, f]) => ({
     slug,
     titre: f.titre,
+    duree: f.duree,
     session: f.session?.intitule ?? null,
     demarrage: f.session?.demarrage ?? null,
   }));
