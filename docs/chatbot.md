@@ -22,3 +22,13 @@ Agent GHL **Léa - Conseillère Evolutia** (Conversation AI, sous-compte Evoluti
 - Le guide d'orientation est généré depuis `app/formations/data.ts` : le régénérer et le recoller dans la base GHL
   quand une formation, une condition d'accès ou une session ouverte change.
 - Le widget n'est pas chargé sur `/interne` ni `/inscription` (voir `CHAT_WIDGET_EXCLUDED_PREFIXES`).
+
+## Liens des mails (annuler / reporter)
+Les mails de confirmation et de rappel (workflow GHL « 2. Confirmation de rendez-vous + Rappels ») ne doivent pas
+envoyer le candidat sur `link.siboard-consulting.fr`. Leurs liens pointent vers :
+- `https://www.evolutiaformation.fr/rendez-vous/annuler?id={{appointment.id}}`
+- `https://www.evolutiaformation.fr/rendez-vous/reporter?id={{appointment.id}}`
+
+Ces pages (`app/rendez-vous/`) embarquent les widgets GHL `cancel-booking` et `booking/<calendrier>?event_id=…`
+servis par `api.leadconnectorhq.com`. Un identifiant absent ou invalide affiche un message avec le téléphone.
+Les liens « Ajouter à Google Agenda / Outlook » restent ceux de GHL (leur destination est Google ou Outlook).

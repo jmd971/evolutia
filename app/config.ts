@@ -58,3 +58,22 @@ export const CHAT_WIDGET_SCRIPT = "https://widgets.leadconnectorhq.com/loader.js
 export const CHAT_WIDGET_RESOURCES = "https://widgets.leadconnectorhq.com/chat-widget/loader.js";
 // Pages où la bulle de chat ne doit pas se charger : espace interne et tunnel d'inscription.
 export const CHAT_WIDGET_EXCLUDED_PREFIXES = ["/interne", "/inscription"];
+
+// ─── Gérer un rendez-vous existant (annuler / reporter) ──────────────────────
+// Les mails de confirmation et de rappel pointent vers /rendez-vous/annuler?id=… et
+// /rendez-vous/reporter?id=… (id = {{appointment.id}} dans GHL) : ces pages embarquent
+// les widgets GHL, pour que le candidat reste sur evolutiaformation.fr au lieu d'atterrir
+// sur le domaine de liens de l'agence (règle CLAUDE.md : aucun lien siboard visible).
+// Calendrier « Reserver un entretien » (même que BOOKING_URL).
+export const RDV_CALENDAR_ID = "2s1uZtXtzs4Rp4YLbZ75";
+// Identifiant d'un rendez-vous GHL (20 caractères alphanumériques) : on refuse tout le reste
+// avant de le placer dans l'URL de l'iframe.
+export const RDV_ID_PATTERN = /^[A-Za-z0-9]{10,40}$/;
+
+export function rdvAnnulerEmbedUrl(id: string): string {
+  return `${GHL_WIDGET_HOST}/widget/cancel-booking?event_id=${encodeURIComponent(id)}`;
+}
+
+export function rdvReporterEmbedUrl(id: string): string {
+  return `${GHL_WIDGET_HOST}/widget/booking/${RDV_CALENDAR_ID}?event_id=${encodeURIComponent(id)}`;
+}
