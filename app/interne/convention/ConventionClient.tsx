@@ -7,7 +7,7 @@ import {
   eurosVersCentimes,
 } from "../../../lib/echeancier";
 
-type Formation = { slug: string; titre: string; session: string | null; demarrage: string | null };
+type Formation = { slug: string; titre: string; duree: string; session: string | null; demarrage: string | null };
 type Contact = { id: string; nom: string; email: string | null; phone: string | null };
 
 const VOIES = ["Externe", "Interne", "3e voie"];
@@ -36,6 +36,8 @@ export default function ConventionClient({ formations }: { formations: Formation
   const [formationSlug, setFormationSlug] = useState(formations[0]?.slug ?? "");
   const [voieConcours, setVoieConcours] = useState(VOIES[0]);
   const [specialite, setSpecialite] = useState("");
+  const [dureeSaisie, setDureeSaisie] = useState<string | null>(null);
+  const [joursCours, setJoursCours] = useState("");
   const [montant, setMontant] = useState("1900");
   const [acompte, setAcompte] = useState("400");
   const [nombreEcheances, setNombreEcheances] = useState(10);
@@ -131,7 +133,7 @@ export default function ConventionClient({ formations }: { formations: Formation
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        contactId: contact.id, formationSlug, voieConcours, specialite,
+        contactId: contact.id, formationSlug, voieConcours, specialite, duree, joursCours: joursCours.trim(),
         montant, acompte, nombreEcheances, premiereEcheance, modePaiement,
       }),
     });
@@ -143,7 +145,13 @@ export default function ConventionClient({ formations }: { formations: Formation
   }
 
   const formation = formations.find((f) => f.slug === formationSlug);
-  const pretAEnvoyer = contact && !apercu?.erreur && specialite.trim().length > 0;
+  // La fiche publie souvent une fourchette (« 50 à 70 heures ») : la convention
+  // doit porter la durée exacte convenue, donc on la fait confirmer.
+  const duree = dureeSaisie ?? formation?.duree ?? "";
+  const dureeEstFourchette = dureeSaisie === null && / à /.test(duree);
+  const pretAEnvoyer =
+    contact && !apercu?.erreur && specialite.trim().length > 0 &&
+    duree.trim().length > 0 && joursCours.trim().length > 0 && !dureeEstFourchette;
 
   return (
     <div style={{ minHeight: "100vh", background: "#F8FAFF", fontFamily: "system-ui, sans-serif", padding: "32px 24px", color: "#1a2740" }}>
@@ -240,7 +248,7 @@ export default function ConventionClient({ formations }: { formations: Formation
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 16, marginTop: 12 }}>
             <div>
               <label style={label}>Formation</label>
-              <select value={formationSlug} onChange={(e) => setFormationSlug(e.target.value)} style={champ}>
+              <select value={formationSlug} onChange={(e) => { setFormationSlug(e.target.value); setDureeSaisie(null); }} style={champ}>
                 {formations.map((f) => <option key={f.slug} value={f.slug}>{f.titre}</option>)}
               </select>
               {formation?.session && (
@@ -259,6 +267,21 @@ export default function ConventionClient({ formations }: { formations: Formation
               <label style={label}>Spécialité</label>
               <input value={specialite} onChange={(e) => setSpecialite(e.target.value)}
                 placeholder="Ex. Infrastructures et réseaux — option VRD" style={champ} />
+            </div>
+            <div>
+              <label style={label}>Durée totale</label>
+              <input value={duree} onChange={(e) => setDureeSaisie(e.target.value)}
+                placeholder="Ex. 60 heures" style={champ} />
+              {dureeEstFourchette && (
+                <p style={{ fontSize: 12, color: "#b45309", margin: "6px 0 0" }}>
+                  La fiche indique une fourchette : saisissez la durée exacte convenue.
+                </p>
+              )}
+            </div>
+            <div>
+              <label style={label}>Jours de cours</label>
+              <input value={joursCours} onChange={(e) => setJoursCours(e.target.value)}
+                placeholder="Ex. les mardis et jeudis de 17 h à 20 h" style={champ} />
             </div>
           </div>
         </section>
@@ -320,7 +343,7 @@ export default function ConventionClient({ formations }: { formations: Formation
           {envoi ? "Enregistrement…" : "Enregistrer dans la fiche GHL"}
         </button>
         {!contact && <p style={{ fontSize: 13, color: "#5a6f8f", marginTop: 10 }}>Sélectionnez d&apos;abord un candidat.</p>}
-        {contact && !specialite.trim() && <p style={{ fontSize: 13, color: "#5a6f8f", marginTop: 10 }}>Renseignez la spécialité du concours.</p>}
+        {contact && !pretAEnvoyer && !apercu?.erreur && <p style={{ fontSize: 13, color: "#5a6f8f", marginTop: 10 }}>Renseignez la spécialité, la durée exacte et les jours de cours.</p>}
       </div>
     </div>
   );

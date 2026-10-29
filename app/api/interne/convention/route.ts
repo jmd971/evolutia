@@ -13,6 +13,8 @@ type Corps = {
   formationSlug: string;
   voieConcours: string;
   specialite: string;
+  duree: string;
+  joursCours: string;
   montant: string;
   acompte: string;
   nombreEcheances: number;
@@ -35,6 +37,9 @@ export async function POST(req: Request) {
   const formation = FORMATIONS[c.formationSlug];
   if (!formation) {
     return NextResponse.json({ erreur: `Formation inconnue : ${c.formationSlug}` }, { status: 400 });
+  }
+  if (!c.duree?.trim() || !c.joursCours?.trim()) {
+    return NextResponse.json({ erreur: "Durée et jours de cours obligatoires." }, { status: 400 });
   }
   if (!c.contactId) {
     return NextResponse.json({ erreur: "Aucun candidat sélectionné." }, { status: 400 });
@@ -66,6 +71,9 @@ export async function POST(req: Request) {
       formation_choisie: c.formationSlug,
       voie_concours_inscription: c.voieConcours,
       specialite_concours: c.specialite,
+      intitule_formation: formation.titre,
+      duree_formation: c.duree.trim(),
+      jours_cours: c.joursCours.trim(),
       montant_formation: String(montantCentimes / 100),
       acompte_verse: String(eurosVersCentimes(c.acompte || "0") / 100),
       nombre_echeances: String(c.nombreEcheances),
