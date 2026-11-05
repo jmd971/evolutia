@@ -36,6 +36,9 @@ export const GHL_TAG_NAMES = {
   relance2Envoyee: "relance_2_envoyee",
   abandonne: "abandonne",
   conventionSignee: "convention_signee",
+  // Déclenche le workflow GHL « Inscriptions 1 - Envoi de la convention »,
+  // qui envoie le modèle à signer puis retire la balise.
+  conventionAEnvoyer: "convention_a_envoyer",
 } as const;
 
 export const VOIE_CONCOURS_OPTIONS = ["Externe", "Interne", "3e voie"] as const;
