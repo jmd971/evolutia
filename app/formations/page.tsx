@@ -126,10 +126,10 @@ export default function FormationsPage() {
         <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 40, flexWrap: "wrap" }}>
           <div>
             <div style={{ color: "#4BADD4", fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 10 }}>Financement</div>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 12px 0" }}>Toutes nos formations sont éligibles CPF</h2>
-            <p style={{ color: "#5a6f8f", fontSize: 16, lineHeight: 1.7, margin: 0 }}>Financement possible à 100% via votre Compte Personnel de Formation. Aucune avance de frais.</p>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 800, color: "#1B3A6B", margin: "0 0 12px 0" }}>Financer votre préparation</h2>
+            <p style={{ color: "#5a6f8f", fontSize: 16, lineHeight: 1.7, margin: 0 }}>Prise en charge par votre employeur, CPF avec son accord, ou financement personnel avec un règlement échelonné.</p>
           </div>
-          <Link href="/#financement" style={{ background: "#1B3A6B", color: "white", fontWeight: 700, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none", whiteSpace: "nowrap" }}>
+          <Link href="/financement-tarifs" style={{ background: "#1B3A6B", color: "white", fontWeight: 700, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none", whiteSpace: "nowrap" }}>
             En savoir plus
           </Link>
         </div>

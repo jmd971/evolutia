@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { estAuthentifie, estConfigure } from "../../../lib/interne/auth";
 import { FORMATIONS } from "../../formations/data";
+import { conditionsConvention } from "../../formations/conventions";
 import Connexion from "./Connexion";
 import ConventionClient from "./ConventionClient";
 
@@ -36,6 +37,8 @@ export default async function PageInterneConvention() {
     duree: f.duree,
     session: f.session?.intitule ?? null,
     demarrage: f.session?.demarrage ?? null,
+    voies: f.conditions.map((c) => c.voie),
+    convention: conditionsConvention(slug),
   }));
 
   return <ConventionClient formations={formations} />;

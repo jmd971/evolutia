@@ -17,8 +17,10 @@ export type ProgrammeDetaille = {
   prerequis: string[];
   contenuIntro: string;
   contenu: ProgrammeSession[];
-  // Tarif et équipe pédagogique : omis tant qu'Evolutia ne les a pas communiqués
-  // pour la préparation concernée — mieux vaut l'absence qu'une valeur inventée.
+  // Le tarif ne se renseigne plus ici : il vient de app/formations/conventions.ts,
+  // source commune à la fiche, à la page tarifs et à la convention.
+  // Équipe pédagogique : omise tant qu'Evolutia ne l'a pas communiquée pour la
+  // préparation concernée — mieux vaut l'absence qu'une valeur inventée.
   tarif?: string;
   equipe?: string;
   // Repris du socle commun (app/formations/socle-qualiopi.ts) quand la fiche ne
@@ -144,7 +146,6 @@ export const FORMATIONS: Record<string, Formation> = {
       ],
       equipe: "2 formateurs pour la session d'admissibilité (écrit), 2 formateurs pour la session d'admission (oral).",
       delaiAcces: "15 jours après inscription",
-      tarif: "1 900 €",
       moyens: [
         "Alternance d'apports théoriques et méthodologiques et de travaux pratiques à partir de dossiers types, conformes aux exigences des notes de cadrage nationales du rapport / note sur dossier et de la composition (cadrage actualisé du 28/08/2023).",
         "Études de cas et mises en situation proches des conditions réelles du concours, à partir des thématiques des annales nationales (spécialité administration générale et sujets de culture territoriale).",
@@ -282,9 +283,12 @@ export const FORMATIONS: Record<string, Formation> = {
     seoDesc: "Préparez le concours de rédacteur territorial en Guadeloupe : questions, note sur dossier, entretien. Session 2027, financement CPF. Evolutia, Les Abymes.",
     accroche: "Le concours de rédacteur territorial (catégorie B) est la porte d'entrée des missions administratives qualifiées : instruction de dossiers, rédaction d'actes, comptabilité, gestion. Les concours de rédacteur et de rédacteur principal de 2e classe sont organisés aux mêmes dates en 2027 — notre préparation couvre les deux.",
     epreuves: [
-      { type: "Écrit", label: "Réponses à une série de questions (3h, coef. 1)", desc: "Voie externe rédacteur : questions portant sur le domaine choisi à l'inscription. Pour le concours de rédacteur principal de 2e classe : questions de droit public et de finances publiques portant sur le fonctionnement des collectivités." },
-      { type: "Écrit", label: "Note ou rapport à partir d'un dossier (3h, coef. 1)", desc: "Rédaction d'une note sur les missions, compétences et moyens d'action des collectivités territoriales. En voie interne et 3e voie, c'est l'épreuve écrite unique. Pour rédacteur principal : rapport assorti de propositions opérationnelles." },
-      { type: "Oral", label: "Entretien avec le jury (20 min, coef. 1)", desc: "Exposé du candidat sur sa formation et son projet professionnel (externe) ou sur les acquis de son expérience (interne, 3e voie), puis échange sur la motivation et l'aptitude à exercer les missions du cadre d'emplois." },
+      { type: "Écrit", label: "Rédacteur, voie externe — Rédaction d'une note (3h)", desc: "Note à partir d'un dossier, sans option." },
+      { type: "Écrit", label: "Rédacteur, voie externe — Réponses à des questions (3h)", desc: "Questions portant sur l'option choisie à l'inscription : finances, budgets et intervention économique des collectivités ; droit public ; action sanitaire et sociale ; ou droit civil, chacun en lien avec les missions des collectivités territoriales." },
+      { type: "Écrit", label: "Rédacteur, voie interne — Rédaction d'une note (3h)", desc: "Note à partir d'un dossier, dans l'option choisie à l'inscription parmi les quatre mêmes options qu'en externe. En interne, l'option porte donc sur la note ; en externe, sur l'épreuve de questions." },
+      { type: "Écrit", label: "Rédacteur principal de 2e classe, voie externe — deux épreuves de 3h", desc: "Questions de droit public et de finances publiques (3h), puis rapport assorti de propositions opérationnelles (3h). Aucune option." },
+      { type: "Écrit", label: "Rédacteur principal de 2e classe, voie interne — deux épreuves de 3h", desc: "Rapport assorti de propositions opérationnelles (3h), puis questions sur les missions, compétences et moyens d'action des collectivités territoriales (3h). Aucune option." },
+      { type: "Oral", label: "Entretien avec le jury (20 min)", desc: "Épreuve d'admission commune aux deux concours et aux deux voies : exposé du candidat sur sa formation et son projet professionnel (externe) ou sur les acquis de son expérience (interne), puis échange sur la motivation et l'aptitude à exercer les missions du cadre d'emplois." },
     ],
     programme: [
       "Droit public, finances publiques et fonctionnement des collectivités territoriales",
@@ -332,7 +336,6 @@ export const FORMATIONS: Record<string, Formation> = {
         "Pouvoir consacrer du temps de travail personnel entre les séances",
         "Maîtriser l'expression écrite en français",
       ],
-      tarif: "À partir de 2 490 €",
       contenuIntro: "La préparation représente 80 à 120 heures, réparties entre les deux épreuves écrites d'admissibilité et l'entretien d'admission. Les concours de rédacteur et de rédacteur principal de 2e classe étant organisés aux mêmes dates en 2027, les deux sont préparés dans la même session, avec des travaux différenciés là où les épreuves divergent.",
       contenu: [
         {
@@ -360,7 +363,7 @@ export const FORMATIONS: Record<string, Formation> = {
       ],
     },
     faq: [
-      { q: "Quelles sont exactement les épreuves écrites du concours de rédacteur ?", a: "En voie externe : une série de questions (3h) et la rédaction d'une note à partir d'un dossier (3h). En voie interne et 3e voie : uniquement la note sur dossier (3h). Contrairement à une idée répandue, il n'y a ni dissertation de culture générale ni note de synthèse classique — la méthodologie attendue est précisée dans les notes de cadrage officielles, sur lesquelles nous nous appuyons." },
+      { q: "Quelles sont exactement les épreuves écrites du concours de rédacteur ?", a: "En voie externe : la rédaction d'une note (3h, sans option) et des réponses à des questions (3h) dans l'option choisie à l'inscription. En voie interne : uniquement la note (3h), dans l'option choisie. Les quatre options sont les mêmes dans les deux voies (finances, droit public, action sanitaire et sociale, droit civil), mais elles ne portent pas sur la même épreuve. Le concours de rédacteur principal de 2e classe comporte deux écrits de 3h dans chaque voie, sans option." },
       { q: "Rédacteur ou rédacteur principal de 2e classe : quel concours choisir ?", a: "Les deux concours sont organisés aux mêmes dates en 2027. Le concours de rédacteur principal de 2e classe exige un Bac+2 et des épreuves plus techniques (droit public et finances publiques), mais offre un grade et une rémunération supérieurs dès l'entrée. Si vous avez le diplôme requis, il est souvent pertinent de viser le principal." },
       { q: "Combien de temps faut-il pour se préparer ?", a: "Entre 6 et 9 mois de préparation régulière. Les épreuves écrites de 3h demandent un entraînement méthodologique prolongé, et l'actualité territoriale se travaille dans la durée. Pour des épreuves en octobre 2027, commencez idéalement en début d'année 2027." },
     ],
@@ -419,7 +422,6 @@ export const FORMATIONS: Record<string, Formation> = {
         "Avancement en 1re classe : être rédacteur principal de 2e classe, justifier d'au moins un an dans le 6e échelon et de trois ans de services effectifs en catégorie B",
         "Disposer d'une expérience professionnelle sur laquelle appuyer l'exposé oral",
       ],
-      tarif: "À partir de 1 490 €",
       contenuIntro: "La préparation représente 40 à 60 heures. L'épreuve écrite étant identique pour la 1re et la 2e classe, les deux examens sont préparés dans la même session ; seules les attentes du jury à l'oral se renforcent pour la 1re classe. Contrairement à une idée répandue, cet examen comporte bien un écrit exigeant : c'est là que se joue l'admissibilité.",
       contenu: [
         {
@@ -1513,7 +1515,6 @@ export const FORMATIONS: Record<string, Formation> = {
         "Voie interne : être fonctionnaire ou agent public et compter au moins quatre ans de services publics",
         "Avoir choisi sa spécialité et son option avant l'entrée en préparation : tout le travail technique en découle",
       ],
-      tarif: "À partir de 3 290 €",
       contenuIntro: "La préparation représente 120 à 180 heures. Les deux voies n'ont rien de comparable : en externe, tout se joue sur une note de cinq heures (coefficient 5) et un entretien de quarante minutes (coefficient 5) ; en interne s'ajoutent trois écrits, dont l'établissement d'un projet en huit heures au coefficient 7. Le parcours est donc différencié dès les premières séances.",
       contenu: [
         {
@@ -1614,7 +1615,6 @@ export const FORMATIONS: Record<string, Formation> = {
         "Disposer d'une expérience de pilotage technique ou de direction sur laquelle appuyer le dossier et l'entretien",
         "Pouvoir consacrer un temps de travail personnel soutenu : trois écrits de cinq heures se préparent dans la durée",
       ],
-      tarif: "À partir de 2 190 €",
       contenuIntro: "La préparation représente 80 à 120 heures. Le concours d'ingénieur en chef est un concours de catégorie A+ : trois épreuves écrites de cinq heures à l'admissibilité, puis un entretien sur dossier et une mise en situation collective à l'admission, complétés d'une épreuve orale de langue vivante. Le niveau attendu est celui d'un futur directeur général des services techniques.",
       contenu: [
         {
@@ -1716,7 +1716,6 @@ export const FORMATIONS: Record<string, Formation> = {
         "Examen professionnel de 2e classe par promotion interne : être agent de maîtrise avec huit ans de services effectifs, ou adjoint technique principal avec dix ans dont cinq dans un cadre d'emplois technique territorial",
         "Concours en voie externe : baccalauréat technologique ou professionnel, ou diplôme de niveau 4 technico-professionnel correspondant à une spécialité",
       ],
-      tarif: "À partir de 2 490 €",
       contenuIntro: "La préparation représente 60 à 120 heures selon la voie présentée. Au calendrier 2026-2027 figurent les examens professionnels de technicien principal de 1re et de 2e classe, par avancement de grade comme par promotion interne, dont l'épreuve écrite est commune ; la prochaine session du concours de technicien sera annoncée par le CDG 971. Les séances de fond sont mutualisées, les entraînements et les simulations d'oral sont calés sur l'examen de chacun.",
       contenu: [
         {
@@ -1927,7 +1926,6 @@ export const FORMATIONS: Record<string, Formation> = {
         "Concours interne et 3e voie : conditions de services publics ou quatre ans d'activité professionnelle, de mandat électif ou de responsabilité associative",
         "Expérience de terrain dans un métier technique, sur laquelle appuyer le cas pratique et l'exposé",
       ],
-      tarif: "À partir de 1 890 €",
       contenuIntro: "La préparation représente 60 à 80 heures et couvre les deux voies d'accès dans une même session : l'examen professionnel de promotion interne — cas pratique de 2 heures et entretien de 15 minutes, chacun de coefficient 1 — et le concours, qui ajoute une épreuve de mathématiques en externe, une épreuve de connaissances techniques en interne et 3e voie, et un entretien de coefficient 4. Le cas pratique, commun aux deux voies, occupe la place centrale : c'est l'épreuve la plus éliminatoire.",
       contenu: [
         {
@@ -2024,7 +2022,6 @@ export const FORMATIONS: Record<string, Formation> = {
         "Être candidate ou candidat à un concours ou à un examen professionnel territorial, toutes catégories et toutes filières",
         "Connaître le format officiel de l'épreuve orale visée : durée, composition du jury, temps d'exposé",
       ],
-      tarif: "À partir de 890 €",
       contenuIntro: "La préparation représente 20 à 40 heures, exclusivement en présentiel : l'oral ne se travaille pas à distance. Chaque participant est préparé au format exact de son propre concours — durée, composition du jury, temps d'exposé — et alterne simulations filmées et séances de correction individuelle.",
       contenu: [
         {

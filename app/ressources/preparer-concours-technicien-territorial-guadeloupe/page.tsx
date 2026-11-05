@@ -300,8 +300,7 @@ export default function ArticleTechnicienTerritorial() {
               Financement CPF et OPCO
             </h2>
             <p style={{ lineHeight: 1.8, margin: "0 0 16px", fontSize: 16 }}>
-              La préparation au concours de technicien territorial est <strong>éligible au CPF</strong> (Compte Personnel de Formation).
-              Vous pouvez mobiliser vos droits directement depuis Mon Compte Formation, sans avance de frais dans la majorité des cas.
+              Votre CPF peut financer tout ou partie de la préparation, avec l&apos;accord de votre employeur.
             </p>
             <p style={{ lineHeight: 1.8, margin: "0 0 20px", fontSize: 16 }}>
               Si vous êtes en poste dans une collectivité, renseignez-vous auprès de votre service RH pour une

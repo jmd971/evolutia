@@ -46,7 +46,6 @@ export const MODE_PAIEMENT_OPTIONS = [
   "Virement",
   "Espèces",
   "Carte bancaire",
-  "Prélèvement SEPA",
 ] as const;
 export type ModePaiement = (typeof MODE_PAIEMENT_OPTIONS)[number];
 

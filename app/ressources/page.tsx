@@ -28,7 +28,7 @@ const ARTICLES = [
   },
   {
     titre: "Financer sa préparation aux concours : CPF, France Travail, employeur",
-    desc: "Salarié, agent public ou demandeur d'emploi : les solutions pour financer sa préparation en Guadeloupe, souvent sans avance de frais.",
+    desc: "Salarié, agent public ou demandeur d'emploi : les solutions pour financer sa préparation en Guadeloupe, et le règlement échelonné.",
     href: "/ressources/financer-preparation-concours-guadeloupe",
     cat: "Financement",
     temps: "5 min",

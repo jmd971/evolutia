@@ -291,12 +291,12 @@ export default function ArticleRedacteurTerritorial() {
               Financement CPF et aides disponibles
             </h2>
             <p style={{ lineHeight: 1.8, margin: "0 0 16px", fontSize: 16 }}>
-              La préparation aux concours territoriaux est une formation éligible au <strong>Compte Personnel de Formation (CPF)</strong>. 
-              Evolutia est référencé sur Mon Compte Formation — vous pouvez mobiliser vos droits pour financer tout ou partie de votre préparation.
+              Agent public, votre collectivité peut prendre en charge votre préparation.
+              Votre CPF peut financer tout ou partie de la préparation, avec l&apos;accord de votre employeur.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 12 }}>
               {[
-                { label: "CPF (Mon Compte Formation)", desc: "Droits acquis sur votre activité professionnelle. Utilisables directement en ligne." },
+                { label: "CPF", desc: "Mobilisable pour la préparation, avec l'accord de votre employeur." },
                 { label: "OPCO / ANFH", desc: "Si vous êtes agent de la FPT, votre collectivité peut prendre en charge la formation via l'ANFH." },
                 { label: "France Travail", desc: "Les demandeurs d'emploi peuvent bénéficier d'un accompagnement de France Travail Guadeloupe." },
               ].map(f => (
@@ -320,7 +320,7 @@ export default function ArticleRedacteurTerritorial() {
               les spécificités des jury CDG 971. En 2026, <strong style={{ color: "#F5A623" }}>7 de nos candidats préparés sur 11</strong> ont été reçus à ce concours (64%).
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 28 }}>
-              {["Programme calé sur les épreuves CDG 971", "Corrections individualisées", "Simulations jury filmées", "Financement CPF disponible"].map(p => (
+              {["Programme calé sur les épreuves CDG 971", "Corrections individualisées", "Simulations jury filmées", "Règlement échelonné"].map(p => (
                 <div key={p} style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.1)", borderRadius: 8, padding: "8px 14px", fontSize: 13 }}>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4BADD4" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                   {p}

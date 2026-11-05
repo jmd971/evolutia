@@ -325,12 +325,12 @@ export default function GuideConcoursTerritorialGuadeloupe() {
               Financement : CPF, ANFH et autres aides
             </h2>
             <p style={{ lineHeight: 1.8, fontSize: 16, margin: "0 0 24px" }}>
-              La préparation aux concours territoriaux est éligible à plusieurs dispositifs de financement.
-              La plupart des candidats peuvent financer leur préparation sans avance de frais.
+              Plusieurs solutions existent pour financer une préparation aux concours territoriaux,
+              selon votre situation ; en financement personnel, le règlement peut être échelonné.
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {[
-                { label: "CPF — Compte Personnel de Formation", who: "Tous les actifs", desc: "Droits acquis tout au long de votre carrière. Utilisables directement sur moncompteformation.gouv.fr. Evolutia est référencé sur la plateforme.", color: "#1B3A6B" },
+                { label: "CPF — Compte Personnel de Formation", who: "Avec l'accord de l'employeur", desc: "Droits acquis tout au long de votre carrière. Chez Evolutia, le CPF est mobilisé avec l'accord de votre employeur : nous fournissons le devis, le programme et la convention.", color: "#1B3A6B" },
                 { label: "ANFH — Association Nationale pour la Formation du personnel Hospitalier et Territorial", who: "Agents de la FPT", desc: "Votre collectivité cotise à l'ANFH, qui peut financer tout ou partie de votre préparation. Renseignez-vous auprès de votre DRH ou de votre centre de gestion.", color: "#4BADD4" },
                 { label: "France Travail Guadeloupe", who: "Demandeurs d'emploi", desc: "France Travail Guadeloupe peut cofinancer la préparation aux concours territoriaux dans le cadre d'un projet professionnel validé par votre conseiller.", color: "#5a6f8f" },
               ].map(f => (

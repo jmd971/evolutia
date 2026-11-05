@@ -5,6 +5,7 @@ import NavBar from "../../components/NavBar"
 import Footer from "../../components/Footer"
 import { FORMATIONS, FORMATIONS_LIST, NOUVELLES_FILIERES } from "../data";
 import { ficheQualiopi } from "../socle-qualiopi";
+import { prixAffiche } from "../conventions";
 import { inscriptionUrl } from "../../config";
 
 export async function generateStaticParams() {
@@ -46,6 +47,8 @@ const statutLabel: Record<string, string> = {
 export default async function FormationPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const f = FORMATIONS[slug];
+  // Prix ferme 2026-2027 quand Evolutia l'a communiqué (app/formations/conventions.ts).
+  const tarif = prixAffiche(slug);
   if (!f) notFound();
 
   const jsonLd = {
@@ -143,8 +146,8 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
               ...(f.tauxReussite ? [{ label: f.resultats2026 ? `Résultats 2026 — ${f.resultats2026}` : "Taux de réussite", val: f.tauxReussite, highlight: true }] : []),
               { label: "Durée", val: f.duree, highlight: false },
               { label: "Format", val: f.format, highlight: false },
-              ...(f.programmeDetaille?.tarif ? [{ label: "Tarif", val: `${f.programmeDetaille.tarif} — non assujetti à la TVA`, highlight: false }] : []),
-              { label: "Financement", val: "CPF éligible", highlight: false },
+              ...(tarif ? [{ label: "Tarif", val: `${tarif} — non assujetti à la TVA`, highlight: false }] : []),
+              { label: "Financement", val: "Employeur, CPF avec l'accord de l'employeur, financement personnel", highlight: false },
             ] as {label:string;val:string;highlight:boolean}[]).map((row, i) => (
               <div key={i} style={{ padding: "12px 0", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
                 <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 11, marginBottom: 3 }}>{row.label}</div>
@@ -246,7 +249,7 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
                         { label: "Durée", val: f.duree },
                         // Tarif et équipe : affichés seulement quand Evolutia les a
                         // communiqués pour cette préparation.
-                        { label: "Tarif", val: pd.tarif ? `${pd.tarif} (non assujetti à la TVA)` : "Sur devis — nous consulter" },
+                        { label: "Tarif", val: tarif ? `${tarif} (non assujetti à la TVA)` : "Sur devis — nous consulter" },
                         { label: "Délai d'accès", val: pd.delaiAcces },
                         ...(pd.equipe ? [{ label: "Équipe pédagogique", val: pd.equipe }] : []),
                         { label: "Accessibilité", val: "Formation accessible aux personnes en situation de handicap — voir ci-dessous" },
@@ -416,9 +419,9 @@ export default async function FormationPage({ params }: { params: Promise<{ slug
               <div style={{ width: 34, height: 34, background: "#EEF5FF", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1B3A6B" strokeWidth="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
               </div>
-              <div style={{ fontWeight: 700, fontSize: 14, color: "#1B3A6B" }}>Financement CPF</div>
+              <div style={{ fontWeight: 700, fontSize: 14, color: "#1B3A6B" }}>Financement</div>
             </div>
-            <p style={{ fontSize: 13, color: "#5a6f8f", lineHeight: 1.6, margin: 0 }}>Formation éligible au Compte Personnel de Formation. Financement possible sans avance de frais.</p>
+            <p style={{ fontSize: 13, color: "#5a6f8f", lineHeight: 1.6, margin: 0 }}>Prise en charge par votre employeur, CPF avec son accord, ou règlement échelonné en financement personnel.</p>
           </div>
 
           {/* Articles liés */}
