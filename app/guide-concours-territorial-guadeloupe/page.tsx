@@ -51,7 +51,7 @@ const CATEGORIES = [
 const DATES_CLES = [
   { concours: "Agent de Maîtrise", inscription: "1er sept. → 7 oct. 2026", epreuves: "28 jan. 2027", statut: "bientot" },
   { concours: "Ingénieur en Chef", inscription: "Clôturées 2026", epreuves: "7 sept. 2026", statut: "ferme" },
-  { concours: "Rédacteur Principal (examen)", inscription: "Clôturées 2026", epreuves: "24 sept. 2026", statut: "ferme" },
+  { concours: "Rédacteur Principal de 2e classe (examen)", inscription: "Clôturées 2026", epreuves: "24 sept. 2026", statut: "ferme" },
   { concours: "Ingénieur Territorial", inscription: "8 déc. 2026 → 13 jan. 2027", epreuves: "16 juin 2027", statut: "bientot" },
   { concours: "Rédacteur Territorial", inscription: "2 fév. → 10 mars 2027", epreuves: "14 oct. 2027", statut: "bientot" },
   { concours: "Technicien Territorial", inscription: "À confirmer CDG 971", epreuves: "À confirmer", statut: "bientot" },

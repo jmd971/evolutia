@@ -371,17 +371,17 @@ export const FORMATIONS: Record<string, Formation> = {
   },
 
   "redacteur-principal-guadeloupe": {
-    titre: "Rédacteur Principal",
-    sousTitre: "Examens professionnels d'avancement de grade (1re et 2e classe)",
+    titre: "Rédacteur Principal de 2e Classe",
+    sousTitre: "Examen professionnel d'avancement de grade",
     categorie: "Catégorie B",
     filiere: "Filière administrative",
     type: "Examen pro.",
     descCourte: "Avancement de grade : rapport avec propositions (3h) et entretien jury. Épreuves le 24 septembre 2026.",
-    seoTitle: "Examen Professionnel Rédacteur Principal Guadeloupe 2026 | Evolutia",
-    seoDesc: "Préparez l'examen professionnel de rédacteur principal 1re ou 2e classe en Guadeloupe : rapport écrit 3h + entretien. Épreuves sept. 2026. CPF possible.",
-    accroche: "Les examens professionnels de rédacteur principal (2e classe et 1re classe) permettent aux rédacteurs en poste d'accéder aux grades supérieurs. Contrairement à une idée reçue, l'examen comporte une véritable épreuve écrite : un rapport avec propositions opérationnelles, en plus de l'entretien avec le jury.",
+    seoTitle: "Examen Professionnel Rédacteur Principal de 2e Classe Guadeloupe | Evolutia",
+    seoDesc: "Préparez l'examen professionnel de rédacteur principal de 2e classe en Guadeloupe : rapport avec propositions (3h) et entretien jury. Evolutia, Les Abymes.",
+    accroche: "L'examen professionnel de rédacteur principal de 2e classe permet aux rédacteurs en poste d'accéder au grade supérieur par avancement. Contrairement à une idée reçue, il comporte une véritable épreuve écrite : un rapport avec propositions opérationnelles, en plus de l'entretien avec le jury.",
     epreuves: [
-      { type: "Écrit", label: "Rapport à partir d'un dossier, assorti de propositions (3h, coef. 1)", desc: "Dossier portant sur les missions, compétences et moyens d'action des collectivités territoriales. Une note inférieure à 5/20 interdit l'accès à l'oral. Épreuve identique pour la 1re et la 2e classe." },
+      { type: "Écrit", label: "Rapport à partir d'un dossier, assorti de propositions (3h, coef. 1)", desc: "Dossier portant sur les missions, compétences et moyens d'action des collectivités territoriales. Une note inférieure à 5/20 interdit l'accès à l'oral." },
       { type: "Oral", label: "Entretien avec le jury (20 min dont 5 min d'exposé, coef. 1)", desc: "Exposé sur les acquis de l'expérience professionnelle, puis questions permettant d'apprécier les facultés d'analyse, l'aptitude et la motivation à exercer les missions du grade, y compris l'encadrement d'équipe." },
     ],
     programme: [
@@ -393,8 +393,7 @@ export const FORMATIONS: Record<string, Formation> = {
       "Relecture et correction individuelles de vos écrits d'entraînement",
     ],
     conditions: [
-      { voie: "2e classe", condition: "Rédacteurs ayant atteint le 6e échelon du grade et justifiant d'au moins 3 ans de services effectifs en catégorie B (conditions applicables aux tableaux d'avancement à compter de 2026)" },
-      { voie: "1re classe", condition: "Rédacteurs principaux de 2e classe justifiant d'au moins 1 an dans le 6e échelon et de 3 ans de services effectifs en catégorie B" },
+      { voie: "Avancement de grade", condition: "Rédacteurs ayant atteint le 6e échelon du grade et justifiant d'au moins 3 ans de services effectifs en catégorie B (conditions applicables aux tableaux d'avancement à compter de 2026)" },
     ],
     duree: "40 à 60 heures",
     format: "Présentiel (Grand-Camp) + accompagnement individuel en distanciel",
@@ -407,7 +406,7 @@ export const FORMATIONS: Record<string, Formation> = {
       { label: "Préparation intensive à l'écrit et à l'oral", date: "Disponible dès maintenant", statut: "ouvert" },
     ],
     programmeDetaille: {
-      publics: "Rédacteurs territoriaux et rédacteurs principaux de 2e classe en poste, remplissant les conditions d'inscription à l'examen professionnel d'avancement au grade visé.",
+      publics: "Rédacteurs territoriaux en poste, remplissant les conditions d'inscription à l'examen professionnel d'avancement au grade de rédacteur principal de 2e classe.",
       simulationsFilmees: true,
       objectifs: [
         "Rédiger en trois heures un rapport à partir d'un dossier portant sur les missions, compétences et moyens d'action des collectivités territoriales.",
@@ -418,11 +417,10 @@ export const FORMATIONS: Record<string, Formation> = {
         "Sécuriser l'écrit, dont une note inférieure à 5/20 interdit l'accès à l'oral.",
       ],
       prerequis: [
-        "Avancement en 2e classe : être rédacteur, avoir atteint le 6e échelon du grade et justifier d'au moins trois ans de services effectifs en catégorie B",
-        "Avancement en 1re classe : être rédacteur principal de 2e classe, justifier d'au moins un an dans le 6e échelon et de trois ans de services effectifs en catégorie B",
+        "Être rédacteur, avoir atteint le 6e échelon du grade et justifier d'au moins trois ans de services effectifs en catégorie B",
         "Disposer d'une expérience professionnelle sur laquelle appuyer l'exposé oral",
       ],
-      contenuIntro: "La préparation représente 40 à 60 heures. L'épreuve écrite étant identique pour la 1re et la 2e classe, les deux examens sont préparés dans la même session ; seules les attentes du jury à l'oral se renforcent pour la 1re classe. Contrairement à une idée répandue, cet examen comporte bien un écrit exigeant : c'est là que se joue l'admissibilité.",
+      contenuIntro: "La préparation représente 40 à 60 heures, répartie entre le rapport écrit et l'entretien avec le jury. Contrairement à une idée répandue, cet examen comporte bien un écrit exigeant : c'est là que se joue l'admissibilité.",
       contenu: [
         {
           titre: "Rapport avec propositions — écrit (3h, coef. 1)",
@@ -447,8 +445,9 @@ export const FORMATIONS: Record<string, Formation> = {
       ],
     },
     faq: [
-      { q: "L'examen de rédacteur principal comporte-t-il un écrit ?", a: "Oui. L'examen d'avancement de grade comporte une épreuve écrite de 3h — un rapport à partir d'un dossier, assorti de propositions opérationnelles — puis un entretien de 20 minutes. Une note inférieure à 5/20 à l'écrit est éliminatoire : ne négligez pas cette épreuve." },
-      { q: "Quelle est la différence entre la 1re et la 2e classe ?", a: "Les épreuves sont identiques, mais les conditions d'accès diffèrent : la 2e classe est ouverte aux rédacteurs ayant atteint le 6e échelon avec 3 ans de services en catégorie B ; la 1re classe aux rédacteurs principaux de 2e classe avec 1 an dans le 6e échelon. Le jury attend un niveau de recul et de responsabilité supérieur pour la 1re classe." },
+      { q: "L'examen de rédacteur principal de 2e classe comporte-t-il un écrit ?", a: "Oui. L'examen d'avancement de grade comporte une épreuve écrite de 3h — un rapport à partir d'un dossier, assorti de propositions opérationnelles — puis un entretien de 20 minutes. Une note inférieure à 5/20 à l'écrit est éliminatoire : ne négligez pas cette épreuve." },
+      { q: "Qui peut se présenter à l'examen de rédacteur principal de 2e classe ?", a: "Les rédacteurs territoriaux ayant atteint le 6e échelon de leur grade et justifiant d'au moins 3 ans de services effectifs dans un emploi de catégorie B. Vérifiez votre situation avec votre service RH ou avec nous avant l'ouverture des inscriptions du CDG 971." },
+      { q: "Examen professionnel ou concours de rédacteur principal de 2e classe ?", a: "L'examen professionnel est réservé aux rédacteurs déjà en poste (avancement de grade). Le concours de rédacteur principal de 2e classe, externe ou interne, s'adresse à d'autres profils et se prépare avec notre formation Rédacteur Territorial." },
       { q: "Comment se préparer efficacement en travaillant à plein temps ?", a: "L'examen se prépare en 2 à 4 mois avec 3 à 4 heures de travail hebdomadaire : entraînements au rapport corrigés individuellement, construction de l'exposé de 5 minutes et simulations d'entretien. Notre format soirée (15h30-18h30) est conçu pour les agents en poste." },
     ],
     sourceOfficielle: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000026251677",

@@ -89,7 +89,7 @@ const CONCOURS = [
   { concours: "Rédacteur Territorial", session: "14 oct. 2027", inscription: "2 fév. 2027 → 10 mars 2027", format: "Écrit + Oral", statut: "À venir" },
   { concours: "Agent de Maîtrise", session: "28 jan. 2027", inscription: "1er sept. → 7 oct. 2026", format: "Pratique + Oral", statut: "Inscriptions bientôt" },
   { concours: "Ingénieur en Chef", session: "7 sept. 2026", inscription: "Clôturées (session 2026)", format: "Écrit + Oral", statut: "Clôturé" },
-  { concours: "Rédacteur Principal (examen)", session: "24 sept. 2026", inscription: "Clôturées (session 2026)", format: "RAEP + Oral", statut: "Clôturé" },
+  { concours: "Rédacteur Principal de 2e classe (examen)", session: "24 sept. 2026", inscription: "Clôturées (session 2026)", format: "RAEP + Oral", statut: "Clôturé" },
 ];
 
 const CATEGORY_ORDER = ["Catégorie A", "Catégorie A+", "Catégorie B", "Catégorie C", "Toutes catégories"];
