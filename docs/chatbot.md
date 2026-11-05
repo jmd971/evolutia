@@ -15,8 +15,10 @@ Agent GHL **Léa - Conseillère Evolutia** (Conversation AI, sous-compte Evoluti
 
 ## Règles que Léa suit (à ne pas contredire dans la base de connaissances)
 - Aucun prix, aucune promesse de financement ou de CPF, aucun taux global. Résultats : uniquement ceux publiés sur la fiche.
-- Ces règles existent parce que `/financement-tarifs` n'est pas encore fiable (éligibilité CPF affirmée pour toutes les
-  formations, prix « à partir de » différents des fiches). Les lever une fois la page corrigée.
+- Ces règles existaient parce que `/financement-tarifs` n'était pas fiable. Depuis novembre 2026 la page et les fiches
+  affichent les prix fermes validés par Evolutia (`app/formations/conventions.ts`) et le CPF « avec l'accord de
+  l'employeur ». La règle « aucun prix » peut être levée pour ces 8 formations, après accord d'Evolutia : régénérer
+  alors la base de connaissances. La règle « aucune promesse de CPF » reste.
 
 ## Entretien
 - Le guide d'orientation est généré depuis `app/formations/data.ts` : le régénérer et le recoller dans la base GHL

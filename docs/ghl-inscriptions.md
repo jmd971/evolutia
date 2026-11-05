@@ -1,4 +1,11 @@
-# Module inscriptions — GHL + convention PDF + Yousign
+# Module inscriptions — GHL + convention
+
+> **Circuit en service (depuis le 29/10/2026)** : la page interne
+> `/interne/convention` écrit les conditions dans la fiche GHL du candidat, puis la
+> balise `convention_a_envoyer` déclenche l'envoi du modèle GHL « Convention de
+> formation » à signer. Voir la section « Convention : modèle unique GHL » plus bas.
+> Le générateur PDFKit + Yousign décrit ensuite n'est pas utilisé ; il est gardé
+> pour mémoire.
 
 Ce document décrit le workflow d'inscription piloté par GoHighLevel (GHL,
 sous-compte Evolutia, `locationId = O5XCNBuMjjvy7DPbGC6n`) : relances,
@@ -77,10 +84,8 @@ formations de `app/formations/data.ts` (testé sur les 22).
   `PDFDocument` construit avec `margin: 0`, mise en page manuelle via
   `checkPageBreak()`. Ne pas ajouter de `doc.addPage()` supplémentaire au
   début — PDFKit crée déjà une première page automatiquement.
-- ⚠️ Adresse du siège : le document source (docx reçu) indique « Immeuble
-  La Coupole, Grand Camp » — utilisée ici. Le `CLAUDE.md` du repo indique
-  « Immeuble ASP, Grand-Camp ». Whichever est correct, à corriger dans
-  `EVOLUTIA_ADRESSE` (`lib/pdf/convention.ts`) si besoin.
+- Adresse du siège : Immeuble La Coupole, Grand-Camp (l'ancienne adresse
+  « Immeuble ASP » est abandonnée depuis août 2026).
 
 ## Routes API
 
@@ -194,3 +199,64 @@ servirait si un jour un funnel GHL est publié sur ce sous-domaine.
 Ne jamais utiliser `link.siboard-consulting.fr` pour un lien visible par un
 candidat (règle du `CLAUDE.md`) : le widget est servi depuis
 `api.leadconnectorhq.com`, à l'intérieur de l'iframe.
+
+## Convention : modèle unique GHL (novembre 2026)
+
+### Le circuit
+
+1. Au bureau, `/interne/convention` (mot de passe `INTERNE_PASSWORD`) : recherche
+   ou création du candidat, choix de la formation, puis des conditions.
+2. « Enregistrer dans la fiche GHL » écrit les champs ci-dessous sur le contact.
+3. On pose la balise `convention_a_envoyer` sur la fiche : le workflow GHL envoie
+   le modèle « Convention de formation » (Paiements → Documents et contrats →
+   Modèles) à signer.
+
+### Grille des conditions
+
+`app/formations/conventions.ts` est la source unique des prix (fiche formation,
+`/financement-tarifs`, convention), de l'acompte par défaut, du nombre maximal de
+règlements, et quand Evolutia les a fixés, de la durée exacte, des jours de cours,
+de l'équipe, des options et des spécialités. Prix validés par Evolutia le
+30/10/2026 pour 8 formations ; les 14 autres sont « sur devis » et la page
+interne demande alors le prix convenu.
+
+Règles appliquées par `lib/echeancier.ts` et la page interne :
+- acompte ≤ 30 % du prix net, versé à l'expiration du délai de rétractation de
+  10 jours (art. L. 6353-5 et L. 6353-6) ; 1re échéance après ce délai ;
+- règlements, acompte compris, ≤ `reglementsMax` de la formation (7 par défaut,
+  10 pour l'Attaché) ;
+- remise commerciale facultative : le texte de l'article 9 la mentionne et le
+  montant net est écrit dans `montant_formation`.
+
+### Champs écrits dans GHL
+
+| Clé GHL | Contenu | Article |
+|---|---|---|
+| `formation_choisie` | slug de la formation | — |
+| `intitule_formation` | titre, ou concours visé (ex. « Rédacteur principal de 2e classe ») | en-tête, 1 |
+| `voie_acces_convention` | voie réelle tirée de la fiche (examen pro., sur titres…) | 1 |
+| `voie_concours_inscription` | seulement Externe / Interne / 3e voie (liste déroulante GHL) | — |
+| `specialite_concours` | « Option : … », spécialité, ou « Sans objet » | 1 |
+| `duree_formation`, `jours_cours` | durée exacte et rythme | 2 |
+| `conditions_acces_convention` | condition d'accès de la voie choisie (`data.ts`) | 4 |
+| `equipe_pedagogique_convention` | formateurs et références, ou texte générique | 5 |
+| `conditions_tarifaires_convention` | prix, remise éventuelle, montant net | 9 |
+| `montant_formation`, `acompte_verse`, `nombre_echeances`, `mode_de_paiement`, `echeancier_convention` | conditions financières | 10 |
+
+Les champs `voie_acces_convention`, `conditions_acces_convention`,
+`equipe_pedagogique_convention` et `conditions_tarifaires_convention` ont été
+créés le 05/11/2026 (dossier « Additional Info »).
+
+### Le modèle
+
+Texte complet dans `docs/convention-modele-ghl.html`, calé sur la convention
+utilisée par Evolutia depuis fin octobre (convention Technicien de Mme Rosinel) :
+14 articles, rétractation de 10 jours, aucun chèque de garantie, dédit plafonné à
+10 % (L. 6353-7), médiation de la consommation, RGPD. Il est collé dans le bloc de
+texte unique du modèle GHL ; toute modification d'un côté doit être reportée de
+l'autre. Le modèle précédent est conservé dans GHL sous le nom
+« Convention de formation Copier ».
+
+Reste à faire : ajouter la signature de M. Barbier et le cachet d'Evolutia
+(image sur fond blanc) au bloc de signature du modèle — le cachet a été reçu le
+30/10, la signature seule pas encore.
