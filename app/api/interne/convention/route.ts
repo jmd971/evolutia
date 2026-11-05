@@ -9,6 +9,7 @@ import {
 } from "../../../../lib/echeancier";
 import { FORMATIONS } from "../../../formations/data";
 import { conditionsConvention, REGLEMENTS_MAX_DEFAUT } from "../../../formations/conventions";
+import { VOIE_CONCOURS_OPTIONS } from "../../../../lib/ghl/fields";
 
 const EQUIPE_PAR_DEFAUT =
   "Cette formation est assurée par les formateurs du centre EVOLUTIA. Les supports pédagogiques sont fournis par EVOLUTIA.";
@@ -109,7 +110,13 @@ export async function POST(req: Request) {
   try {
     await updateContactCustomFieldsByKey(c.contactId, {
       formation_choisie: c.formationSlug,
-      voie_concours_inscription: c.voieConcours,
+      // Voie réelle (examen pro., sur titres…), en texte libre pour la convention.
+      voie_acces_convention: c.voieConcours,
+      // Liste déroulante GHL limitée à Externe / Interne / 3e voie : n'y écrire
+      // que ces valeurs, sinon GHL rejette ou vide le champ.
+      ...((VOIE_CONCOURS_OPTIONS as readonly string[]).includes(c.voieConcours)
+        ? { voie_concours_inscription: c.voieConcours }
+        : {}),
       specialite_concours: specialite,
       intitule_formation: concours?.libelle ?? formation.titre,
       duree_formation: c.duree.trim(),
