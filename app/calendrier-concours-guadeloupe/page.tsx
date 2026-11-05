@@ -17,7 +17,7 @@ const FILIERES: { titre:string; lignes:Concours[] }[] = [
     lignes: [
       { slug:"attache-principal-guadeloupe", concours:"Attaché principal (examen prof.)", cat:"A", type:"Examen prof.", inscriptions:"2 nov. → 15 déc. 2026", epreuves:"8 avril 2027", statut:"bientot" },
       { slug:"attache-territorial-guadeloupe", concours:"Attaché (externe, interne et 3ème voie)", cat:"A", type:"Concours", inscriptions:"Clôturées", epreuves:"19 novembre 2026", statut:"ferme" },
-      { slug:"redacteur-principal-guadeloupe", concours:"Rédacteur principal de 1ère classe (avancement de grade)", cat:"B", type:"Examen prof.", inscriptions:"Clôturées", epreuves:"24 septembre 2026", statut:"ferme" },
+      { concours:"Rédacteur principal de 1ère classe (avancement de grade)", cat:"B", type:"Examen prof.", inscriptions:"Clôturées", epreuves:"24 septembre 2026", statut:"ferme" },
       { slug:"redacteur-principal-guadeloupe", concours:"Rédacteur principal de 2ème classe (avancement de grade)", cat:"B", type:"Examen prof.", inscriptions:"Clôturées", epreuves:"24 septembre 2026", statut:"ferme" },
       { slug:"redacteur-territorial-guadeloupe", concours:"Rédacteur principal de 2ème classe", cat:"B", type:"Concours", inscriptions:"2 fév. → 10 mars 2027", epreuves:"14 octobre 2027", statut:"bientot" },
       { slug:"redacteur-territorial-guadeloupe", concours:"Rédacteur", cat:"B", type:"Concours", inscriptions:"2 fév. → 10 mars 2027", epreuves:"14 octobre 2027", statut:"bientot" },
