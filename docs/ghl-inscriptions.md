@@ -1,9 +1,9 @@
 # Module inscriptions — GHL + convention
 
-> **Circuit en service (depuis le 29/10/2026)** : la page interne
-> `/interne/convention` écrit les conditions dans la fiche GHL du candidat, puis la
-> balise `convention_a_envoyer` déclenche l'envoi du modèle GHL « Convention de
-> formation » à signer. Voir la section « Convention : modèle unique GHL » plus bas.
+> **Circuit en service** : la page interne `/interne/convention` écrit les
+> conditions dans la fiche GHL du candidat ; son bouton « Enregistrer et envoyer
+> la convention » pose ensuite la balise `convention_a_envoyer`, qui déclenche
+> l'envoi du modèle GHL « Convention de formation » à signer. Voir la section « Convention : modèle unique GHL » plus bas.
 > Le générateur PDFKit + Yousign décrit ensuite n'est pas utilisé ; il est gardé
 > pour mémoire.
 
@@ -206,10 +206,15 @@ candidat (règle du `CLAUDE.md`) : le widget est servi depuis
 
 1. Au bureau, `/interne/convention` (mot de passe `INTERNE_PASSWORD`) : recherche
    ou création du candidat, choix de la formation, puis des conditions.
-2. « Enregistrer dans la fiche GHL » écrit les champs ci-dessous sur le contact.
-3. On pose la balise `convention_a_envoyer` sur la fiche : le workflow GHL envoie
-   le modèle « Convention de formation » (Paiements → Documents et contrats →
-   Modèles) à signer.
+2. « Enregistrer et envoyer la convention » affiche un récapitulatif (candidat,
+   e-mail, formation, montant) ; à la confirmation, la route écrit les champs
+   ci-dessous sur le contact PUIS pose la balise `convention_a_envoyer` (refusé si
+   la fiche n'a pas d'e-mail). « Enregistrer sans envoyer » écrit les champs seuls.
+3. La balise déclenche le workflow GHL « Inscriptions 1 - Envoi de la
+   convention » : envoi du modèle « Convention de formation » (Paiements →
+   Documents et contrats → Modèles), opportunité, puis retrait de la balise.
+   « Inscriptions 3 » relance tant que ce n'est pas signé, « Inscriptions 2 »
+   traite la signature. Poser la balise à la main dans GHL reste possible.
 
 ### Grille des conditions
 

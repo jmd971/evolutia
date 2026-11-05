@@ -93,6 +93,8 @@ export default function ConventionClient({ formations }: { formations: Formation
   const [modePaiement, setModePaiement] = useState(MODES_PAIEMENT[0]);
 
   const [envoi, setEnvoi] = useState(false);
+  // Récapitulatif affiché avant d'envoyer la convention à signer.
+  const [confirmation, setConfirmation] = useState(false);
   const [message, setMessage] = useState<{ type: "ok" | "ko"; texte: string } | null>(null);
 
   // Par défaut : le 5 du mois suivant la fin du délai de rétractation, une date
@@ -217,10 +219,11 @@ export default function ConventionClient({ formations }: { formations: Formation
     }
   }
 
-  async function enregistrer() {
+  async function enregistrer(envoyer: boolean) {
     if (!contact) return;
     setEnvoi(true);
     setMessage(null);
+    setConfirmation(false);
     const res = await fetch("/api/interne/convention", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -229,12 +232,17 @@ export default function ConventionClient({ formations }: { formations: Formation
         option: avecOptions ? option : "", specialite: avecSpecialites ? specialite : "",
         duree, joursCours: joursCours.trim(),
         prix, remise, acompte, nombreEcheances, premiereEcheance, modePaiement,
+        envoyer,
       }),
     });
     const body = await res.json().catch(() => ({}));
-    setMessage(res.ok
-      ? { type: "ok", texte: `Valeurs enregistrées dans la fiche de ${contact.nom}. La convention n'est pas encore envoyée : ajoutez la balise convention_a_envoyer sur sa fiche GHL pour l'envoyer à signer.` }
-      : { type: "ko", texte: body.erreur ?? "Enregistrement impossible." });
+    if (!res.ok) {
+      setMessage({ type: "ko", texte: body.erreur ?? "Enregistrement impossible." });
+    } else if (body.envoyee) {
+      setMessage({ type: "ok", texte: `Convention envoyée à signer à ${contact.nom} (${body.email}). Le candidat la reçoit par e-mail dans quelques minutes ; les relances partent automatiquement tant qu'elle n'est pas signée.` });
+    } else {
+      setMessage({ type: "ok", texte: `Valeurs enregistrées dans la fiche de ${contact.nom}. La convention n'est pas encore envoyée.` });
+    }
     setEnvoi(false);
   }
 
@@ -478,10 +486,37 @@ export default function ConventionClient({ formations }: { formations: Formation
           </p>
         )}
 
-        <button onClick={enregistrer} disabled={!pretAEnvoyer || envoi}
-          style={{ background: pretAEnvoyer && !envoi ? "#1B3A6B" : "#94a3b8", color: "white", border: "none", borderRadius: 10, padding: "14px 28px", fontSize: 15, fontWeight: 700, cursor: pretAEnvoyer && !envoi ? "pointer" : "default" }}>
-          {envoi ? "Enregistrement…" : "Enregistrer dans la fiche GHL"}
-        </button>
+        {confirmation && contact && apercu && !apercu.erreur && (
+          <div style={{ background: "#FFFBEB", border: "1px solid #F5A623", borderRadius: 12, padding: 18, margin: "0 0 16px" }}>
+            <div style={{ fontWeight: 700, color: "#1B3A6B", marginBottom: 8 }}>Envoyer la convention à signer ?</div>
+            <ul style={{ margin: "0 0 14px", paddingLeft: 18, fontSize: 14, lineHeight: 1.7 }}>
+              <li><strong>{contact.nom}</strong> — {contact.email ?? "aucun e-mail : l'envoi sera refusé"}</li>
+              <li>{concours || formation?.titre} — {voieConcours}</li>
+              <li>Montant : {formaterEuros(apercu.net)}, acompte {formaterEuros(eurosVersCentimes(acompte || "0"))}, puis {nombreEcheances} échéance(s)</li>
+            </ul>
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+              <button onClick={() => enregistrer(true)} disabled={envoi}
+                style={{ background: "#16a34a", color: "white", border: "none", borderRadius: 8, padding: "11px 20px", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
+                Confirmer l&apos;envoi
+              </button>
+              <button onClick={() => setConfirmation(false)}
+                style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 8, padding: "11px 18px", fontSize: 14, cursor: "pointer" }}>
+                Revenir au formulaire
+              </button>
+            </div>
+          </div>
+        )}
+
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+          <button onClick={() => setConfirmation(true)} disabled={!pretAEnvoyer || envoi || confirmation}
+            style={{ background: pretAEnvoyer && !envoi && !confirmation ? "#1B3A6B" : "#94a3b8", color: "white", border: "none", borderRadius: 10, padding: "14px 28px", fontSize: 15, fontWeight: 700, cursor: pretAEnvoyer && !envoi && !confirmation ? "pointer" : "default" }}>
+            {envoi ? "Envoi…" : "Enregistrer et envoyer la convention"}
+          </button>
+          <button onClick={() => enregistrer(false)} disabled={!pretAEnvoyer || envoi}
+            style={{ background: "white", color: pretAEnvoyer && !envoi ? "#1B3A6B" : "#94a3b8", border: `1px solid ${pretAEnvoyer && !envoi ? "#1B3A6B" : "#D6E4F0"}`, borderRadius: 10, padding: "14px 22px", fontSize: 15, fontWeight: 600, cursor: pretAEnvoyer && !envoi ? "pointer" : "default" }}>
+            Enregistrer sans envoyer
+          </button>
+        </div>
         {!contact && <p style={{ fontSize: 13, color: "#5a6f8f", marginTop: 10 }}>Sélectionnez d&apos;abord un candidat.</p>}
         {contact && !pretAEnvoyer && !apercu?.erreur && <p style={{ fontSize: 13, color: "#5a6f8f", marginTop: 10 }}>Renseignez l&apos;option ou la spécialité, la durée exacte et les jours de cours.</p>}
       </div>

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { estAuthentifie } from "../../../../lib/interne/auth";
-import { updateContactCustomFieldsByKey } from "../../../../lib/ghl/client";
+import { updateContactCustomFieldsByKey, getContact, addTagToContact } from "../../../../lib/ghl/client";
 import {
   calculerEcheancier,
   rendreEcheancierTexte,
@@ -9,7 +9,7 @@ import {
 } from "../../../../lib/echeancier";
 import { FORMATIONS } from "../../../formations/data";
 import { conditionsConvention, REGLEMENTS_MAX_DEFAUT } from "../../../formations/conventions";
-import { VOIE_CONCOURS_OPTIONS } from "../../../../lib/ghl/fields";
+import { VOIE_CONCOURS_OPTIONS, GHL_TAG_NAMES } from "../../../../lib/ghl/fields";
 
 const EQUIPE_PAR_DEFAUT =
   "Cette formation est assurée par les formateurs du centre EVOLUTIA. Les supports pédagogiques sont fournis par EVOLUTIA.";
@@ -29,6 +29,8 @@ type Corps = {
   nombreEcheances: number;
   premiereEcheance: string; // AAAA-MM-JJ
   modePaiement: string;
+  /** true : après l'écriture des champs, poser la balise qui envoie la convention. */
+  envoyer?: boolean;
 };
 
 export async function POST(req: Request) {
@@ -138,5 +140,28 @@ export async function POST(req: Request) {
     );
   }
 
-  return NextResponse.json({ ok: true, echeancier: texteEcheancier });
+  if (!c.envoyer) {
+    return NextResponse.json({ ok: true, envoyee: false, echeancier: texteEcheancier });
+  }
+
+  // Envoi : la balise déclenche le workflow GHL « Inscriptions 1 - Envoi de la
+  // convention ». Elle n'est posée qu'APRÈS l'écriture des champs ci-dessus,
+  // sinon le modèle partirait avec les valeurs précédentes de la fiche.
+  try {
+    const fiche = await getContact(c.contactId);
+    if (!fiche.email) {
+      return NextResponse.json(
+        { erreur: "Valeurs enregistrées, mais la convention n'est pas partie : ce candidat n'a pas d'e-mail dans GHL." },
+        { status: 400 }
+      );
+    }
+    await addTagToContact(c.contactId, GHL_TAG_NAMES.conventionAEnvoyer);
+    return NextResponse.json({ ok: true, envoyee: true, email: fiche.email, echeancier: texteEcheancier });
+  } catch (e) {
+    console.error("[interne/convention] envoi", e);
+    return NextResponse.json(
+      { erreur: `Valeurs enregistrées, mais l'envoi a échoué : ${e instanceof Error ? e.message : "erreur GHL"}. Vous pouvez réessayer.` },
+      { status: 502 }
+    );
+  }
 }
