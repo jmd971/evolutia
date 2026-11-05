@@ -257,6 +257,11 @@ texte unique du modèle GHL ; toute modification d'un côté doit être reporté
 l'autre. Le modèle précédent est conservé dans GHL sous le nom
 « Convention de formation Copier ».
 
-Reste à faire : ajouter la signature de M. Barbier et le cachet d'Evolutia
-(image sur fond blanc) au bloc de signature du modèle — le cachet a été reçu le
-30/10, la signature seule pas encore.
+Page de signature (05/11/2026) : « Pour l'organisme de formation EVOLUTIA,
+M. BARBIER Jean-Louis, Président », puis l'image du tampon signé envoyée par
+Michaëlla le 30/10 (bloc Image, URL de données JPEG intégrée au modèle), puis
+la date et la signature électronique du stagiaire.
+⚠️ Ce tampon porte encore l'ancienne adresse « Immeuble ASP » : le remplacer
+dès qu'Evolutia fournit un tampon à l'adresse La Coupole (bloc Image → URL de
+l'image). La signature seule de M. Barbier (mail du 07/11/2024) est une
+alternative si le tampon tarde.
