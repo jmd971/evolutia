@@ -211,9 +211,17 @@ export default function ConventionClient({ formations }: { formations: Formation
       setContact(body.contact);
       setCreation(false);
       setResultats([]);
-      setMessage(body.nouveau
-        ? { type: "ok", texte: `Fiche créée pour ${body.contact.nom}.` }
-        : { type: "ok", texte: `${body.contact.nom} existait déjà dans GHL : sa fiche a été reprise, aucun doublon créé.` });
+      // GHL rapproche sur l'e-mail OU le téléphone : une fiche reprise par le
+      // téléphone garde son ancien e-mail, et c'est là que la convention partira.
+      const saisi = nouveau.email.trim().toLowerCase();
+      const fiche = (body.contact.email ?? "").toLowerCase();
+      if (!body.nouveau && saisi && fiche !== saisi) {
+        setMessage({ type: "ko", texte: `Attention : ${body.contact.nom} existait déjà dans GHL avec l'e-mail ${body.contact.email ?? "(aucun)"}, et non ${nouveau.email.trim()}. La convention partira à l'adresse de la fiche : corrigez-la dans GHL avant l'envoi si elle n'est pas bonne.` });
+      } else {
+        setMessage(body.nouveau
+          ? { type: "ok", texte: `Fiche créée pour ${body.contact.nom}.` }
+          : { type: "ok", texte: `${body.contact.nom} existait déjà dans GHL : sa fiche a été reprise, aucun doublon créé.` });
+      }
     } finally {
       setEnCreation(false);
     }
@@ -490,7 +498,7 @@ export default function ConventionClient({ formations }: { formations: Formation
           <div style={{ background: "#FFFBEB", border: "1px solid #F5A623", borderRadius: 12, padding: 18, margin: "0 0 16px" }}>
             <div style={{ fontWeight: 700, color: "#1B3A6B", marginBottom: 8 }}>Envoyer la convention à signer ?</div>
             <ul style={{ margin: "0 0 14px", paddingLeft: 18, fontSize: 14, lineHeight: 1.7 }}>
-              <li><strong>{contact.nom}</strong> — {contact.email ?? "aucun e-mail : l'envoi sera refusé"}</li>
+              <li><strong>{contact.nom}</strong> — envoi à <strong>{contact.email ?? "aucun e-mail : l'envoi sera refusé"}</strong></li>
               <li>{concours || formation?.titre} — {voieConcours}</li>
               <li>Montant : {formaterEuros(apercu.net)}, acompte {formaterEuros(eurosVersCentimes(acompte || "0"))}, puis {nombreEcheances} échéance(s)</li>
             </ul>
