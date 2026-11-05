@@ -419,20 +419,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── FINANCEMENT CPF ─── */}
+      {/* ─── FINANCEMENT ─── */}
       <section id="financement" style={{ padding: "80px 24px", background: "white" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
           <div>
             <div style={{ color: "#4BADD4", fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 12 }}>Financement</div>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 3vw, 38px)", fontWeight: 800, color: "#1B3A6B", margin: "0 0 20px 0", lineHeight: 1.2 }}>Formations finançables à 100% via le CPF</h2>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 3vw, 38px)", fontWeight: 800, color: "#1B3A6B", margin: "0 0 20px 0", lineHeight: 1.2 }}>Financer votre préparation</h2>
             <p style={{ color: "#5a6f8f", fontSize: 16, lineHeight: 1.8, margin: "0 0 20px 0" }}>
-              Nos formations sont éligibles au Compte Personnel de Formation. Vous pouvez financer tout ou partie de votre préparation sans avancer de frais.
+              Votre employeur peut prendre en charge votre préparation, et votre CPF peut être mobilisé avec son accord. En financement personnel, le règlement est échelonné.
             </p>
             <div style={{ marginBottom: 28 }}>
               <QualiopiBadge />
             </div>
             <ul style={{ listStyle: "none", padding: 0, margin: "0 0 36px 0", display: "flex", flexDirection: "column", gap: 14 }}>
-              {["Éligible CPF — aucune avance de frais", "Prise en charge OPCO pour les salariés", "Tarifs adaptés aux demandeurs d'emploi", "Facilités de paiement disponibles"].map((item, i) => (
+              {["Prise en charge par votre employeur", "CPF mobilisable avec l'accord de l'employeur", "Prix fermes, sans frais cachés", "Règlement échelonné pendant la formation"].map((item, i) => (
                 <li key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
                   <div style={{ width: 22, height: 22, background: "#4BADD4", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3"><path d="M20 6L9 17l-5-5"/></svg>
@@ -441,7 +441,7 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <a href="#contact" style={{ background: "#1B3A6B", color: "white", fontWeight: 700, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none", display: "inline-block", transition: "all 0.2s" }}
+            <a href="/financement-tarifs" style={{ background: "#1B3A6B", color: "white", fontWeight: 700, fontSize: 15, padding: "16px 32px", borderRadius: 10, textDecoration: "none", display: "inline-block", transition: "all 0.2s" }}
               onMouseEnter={e => { (e.target as HTMLElement).style.background = "#122852"; }}
               onMouseLeave={e => { (e.target as HTMLElement).style.background = "#1B3A6B"; }}>
               En savoir plus sur le financement
@@ -453,13 +453,13 @@ export default function Home() {
               <div style={{ width: 64, height: 64, background: "linear-gradient(135deg, #1B3A6B, #4BADD4)", borderRadius: 16, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
               </div>
-              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, color: "#1B3A6B", margin: "0 0 8px 0", fontWeight: 700 }}>Simulez votre financement</h3>
-              <p style={{ color: "#5a6f8f", fontSize: 14, margin: 0 }}>Vérifiez votre solde CPF sur moncompteformation.gouv.fr</p>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, color: "#1B3A6B", margin: "0 0 8px 0", fontWeight: 700 }}>Comment se passe le règlement</h3>
+              <p style={{ color: "#5a6f8f", fontSize: 14, margin: 0 }}>En financement personnel, selon la convention de formation</p>
             </div>
             {[
-              { label: "Solde CPF moyen disponible", val: "~1 500 €" },
-              { label: "Nos formations à partir de", val: "Sur devis" },
-              { label: "Reste à charge possible", val: "0 € avec CPF" },
+              { label: "Délai de rétractation", val: "10 jours" },
+              { label: "Acompte, après ce délai", val: "30 % au plus" },
+              { label: "Solde", val: "Échelonné pendant la formation" },
             ].map((row, i) => (
               <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "14px 0", borderBottom: i < 2 ? "1px solid #D6E4F0" : "none" }}>
                 <span style={{ fontSize: 14, color: "#5a6f8f" }}>{row.label}</span>

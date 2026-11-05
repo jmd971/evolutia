@@ -5,13 +5,13 @@ import Footer from "../../components/Footer"
 
 export const metadata: Metadata = {
   title: "Financer sa Préparation Concours en Guadeloupe : CPF, France Travail | Evolutia",
-  description: "CPF, France Travail, employeur, CNFPT, Région Guadeloupe : toutes les solutions pour financer sa préparation aux concours territoriaux, souvent sans avance de frais.",
+  description: "CPF, France Travail, employeur, CNFPT, Région Guadeloupe : toutes les solutions pour financer sa préparation aux concours territoriaux, avec un règlement échelonné possible.",
   alternates: { canonical: "/ressources/financer-preparation-concours-guadeloupe" },
 }
 
 const FAQ = [
-  { q: "Ma préparation concours est-elle éligible au CPF ?", a: "Oui : les préparations aux concours de la fonction publique sont éligibles au Compte Personnel de Formation. Vous mobilisez vos droits directement sur moncompteformation.gouv.fr, sans avance de frais. Si votre solde CPF ne couvre pas tout, un abondement personnel ou de France Travail peut compléter." },
-  { q: "Je suis agent public : mon employeur peut-il financer ma préparation ?", a: "Oui, deux leviers existent : le plan de formation de votre collectivité (demande à faire auprès de votre service RH) et les préparations concours du CNFPT accessibles aux agents territoriaux. Un refus de l'employeur n'empêche pas d'utiliser votre CPF, qui vous appartient." },
+  { q: "Puis-je utiliser mon CPF pour ma préparation ?", a: "Chez Evolutia, le CPF est mobilisé avec l'accord de votre employeur. Parlez-en à votre service RH avant l'inscription : nous fournissons le devis, le programme et la convention nécessaires à la demande. Si le CPF ne couvre pas tout, le reste peut être réglé de façon échelonnée." },
+  { q: "Je suis agent public : mon employeur peut-il financer ma préparation ?", a: "Oui, deux leviers existent : le plan de formation de votre collectivité (demande à faire auprès de votre service RH) et les préparations concours du CNFPT accessibles aux agents territoriaux. Votre CPF peut aussi être mobilisé, avec l'accord de votre employeur." },
   { q: "Je suis demandeur d'emploi en Guadeloupe : quelles aides ?", a: "France Travail peut mobiliser l'Aide Individuelle à la Formation (AIF), seule ou en complément de votre CPF, si la préparation s'inscrit dans votre projet professionnel validé par votre conseiller. La Région Guadeloupe propose également des dispositifs d'aide à la formation — renseignez-vous en amont, les commissions ont leurs calendriers." },
 ]
 
@@ -47,7 +47,7 @@ export default function ArticleFinancement() {
           </h1>
           <p style={{ fontSize: 18, color: "#5a6f8f", lineHeight: 1.7, margin: "0 0 24px" }}>
             Le coût ne doit jamais être ce qui vous empêche de préparer un concours : selon votre situation — salarié, agent public,
-            demandeur d&apos;emploi — il existe presque toujours une solution de financement, souvent sans aucune avance de frais.
+            demandeur d&apos;emploi — il existe le plus souvent une solution de financement, et le règlement peut être échelonné.
           </p>
           <div style={{ display: "flex", alignItems: "center", gap: 16, paddingTop: 24, borderTop: "1px solid #D6E4F0", fontSize: 13, color: "#5a6f8f" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -64,12 +64,11 @@ export default function ArticleFinancement() {
         <div style={{ display: "flex", flexDirection: "column", gap: 44 }}>
 
           <section id="cpf">
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 26, fontWeight: 700, color: "#1B3A6B", margin: "0 0 16px" }}>Le CPF : la solution la plus directe</h2>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 26, fontWeight: 700, color: "#1B3A6B", margin: "0 0 16px" }}>Le CPF, avec l&apos;accord de votre employeur</h2>
             <p style={{ lineHeight: 1.8, margin: "0 0 16px", fontSize: 16 }}>
-              Toute personne ayant travaillé en France cumule des droits sur son <strong>Compte Personnel de Formation</strong>
-              (500 € par an pour un temps plein, plafonnés à 5 000 €). Les préparations aux concours de la fonction publique
-              sont éligibles : vous choisissez votre formation sur <strong>moncompteformation.gouv.fr</strong> et vos droits
-              paient directement l&apos;organisme — <strong>zéro avance de frais</strong>.
+              Vous cumulez des droits sur votre <strong>Compte Personnel de Formation</strong> au fil de votre activité.
+              Chez Evolutia, le CPF est mobilisé pour la préparation d&apos;un concours <strong>avec l&apos;accord de votre employeur</strong> :
+              faites la demande auprès de votre service RH, nous fournissons le devis, le programme et la convention.
             </p>
             <div style={{ background: "rgba(75,173,212,0.07)", border: "1px solid rgba(75,173,212,0.25)", borderRadius: 10, padding: "16px 20px", fontSize: 15 }}>
               <strong style={{ color: "#1B3A6B" }}>Bon réflexe :</strong> consultez votre solde CPF avant l&apos;entretien d&apos;orientation —
@@ -80,8 +79,8 @@ export default function ArticleFinancement() {
           <section id="situations">
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 26, fontWeight: 700, color: "#1B3A6B", margin: "0 0 16px" }}>Selon votre situation</h2>
             <ul style={{ lineHeight: 1.9, fontSize: 16, margin: "0 0 16px", paddingLeft: 22 }}>
-              <li style={{ marginBottom: 10 }}><strong>Agent public (titulaire ou contractuel)</strong> : en plus du CPF, demandez le <strong>plan de formation</strong> de votre collectivité auprès de votre service RH — la préparation d&apos;un concours ou d&apos;un <Link href="/formations/redacteur-principal-guadeloupe" style={{ color: "#4BADD4", fontWeight: 600 }}>examen professionnel</Link> entre dans le développement des compétences. Le CNFPT propose aussi des préparations aux agents territoriaux.</li>
-              <li style={{ marginBottom: 10 }}><strong>Salarié du privé</strong> : CPF en autonomie (aucune autorisation de l&apos;employeur nécessaire hors temps de travail), ou plan de développement des compétences de l&apos;entreprise si votre projet l&apos;intéresse.</li>
+              <li style={{ marginBottom: 10 }}><strong>Agent public (titulaire ou contractuel)</strong> : demandez le <strong>plan de formation</strong> de votre collectivité auprès de votre service RH — la préparation d&apos;un concours ou d&apos;un <Link href="/formations/redacteur-principal-guadeloupe" style={{ color: "#4BADD4", fontWeight: 600 }}>examen professionnel</Link> entre dans le développement des compétences. Le CNFPT propose aussi des préparations aux agents territoriaux.</li>
+              <li style={{ marginBottom: 10 }}><strong>Salarié du privé</strong> : CPF avec l&apos;accord de votre employeur, ou plan de développement des compétences de l&apos;entreprise si votre projet l&apos;intéresse.</li>
               <li style={{ marginBottom: 10 }}><strong>Demandeur d&apos;emploi</strong> : CPF + <strong>Aide Individuelle à la Formation (AIF)</strong> de France Travail en complément, si la préparation s&apos;inscrit dans votre projet validé. Parlez-en à votre conseiller avant de vous inscrire.</li>
               <li><strong>Sans droits mobilisables</strong> : la <strong>Région Guadeloupe</strong> porte des dispositifs d&apos;aide à la formation professionnelle, et nous proposons des facilités de paiement échelonné — le sujet se règle presque toujours lors de l&apos;entretien d&apos;orientation.</li>
             </ul>

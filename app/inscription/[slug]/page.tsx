@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!f?.session) return {};
   return {
     title: `Inscription — ${f.titre} | Evolutia Formation`,
-    description: `Inscrivez-vous à la préparation ${f.titre} en Guadeloupe. ${f.session.intitule}, démarrage le ${f.session.demarrage}. Places limitées, financement CPF possible.`,
+    description: `Inscrivez-vous à la préparation ${f.titre} en Guadeloupe. ${f.session.intitule}, démarrage le ${f.session.demarrage}. Places limitées, règlement échelonné possible.`,
     alternates: { canonical: `/inscription/${slug}` },
     // Page transactionnelle : c'est la fiche formation qui doit être indexée.
     robots: { index: false, follow: true },
@@ -37,7 +37,7 @@ export default async function InscriptionPage({ params }: { params: Promise<{ sl
     { label: "Démarrage", val: session.demarrage.charAt(0).toUpperCase() + session.demarrage.slice(1) },
     { label: "Durée", val: f.duree },
     { label: "Format", val: f.format },
-    { label: "Financement", val: "CPF éligible" },
+    { label: "Financement", val: "Employeur, CPF avec son accord, ou personnel" },
   ];
 
   return (

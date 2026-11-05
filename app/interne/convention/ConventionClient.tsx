@@ -4,14 +4,58 @@ import { useEffect, useMemo, useState } from "react";
 import {
   calculerEcheancier,
   rendreEcheancierTexte,
+  rendreConditionsTarifaires,
   eurosVersCentimes,
+  formaterEuros,
+  plafondAcompteCentimes,
+  acompteParDefautCentimes,
 } from "../../../lib/echeancier";
+import {
+  ACOMPTE_DEFAUT,
+  REGLEMENTS_MAX_DEFAUT,
+  DELAI_RETRACTATION_JOURS,
+  type ConditionsConvention,
+} from "../../formations/conventions";
 
-type Formation = { slug: string; titre: string; duree: string; session: string | null; demarrage: string | null };
+type Formation = {
+  slug: string;
+  titre: string;
+  duree: string;
+  session: string | null;
+  demarrage: string | null;
+  voies: string[];
+  convention: ConditionsConvention;
+};
 type Contact = { id: string; nom: string; email: string | null; phone: string | null };
 
-const VOIES = ["Externe", "Interne", "3e voie"];
-const MODES_PAIEMENT = ["Chèque", "Virement", "Espèces", "Carte bancaire", "Prélèvement SEPA"];
+// Modes de règlement de la convention d'octobre 2026 (le prélèvement SEPA
+// GoCardless n'y figure plus).
+const MODES_PAIEMENT = ["Chèque", "Virement", "Espèces", "Carte bancaire"];
+
+/** Valeurs préremplies quand on choisit une formation. */
+function valeursFormation(f: Formation | undefined) {
+  const c = f?.convention ?? {};
+  const prixCentimes = (c.prix ?? 0) * 100;
+  const reglementsMax = c.reglementsMax ?? REGLEMENTS_MAX_DEFAUT;
+  const acompteCentimes = prixCentimes > 0
+    ? acompteParDefautCentimes(prixCentimes, (c.acompte ?? ACOMPTE_DEFAUT) * 100)
+    : (c.acompte ?? ACOMPTE_DEFAUT) * 100;
+  return {
+    prix: c.prix !== undefined ? String(c.prix) : "",
+    acompte: String(acompteCentimes / 100),
+    nombreEcheances: Math.max(1, reglementsMax - 1),
+    joursCours: c.joursCours ?? "",
+    voie: f?.voies[0] ?? "",
+    concours: c.concours?.[0]?.libelle ?? "",
+  };
+}
+
+/** Date AAAA-MM-JJ du jour + n jours, en heure locale. */
+function dansNJours(n: number): string {
+  const d = new Date();
+  d.setDate(d.getDate() + n);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
 
 const champ: React.CSSProperties = {
   width: "100%", padding: "10px 12px", border: "1px solid #D6E4F0",
@@ -33,27 +77,50 @@ export default function ConventionClient({ formations }: { formations: Formation
   const [erreurCreation, setErreurCreation] = useState<string | null>(null);
   const [enCreation, setEnCreation] = useState(false);
 
+  const initiale = valeursFormation(formations[0]);
   const [formationSlug, setFormationSlug] = useState(formations[0]?.slug ?? "");
-  const [voieConcours, setVoieConcours] = useState(VOIES[0]);
+  const [concours, setConcours] = useState(initiale.concours);
+  const [voieConcours, setVoieConcours] = useState(initiale.voie);
+  const [option, setOption] = useState("");
   const [specialite, setSpecialite] = useState("");
   const [dureeSaisie, setDureeSaisie] = useState<string | null>(null);
-  const [joursCours, setJoursCours] = useState("");
-  const [montant, setMontant] = useState("1900");
-  const [acompte, setAcompte] = useState("400");
-  const [nombreEcheances, setNombreEcheances] = useState(10);
+  const [joursCours, setJoursCours] = useState(initiale.joursCours);
+  const [prix, setPrix] = useState(initiale.prix);
+  const [remise, setRemise] = useState("0");
+  const [acompte, setAcompte] = useState(initiale.acompte);
+  const [nombreEcheances, setNombreEcheances] = useState(initiale.nombreEcheances);
   const [premiereEcheance, setPremiereEcheance] = useState("");
   const [modePaiement, setModePaiement] = useState(MODES_PAIEMENT[0]);
 
   const [envoi, setEnvoi] = useState(false);
   const [message, setMessage] = useState<{ type: "ok" | "ko"; texte: string } | null>(null);
 
-  // Par défaut : le 5 du mois prochain, une date d'encaissement conforme à
-  // l'article 11 (« entre le 1 et le 5 de chaque mois »).
+  // Par défaut : le 5 du mois suivant la fin du délai de rétractation, une date
+  // d'encaissement conforme à la convention (« entre le 1er et le 5 du mois »).
   useEffect(() => {
-    const d = new Date();
-    const prochain = new Date(d.getFullYear(), d.getMonth() + 1, 5);
-    setPremiereEcheance(prochain.toISOString().slice(0, 10));
+    const fin = new Date();
+    fin.setDate(fin.getDate() + DELAI_RETRACTATION_JOURS);
+    const prochain = new Date(fin.getFullYear(), fin.getMonth() + 1, 5);
+    setPremiereEcheance(
+      `${prochain.getFullYear()}-${String(prochain.getMonth() + 1).padStart(2, "0")}-05`
+    );
   }, []);
+
+  function choisirFormation(slug: string) {
+    const f = formations.find((x) => x.slug === slug);
+    const v = valeursFormation(f);
+    setFormationSlug(slug);
+    setDureeSaisie(null);
+    setConcours(v.concours);
+    setVoieConcours(v.voie);
+    setOption("");
+    setSpecialite("");
+    setJoursCours(v.joursCours);
+    setPrix(v.prix);
+    setRemise("0");
+    setAcompte(v.acompte);
+    setNombreEcheances(v.nombreEcheances);
+  }
 
   // Recherche de contacts, avec un délai pour ne pas appeler GHL à chaque frappe.
   useEffect(() => {
@@ -83,22 +150,47 @@ export default function ConventionClient({ formations }: { formations: Formation
     return () => clearTimeout(t);
   }, [recherche]);
 
+  const formation = formations.find((f) => f.slug === formationSlug);
+  const conv = formation?.convention ?? {};
+  const reglementsMax = conv.reglementsMax ?? REGLEMENTS_MAX_DEFAUT;
+  const concoursChoisi = conv.concours?.find((c) => c.libelle === concours);
+  const avecOptions = !!conv.options?.length && (concoursChoisi ? concoursChoisi.options : true);
+  const avecSpecialites = !!conv.specialites?.length;
+  const premiereMin = dansNJours(DELAI_RETRACTATION_JOURS + 1);
+
   const apercu = useMemo(() => {
     try {
       if (!premiereEcheance) return null;
-      const total = eurosVersCentimes(montant);
+      if (!prix.trim()) throw new Error("Saisissez le prix de la formation (aucun prix catalogue pour celle-ci).");
+      const prixCentimes = eurosVersCentimes(prix);
+      const remiseCentimes = eurosVersCentimes(remise || "0");
+      const conditions = rendreConditionsTarifaires(prixCentimes, remiseCentimes);
+      const total = prixCentimes - remiseCentimes;
+      const acompteCentimes = eurosVersCentimes(acompte || "0");
+      const reglements = nombreEcheances + (acompteCentimes > 0 ? 1 : 0);
+      if (reglements > reglementsMax) {
+        throw new Error(`Pas plus de ${reglementsMax} règlements, acompte compris, pour cette formation.`);
+      }
+      if (premiereEcheance < premiereMin) {
+        throw new Error("La 1re échéance doit tomber après la fin du délai de rétractation de 10 jours.");
+      }
       const [a, m, j] = premiereEcheance.split("-").map(Number);
       const lignes = calculerEcheancier({
         montantTotalCentimes: total,
-        acompteCentimes: eurosVersCentimes(acompte || "0"),
+        acompteCentimes,
         nombreEcheances,
         premiereEcheance: new Date(a, m - 1, j),
       });
-      return { texte: rendreEcheancierTexte(lignes, total), erreur: null as string | null };
+      return {
+        texte: rendreEcheancierTexte(lignes, total),
+        conditions,
+        net: total,
+        erreur: null as string | null,
+      };
     } catch (e) {
-      return { texte: "", erreur: e instanceof Error ? e.message : "Échéancier incalculable." };
+      return { texte: "", conditions: "", net: 0, erreur: e instanceof Error ? e.message : "Échéancier incalculable." };
     }
-  }, [montant, acompte, nombreEcheances, premiereEcheance]);
+  }, [prix, remise, acompte, nombreEcheances, premiereEcheance, reglementsMax, premiereMin]);
 
   async function creerCandidat() {
     setEnCreation(true);
@@ -133,8 +225,10 @@ export default function ConventionClient({ formations }: { formations: Formation
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        contactId: contact.id, formationSlug, voieConcours, specialite, duree, joursCours: joursCours.trim(),
-        montant, acompte, nombreEcheances, premiereEcheance, modePaiement,
+        contactId: contact.id, formationSlug, concours, voieConcours,
+        option: avecOptions ? option : "", specialite: avecSpecialites ? specialite : "",
+        duree, joursCours: joursCours.trim(),
+        prix, remise, acompte, nombreEcheances, premiereEcheance, modePaiement,
       }),
     });
     const body = await res.json().catch(() => ({}));
@@ -144,13 +238,14 @@ export default function ConventionClient({ formations }: { formations: Formation
     setEnvoi(false);
   }
 
-  const formation = formations.find((f) => f.slug === formationSlug);
   // La fiche publie souvent une fourchette (« 50 à 70 heures ») : la convention
-  // doit porter la durée exacte convenue, donc on la fait confirmer.
-  const duree = dureeSaisie ?? formation?.duree ?? "";
-  const dureeEstFourchette = dureeSaisie === null && / à /.test(duree);
+  // doit porter la durée exacte convenue, donc on la fait confirmer. Quand
+  // Evolutia a fixé la durée exacte (grille conventions.ts), elle est reprise.
+  const duree = dureeSaisie ?? conv.duree ?? formation?.duree ?? "";
+  const dureeEstFourchette = dureeSaisie === null && !conv.duree && / à /.test(duree);
+  const choixComplets = (!avecOptions || option.length > 0) && (!avecSpecialites || specialite.length > 0);
   const pretAEnvoyer =
-    contact && !apercu?.erreur && specialite.trim().length > 0 &&
+    contact && apercu && !apercu.erreur && choixComplets && voieConcours.length > 0 &&
     duree.trim().length > 0 && joursCours.trim().length > 0 && !dureeEstFourchette;
 
   return (
@@ -248,7 +343,7 @@ export default function ConventionClient({ formations }: { formations: Formation
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 16, marginTop: 12 }}>
             <div>
               <label style={label}>Formation</label>
-              <select value={formationSlug} onChange={(e) => { setFormationSlug(e.target.value); setDureeSaisie(null); }} style={champ}>
+              <select value={formationSlug} onChange={(e) => choisirFormation(e.target.value)} style={champ}>
                 {formations.map((f) => <option key={f.slug} value={f.slug}>{f.titre}</option>)}
               </select>
               {formation?.session && (
@@ -257,17 +352,44 @@ export default function ConventionClient({ formations }: { formations: Formation
                 </p>
               )}
             </div>
+            {conv.concours && (
+              <div>
+                <label style={label}>Concours visé</label>
+                <select value={concours} onChange={(e) => { setConcours(e.target.value); setOption(""); }} style={champ}>
+                  {conv.concours.map((c) => <option key={c.libelle}>{c.libelle}</option>)}
+                </select>
+              </div>
+            )}
             <div>
-              <label style={label}>Voie du concours</label>
+              <label style={label}>Voie d&apos;accès</label>
               <select value={voieConcours} onChange={(e) => setVoieConcours(e.target.value)} style={champ}>
-                {VOIES.map((v) => <option key={v}>{v}</option>)}
+                {(formation?.voies ?? []).map((v) => <option key={v}>{v}</option>)}
               </select>
+              <p style={{ fontSize: 12, color: "#5a6f8f", margin: "6px 0 0" }}>
+                Les conditions d&apos;accès de cette voie sont reprises à l&apos;article 4 de la convention.
+              </p>
             </div>
-            <div>
-              <label style={label}>Spécialité</label>
-              <input value={specialite} onChange={(e) => setSpecialite(e.target.value)}
-                placeholder="Ex. Infrastructures et réseaux — option VRD" style={champ} />
-            </div>
+            {avecOptions && (
+              <div>
+                <label style={label}>Option choisie</label>
+                <select value={option} onChange={(e) => setOption(e.target.value)} style={champ}>
+                  <option value="">— Choisir —</option>
+                  {conv.options!.map((o) => <option key={o}>{o}</option>)}
+                </select>
+                <p style={{ fontSize: 12, color: "#5a6f8f", margin: "6px 0 0" }}>
+                  Externe : l&apos;option porte sur l&apos;épreuve de questions. Interne : sur la note.
+                </p>
+              </div>
+            )}
+            {avecSpecialites && (
+              <div>
+                <label style={label}>Spécialité</label>
+                <select value={specialite} onChange={(e) => setSpecialite(e.target.value)} style={champ}>
+                  <option value="">— Choisir —</option>
+                  {conv.specialites!.map((sp) => <option key={sp}>{sp}</option>)}
+                </select>
+              </div>
+            )}
             <div>
               <label style={label}>Durée totale</label>
               <input value={duree} onChange={(e) => setDureeSaisie(e.target.value)}
@@ -289,24 +411,41 @@ export default function ConventionClient({ formations }: { formations: Formation
         {/* 3. Conditions financières */}
         <section style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 14, padding: 24, marginBottom: 18 }}>
           <div style={{ ...label, fontSize: 13, color: "#1B3A6B" }}>3 · Conditions financières</div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 16, marginTop: 12 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))", gap: 16, marginTop: 12 }}>
             <div>
-              <label style={label}>Montant total (€)</label>
-              <input value={montant} onChange={(e) => setMontant(e.target.value)} style={champ} inputMode="decimal" />
+              <label style={label}>Prix (€)</label>
+              <input value={prix} onChange={(e) => setPrix(e.target.value)} style={champ} inputMode="decimal"
+                placeholder="Sur devis" />
+              <p style={{ fontSize: 12, color: conv.prix === undefined ? "#b45309" : "#5a6f8f", margin: "6px 0 0" }}>
+                {conv.prix === undefined ? "Pas de prix catalogue : saisissez le prix convenu." : "Prix catalogue 2026-2027."}
+              </p>
+            </div>
+            <div>
+              <label style={label}>Remise commerciale (€)</label>
+              <input value={remise} onChange={(e) => setRemise(e.target.value)} style={champ} inputMode="decimal" />
             </div>
             <div>
               <label style={label}>Acompte (€)</label>
               <input value={acompte} onChange={(e) => setAcompte(e.target.value)} style={champ} inputMode="decimal" />
+              {apercu && apercu.net > 0 && (
+                <p style={{ fontSize: 12, color: "#5a6f8f", margin: "6px 0 0" }}>
+                  30 % au plus, soit {formaterEuros(plafondAcompteCentimes(apercu.net))}.
+                </p>
+              )}
             </div>
             <div>
-              <label style={label}>Nombre d&apos;échéances</label>
+              <label style={label}>Échéances après l&apos;acompte</label>
               <select value={nombreEcheances} onChange={(e) => setNombreEcheances(Number(e.target.value))} style={champ}>
-                {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => <option key={n} value={n}>{n}</option>)}
+                {Array.from({ length: Math.min(10, reglementsMax) }, (_, i) => i + 1).map((n) => <option key={n} value={n}>{n}</option>)}
               </select>
+              <p style={{ fontSize: 12, color: "#5a6f8f", margin: "6px 0 0" }}>
+                {reglementsMax} règlements au plus, acompte compris.
+              </p>
             </div>
             <div>
               <label style={label}>1re échéance</label>
-              <input type="date" value={premiereEcheance} onChange={(e) => setPremiereEcheance(e.target.value)} style={champ} />
+              <input type="date" value={premiereEcheance} min={premiereMin}
+                onChange={(e) => setPremiereEcheance(e.target.value)} style={champ} />
             </div>
             <div>
               <label style={label}>Mode de règlement</label>
@@ -317,17 +456,18 @@ export default function ConventionClient({ formations }: { formations: Formation
           </div>
 
           <div style={{ marginTop: 20 }}>
-            <div style={{ ...label, marginBottom: 8 }}>Échéancier tel qu&apos;il apparaîtra dans la convention</div>
+            <div style={{ ...label, marginBottom: 8 }}>Tel qu&apos;il apparaîtra dans la convention</div>
             {apercu?.erreur ? (
               <p style={{ color: "#b91c1c", fontSize: 14, margin: 0 }}>{apercu.erreur}</p>
             ) : (
               <pre style={{ background: "#F8FAFF", border: "1px solid #D6E4F0", borderRadius: 10, padding: 16, fontSize: 13.5, lineHeight: 1.75, margin: 0, whiteSpace: "pre-wrap", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}>
-                {apercu?.texte}
+                {apercu ? `${apercu.conditions}\n\n${apercu.texte}` : ""}
               </pre>
             )}
             <p style={{ fontSize: 12, color: "#5a6f8f", margin: "10px 0 0", lineHeight: 1.6 }}>
-              Article 11 de la convention : jusqu&apos;à 10 règlements, encaissements entre le 1er et le 5
-              ou entre le 25 et le 31 du mois. Les chèques sont remis à l&apos;inscription et déposés au dossier sans être encaissés.
+              Rien n&apos;est encaissé avant la fin du délai de rétractation de 10 jours ; l&apos;acompte, versé à cette date,
+              ne dépasse pas 30 % du prix. Encaissements entre le 1er et le 5 ou entre le 25 et le 31 du mois.
+              Aucun chèque de garantie n&apos;est demandé.
             </p>
           </div>
         </section>
@@ -343,7 +483,7 @@ export default function ConventionClient({ formations }: { formations: Formation
           {envoi ? "Enregistrement…" : "Enregistrer dans la fiche GHL"}
         </button>
         {!contact && <p style={{ fontSize: 13, color: "#5a6f8f", marginTop: 10 }}>Sélectionnez d&apos;abord un candidat.</p>}
-        {contact && !pretAEnvoyer && !apercu?.erreur && <p style={{ fontSize: 13, color: "#5a6f8f", marginTop: 10 }}>Renseignez la spécialité, la durée exacte et les jours de cours.</p>}
+        {contact && !pretAEnvoyer && !apercu?.erreur && <p style={{ fontSize: 13, color: "#5a6f8f", marginTop: 10 }}>Renseignez l&apos;option ou la spécialité, la durée exacte et les jours de cours.</p>}
       </div>
     </div>
   );

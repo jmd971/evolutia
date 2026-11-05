@@ -62,7 +62,7 @@ export default function ArticleAdjoIntAdministratif() {
               ["#dates", "Dates clés 2026-2027 en Guadeloupe"],
               ["#preparation", "Préparer efficacement le concours"],
               ["#evolution", "Évolution de carrière après le concours"],
-              ["#financement", "Financement CPF"],
+              ["#financement", "Financement"],
             ].map(([href, label]) => (
               <li key={href as string}>
                 <a href={href as string} style={{ color: "#4BADD4", textDecoration: "none", fontSize: 15, lineHeight: 1.5 }}>{label as string}</a>
@@ -271,11 +271,11 @@ export default function ArticleAdjoIntAdministratif() {
 
           <section id="financement">
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 26, fontWeight: 700, color: "#1B3A6B", margin: "0 0 16px" }}>
-              Financement CPF
+              Financement
             </h2>
             <p style={{ lineHeight: 1.8, margin: "0 0 16px", fontSize: 16 }}>
-              La préparation au concours d&apos;adjoint administratif territorial est <strong>éligible au CPF</strong>.
-              Vous pouvez mobiliser vos droits depuis Mon Compte Formation, sans avance de frais dans la plupart des cas.
+              Agent public, votre collectivité peut prendre en charge votre préparation.
+              Votre CPF peut financer tout ou partie de la préparation, avec l&apos;accord de votre employeur.
             </p>
             <p style={{ lineHeight: 1.8, margin: "0 0 20px", fontSize: 16 }}>
               Demandeurs d&apos;emploi : la préparation peut également être financée par France Travail (Pôle Emploi)

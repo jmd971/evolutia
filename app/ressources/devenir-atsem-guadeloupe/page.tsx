@@ -119,7 +119,7 @@ export default function ArticleDevenirAtsem() {
           <section style={{ background: "linear-gradient(135deg, #1B3A6B, #2a4f8f)", borderRadius: 16, padding: "36px 32px", textAlign: "center" }}>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 24, fontWeight: 700, color: "white", margin: "0 0 12px" }}>Préparez le concours ATSEM 2027 avec Evolutia</h2>
             <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 15, lineHeight: 1.7, margin: "0 0 24px", maxWidth: 520, marginLeft: "auto", marginRight: "auto" }}>
-              QCM chronométrés, simulations d&apos;entretien, préparation en présentiel aux Abymes. Formation éligible CPF.
+              QCM chronométrés, simulations d&apos;entretien, préparation en présentiel aux Abymes.
             </p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
               <Link href="/formations/atsem-guadeloupe" style={{ display: "inline-block", background: "#F5A623", color: "#1B3A6B", fontWeight: 700, fontSize: 15, padding: "14px 32px", borderRadius: 10, textDecoration: "none" }}>

@@ -351,12 +351,12 @@ export default function ArticleIngenieurTerritorial() {
               Financement CPF et aides disponibles
             </h2>
             <p style={{ lineHeight: 1.8, margin: "0 0 16px", fontSize: 16 }}>
-              La préparation au concours d&apos;ingénieur territorial est éligible au <strong>CPF</strong>.
+              Votre CPF peut financer tout ou partie de la préparation, avec l&apos;accord de votre employeur.
               En tant qu&apos;agent de la FPT, votre collectivité peut également cofinancer votre préparation via l&apos;<strong>ANFH</strong>.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 12 }}>
               {[
-                { label: "CPF (Mon Compte Formation)", desc: "Droits acquis sur votre activité. Mobilisables directement sur moncompteformation.gouv.fr." },
+                { label: "CPF", desc: "Mobilisable pour la préparation, avec l'accord de votre employeur." },
                 { label: "ANFH (agents FPT)", desc: "L'ANFH finance la formation des agents territoriaux. Renseignez-vous auprès de votre DRH." },
                 { label: "France Travail", desc: "Pour les demandeurs d'emploi : aide à la formation disponible via France Travail Guadeloupe." },
               ].map(f => (

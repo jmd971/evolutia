@@ -51,33 +51,31 @@ Les tarifs sont indiqués en euros TTC. En tant qu'organisme de formation, Evolu
 Le règlement peut s'effectuer :<br/>
 — Par virement bancaire (coordonnées communiquées sur la convention)<br/>
 — Par chèque libellé à l'ordre d'Evolutia Formation<br/>
-— Via le CPF (Compte Personnel de Formation) sur moncompteformation.gouv.fr<br/>
+— Via le CPF (Compte Personnel de Formation), avec l'accord de l'employeur<br/>
 — Par prise en charge OPCO (sur présentation de l'accord de prise en charge)<br/>
 — Par facilités de paiement (échelonnement selon accord préalable)<br/><br/>
 <strong>4.3 Acompte</strong><br/>
-Un acompte de 30 % du montant total peut être demandé à la signature de la convention, sauf dans le cadre d'un financement CPF ou OPCO intégral.`
+Aucune somme ne peut être exigée du Stagiaire avant l'expiration du délai de rétractation de dix jours suivant la signature de la convention. À cette date, un premier versement de 30 % du prix au plus peut être demandé ; le solde est échelonné au fur et à mesure du déroulement de la formation (articles L. 6353-5 et L. 6353-6 du Code du travail). Aucun chèque de garantie n'est demandé.`
           },
           {
             titre: "5. Financement CPF",
-            contenu: `Lorsque la formation est financée via le Compte Personnel de Formation (CPF), les modalités d'inscription et de paiement sont régies par la plateforme <strong>moncompteformation.gouv.fr</strong> opérée par la Caisse des Dépôts et Consignations.<br/><br/>
-Le Stagiaire s'engage à compléter correctement sa demande sur la plateforme et à ne pas annuler son dossier après le début de la formation. En cas d'annulation tardive ou d'abandon, le Stagiaire pourrait être redevable des frais non couverts par le CPF.`
+            contenu: `Le Compte Personnel de Formation (CPF) est mobilisé avec l'accord de l'employeur du Stagiaire. Evolutia Formation fournit le devis, le programme et la convention nécessaires à la demande de prise en charge.<br/><br/>
+La part du prix non couverte par le CPF reste due par le Stagiaire, selon l'échéancier prévu à la convention.`
           },
           {
             titre: "6. Annulation et report",
-            contenu: `<strong>6.1 Annulation par le Stagiaire</strong><br/>
-— Annulation plus de <strong>14 jours</strong> avant le début de la formation : remboursement intégral des sommes versées.<br/>
-— Annulation entre <strong>7 et 14 jours</strong> avant le début : retenue de 25 % du montant total (frais de dossier).<br/>
-— Annulation moins de <strong>7 jours</strong> avant le début ou abandon en cours de formation : aucun remboursement, sauf cas de force majeure dûment justifié.<br/><br/>
-<strong>6.2 Cas de force majeure</strong><br/>
-En cas d'événement imprévisible et irrésistible (maladie grave justifiée par certificat médical, décès d'un proche, catastrophe naturelle), Evolutia Formation examinera toute demande de remboursement ou de report au cas par cas.<br/><br/>
+            contenu: `<strong>6.1 Rupture ou abandon par le Stagiaire</strong><br/>
+En cas de force majeure dûment reconnue, le Stagiaire peut rompre la convention : seules les prestations effectivement dispensées sont dues, à due proportion de leur valeur prévue à la convention (article L. 6353-7 du Code du travail).<br/><br/>
+En cas d'abandon pour un autre motif, après l'expiration du délai de rétractation, seules les prestations effectivement dispensées sont dues, à due proportion de leur valeur. Evolutia Formation peut en outre demander une indemnité de dédit, qui ne peut excéder 10 % du prix des prestations non dispensées. Les sommes perçues au-delà sont remboursées au Stagiaire dans un délai de 30 jours.<br/><br/>
+<strong>6.2 Report</strong><br/>
+À la demande du Stagiaire, Evolutia Formation examine toute demande de report sur une session ultérieure.<br/><br/>
 <strong>6.3 Annulation par le Prestataire</strong><br/>
 Evolutia Formation se réserve le droit d'annuler ou de reporter une formation en cas de nombre insuffisant de participants ou de circonstances exceptionnelles. Dans ce cas, le Stagiaire sera remboursé intégralement ou se verra proposer un report sans frais.`
           },
           {
             titre: "7. Droit de rétractation",
-            contenu: `Conformément à l'article L. 6353-5 du Code du travail, lorsque la convention de formation est conclue à distance ou hors établissement, le Stagiaire dispose d'un <strong>délai de rétractation de 10 jours calendaires</strong> à compter de la signature.<br/><br/>
-Pour exercer ce droit, le Stagiaire doit notifier sa décision par e-mail à <a href="mailto:contact@evolutiaformation.fr" style="color:#4BADD4">contact@evolutiaformation.fr</a> ou par courrier recommandé avec accusé de réception.<br/><br/>
-<strong>Exception :</strong> Si, à la demande expresse du Stagiaire, la formation commence avant l'expiration du délai de rétractation, ce droit s'éteint dès lors que la formation a été dispensée en tout ou partie.`
+            contenu: `Conformément à l'article L. 6353-5 du Code du travail, le Stagiaire dispose d'un <strong>délai de rétractation de 10 jours</strong> à compter de la signature de la convention. Il l'exerce par lettre recommandée avec avis de réception adressée à Evolutia Formation.<br/><br/>
+Aucune somme ne peut être exigée du Stagiaire avant l'expiration de ce délai.`
           },
           {
             titre: "8. Obligations du stagiaire",
