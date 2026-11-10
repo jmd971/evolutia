@@ -62,7 +62,7 @@ export default function ArticleIngenieurTerritorial() {
           <ol style={{ margin: 0, padding: "0 0 0 20px", display: "flex", flexDirection: "column", gap: 10 }}>
             {[
               ["#quoi", "Qu'est-ce que le concours d'Ingénieur Territorial ?"],
-              ["#specialites", "Les 7 spécialités disponibles"],
+              ["#specialites", "Les 5 spécialités et 14 options"],
               ["#epreuves", "Les épreuves en détail"],
               ["#conditions", "Conditions d'inscription"],
               ["#dates", "Dates clés 2026-2027 en Guadeloupe"],
@@ -105,21 +105,19 @@ export default function ArticleIngenieurTerritorial() {
           {/* Section 2 */}
           <section id="specialites">
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 26, fontWeight: 700, color: "#1B3A6B", margin: "0 0 16px" }}>
-              Les 7 spécialités disponibles
+              Les 5 spécialités et 14 options
             </h2>
             <p style={{ lineHeight: 1.8, margin: "0 0 20px", fontSize: 16 }}>
-              Vous choisissez une spécialité lors de l&apos;inscription. Les épreuves techniques varient selon celle-ci.
+              Vous choisissez une spécialité et une option lors de l&apos;inscription ; les listes sont les mêmes en externe et en interne. Les épreuves techniques varient selon ce choix.
               En Guadeloupe, certaines spécialités sont particulièrement adaptées au contexte insulaire.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
               {[
-                { spec: "Infrastructure et réseaux", note: "Très demandée en Guadeloupe (eau, assainissement, voirie)", star: true },
-                { spec: "Bâtiment et construction", note: "Forte demande dans les communes", star: true },
-                { spec: "Ingénierie, informatique et systèmes", note: "Secteur en forte croissance", star: false },
-                { spec: "Prévention et gestion des risques", note: "Spécialité stratégique en contexte insulaire", star: true },
-                { spec: "Urbanisme et aménagement", note: "Projets d'aménagement régionaux", star: false },
-                { spec: "Mécanique", note: "Maintenance des parcs de véhicules", star: false },
-                { spec: "Électricité et électronique", note: "Transition énergétique", star: false },
+                { spec: "Infrastructures et réseaux", note: "Options : voirie, réseaux divers (VRD) ; déplacements et transports. Très demandée en Guadeloupe (eau, assainissement, voirie).", star: true },
+                { spec: "Ingénierie, gestion technique et architecture", note: "Options : construction et bâtiments ; centres techniques ; logistique et maintenance. Forte demande dans les communes.", star: true },
+                { spec: "Prévention et gestion des risques", note: "Options : sécurité et prévention des risques ; hygiène, laboratoires, qualité de l'eau ; déchets, assainissement ; sécurité du travail. Stratégique en contexte insulaire.", star: true },
+                { spec: "Urbanisme, aménagement et paysages", note: "Options : urbanisme ; paysages, espaces verts.", star: false },
+                { spec: "Informatique et systèmes d'information", note: "Options : systèmes d'information et de communication ; réseaux et télécommunications ; SIG, topographie.", star: false },
               ].map(s => (
                 <div key={s.spec} style={{ background: "white", border: `1px solid ${s.star ? "rgba(75,173,212,0.4)" : "#D6E4F0"}`, borderRadius: 10, padding: "14px 16px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>

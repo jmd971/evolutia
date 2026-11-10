@@ -239,9 +239,9 @@ Règles appliquées par `lib/echeancier.ts` et la page interne :
 |---|---|---|
 | `formation_choisie` | slug de la formation | — |
 | `intitule_formation` | titre, ou concours visé (ex. « Rédacteur principal de 2e classe ») | en-tête, 1 |
-| `voie_acces_convention` | voie réelle tirée de la fiche (examen pro., sur titres…) | 1 |
+| `voie_acces_convention` | nature de la procédure et voie (« Concours externe », « Examen professionnel d'avancement de grade »…), via `natureVoie()` de `conventions.ts` | 1 |
 | `voie_concours_inscription` | seulement Externe / Interne / 3e voie (liste déroulante GHL) | — |
-| `specialite_concours` | « Option : … », spécialité, ou « Sans objet » | 1 |
+| `specialite_concours` | « Option : … », spécialité (selon la voie : `specialitesPour()`), éventuellement suivie de « — option … » (adjoint technique principal), ou « Sans objet » | 1 |
 | `duree_formation`, `jours_cours` | durée exacte et rythme | 2 |
 | `conditions_acces_convention` | condition d'accès de la voie choisie (`data.ts`) | 4 |
 | `equipe_pedagogique_convention` | formateurs et références, ou texte générique | 5 |

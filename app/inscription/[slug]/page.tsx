@@ -4,6 +4,7 @@ import Link from "next/link";
 import NavBar from "../../components/NavBar"
 import Footer from "../../components/Footer"
 import { FORMATIONS } from "../../formations/data";
+import { natureVoie } from "../../formations/conventions";
 import { inscriptionEmbedUrl, INSCRIPTION_FORM_ID, GHL_FORM_EMBED_JS } from "../../config";
 
 // Une page par session dont les inscriptions sont ouvertes.
@@ -34,6 +35,7 @@ export default async function InscriptionPage({ params }: { params: Promise<{ sl
 
   const recap: { label: string; val: string }[] = [
     { label: "Session", val: session.intitule },
+    { label: "Concours et examens préparés", val: [...new Set(f.conditions.map((c) => natureVoie(c.voie)))].join(" · ") },
     { label: "Démarrage", val: session.demarrage.charAt(0).toUpperCase() + session.demarrage.slice(1) },
     { label: "Durée", val: f.duree },
     { label: "Format", val: f.format },
