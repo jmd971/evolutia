@@ -18,6 +18,19 @@ function ghlHeaders() {
 
 export type GhlCustomField = { id: string; value: string };
 
+/**
+ * L'identifiant du sous-compte, débarrassé des espaces parasites.
+ * Un espace collé par mégarde dans la variable d'environnement produit un 403
+ * « The token does not have access to this location » indiscernable d'un
+ * problème de jeton : on le retire, et on affiche la valeur utilisée dans les
+ * messages d'erreur pour rendre la panne lisible sans avoir à deviner.
+ */
+function locationId(): string {
+  const id = (process.env.GHL_LOCATION_ID ?? "").trim();
+  if (!id) throw new Error("GHL_LOCATION_ID manquant");
+  return id;
+}
+
 export type GhlContact = {
   id: string;
   firstName: string | null;
@@ -82,17 +95,20 @@ export type GhlContactResume = {
  * Utilisé par la page interne pour retrouver un candidat inscrit.
  */
 export async function searchContacts(query: string, limit = 20): Promise<GhlContactResume[]> {
-  const locationId = process.env.GHL_LOCATION_ID;
-  if (!locationId) throw new Error("GHL_LOCATION_ID manquant");
+  const id = locationId();
 
   const url = new URL(`${GHL_BASE_URL}/contacts/`);
-  url.searchParams.set("locationId", locationId);
+  url.searchParams.set("locationId", id);
   url.searchParams.set("query", query);
   url.searchParams.set("limit", String(limit));
 
   const res = await fetch(url, { headers: ghlHeaders(), cache: "no-store" });
   if (!res.ok) {
-    throw new Error(`GHL searchContacts a échoué (${res.status}): ${await res.text()}`);
+    const detail = await res.text();
+    const indice = res.status === 403
+      ? ` — le jeton n'a pas accès au sous-compte « ${id} ». Vérifiez GHL_LOCATION_ID (attendu : O5XCNBuMjjvy7DPbGC6n) et les autorisations contacts.readonly / contacts.write de l'intégration privée.`
+      : "";
+    throw new Error(`GHL searchContacts a échoué (${res.status})${indice} ${detail}`);
   }
   const body = await res.json();
   const contacts = (body.contacts ?? []) as Array<Record<string, unknown>>;
@@ -140,8 +156,7 @@ export async function upsertContact(donnees: {
   email?: string;
   phone?: string;
 }): Promise<{ contact: GhlContactResume; nouveau: boolean }> {
-  const locationId = process.env.GHL_LOCATION_ID;
-  if (!locationId) throw new Error("GHL_LOCATION_ID manquant");
+  const id = locationId();
   if (!donnees.email && !donnees.phone) {
     throw new Error("Un e-mail ou un téléphone est nécessaire pour éviter de créer un doublon.");
   }
@@ -150,7 +165,7 @@ export async function upsertContact(donnees: {
     method: "POST",
     headers: ghlHeaders(),
     body: JSON.stringify({
-      locationId,
+      locationId: id,
       firstName: donnees.firstName,
       lastName: donnees.lastName,
       ...(donnees.email ? { email: donnees.email } : {}),
