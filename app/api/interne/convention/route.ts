@@ -8,7 +8,7 @@ import {
   eurosVersCentimes,
 } from "../../../../lib/echeancier";
 import { FORMATIONS } from "../../../formations/data";
-import { conditionsConvention, REGLEMENTS_MAX_DEFAUT } from "../../../formations/conventions";
+import { conditionsConvention, specialitesPour, natureVoie, REGLEMENTS_MAX_DEFAUT } from "../../../formations/conventions";
 import { VOIE_CONCOURS_OPTIONS, GHL_TAG_NAMES } from "../../../../lib/ghl/fields";
 
 const EQUIPE_PAR_DEFAUT =
@@ -21,6 +21,8 @@ type Corps = {
   voieConcours: string;
   option?: string;
   specialite?: string;
+  /** Option de la spécialité, en texte libre (adjoint technique principal). */
+  optionSpecialite?: string;
   duree: string;
   joursCours: string;
   prix: string;
@@ -69,14 +71,16 @@ export async function POST(req: Request) {
   if (avecOptions && !conv.options!.includes(c.option ?? "")) {
     return NextResponse.json({ erreur: "Choisissez l'option d'épreuve." }, { status: 400 });
   }
-  if (conv.specialites?.length && !conv.specialites.includes(c.specialite ?? "")) {
+  const specialites = specialitesPour(conv, c.voieConcours);
+  if (specialites.length && !specialites.includes(c.specialite ?? "")) {
     return NextResponse.json({ erreur: "Choisissez la spécialité." }, { status: 400 });
   }
+  const optionSpecialite = conv.optionSpecialiteLibre ? (c.optionSpecialite ?? "").trim().slice(0, 120) : "";
   // Une seule ligne « Spécialité » dans la convention : option, spécialité, ou rien.
   const specialite = avecOptions
     ? `Option : ${c.option}`
-    : conv.specialites?.length
-      ? c.specialite!
+    : specialites.length
+      ? c.specialite! + (optionSpecialite ? ` — option ${optionSpecialite}` : "")
       : "Sans objet";
 
   let texteEcheancier: string;
@@ -112,8 +116,9 @@ export async function POST(req: Request) {
   try {
     await updateContactCustomFieldsByKey(c.contactId, {
       formation_choisie: c.formationSlug,
-      // Voie réelle (examen pro., sur titres…), en texte libre pour la convention.
-      voie_acces_convention: c.voieConcours,
+      // Nature de la procédure et voie (« Concours externe », « Examen
+      // professionnel d'avancement de grade »…), en texte libre pour l'article 1.
+      voie_acces_convention: natureVoie(c.voieConcours),
       // Liste déroulante GHL limitée à Externe / Interne / 3e voie : n'y écrire
       // que ces valeurs, sinon GHL rejette ou vide le champ.
       ...((VOIE_CONCOURS_OPTIONS as readonly string[]).includes(c.voieConcours)

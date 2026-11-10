@@ -14,6 +14,9 @@ import {
   ACOMPTE_DEFAUT,
   REGLEMENTS_MAX_DEFAUT,
   DELAI_RETRACTATION_JOURS,
+  specialitesPour,
+  natureVoie,
+  familleVoie,
   type ConditionsConvention,
 } from "../../formations/conventions";
 
@@ -83,6 +86,7 @@ export default function ConventionClient({ formations }: { formations: Formation
   const [voieConcours, setVoieConcours] = useState(initiale.voie);
   const [option, setOption] = useState("");
   const [specialite, setSpecialite] = useState("");
+  const [optionSpecialite, setOptionSpecialite] = useState("");
   const [dureeSaisie, setDureeSaisie] = useState<string | null>(null);
   const [joursCours, setJoursCours] = useState(initiale.joursCours);
   const [prix, setPrix] = useState(initiale.prix);
@@ -117,6 +121,7 @@ export default function ConventionClient({ formations }: { formations: Formation
     setVoieConcours(v.voie);
     setOption("");
     setSpecialite("");
+    setOptionSpecialite("");
     setJoursCours(v.joursCours);
     setPrix(v.prix);
     setRemise("0");
@@ -157,7 +162,11 @@ export default function ConventionClient({ formations }: { formations: Formation
   const reglementsMax = conv.reglementsMax ?? REGLEMENTS_MAX_DEFAUT;
   const concoursChoisi = conv.concours?.find((c) => c.libelle === concours);
   const avecOptions = !!conv.options?.length && (concoursChoisi ? concoursChoisi.options : true);
-  const avecSpecialites = !!conv.specialites?.length;
+  // Les spécialités peuvent dépendre de la voie (agent de maîtrise : concours
+  // seulement, et une spécialité réservée au concours interne).
+  const specialites = specialitesPour(conv, voieConcours);
+  const avecSpecialites = specialites.length > 0;
+  const famille = familleVoie(voieConcours);
   const premiereMin = dansNJours(DELAI_RETRACTATION_JOURS + 1);
 
   const apercu = useMemo(() => {
@@ -238,6 +247,7 @@ export default function ConventionClient({ formations }: { formations: Formation
       body: JSON.stringify({
         contactId: contact.id, formationSlug, concours, voieConcours,
         option: avecOptions ? option : "", specialite: avecSpecialites ? specialite : "",
+        optionSpecialite: avecSpecialites && conv.optionSpecialiteLibre ? optionSpecialite.trim() : "",
         duree, joursCours: joursCours.trim(),
         prix, remise, acompte, nombreEcheances, premiereEcheance, modePaiement,
         envoyer,
@@ -259,7 +269,7 @@ export default function ConventionClient({ formations }: { formations: Formation
   // Evolutia a fixé la durée exacte (grille conventions.ts), elle est reprise.
   const duree = dureeSaisie ?? conv.duree ?? formation?.duree ?? "";
   const dureeEstFourchette = dureeSaisie === null && !conv.duree && / à /.test(duree);
-  const choixComplets = (!avecOptions || option.length > 0) && (!avecSpecialites || specialite.length > 0);
+  const choixComplets = (!avecOptions || option.length > 0) && (!avecSpecialites || specialites.includes(specialite));
   const pretAEnvoyer =
     contact && apercu && !apercu.erreur && choixComplets && voieConcours.length > 0 &&
     duree.trim().length > 0 && joursCours.trim().length > 0 && !dureeEstFourchette;
@@ -378,11 +388,26 @@ export default function ConventionClient({ formations }: { formations: Formation
             )}
             <div>
               <label style={label}>Voie d&apos;accès</label>
-              <select value={voieConcours} onChange={(e) => setVoieConcours(e.target.value)} style={champ}>
-                {(formation?.voies ?? []).map((v) => <option key={v}>{v}</option>)}
+              <select value={voieConcours}
+                onChange={(e) => {
+                  setVoieConcours(e.target.value);
+                  if (!specialitesPour(conv, e.target.value).includes(specialite)) setSpecialite("");
+                }}
+                style={champ}>
+                {(formation?.voies ?? []).map((v) => <option key={v} value={v}>{natureVoie(v)}</option>)}
               </select>
+              {voieConcours && (
+                <span style={{
+                  display: "inline-block", marginTop: 8, fontSize: 11, fontWeight: 700, letterSpacing: "0.05em",
+                  textTransform: "uppercase", borderRadius: 100, padding: "3px 10px",
+                  background: famille === "Concours" ? "#E6F4FB" : famille === "Examen professionnel" ? "#ECFDF3" : "#F1F5F9",
+                  color: famille === "Concours" ? "#1B6A8F" : famille === "Examen professionnel" ? "#166534" : "#475569",
+                }}>
+                  {famille}
+                </span>
+              )}
               <p style={{ fontSize: 12, color: "#5a6f8f", margin: "6px 0 0" }}>
-                Les conditions d&apos;accès de cette voie sont reprises à l&apos;article 4 de la convention.
+                Ce libellé figure à l&apos;article 1 ; les conditions d&apos;accès de la voie, à l&apos;article 4.
               </p>
             </div>
             {avecOptions && (
@@ -402,8 +427,18 @@ export default function ConventionClient({ formations }: { formations: Formation
                 <label style={label}>Spécialité</label>
                 <select value={specialite} onChange={(e) => setSpecialite(e.target.value)} style={champ}>
                   <option value="">— Choisir —</option>
-                  {conv.specialites!.map((sp) => <option key={sp}>{sp}</option>)}
+                  {specialites.map((sp) => <option key={sp}>{sp}</option>)}
                 </select>
+              </div>
+            )}
+            {avecSpecialites && conv.optionSpecialiteLibre && (
+              <div>
+                <label style={label}>Option de la spécialité</label>
+                <input value={optionSpecialite} onChange={(e) => setOptionSpecialite(e.target.value)}
+                  placeholder="Ex. plomberie, sanitaire (facultatif)" style={champ} />
+                <p style={{ fontSize: 12, color: "#5a6f8f", margin: "6px 0 0" }}>
+                  Les options ouvertes varient selon la session : reprenez celle de l&apos;inscription du candidat.
+                </p>
               </div>
             )}
             <div>
@@ -499,7 +534,8 @@ export default function ConventionClient({ formations }: { formations: Formation
             <div style={{ fontWeight: 700, color: "#1B3A6B", marginBottom: 8 }}>Envoyer la convention à signer ?</div>
             <ul style={{ margin: "0 0 14px", paddingLeft: 18, fontSize: 14, lineHeight: 1.7 }}>
               <li><strong>{contact.nom}</strong> — envoi à <strong>{contact.email ?? "aucun e-mail : l'envoi sera refusé"}</strong></li>
-              <li>{concours || formation?.titre} — {voieConcours}</li>
+              <li>{concours || formation?.titre} — {natureVoie(voieConcours)}</li>
+              {avecSpecialites && specialite && <li>Spécialité : {specialite}{conv.optionSpecialiteLibre && optionSpecialite.trim() ? ` — option ${optionSpecialite.trim()}` : ""}</li>}
               <li>Montant : {formaterEuros(apercu.net)}, acompte {formaterEuros(eurosVersCentimes(acompte || "0"))}, puis {nombreEcheances} échéance(s)</li>
             </ul>
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>

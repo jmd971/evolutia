@@ -57,7 +57,7 @@ export default function ArticleTechnicienTerritorial() {
           <ol style={{ margin: 0, padding: "0 0 0 20px", display: "flex", flexDirection: "column", gap: 10 }}>
             {[
               ["#quoi", "Qu'est-ce que le Technicien Territorial ?"],
-              ["#specialites", "Les 9 spécialités du concours"],
+              ["#specialites", "Les 10 spécialités du concours"],
               ["#epreuves", "Les épreuves en détail"],
               ["#conditions", "Conditions d'inscription"],
               ["#dates", "Dates clés 2026-2027 en Guadeloupe"],
@@ -97,7 +97,7 @@ export default function ArticleTechnicienTerritorial() {
 
           <section id="specialites">
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 26, fontWeight: 700, color: "#1B3A6B", margin: "0 0 16px" }}>
-              Les 9 spécialités du concours
+              Les 10 spécialités du concours
             </h2>
             <p style={{ lineHeight: 1.8, margin: "0 0 20px", fontSize: 16 }}>
               Le concours de technicien territorial se passe obligatoirement dans une <strong>spécialité choisie à l&apos;inscription</strong>.
@@ -105,15 +105,16 @@ export default function ArticleTechnicienTerritorial() {
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 12 }}>
               {[
-                { sp: "Bâtiment et travaux", desc: "Construction, rénovation, maintenance" },
-                { sp: "Voirie et réseaux divers", desc: "Routes, eau, assainissement, éclairage" },
-                { sp: "Espaces verts et naturels", desc: "Parcs, jardins, aménagement paysager" },
-                { sp: "Prévention et gestion des risques", desc: "Sécurité, hygiène, incendie" },
-                { sp: "Ingénierie, informatique et systèmes", desc: "Réseaux, télécom, systèmes d&apos;info" },
-                { sp: "Restauration", desc: "Production culinaire, diététique" },
-                { sp: "Mécanique et électromécanique", desc: "Entretien véhicules, équipements" },
-                { sp: "Électricité et électronique", desc: "Installations électriques, courant faible" },
-                { sp: "Habillement et textile", desc: "Confection, entretien du linge" },
+                { sp: "Bâtiments, génie civil", desc: "Construction, rénovation, maintenance du patrimoine bâti" },
+                { sp: "Réseaux, voirie et infrastructures", desc: "Routes, eau, assainissement, éclairage public" },
+                { sp: "Prévention et gestion des risques, hygiène, restauration", desc: "Sécurité, hygiène, restauration collective" },
+                { sp: "Aménagement urbain et développement durable", desc: "Urbanisme opérationnel, transition écologique" },
+                { sp: "Déplacements, transports", desc: "Mobilités, transports publics, stationnement" },
+                { sp: "Espaces verts et naturels", desc: "Parcs, jardins, espaces naturels" },
+                { sp: "Ingénierie, informatique et systèmes d'information", desc: "Réseaux, télécoms, systèmes d'information" },
+                { sp: "Services et interventions techniques", desc: "Ateliers, régies, maintenance, logistique" },
+                { sp: "Métiers du spectacle", desc: "Son, lumière, scène, équipements culturels" },
+                { sp: "Artisanat et métiers d'art", desc: "Restauration d'objets, métiers d'art" },
               ].map((item, i) => (
                 <div key={i} style={{ background: "white", border: "1px solid #D6E4F0", borderRadius: 10, padding: "14px 16px" }}>
                   <div style={{ fontWeight: 700, fontSize: 14, color: "#1B3A6B", marginBottom: 4 }}>{item.sp}</div>
@@ -122,8 +123,8 @@ export default function ArticleTechnicienTerritorial() {
               ))}
             </div>
             <p style={{ lineHeight: 1.7, marginTop: 16, fontSize: 15, color: "#5a6f8f" }}>
-              En Guadeloupe, les spécialités les plus ouvertes au concours sont <strong>Bâtiment et travaux</strong>,
-              <strong> Voirie et réseaux</strong> et <strong>Espaces verts</strong>. Vérifiez sur le site du CDG 971
+              En Guadeloupe, les spécialités les plus ouvertes au concours sont <strong>Bâtiments, génie civil</strong>,
+              <strong> Réseaux, voirie et infrastructures</strong> et <strong>Espaces verts et naturels</strong>. Vérifiez sur le site du CDG 971
               quelles spécialités sont ouvertes lors de chaque session.
             </p>
           </section>

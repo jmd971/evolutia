@@ -32,7 +32,63 @@ export type ConditionsConvention = {
   options?: string[];
   /** Spécialités à choisir à l'inscription. */
   specialites?: string[];
+  /** Voies pour lesquelles une spécialité est à choisir (par défaut : toutes). */
+  specialitesVoies?: string[];
+  /** Spécialités ouvertes à certaines voies seulement. */
+  specialitesReservees?: { libelle: string; voies: string[] }[];
+  /** Chaque spécialité se décline en options dont la liste varie selon la session :
+   *  l'option est saisie en texte libre (facultative). */
+  optionSpecialiteLibre?: boolean;
 };
+
+/** Spécialités proposées pour une voie donnée (liste vide = pas de spécialité). */
+export function specialitesPour(c: ConditionsConvention, voie: string): string[] {
+  if (!c.specialites?.length) return [];
+  if (c.specialitesVoies && !c.specialitesVoies.includes(voie)) return [];
+  const reservees = (c.specialitesReservees ?? [])
+    .filter((s) => s.voies.includes(voie))
+    .map((s) => s.libelle);
+  return [...c.specialites, ...reservees];
+}
+
+// Nature de la procédure pour chaque voie des fiches (app/formations/data.ts) :
+// concours ou examen professionnel, et pour ce dernier promotion interne ou
+// avancement de grade (cf. répertoire des concours et examens de la FPT,
+// novembre 2026). C'est ce libellé qui figure à l'article 1 de la convention.
+const NATURE_VOIE: Record<string, string> = {
+  "Externe": "Concours externe",
+  "Interne": "Concours interne",
+  "3e voie": "Troisième concours",
+  "Concours externe": "Concours externe",
+  "Concours interne": "Concours interne",
+  "Concours 3e voie": "Troisième concours",
+  "Concours (externe)": "Concours externe",
+  "Externe — dispense de diplôme": "Concours externe (dispense de diplôme)",
+  "Sur titres": "Concours sur titres",
+  "Sur titres — spécialité aide médico-psychologique": "Concours sur titres — spécialité aide médico-psychologique",
+  "Sur titres — spécialité assistant dentaire": "Concours sur titres — spécialité assistant dentaire",
+  "Avancement de grade": "Examen professionnel d'avancement de grade",
+  "Examen pro. 2e classe (avancement)": "Examen professionnel d'avancement au grade de technicien principal de 2e classe",
+  "Examen pro. 1re classe (avancement)": "Examen professionnel d'avancement au grade de technicien principal de 1re classe",
+  "Examen pro. 2e classe (promotion interne)": "Examen professionnel de promotion interne au grade de technicien principal de 2e classe",
+  "Examen pro. (promotion interne)": "Examen professionnel de promotion interne",
+  "Examen pro. — ATSEM": "Examen professionnel de promotion interne (ATSEM)",
+  "Tous profils": "Préparation aux épreuves orales d'un concours ou d'un examen professionnel",
+};
+
+/** Libellé complet de la voie pour la convention (« Concours externe »,
+ *  « Examen professionnel d'avancement de grade »…). */
+export function natureVoie(voie: string): string {
+  return NATURE_VOIE[voie] ?? voie;
+}
+
+/** Famille de la procédure, pour l'affichage (pastille). */
+export function familleVoie(voie: string): "Concours" | "Examen professionnel" | "Préparation" {
+  const n = natureVoie(voie);
+  if (n.startsWith("Examen professionnel")) return "Examen professionnel";
+  if (n.startsWith("Concours") || n === "Troisième concours") return "Concours";
+  return "Préparation";
+}
 
 export const ACOMPTE_DEFAUT = 300;
 export const REGLEMENTS_MAX_DEFAUT = 7;
@@ -49,6 +105,14 @@ export const CONVENTIONS: Record<string, ConditionsConvention> = {
     acompte: 400,
     reglementsMax: 10,
     duree: "166 heures : 146 heures de préparation écrite et 20 heures de préparation orale",
+    // Décret n° 2013-593 : spécialité choisie à l'inscription, dans les trois voies.
+    specialites: [
+      "Administration générale",
+      "Gestion du secteur sanitaire et social",
+      "Analyste",
+      "Animation",
+      "Urbanisme et développement des territoires",
+    ],
   },
   "redacteur-territorial-guadeloupe": {
     prix: 1600,
@@ -87,8 +151,64 @@ export const CONVENTIONS: Record<string, ConditionsConvention> = {
       "Artisanat et métiers d'art",
     ],
   },
-  "agent-de-maitrise-guadeloupe": { prix: 1200 },
-  "ingenieur-territorial-guadeloupe": { prix: 1900 },
+  "agent-de-maitrise-guadeloupe": {
+    prix: 1200,
+    // Concours seulement : l'examen professionnel de promotion interne n'a pas
+    // de spécialité. Liste des brochures CDG 2025.
+    specialitesVoies: ["Concours externe", "Concours interne", "Concours 3e voie"],
+    specialites: [
+      "Bâtiment, travaux publics, voirie, réseaux divers",
+      "Espaces naturels, espaces verts",
+      "Mécanique, électromécanique, électronique, électrotechnique",
+      "Restauration",
+      "Environnement, hygiène",
+      "Techniques de la communication et des activités artistiques",
+      "Logistique et sécurité",
+    ],
+    specialitesReservees: [
+      {
+        libelle: "Hygiène et accueil des enfants des écoles maternelles ou des classes enfantines",
+        voies: ["Concours interne"],
+      },
+    ],
+  },
+  "ingenieur-territorial-guadeloupe": {
+    prix: 1900,
+    // 5 spécialités et 14 options, mêmes listes en externe et en interne : le
+    // candidat choisit la spécialité et l'option à l'inscription.
+    specialites: [
+      "Ingénierie, gestion technique et architecture — option construction et bâtiments",
+      "Ingénierie, gestion technique et architecture — option centres techniques",
+      "Ingénierie, gestion technique et architecture — option logistique et maintenance",
+      "Infrastructures et réseaux — option voirie, réseaux divers (VRD)",
+      "Infrastructures et réseaux — option déplacements et transports",
+      "Prévention et gestion des risques — option sécurité et prévention des risques",
+      "Prévention et gestion des risques — option hygiène, laboratoires, qualité de l'eau",
+      "Prévention et gestion des risques — option déchets, assainissement",
+      "Prévention et gestion des risques — option sécurité du travail",
+      "Urbanisme, aménagement et paysages — option urbanisme",
+      "Urbanisme, aménagement et paysages — option paysages, espaces verts",
+      "Informatique et systèmes d'information — option systèmes d'information et de communication",
+      "Informatique et systèmes d'information — option réseaux et télécommunications",
+      "Informatique et systèmes d'information — option systèmes d'information géographiques (SIG), topographie",
+    ],
+  },
+  "adjoint-technique-principal-guadeloupe": {
+    // Arrêté de 2007 : chaque spécialité se décline en options, ouvertes ou non
+    // selon la session : l'option est saisie à la main.
+    specialites: [
+      "Bâtiment, travaux publics, voirie et réseaux divers",
+      "Espaces naturels, espaces verts",
+      "Mécanique, électromécanique",
+      "Restauration",
+      "Environnement, hygiène",
+      "Communication, spectacle",
+      "Logistique et sécurité",
+      "Artisanat d'art",
+      "Conduite de véhicules",
+    ],
+    optionSpecialiteLibre: true,
+  },
   "ingenieur-chef-guadeloupe": { prix: 2200 },
   "preparation-oraux-concours-guadeloupe": { prix: 500 },
 };
