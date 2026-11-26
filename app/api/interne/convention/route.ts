@@ -8,7 +8,7 @@ import {
   eurosVersCentimes,
 } from "../../../../lib/echeancier";
 import { FORMATIONS } from "../../../formations/data";
-import { conditionsConvention, specialitesPour, natureVoie, REGLEMENTS_MAX_DEFAUT } from "../../../formations/conventions";
+import { conditionsConvention, specialitesPour, natureVoie, ECHEANCES_MAX, TYPES_PREPARATION } from "../../../formations/conventions";
 import { VOIE_CONCOURS_OPTIONS, GHL_TAG_NAMES } from "../../../../lib/ghl/fields";
 
 const EQUIPE_PAR_DEFAUT =
@@ -19,6 +19,8 @@ type Corps = {
   formationSlug: string;
   concours?: string;
   voieConcours: string;
+  /** L'un des libellés de TYPES_PREPARATION (article 1 de la convention). */
+  typePreparation: string;
   option?: string;
   specialite?: string;
   /** Option de la spécialité, en texte libre (adjoint technique principal). */
@@ -63,6 +65,9 @@ export async function POST(req: Request) {
   if (!condition) {
     return NextResponse.json({ erreur: `Voie inconnue pour cette formation : ${c.voieConcours}` }, { status: 400 });
   }
+  if (!(TYPES_PREPARATION as readonly string[]).includes(c.typePreparation ?? "")) {
+    return NextResponse.json({ erreur: "Choisissez le type de préparation." }, { status: 400 });
+  }
   const concours = conv.concours?.find((x) => x.libelle === c.concours);
   if (conv.concours && !concours) {
     return NextResponse.json({ erreur: "Choisissez le concours visé." }, { status: 400 });
@@ -93,9 +98,8 @@ export async function POST(req: Request) {
     texteConditions = rendreConditionsTarifaires(prixCentimes, remiseCentimes);
     montantCentimes = prixCentimes - remiseCentimes;
     acompteCentimes = eurosVersCentimes(c.acompte || "0");
-    const reglementsMax = conv.reglementsMax ?? REGLEMENTS_MAX_DEFAUT;
-    if (c.nombreEcheances + (acompteCentimes > 0 ? 1 : 0) > reglementsMax) {
-      throw new Error(`Pas plus de ${reglementsMax} règlements, acompte compris, pour cette formation.`);
+    if (!Number.isInteger(c.nombreEcheances) || c.nombreEcheances < 1 || c.nombreEcheances > ECHEANCES_MAX) {
+      throw new Error(`Le nombre d'échéances doit être compris entre 1 et ${ECHEANCES_MAX}, en plus de l'acompte.`);
     }
     const [a, m, j] = c.premiereEcheance.split("-").map(Number);
     if (!a || !m || !j) throw new Error("Date de première échéance invalide.");
@@ -119,6 +123,7 @@ export async function POST(req: Request) {
       // Nature de la procédure et voie (« Concours externe », « Examen
       // professionnel d'avancement de grade »…), en texte libre pour l'article 1.
       voie_acces_convention: natureVoie(c.voieConcours),
+      type_preparation_convention: c.typePreparation,
       // Liste déroulante GHL limitée à Externe / Interne / 3e voie : n'y écrire
       // que ces valeurs, sinon GHL rejette ou vide le champ.
       ...((VOIE_CONCOURS_OPTIONS as readonly string[]).includes(c.voieConcours)

@@ -18,8 +18,9 @@ export type ConditionsConvention = {
   prix?: number;
   /** Acompte par défaut, en euros (plafonné à 30 % du prix net au calcul). */
   acompte?: number;
-  /** Nombre maximal de règlements, acompte compris (art. 10 de la convention). */
-  reglementsMax?: number;
+  /** Nombre de règlements proposé par défaut, acompte compris. Ce n'est pas un
+   *  plafond : la page interne laisse aller jusqu'à ECHEANCES_MAX échéances. */
+  reglementsProposes?: number;
   /** Durée exacte à porter sur la convention, quand Evolutia l'a fixée. */
   duree?: string;
   /** Jours et rythme des cours, quand Evolutia les a fixés. */
@@ -91,7 +92,23 @@ export function familleVoie(voie: string): "Concours" | "Examen professionnel" |
 }
 
 export const ACOMPTE_DEFAUT = 300;
-export const REGLEMENTS_MAX_DEFAUT = 7;
+export const REGLEMENTS_PROPOSES_DEFAUT = 7;
+/** Plafond commun à toutes les formations : 10 échéances après l'acompte
+ *  (demande d'Evolutia, novembre 2026). */
+export const ECHEANCES_MAX = 10;
+
+// Type de préparation, choisi pour chaque convention et porté à l'article 1 :
+// le candidat déjà admissible ne prépare que l'oral d'admission.
+export const PREPARATION_ECRIT_ET_ORAL =
+  "Préparation aux épreuves d'admissibilité et d'admission : entretien écrit et oral";
+export const PREPARATION_ORAL = "Préparation à l'épreuve d'admission : entretien oral";
+export const TYPES_PREPARATION = [PREPARATION_ECRIT_ET_ORAL, PREPARATION_ORAL] as const;
+
+/** Type proposé à l'ouverture : l'oral pour « Préparation aux Oraux », sinon
+ *  rien, pour obliger à choisir. */
+export function typePreparationParDefaut(slug: string): string {
+  return slug === "preparation-oraux-concours-guadeloupe" ? PREPARATION_ORAL : "";
+}
 export const DELAI_RETRACTATION_JOURS = 10;
 
 const EQUIPE_TECHNIQUE =
@@ -103,7 +120,7 @@ export const CONVENTIONS: Record<string, ConditionsConvention> = {
   "attache-territorial-guadeloupe": {
     prix: 1900,
     acompte: 400,
-    reglementsMax: 10,
+    reglementsProposes: 10,
     duree: "166 heures : 146 heures de préparation écrite et 20 heures de préparation orale",
     // Décret n° 2013-593 : spécialité choisie à l'inscription, dans les trois voies.
     specialites: [
@@ -133,7 +150,7 @@ export const CONVENTIONS: Record<string, ConditionsConvention> = {
   "technicien-territorial-guadeloupe": {
     prix: 1600,
     acompte: 300,
-    reglementsMax: 7,
+    reglementsProposes: 7,
     duree:
       "150 heures : 108 heures de préparation écrite (36 séances) et 42 heures de préparation orale (21 séances de 2 heures)",
     joursCours: "le mercredi ou le vendredi, le samedi étant réservé aux examens blancs",
