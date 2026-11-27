@@ -219,8 +219,8 @@ candidat (règle du `CLAUDE.md`) : le widget est servi depuis
 ### Grille des conditions
 
 `app/formations/conventions.ts` est la source unique des prix (fiche formation,
-`/financement-tarifs`, convention), de l'acompte par défaut, du nombre maximal de
-règlements, et quand Evolutia les a fixés, de la durée exacte, des jours de cours,
+`/financement-tarifs`, convention), de l'acompte par défaut, du nombre de
+règlements proposé, et quand Evolutia les a fixés, de la durée exacte, des jours de cours,
 de l'équipe, des options et des spécialités. Prix validés par Evolutia le
 30/10/2026 pour 8 formations ; les 14 autres sont « sur devis » et la page
 interne demande alors le prix convenu.
@@ -228,8 +228,11 @@ interne demande alors le prix convenu.
 Règles appliquées par `lib/echeancier.ts` et la page interne :
 - acompte ≤ 30 % du prix net, versé à l'expiration du délai de rétractation de
   10 jours (art. L. 6353-5 et L. 6353-6) ; 1re échéance après ce délai ;
-- règlements, acompte compris, ≤ `reglementsMax` de la formation (7 par défaut,
-  10 pour l'Attaché) ;
+- 10 échéances au plus après l'acompte (`ECHEANCES_MAX`), pour toutes les
+  formations ; `reglementsProposes` (7 par défaut, 10 pour l'Attaché) ne fait que
+  préremplir la liste ;
+- type de préparation obligatoire (`TYPES_PREPARATION`) : écrit et oral, ou oral
+  d'admission seul ;
 - remise commerciale facultative : le texte de l'article 9 la mentionne et le
   montant net est écrit dans `montant_formation`.
 
@@ -240,6 +243,7 @@ Règles appliquées par `lib/echeancier.ts` et la page interne :
 | `formation_choisie` | slug de la formation | — |
 | `intitule_formation` | titre, ou concours visé (ex. « Rédacteur principal de 2e classe ») | en-tête, 1 |
 | `voie_acces_convention` | nature de la procédure et voie (« Concours externe », « Examen professionnel d'avancement de grade »…), via `natureVoie()` de `conventions.ts` | 1 |
+| `type_preparation_convention` | « Préparation aux épreuves d'admissibilité et d'admission : entretien écrit et oral » ou « Préparation à l'épreuve d'admission : entretien oral » | 1 |
 | `voie_concours_inscription` | seulement Externe / Interne / 3e voie (liste déroulante GHL) | — |
 | `specialite_concours` | « Option : … », spécialité (selon la voie : `specialitesPour()`), éventuellement suivie de « — option … » (adjoint technique principal), ou « Sans objet » | 1 |
 | `duree_formation`, `jours_cours` | durée exacte et rythme | 2 |
@@ -251,6 +255,10 @@ Règles appliquées par `lib/echeancier.ts` et la page interne :
 Les champs `voie_acces_convention`, `conditions_acces_convention`,
 `equipe_pedagogique_convention` et `conditions_tarifaires_convention` ont été
 créés le 05/11/2026 (dossier « Additional Info »).
+
+Le champ `type_preparation_convention` (texte, une ligne) est attendu depuis le
+26/11/2026 : il doit exister dans GHL et figurer à l'article 1 du modèle
+(`docs/convention-modele-ghl.html`) avant la mise en production.
 
 ### Le modèle
 
